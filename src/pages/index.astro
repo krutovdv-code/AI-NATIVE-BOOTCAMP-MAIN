@@ -149,8 +149,9 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
-  .hero-title .word { display: inline-block; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .hero-title .word.visible { opacity: 1; transform: translateY(0); }
+  .hero-title .word { display: inline-block; opacity: 1; }
+  .js .hero-title .word { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .js .hero-title .word.visible { opacity: 1; transform: translateY(0); }
   .hero-accent { color: var(--accent); }
   .hero-sub {
     border-left: 2px solid var(--accent);
@@ -250,11 +251,10 @@
     padding: 24px 28px;
     border-right: 1px solid var(--ink10);
     border-bottom: 1px solid var(--ink10);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 1;
   }
-  .audience-item.visible { opacity: 1; transform: translateY(0); }
+  .js .audience-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .audience-item.visible { opacity: 1; transform: translateY(0); }
   .audience-item:nth-child(even) { border-right: none; }
   .audience-item:nth-last-child(-n+2) { border-bottom: none; }
   .audience-num {
@@ -282,11 +282,10 @@
     padding: 28px 32px;
     border-right: 1px solid var(--ink10);
     border-bottom: 1px solid var(--ink10);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 1;
   }
-  .learn-item.visible { opacity: 1; transform: translateY(0); }
+  .js .learn-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .learn-item.visible { opacity: 1; transform: translateY(0); }
   .learn-item:nth-child(even) { border-right: none; }
   .learn-item:nth-last-child(-n+2) { border-bottom: none; }
   .learn-arrow {
@@ -306,11 +305,10 @@
   .module-block {
     margin-bottom: 2px;
     border: 1px solid var(--ink10);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 1;
   }
-  .module-block.visible { opacity: 1; transform: translateY(0); }
+  .js .module-block { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .module-block.visible { opacity: 1; transform: translateY(0); }
   .module-header {
     display: grid;
     grid-template-columns: 64px 1fr auto;
@@ -399,11 +397,10 @@
   .format-item {
     padding: 32px 28px;
     border-right: 1px solid var(--ink10);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 1;
   }
-  .format-item.visible { opacity: 1; transform: translateY(0); }
+  .js .format-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .format-item.visible { opacity: 1; transform: translateY(0); }
   .format-item:last-child { border-right: none; }
   .format-icon {
     font-size: 11px;
@@ -465,13 +462,14 @@
     letter-spacing: 0.1em;
   }
 
-  /* SCROLL REVEAL */
-  .reveal {
+  /* SCROLL REVEAL — по умолчанию видно (без JS); с JS скрыто до появления в viewport */
+  .reveal { opacity: 1; }
+  .js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
-  .reveal.visible {
+  .js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1212,6 +1210,8 @@ transform: scale(1.04);
 </footer>
 
 <script is:inline>
+  // Включаем анимации только при работающем JS (без JS контент уже виден по умолчанию)
+  document.documentElement.classList.add('js');
   // Hero word reveal
   window.addEventListener('load', () => {
     const words = document.querySelectorAll('.hero-title .word');
