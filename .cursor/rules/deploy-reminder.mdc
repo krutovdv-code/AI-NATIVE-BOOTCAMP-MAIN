@@ -1,0 +1,17 @@
+---
+description: Всегда выводить команду деплоя в конце ответа
+alwaysApply: true
+---
+
+# Деплой
+
+После любых изменений в проекте **всегда** добавляй в конец ответа команду для деплоя:
+
+1. Сборка: `cd ai-native-bootcamp-main && npm run build`
+2. Деплой: загрузить содержимое папки `dist/` на хостинг (или использовать `npx vercel --prod` / `netlify deploy --prod`, если настроено).
+
+Выводи это в виде готовой команды(й), например:
+```bash
+cd ai-native-bootcamp-main && npm run build
+# затем загрузи dist/ на хостинг или: npx vercel --prod
+```

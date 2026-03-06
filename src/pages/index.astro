@@ -646,6 +646,12 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     transform: translateY(0);
   }
 
+  /* Бургер и скрытие центра навигации — показываем уже с 992px */
+  @media (max-width: 992px) {
+    nav .nav-center { display: none; }
+    .nav-burger { display: flex; }
+  }
+
   @media (max-width: 768px) {
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .audience-grid { grid-template-columns: 1fr; }
@@ -653,8 +659,6 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .format-grid { grid-template-columns: 1fr; }
     .section-grid { grid-template-columns: 48px 1fr; }
     .section-num { font-size: 48px; }
-    nav .nav-center { display: none; }
-    .nav-burger { display: flex; }
     .hero-title { font-size: clamp(28px, 9vw, 52px); }
     .hero-sub { padding-left: 16px; font-size: 12px; }
     #hero {
