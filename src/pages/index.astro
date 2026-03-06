@@ -100,6 +100,89 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     50% { opacity: 0.4; transform: scale(0.7); }
   }
 
+  /* Бургер-меню (только мобилка) */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .burger-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .burger-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .burger-panel {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    padding: 24px 20px 32px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+  }
+  .burger-panel a,
+  .burger-panel .burger-cta {
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--bg);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(245,245,240,0.15);
+    transition: color 0.2s ease;
+  }
+  .burger-panel a:hover { color: var(--accent); }
+  .burger-panel .burger-cta {
+    margin-top: auto;
+    padding-top: 24px;
+    border-bottom: none;
+    text-align: center;
+    background: var(--accent);
+    color: var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .burger-panel .burger-cta:hover { opacity: 0.95; color: var(--ink); }
+
   /* SECTIONS */
   section { 
     padding: 80px 24px; 
@@ -571,6 +654,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .section-grid { grid-template-columns: 48px 1fr; }
     .section-num { font-size: 48px; }
     nav .nav-center { display: none; }
+    .nav-burger { display: flex; }
     .hero-title { font-size: clamp(28px, 9vw, 52px); }
     .hero-sub { padding-left: 16px; font-size: 12px; }
     #hero {
@@ -768,13 +852,31 @@ transform: scale(1.04);
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">AI DRIVEN</div>
+  <div style="display: flex; align-items: center;">
+    <div class="nav-logo">AI DRIVEN</div>
+    <button type="button" class="nav-burger js-burger-toggle" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
   <div class="nav-center">СТАРТ · 15 АПРЕЛЯ 2026 · ОНЛАЙН</div>
   <div class="nav-right">
     <div class="pulse-dot"></div>
-    <span id="seat-counter">12 мест</span>
+    <span id="seat-counter">25 мест</span>
   </div>
 </nav>
+
+<!-- Бургер-меню (мобилка) -->
+<div class="burger-overlay js-burger-overlay" id="burger-overlay" aria-hidden="true">
+  <div class="burger-panel">
+    <a href="#about" class="js-burger-link">О программе</a>
+    <a href="#audience" class="js-burger-link">Для кого</a>
+    <a href="#learn" class="js-burger-link">Что ты получишь</a>
+    <a href="#curriculum" class="js-burger-link">Программа</a>
+    <a href="#format" class="js-burger-link">Формат</a>
+    <a href="#committee" class="js-burger-link">Авторы и эксперты</a>
+    <button type="button" class="burger-cta js-open-widget">Оставить заявку</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1343,6 +1445,7 @@ transform: scale(1.04);
   document.querySelectorAll('.js-open-widget').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
+      closeBurger();
       openWidgetModal();
     });
   });
@@ -1409,14 +1512,46 @@ transform: scale(1.04);
   const statsEl = document.querySelector('.hero-stats');
   if (statsEl) statsObserver.observe(statsEl);
 
-  // Seat counter fake live
-  let seats = 12;
-  setInterval(() => {
-    if (seats > 3 && Math.random() < 0.15) {
-      seats--;
-      document.getElementById('seat-counter').textContent = seats + ' мест';
+  // Бургер-меню: открыть/закрыть
+  var burgerBtn = document.querySelector('.js-burger-toggle');
+  var burgerOverlay = document.getElementById('burger-overlay');
+  function openBurger() {
+    if (burgerOverlay) {
+      burgerOverlay.classList.add('is-open');
+      burgerOverlay.setAttribute('aria-hidden', 'false');
+      if (burgerBtn) { burgerBtn.classList.add('is-open'); burgerBtn.setAttribute('aria-expanded', 'true'); }
+      document.body.style.overflow = 'hidden';
     }
-  }, 8000);
+  }
+  function closeBurger() {
+    if (burgerOverlay) {
+      burgerOverlay.classList.remove('is-open');
+      burgerOverlay.setAttribute('aria-hidden', 'true');
+      if (burgerBtn) { burgerBtn.classList.remove('is-open'); burgerBtn.setAttribute('aria-expanded', 'false'); }
+      document.body.style.overflow = '';
+    }
+  }
+  if (burgerBtn) burgerBtn.addEventListener('click', function() {
+    if (burgerOverlay && burgerOverlay.classList.contains('is-open')) closeBurger();
+    else openBurger();
+  });
+  if (burgerOverlay) burgerOverlay.addEventListener('click', function(e) {
+    if (e.target === burgerOverlay) closeBurger();
+  });
+  document.querySelectorAll('.js-burger-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href[0] === '#') {
+        e.preventDefault();
+        closeBurger();
+        var el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && burgerOverlay && burgerOverlay.classList.contains('is-open')) closeBurger();
+  });
 </script>
 </body>
 </html>
