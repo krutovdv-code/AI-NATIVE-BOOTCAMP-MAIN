@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/roboto-condensed": "^5.2.8",
     "astro": "^5.17.1"
   }
 }
