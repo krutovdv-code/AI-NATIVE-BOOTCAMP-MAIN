@@ -445,6 +445,58 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     text-align: center;
   }
   .cta-block .section-title { color: var(--bg); margin-bottom: 16px; }
+  .cta-widget-wrap { margin-top: 32px; min-height: 60px; }
+  /* Модальное окно с виджетом заявки */
+  .widget-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .widget-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .widget-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 32px 24px;
+    border: 1px solid var(--ink10);
+  }
+  .widget-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--ink60);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .widget-modal__close:hover { color: var(--ink); }
+  .widget-modal__body { min-height: 200px; }
   .cta-subtitle {
     font-size: 13px;
     color: rgba(245,245,240,0.5);
@@ -722,7 +774,7 @@ transform: scale(1.04);
       <span class="stat-label">быстрее ship</span>
     </div>
   </div>
-  <a href="#register" class="cta-btn"><span>→ Записаться на буткемп</span></a>
+  <button type="button" class="cta-btn js-open-widget" aria-label="Открыть форму заявки"><span>→ Записаться на буткемп</span></button>
 </section>
 
 <!-- ABOUT / LEGEND -->
@@ -1199,11 +1251,21 @@ transform: scale(1.04);
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA / форма заявки -->
 <div class="cta-block" id="register">
   <h2 class="section-title">Готов писать лучший код<br>и <span style="color:var(--accent)">шипить быстрее?</span></h2>
   <p class="cta-subtitle">12 недель. 14 уроков. Реальные кейсы из продакшена.<br>Старт — 15 апреля 2026. Мест ограничено.</p>
-  <a href="#" class="cta-btn"><span>→ Оставить заявку на буткемп</span></a>
+  <button type="button" class="cta-btn js-open-widget">→ Оставить заявку на буткемп</button>
+</div>
+
+<!-- Модальное окно с виджетом (открывается по кнопкам выше) -->
+<div class="widget-modal" id="widget-modal" aria-hidden="true">
+  <div class="widget-modal__box">
+    <button type="button" class="widget-modal__close js-close-widget" aria-label="Закрыть">×</button>
+    <div class="widget-modal__body">
+      <script ao-number="3272" ao-widget-id="Pex42y1uHUWMJNatz8smDA" ao-domain="content.scalingclub.ru" src="https://idx.xl.ru/site/widget/widget.min.js"></script>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -1216,6 +1278,41 @@ transform: scale(1.04);
   // Включаем анимации только при работающем JS (без JS контент уже виден по умолчанию)
   document.documentElement.classList.add('js');
   // Счётчики не сбрасываем тут — в HTML уже 12, 14, 5, 2×; в 0 поставим только при запуске анимации в observer
+
+  // Модальное окно с виджетом заявки
+  const modal = document.getElementById('widget-modal');
+  function openWidgetModal() {
+    if (modal) {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeWidgetModal() {
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+  document.querySelectorAll('.js-open-widget').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openWidgetModal();
+    });
+  });
+  document.querySelectorAll('.js-close-widget').forEach(function(btn) {
+    btn.addEventListener('click', closeWidgetModal);
+  });
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeWidgetModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWidgetModal();
+    });
+  }
+
   // Hero word reveal
   window.addEventListener('load', () => {
     const words = document.querySelectorAll('.hero-title .word');
