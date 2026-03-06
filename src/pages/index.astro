@@ -100,19 +100,34 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     50% { opacity: 0.4; transform: scale(0.7); }
   }
 
-  /* Бургер-меню (только мобилка) */
+  /* Левая часть навигации: лого + бургер */
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Бургер-меню — всегда виден, по клику открывает панель */
   .nav-burger {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     width: 44px;
     height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0;
-    background: none;
-    border: none;
+    background: transparent;
+    border: 1px solid var(--ink20);
     cursor: pointer;
-    margin-left: 8px;
+    position: relative;
+    z-index: 101;
+    flex-shrink: 0;
+  }
+  .nav-burger:hover {
+    background: var(--ink05);
+    border-color: var(--ink40);
   }
   .nav-burger span {
     display: block;
@@ -856,11 +871,11 @@ transform: scale(1.04);
 
 <!-- NAV -->
 <nav>
-  <div style="display: flex; align-items: center;">
-    <div class="nav-logo">AI DRIVEN</div>
-    <button type="button" class="nav-burger js-burger-toggle" aria-label="Меню" aria-expanded="false">
+  <div class="nav-left">
+    <button type="button" class="nav-burger js-burger-toggle" aria-label="Открыть меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+    <div class="nav-logo">AI DRIVEN</div>
   </div>
   <div class="nav-center">СТАРТ · 15 АПРЕЛЯ 2026 · ОНЛАЙН</div>
   <div class="nav-right">
