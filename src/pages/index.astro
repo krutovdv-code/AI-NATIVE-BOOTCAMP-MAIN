@@ -1262,8 +1262,8 @@ transform: scale(1.04);
 <div class="widget-modal" id="widget-modal" aria-hidden="true">
   <div class="widget-modal__box">
     <button type="button" class="widget-modal__close js-close-widget" aria-label="Закрыть">×</button>
-    <div class="widget-modal__body">
-      <script ao-number="3272" ao-widget-id="Pex42y1uHUWMJNatz8smDA" ao-domain="content.scalingclub.ru" src="https://idx.xl.ru/site/widget/widget.min.js"></script>
+    <div class="widget-modal__body" id="widget-modal-body">
+      <!-- Виджет подгружается при первом открытии модалки, чтобы не блокировать страницу -->
     </div>
   </div>
 </div>
@@ -1279,14 +1279,25 @@ transform: scale(1.04);
   document.documentElement.classList.add('js');
   // Счётчики не сбрасываем тут — в HTML уже 12, 14, 5, 2×; в 0 поставим только при запуске анимации в observer
 
-  // Модальное окно с виджетом заявки
+  // Модальное окно с виджетом заявки (виджет подгружаем при первом открытии — не блокирует страницу)
   const modal = document.getElementById('widget-modal');
+  const widgetBody = document.getElementById('widget-modal-body');
+  var widgetLoaded = false;
   function openWidgetModal() {
-    if (modal) {
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    if (!modal) return;
+    if (!widgetLoaded && widgetBody) {
+      widgetLoaded = true;
+      var s = document.createElement('script');
+      s.setAttribute('ao-number', '3272');
+      s.setAttribute('ao-widget-id', 'Pex42y1uHUWMJNatz8smDA');
+      s.setAttribute('ao-domain', 'content.scalingclub.ru');
+      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
+      s.async = true;
+      widgetBody.appendChild(s);
     }
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
   function closeWidgetModal() {
     if (modal) {
