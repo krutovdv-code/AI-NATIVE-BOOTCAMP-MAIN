@@ -123,14 +123,15 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     padding-top: 6px;
   }
 
-  /* HERO */
+  /* HERO — контент отступает от фиксированного навбара, без обрезки сверху */
   #hero {
-    padding: 120px 24px 80px;
+    padding: 88px 24px 80px;
+    padding-top: max(88px, 56px + 48px);
     border-bottom: 1px solid var(--ink10);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .hero-label {
     font-size: 11px;
@@ -1214,8 +1215,7 @@ transform: scale(1.04);
 <script is:inline>
   // Включаем анимации только при работающем JS (без JS контент уже виден по умолчанию)
   document.documentElement.classList.add('js');
-  // Сбрасываем счётчики в 0 для анимации (в HTML уже правильные числа для тех, у кого нет JS)
-  document.querySelectorAll('.hero-stats [data-target]').forEach(el => { el.textContent = '0'; });
+  // Счётчики не сбрасываем тут — в HTML уже 12, 14, 5, 2×; в 0 поставим только при запуске анимации в observer
   // Hero word reveal
   window.addEventListener('load', () => {
     const words = document.querySelectorAll('.hero-title .word');
@@ -1256,7 +1256,9 @@ transform: scale(1.04);
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        const els = e.target.querySelectorAll('[data-target]');
+        els.forEach(el => { el.textContent = '0'; });
+        els.forEach(animateCounter);
         statsObserver.unobserve(e.target);
       }
     });
