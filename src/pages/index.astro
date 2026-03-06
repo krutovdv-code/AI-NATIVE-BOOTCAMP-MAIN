@@ -110,6 +110,7 @@
     gap: 0 32px;
     max-width: 1200px;
   }
+  .section-grid > div:last-child { min-width: 0; }
   .section-num {
     font-family: 'Roboto Condensed', sans-serif !important;
     font-weight: 900;
@@ -145,6 +146,8 @@
     letter-spacing: -0.03em;
     max-width: 1100px;
     margin-bottom: 40px;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .hero-title .word { display: inline-block; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .hero-title .word.visible { opacity: 1; transform: translateY(0); }
@@ -157,6 +160,8 @@
     line-height: 1.7;
     color: var(--ink60);
     margin-bottom: 56px;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .hero-stats {
     display: grid;
@@ -346,6 +351,7 @@
     border-bottom: 1px solid var(--ink10);
     font-size: 12px;
   }
+  .lesson-row > div:last-child { min-width: 0; }
   .lesson-row:last-child { border-bottom: none; }
   .lesson-num-sm {
     font-family: 'Roboto Condensed', sans-serif !important;
@@ -364,7 +370,10 @@
     font-size: 11px;
     color: var(--ink60);
     line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
+  .lesson-name { overflow-wrap: break-word; word-break: break-word; }
   .lesson-concepts {
     margin-top: 8px;
     font-size: 10px;
@@ -373,7 +382,12 @@
     letter-spacing: 0.08em;
     border-left: 2px solid var(--accent);
     padding-left: 10px;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
+  .module-body { overflow-wrap: break-word; word-break: break-word; }
+  .module-title { overflow-wrap: break-word; word-break: break-word; }
+  .bracket-label { overflow-wrap: break-word; word-break: break-word; }
 
   /* FORMAT */
   .format-grid {
@@ -470,7 +484,25 @@
     .section-grid { grid-template-columns: 48px 1fr; }
     .section-num { font-size: 48px; }
     nav .nav-center { display: none; }
+    .hero-title { font-size: clamp(28px, 9vw, 52px); }
+    .hero-sub { padding-left: 16px; font-size: 12px; }
+    #hero {
+      padding: 60px 20px 80px;
+      padding-bottom: max(80px, calc(24px + env(safe-area-inset-bottom, 0)));
+      min-height: auto;
+    }
+    .module-header { grid-template-columns: 56px 1fr; padding: 16px 16px; }
+    .module-meta { grid-column: 1 / -1; white-space: normal; margin-left: 0; margin-top: 8px; }
+    .module-body { padding: 16px; }
+    .lesson-row { grid-template-columns: 36px 1fr; gap: 12px; padding: 12px 0; }
   }
+  @media (max-width: 480px) {
+    .section-grid { grid-template-columns: 36px 1fr; gap: 0 12px; }
+    .section-num { font-size: 36px; }
+    .hero-title { font-size: clamp(24px, 8vw, 40px); }
+    section { padding: 48px 16px; padding-bottom: max(48px, calc(16px + env(safe-area-inset-bottom, 0))); }
+  }
+  body { padding-bottom: env(safe-area-inset-bottom, 0); }
 
   /* COMMITTEE */
   .committee-grid {
