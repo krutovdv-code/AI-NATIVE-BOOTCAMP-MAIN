@@ -51,7 +51,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     font-variant-numeric: tabular-nums;
   }
 
-  /* NAV */
+  /* NAV — приклеена к верху при скролле (особенно на мобилке) */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -66,6 +66,10 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     padding: 0 24px;
     max-width: 1440px;
     margin: 0 auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   .nav-logo {
     font-family: 'Roboto Condensed', sans-serif !important;
@@ -106,7 +110,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     align-items: center;
     gap: 8px;
   }
-  /* Бургер-меню — всегда виден, по клику открывает панель */
+  /* Бургер-меню — без окантовки и квадратика */
   .nav-burger {
     display: flex;
     flex-direction: column;
@@ -118,17 +122,19 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     min-width: 44px;
     min-height: 44px;
     padding: 0;
-    background: transparent;
-    border: 1px solid var(--ink20);
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
     cursor: pointer;
     position: relative;
     z-index: 101;
     flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
   }
-  .nav-burger:hover {
-    background: var(--ink05);
-    border-color: var(--ink40);
-  }
+  .nav-burger:hover { background: transparent; }
+  .nav-burger:focus { outline: none; box-shadow: none; }
+  .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .nav-burger span {
     display: block;
     width: 22px;
