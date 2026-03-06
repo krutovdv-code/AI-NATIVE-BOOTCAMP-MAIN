@@ -703,19 +703,19 @@ transform: scale(1.04);
   </div>
   <div class="hero-stats" style="margin-bottom: 48px;">
     <div class="stat-box">
-      <span class="stat-num" data-target="12">0</span>
+      <span class="stat-num" data-target="12">12</span>
       <span class="stat-label">недель</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-target="14">0</span>
+      <span class="stat-num" data-target="14">14</span>
       <span class="stat-label">уроков</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-target="5">0</span>
+      <span class="stat-num" data-target="5">5</span>
       <span class="stat-label">модулей</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-suffix="x" data-target="2">0</span>
+      <span class="stat-num" data-suffix="x" data-target="2">2×</span>
       <span class="stat-label">быстрее ship</span>
     </div>
   </div>
@@ -1212,6 +1212,8 @@ transform: scale(1.04);
 <script is:inline>
   // Включаем анимации только при работающем JS (без JS контент уже виден по умолчанию)
   document.documentElement.classList.add('js');
+  // Сбрасываем счётчики в 0 для анимации (в HTML уже правильные числа для тех, у кого нет JS)
+  document.querySelectorAll('.hero-stats [data-target]').forEach(el => { el.textContent = '0'; });
   // Hero word reveal
   window.addEventListener('load', () => {
     const words = document.querySelectorAll('.hero-title .word');
