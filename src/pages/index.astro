@@ -566,6 +566,88 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
   .faq-a strong { color: var(--ink); }
 
+  /* Путь разработчика (блок после О программе) */
+  .path-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 48px;
+    row-gap: 0;
+    align-items: start;
+    position: relative;
+  }
+  .path-columns::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--ink10);
+    transform: translateX(-50%);
+  }
+  .path-col-header {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .path-col-header.before { color: var(--ink40); border-bottom-color: var(--ink10); }
+  .path-col-header.after { color: var(--accent); border-bottom-color: var(--accent); }
+  .path-col-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+    border: 1px solid currentColor;
+    letter-spacing: 0.15em;
+  }
+  .path-block {
+    padding-bottom: 32px;
+  }
+  .path-columns > .path-block:nth-child(n+5) {
+    border-top: 1px solid var(--ink10);
+    padding-top: 28px;
+  }
+  .path-block:last-child,
+  .path-block:nth-last-child(2) { padding-bottom: 0; }
+  .path-block-num {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    margin-bottom: 8px;
+  }
+  .path-block-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .path-block-text {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .path-block-text em { font-style: italic; color: var(--ink); }
+  @media (max-width: 640px) {
+    .path-columns { grid-template-columns: 1fr; }
+    .path-columns::after { display: none; }
+    .path-columns .path-block:nth-child(odd):not(:first-child):not(:nth-child(3)) {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--ink10);
+    }
+  }
+
   /* CTA BLOCK */
   .cta-block {
     background: var(--ink);
@@ -925,6 +1007,7 @@ transform: scale(1.04);
 <div class="burger-overlay js-burger-overlay" id="burger-overlay" aria-hidden="true">
   <div class="burger-panel">
     <a href="#about" class="js-burger-link">О программе</a>
+    <a href="#path" class="js-burger-link">Путь разработчика</a>
     <a href="#audience" class="js-burger-link">Для кого</a>
     <a href="#learn" class="js-burger-link">Что ты получишь</a>
     <a href="#curriculum" class="js-burger-link">Программа</a>
@@ -990,6 +1073,57 @@ transform: scale(1.04);
         1 час живого разбора реального кейса, 1.5 часа самостоятельного решения с экспертами рядом. 
         Теоретические концепции — только там, где они нужны для понимания практики.
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- ПУТЬ РАЗРАБОТЧИКА -->
+<section id="path" class="reveal">
+  <div class="section-grid">
+    <div class="section-num">—</div>
+    <div>
+      <span class="bracket-label">[CONTEXT] // КТО ТАКОЙ РАЗРАБОТЧИК</span>
+      <h2 class="section-title reveal">Профессия разработчика<br><span class="hero-accent">меняется, но не исчезает</span></h2>
+      <div class="path-columns reveal">
+        <div class="path-col-header before">
+          <span>Раньше</span>
+          <span class="path-col-tag">до 2025</span>
+        </div>
+        <div class="path-col-header after">
+          <span>Сейчас</span>
+          <span class="path-col-tag">2026 →</span>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 01</div>
+          <div class="path-block-title">Твоя ценность была в том, что ты знаешь</div>
+          <p class="path-block-text">Ты строил экспертизу годами. Знал фреймворк глубже всех, знал кодовую базу наизусть: где что лежит, что сломается, если тронуть вон ту строчку. Это знание и было тобой. Оно давало уверенность и незаменимость.</p>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 01</div>
+          <div class="path-block-title">Ценность сместилась, но не исчезла</div>
+          <p class="path-block-text">Знание фреймворка теперь легко извлекается. Но понимание <em>зачем</em> — нет. Архитектурное мышление, способность видеть систему целиком, чувство последствий решений — это то, что ты копил годами. Оно не обесценилось, а наоборот стало главным.</p>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 02</div>
+          <div class="path-block-title">Путь был долгим, и это казалось правильным</div>
+          <p class="path-block-text">Джун учится писать код. Мидл — писать хороший код. Синьор — думать о системе. Каждый уровень требовал нескольких лет роста. Это был фильтр, который не каждый проходил. И ты прошёл.</p>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 02</div>
+          <div class="path-block-title">Путь ускорился, но направление то же</div>
+          <p class="path-block-text">AI сжимает дистанцию между уровнями. Но это не значит, что опыт больше не нужен. Это значит, что мышление становится более востребованным, чем раньше. И ты оказываешься нужен там, где раньше тебя не ждали.</p>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 03</div>
+          <div class="path-block-title">Ты работал глубоко, методично, один</div>
+          <p class="path-block-text">Сложная задача требовала погружения. Закрыть Slack, открыть редактор, думать. Способность часами удерживать в голове сложную систему — это и был тот навык, которым можно было гордиться.</p>
+        </div>
+        <div class="path-block">
+          <div class="path-block-num">— 03</div>
+          <div class="path-block-title">Глубина никуда не делась. Изменился её объект</div>
+          <p class="path-block-text">Теперь ты погружаешься не в синтаксис, а в задачу. Не в то, <em>как</em> написать, а в то, <em>что</em> нужно построить и почему. Та же глубина, только на другом уровне абстракции.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
