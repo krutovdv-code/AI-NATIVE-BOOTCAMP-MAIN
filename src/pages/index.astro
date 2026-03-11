@@ -1897,6 +1897,8 @@ transform: scale(1.04);
   document.getElementById("timeline-block").addEventListener("mouseleave", function() { b2Hovered = false; });
   window.addEventListener("wheel", function(e) {
     if (!b2Hovered) return;
+    var rect = document.getElementById("timeline-block").getBoundingClientRect();
+    if (rect.top > 50) return;
     if (e.deltaY <= 0) return;
     if (b2ActiveStep === B2_N - 1) return;
     e.preventDefault();
