@@ -558,12 +558,28 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     color: var(--ink);
     margin-bottom: 12px;
     line-height: 1.35;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
+  .faq-q::after {
+    content: '+';
+    flex-shrink: 0;
+    margin-left: 16px;
+    font-size: 20px;
+    line-height: 1.2;
+    transition: transform 0.2s;
+  }
+  .faq-item.faq-open .faq-q::after { content: '−'; }
   .faq-a {
     font-size: 14px;
     line-height: 1.7;
     color: var(--ink60);
+    display: none;
   }
+  .faq-item.faq-open .faq-a { display: block; }
   .faq-a strong { color: var(--ink); }
 
   /* Путь разработчика (блок после О программе) */
@@ -984,6 +1000,29 @@ transform: scale(1.04);
   }
   .author-card:hover .author-photo { transform: scale(1.04); }
 
+  /* B2 — Путь разработчика (drag timeline) */
+  #timeline-block { --b2-orange: #e8860a; --b2-muted: #6b6560; --b2-divider: #d4cec4; --b2-black: #1a1a1a; background: #f5f5f0; display: block; padding: 80px 24px; border-bottom: 1px solid rgba(10,10,15,0.10); }
+  #timeline-block .b2-wrapper { display: flex; width: 100%; }
+  #timeline-block .b2-timeline { position: relative; width: 64px; flex-shrink: 0; align-self: stretch; }
+  #timeline-block .b2-track { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--b2-divider); transform: translateX(-50%); }
+  #timeline-block .b2-snap-dot { position: absolute; left: 50%; width: 10px; height: 10px; border-radius: 50% !important; background: var(--b2-divider); border: 2px solid #f5f5f0; transform: translate(-50%, -50%); transition: background 0.25s; cursor: pointer; }
+  #timeline-block .b2-snap-dot.reached { background: var(--b2-black); }
+  #timeline-block .b2-handle { position: absolute; left: 50%; width: 22px; height: 22px; border-radius: 50% !important; background: var(--b2-orange); transform: translate(-50%, -50%); cursor: grab; z-index: 10; box-shadow: 0 0 0 6px rgba(232,134,10,0.15); touch-action: none; transition: top 0.15s ease; }
+  #timeline-block .b2-handle:active { cursor: grabbing; }
+  #timeline-block .b2-era-label { position: absolute; right: calc(50% + 16px); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-lr; transform: rotate(180deg) translateY(50%); white-space: nowrap; pointer-events: none; }
+  #timeline-block .b2-era-label.before { color: var(--b2-muted); }
+  #timeline-block .b2-era-label.after  { color: var(--b2-orange); }
+  #timeline-block .b2-drag-hint { position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b2-muted); white-space: nowrap; opacity: 0.5; }
+  #timeline-block .b2-content { flex: 1; padding-left: 40px; }
+  #timeline-block .b2-step { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid transparent; }
+  #timeline-block .b2-step.visible { opacity: 1; transform: translateY(0); border-bottom-color: var(--b2-divider); }
+  #timeline-block .b2-step:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none !important; }
+  #timeline-block .b2-step-era { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+  #timeline-block .b2-step-era.before { color: var(--b2-muted); }
+  #timeline-block .b2-step-era.after  { color: var(--b2-orange); }
+  #timeline-block .b2-step-title { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; color: var(--b2-black); margin-bottom: 10px; margin-top: 4px; }
+  #timeline-block .b2-step-text { font-size: 12px; line-height: 1.75; color: var(--b2-muted); }
+
 </style>
 </head>
 <body>
@@ -1007,6 +1046,7 @@ transform: scale(1.04);
 <div class="burger-overlay js-burger-overlay" id="burger-overlay" aria-hidden="true">
   <div class="burger-panel">
     <a href="#about" class="js-burger-link">О программе</a>
+    <a href="#path" class="js-burger-link">Путь разработчика</a>
     <a href="#audience" class="js-burger-link">Для кого</a>
     <a href="#learn" class="js-burger-link">Что ты получишь</a>
     <a href="#curriculum" class="js-burger-link">Программа</a>
@@ -1029,7 +1069,6 @@ transform: scale(1.04);
   <div class="hero-sub">
     12-недельный онлайн буткемп для Middle и Senior/Lead разработчиков 
     с реальными кейсами использования AI-инструментов в продакшене.
-    Не игрушечные примеры — полноценные production-ready workflow.
   </div>
   <div class="hero-stats" style="margin-bottom: 48px;">
     <div class="stat-box">
@@ -1080,6 +1119,29 @@ transform: scale(1.04);
   </div>
 </section>
 
+<!-- DEVELOPERS PATH -->
+<a id="path" style="display:block;"></a>
+<div id="timeline-block">
+  <div class="section-grid" style="max-width:1200px;">
+    <div class="section-num">—</div>
+    <div>
+      <span class="bracket-label">[CONTEXT] // КТО ТАКОЙ РАЗРАБОТЧИК</span>
+      <h2 class="section-title">Профессия разработчика<br><span class="hero-accent">меняется, но не исчезает</span></h2>
+      <div class="b2-wrapper" style="margin-top:48px;">
+        <div class="b2-timeline" id="b2-timeline">
+          <div class="b2-track"></div>
+          <div id="b2-dotsContainer"></div>
+          <div class="b2-handle" id="b2-handle"></div>
+          <span class="b2-era-label before" id="b2-labelBefore">Тогда</span>
+          <span class="b2-era-label after"  id="b2-labelAfter">Сейчас</span>
+          <span class="b2-drag-hint">↕ drag</span>
+        </div>
+        <div class="b2-content" id="b2-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOR WHOM -->
 <section id="audience">
   <div class="section-grid">
@@ -1106,7 +1168,7 @@ transform: scale(1.04);
         </div>
         <div class="audience-item">
           <div class="audience-num">05</div>
-          <div class="audience-text"><strong style="color:var(--ink)">Ограничен временем</strong><br>Текущие задачи, семья — нужна структурированная программа, а не хаотичные туториалы.</div>
+          <div class="audience-text"><strong style="color:var(--ink)">Ограничен временем</strong><br>Имеет полноценную работу, семью, из-за чего нет времени на самостоятельное обучение.</div>
         </div>
         <div class="audience-item">
           <div class="audience-num">06</div>
@@ -1155,7 +1217,7 @@ transform: scale(1.04);
         </li>
         <li class="learn-item">
           <span class="learn-arrow">→</span>
-          <p class="learn-text"><strong>Масштабировать на команду</strong> — AI-native процессы, корпоративная академия, трансформация SDLC организации</p>
+          <p class="learn-text"><strong>Масштабировать на команду</strong> — AI-driven процессы, корпоративная академия, трансформация SDLC организации</p>
         </li>
       </ul>
     </div>
@@ -1404,13 +1466,10 @@ transform: scale(1.04);
             <div class="author-company">// Яндекс Cloud</div>
             <span class="author-tag">[LEAD_INSTRUCTOR]</span>
             <div class="author-bio">
-              <div class="author-bio-item">Product Manager в Yandex Cloud — стратегические roadmap'ы и развитие облачных продуктов</div>
-              <div class="author-bio-item">Backend-разработка и облачные сервисы: VK Tech, Cloud.ru, SberCloud</div>
-              <div class="author-bio-item">Kubernetes, Kafka, serverless-архитектуры, аналитические платформы</div>
-              <div class="author-bio-item">Со-основатель Joylink · Основатель DataLightMe (дашборды на рыночных, соцсетевых и блокчейн-данных)</div>
-              <div class="author-bio-item">~10 лет в разработке и управлении продуктами в IT и облачных сервисах</div>
-              <div class="author-bio-item">Техническое и правовое образование · защита данных и информатизированных объектов</div>
-              <div class="author-bio-item">Python, JavaScript, FastAPI, GCloud — работает на уровне продукта и архитектуры</div>
+              <div class="author-bio-item">15 лет опыта в индустрии</div>
+              <div class="author-bio-item">Ex-product manager в Yandex Cloud, ответственный за стратегические дорожные карты и развитие облачных продуктов</div>
+              <div class="author-bio-item">Специалист по распределённым системам и облачной инфраструктуре</div>
+              <div class="author-bio-item">Предприниматель и CTO: со‑основатель Joylink, основатель DataLightMe</div>
             </div>
           </div>
         </div>
@@ -1591,7 +1650,7 @@ transform: scale(1.04);
 <div class="cta-block" id="register">
   <h2 class="section-title">Готов писать лучший код<br>и <span style="color:var(--accent)">шипить быстрее?</span></h2>
   <p class="cta-subtitle">12 недель. 14 уроков. Реальные кейсы из продакшена.<br>Старт — 15 апреля 2026. Мест ограничено.</p>
-  <button type="button" class="cta-btn js-open-widget">→ Оставить заявку на буткемп</button>
+  <button type="button" class="cta-btn js-open-widget"><span>→ Оставить заявку на буткемп</span></button>
 </div>
 
 <!-- Модальное окно с виджетом (открывается по кнопкам выше) -->
@@ -1752,6 +1811,99 @@ transform: scale(1.04);
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && burgerOverlay && burgerOverlay.classList.contains('is-open')) closeBurger();
   });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.querySelector('.faq-q').addEventListener('click', function() {
+      item.classList.toggle('faq-open');
+    });
+  });
+</script>
+
+<script>
+(function() {
+  var B2_STEPS = [
+    { era: "before", label: "Тогда — 01", title: "Твоя ценность была в том, что ты знаешь", text: "Ты строил экспертизу годами. Знал фреймворк глубже всех, знал кодовую базу наизусть: где что лежит, что сломается, если тронуть вон ту строчку. Это знание и было тобой. Оно давало уверенность и незаменимость." },
+    { era: "before", label: "Тогда — 02", title: "Путь был долгим, и это казалось правильным", text: "Джун учится писать код. Мидл — писать хороший код. Синьор — думать о системе. Каждый уровень требовал нескольких лет роста. Это был фильтр, который не каждый проходил. И ты прошёл." },
+    { era: "before", label: "Тогда — 03", title: "Ты работал глубоко, методично, один", text: "Сложная задача требовала погружения. Закрыть Slack, открыть редактор, думать. Способность часами удерживать в голове сложную систему — это и был тот навык, которым можно было гордиться." },
+    { era: "after",  label: "Сейчас — 01", title: "Ценность сместилась, но не исчезла", text: "Знание технологий теперь легко приобретается. Но понимание зачем — нет. Архитектурное мышление, продуктовый подход, способность видеть систему целиком и чувствовать последствия решений — это то, что ты копил годами. Оно не обесценилось, а наоборот — стало главным." },
+    { era: "after",  label: "Сейчас — 02", title: "Путь ускорился, но направление то же", text: "AI сжимает дистанцию между уровнями. Но это не значит, что опыт больше не нужен. Это значит, что мышление становится более востребованным, чем раньше. И ты оказываешься нужен там, где раньше тебя не ждали." },
+    { era: "after",  label: "Сейчас — 03", title: "Глубина никуда не делась. Изменился её объект", text: "Теперь ты погружаешься не в синтаксис, а в задачу. Не в то, как написать, а в то, что нужно построить и почему. Та же глубина, только на другом уровне абстракции." }
+  ];
+  var B2_N = B2_STEPS.length;
+  var b2Timeline = document.getElementById("b2-timeline");
+  var b2DotsContainer = document.getElementById("b2-dotsContainer");
+  var b2Handle = document.getElementById("b2-handle");
+  var b2ContentEl = document.getElementById("b2-content");
+  var b2LabelBefore = document.getElementById("b2-labelBefore");
+  var b2LabelAfter = document.getElementById("b2-labelAfter");
+  B2_STEPS.forEach(function(s) {
+    var el = document.createElement("div");
+    el.className = "b2-step";
+    el.innerHTML = "<div class='b2-step-era " + s.era + "'>" + s.label + "</div><div class='b2-step-title'>" + s.title + "</div><p class='b2-step-text'>" + s.text + "</p>";
+    b2ContentEl.appendChild(el);
+  });
+  var b2DotEls = B2_STEPS.map(function(_, i) {
+    var d = document.createElement("div");
+    d.className = "b2-snap-dot";
+    b2DotsContainer.appendChild(d);
+    d.addEventListener("click", (function(idx) { return function() { b2GoTo(idx); }; })(i));
+    return d;
+  });
+  function b2GetPositions() {
+    var h = b2Timeline.offsetHeight, pad = 20;
+    return B2_STEPS.map(function(_, i) { return pad + (i / (B2_N - 1)) * (h - pad * 2); });
+  }
+  function b2Layout() {
+    b2Timeline.style.height = b2ContentEl.offsetHeight + "px";
+    var pos = b2GetPositions();
+    b2DotEls.forEach(function(d, i) { d.style.top = pos[i] + "px"; });
+    b2LabelBefore.style.top = ((pos[0] + pos[2]) / 2) + "px";
+    b2LabelAfter.style.top  = ((pos[3] + pos[5]) / 2) + "px";
+    b2Handle.style.transition = "none";
+    b2Handle.style.top = pos[b2ActiveStep] + "px";
+  }
+  function b2Nearest(relY) {
+    var pos = b2GetPositions(), best = 0, bestDist = Infinity;
+    pos.forEach(function(p, i) { var d = Math.abs(relY - p); if (d < bestDist) { bestDist = d; best = i; } });
+    return best;
+  }
+  var b2ActiveStep = 0;
+  function b2GoTo(step, animate) {
+    if (animate === undefined) animate = true;
+    b2ActiveStep = step;
+    b2Handle.style.transition = animate ? "top 0.15s ease" : "none";
+    b2Handle.style.top = b2GetPositions()[step] + "px";
+    b2DotEls.forEach(function(d, i) { d.classList.toggle("reached", i <= step); });
+    b2ContentEl.querySelectorAll(".b2-step").forEach(function(el, i) { el.classList.toggle("visible", i <= step); });
+  }
+  var b2Dragging = false;
+  b2Handle.addEventListener("pointerdown", function(e) { b2Dragging = true; b2Handle.setPointerCapture(e.pointerId); b2Handle.style.transition = "none"; e.preventDefault(); });
+  b2Handle.addEventListener("pointermove", function(e) {
+    if (!b2Dragging) return;
+    var rect = b2Timeline.getBoundingClientRect(), pos = b2GetPositions();
+    var clamped = Math.max(pos[0], Math.min(pos[B2_N - 1], e.clientY - rect.top));
+    b2Handle.style.top = clamped + "px";
+    b2GoTo(b2Nearest(clamped), false);
+  });
+  b2Handle.addEventListener("pointerup", function(e) {
+    if (!b2Dragging) return;
+    b2Dragging = false;
+    b2GoTo(b2Nearest(e.clientY - b2Timeline.getBoundingClientRect().top), true);
+  });
+  window.addEventListener("resize", b2Layout);
+  var b2Hovered = false;
+  document.getElementById("timeline-block").addEventListener("mouseenter", function() { b2Hovered = true; });
+  document.getElementById("timeline-block").addEventListener("mouseleave", function() { b2Hovered = false; });
+  window.addEventListener("wheel", function(e) {
+    if (!b2Hovered) return;
+    if (e.deltaY <= 0) return;
+    if (b2ActiveStep === B2_N - 1) return;
+    e.preventDefault();
+    b2GoTo(Math.min(b2ActiveStep + 1, B2_N - 1));
+  }, { passive: false });
+  requestAnimationFrame(function() { b2Layout(); b2GoTo(0, false); });
+})();
 </script>
 </body>
 </html>
