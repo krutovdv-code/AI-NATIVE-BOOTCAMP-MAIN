@@ -1105,7 +1105,7 @@ transform: scale(1.04);
         <div class="path-block">
           <div class="path-block-num">— 01</div>
           <div class="path-block-title">Ценность сместилась, но не исчезла</div>
-          <p class="path-block-text">Знание фреймворка теперь легко извлекается. Но понимание <em>зачем</em> — нет. Архитектурное мышление, способность видеть систему целиком, чувство последствий решений — это то, что ты копил годами. Оно не обесценилось, а наоборот стало главным.</p>
+          <p class="path-block-text">Знание технологий теперь легко приобретается. Но понимание зачем — нет. Архитектурное мышление, продуктовый подход, способность видеть систему целиком и чувствовать последствия решений — это то, что ты копил годами. Оно не обесценилось, а наоборот — стало главным.</p>
         </div>
         <div class="path-block">
           <div class="path-block-num">— 02</div>
@@ -1253,24 +1253,24 @@ transform: scale(1.04);
             <div class="lesson-num-sm">02</div>
             <div>
               <div class="lesson-name">Механизмы работы LLM и философия качества</div>
-              <div class="lesson-desc">Токены, attention, резонинг, контекстное окно. Trust but verify. Антипаттерны — показываем, когда AI ломается, и почему это важнее успехов.</div>
-              <div class="lesson-concepts">// Токены · Tool use · BDD/Gherkin · Trust but verify</div>
+              <div class="lesson-desc">Разбор механизмов языковых моделей: токены, предсказания, контекстное окно. Практика измеримых критериев качества и разделения ответственности между разработчиком и моделью.</div>
+              <div class="lesson-concepts">// Токены и предсказания · Контекстное окно · Философия качества · Trust but verify</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">03</div>
             <div>
               <div class="lesson-name">Контекст-инжиниринг</div>
-              <div class="lesson-desc">MCP, RAG, управление контекстом. Три подхода: локальное размещение, n8n, готовые решения (Qoder). Практика: создаём MCP-сервер для вики проекта за 30 минут.</div>
-              <div class="lesson-concepts">// MCP · RAG · Supabase · Составление спецификации</div>
+              <div class="lesson-desc">Управление краткосрочной и долгосрочной памятью агента, работа с ограничениями контекстного окна, оптимизация затрат через кэширование. Три кейса: ролевая память, сравнение моделей, суммаризация транскрипций.</div>
+              <div class="lesson-concepts">// Контекст как код · RAG · Кэширование · Управление памятью</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">04</div>
             <div>
               <div class="lesson-name">Мультиэкспертность</div>
-              <div class="lesson-desc">AI в роли тестировщика, аналитика, дизайнера, DevOps. Бэкенд создаёт фронт за 20 минут. Docker compose без опыта с Docker. Перевод кода между языками.</div>
-              <div class="lesson-concepts">// Domain translation · SQL · Docker · API design · Terraform</div>
+              <div class="lesson-desc">AI в роли аналитика данных, дизайнера, тестировщика, DevOps. Работа в незнакомых стеках, делегирование задач из чужих доменов, понимание границ компетенций модели.</div>
+              <div class="lesson-concepts">// Симулятор эксперта · Кросс-функциональность · Domain translation · Границы компетенций</div>
             </div>
           </div>
         </div>
@@ -1287,33 +1287,33 @@ transform: scale(1.04);
           <div class="lesson-row">
             <div class="lesson-num-sm">05</div>
             <div>
-              <div class="lesson-name">Среда агентов, экосистема</div>
-              <div class="lesson-desc">Мультиагентность, agent-to-agent взаимодействие. Векторные БД. Переход AI в лицо агента. Объединяем экспертов из предыдущего урока в мультиагентную систему.</div>
-              <div class="lesson-concepts">// Мультиагентность · MCP · Векторные БД · Память агента</div>
+              <div class="lesson-name">Мультиагенты</div>
+              <div class="lesson-desc">Построение мультиагентных систем с узкоспециализированными агентами. Подключение векторных баз данных, оркестрация через MCP, типы памяти агентов на реальном архитектурном кейсе.</div>
+              <div class="lesson-concepts">// Мультиагентная архитектура · MCP · Векторные БД · Типы памяти</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">06</div>
             <div>
               <div class="lesson-name">Обзор моделей</div>
-              <div class="lesson-desc">Claude, Codex, Cursor, GLM, DeepSeek, GigaChat, YandexGPT. Как выбирать модель под задачу. Матрица «модели × типы задач». Мониторинг моделей и работа в условиях ограничений.</div>
-              <div class="lesson-concepts">// Бенчмарки · Модельная матрица · Claude Code · Cursor</div>
+              <div class="lesson-desc">Системный обзор ландшафта моделей: Claude, GPT, DeepSeek, GigaChat, YandexGPT. Одна задача через пять моделей, матрица применений моделей в зависимости от задач.</div>
+              <div class="lesson-concepts">// Ландшафт моделей · Матрица применения · Бенчмарки</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">07</div>
             <div>
               <div class="lesson-name">Агенты, воркфлоу и простые кейсы</div>
-              <div class="lesson-desc">Отличие агентов от workflow. AGENTS.md, Plan Mode. n8n vs make. Практика: агент по управлению API-документацией, создание diff-версий документов.</div>
-              <div class="lesson-concepts">// AGENTS.md · Plan Mode · n8n · Devin · Claude Flow</div>
+              <div class="lesson-desc">Создание агента для автоматического управления API-документацией с генерацией diff-версий. Работа с workflow-системами n8n и make, агентскими платформами Devin и Sweep AI.</div>
+              <div class="lesson-concepts">// Агенты vs воркфлоу · Plan Mode · Human-in-the-loop</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">08</div>
             <div>
               <div class="lesson-name">Агенты в разработке</div>
-              <div class="lesson-desc">Трудные vs сложные задачи. Цикл: высокоуровневая модель планирует → быстрая выполняет → сложная проверяет. CRUD, API-интеграции, тесты, CI/CD через агентов.</div>
-              <div class="lesson-concepts">// Мультиагентность · Юнит-тесты · Code review агентом</div>
+              <div class="lesson-desc">Реверс инжиниринг внутренней логики Cursor и Claude Code: режим Reasoning, многоэтапное планирование. Написание спецификаций с критериями качества, кастомизация агентов через agents.md и skills.md.</div>
+              <div class="lesson-concepts">// Агентская логика · Спецификации · agents.md · skills.md</div>
             </div>
           </div>
         </div>
@@ -1330,41 +1330,41 @@ transform: scale(1.04);
           <div class="lesson-row">
             <div class="lesson-num-sm">09</div>
             <div>
-              <div class="lesson-name">Простые беспроблемные кейсы</div>
-              <div class="lesson-desc">Перенос многостраничного Figma-проекта во фронтенд через Figma MCP. Оценка качества большой кодовой базы. Создание документации уровня модуля.</div>
-              <div class="lesson-concepts">// Throwaway Code · Rapid Prototyping · Vibe Coding · Scaffolding</div>
+              <div class="lesson-name">Простые беспроблемные и проблемные кейсы</div>
+              <div class="lesson-desc">Перенос многостраничного Figma-проекта во фронтенд через Figma MCP. Оценка качества большой кодовой базы с GitHub, создание документации уровня модуля для проекта на незнакомом языке.</div>
+              <div class="lesson-concepts">// Figma MCP · Vibe coding · Rapid Prototyping · Code Review Pattern</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">10</div>
             <div>
-              <div class="lesson-name">Системная декомпозиция. Создание в сложных системах</div>
-              <div class="lesson-desc">5 этапов: UI прототипы → БД → API контракты → архитектура → бизнес-логика. Проектируем микросервис, API-контракт, демонстрируем полный пайплайн.</div>
-              <div class="lesson-concepts">// System Decomposition · Microservice Pattern · Feature Addition</div>
+              <div class="lesson-name">Фреймворк системной декомпозиции</div>
+              <div class="lesson-desc">Проектирование продуктовой системы через 5 этапов: UI прототипы, структура БД, API контракты, архитектура, бизнес-логика. Проектирование микросервиса с демонстрацией полного пайплайна.</div>
+              <div class="lesson-concepts">// Системная декомпозиция · API контракты · Микросервисы · 5 этапов проектирования</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">11</div>
             <div>
               <div class="lesson-name">Изучение незнакомых систем</div>
-              <div class="lesson-desc">Работа с большими legacy-проектами. Берём код с GitHub на незнакомом языке — восстанавливаем архитектуру, объясняем связи между модулями, создаём документацию.</div>
-              <div class="lesson-concepts">// Legacy Code Exploration · Dependency Mapping · Context Optimization</div>
+              <div class="lesson-desc">Восстановление архитектуры большого legacy-проекта на незнакомом языке программирования. Объяснение связей между модулями, создание документации для системы без документации.</div>
+              <div class="lesson-concepts">// Legacy Exploration · Dependency mapping · Восстановление архитектуры · Оптимизация контекста</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">12</div>
             <div>
               <div class="lesson-name">Рефакторинг и трансформация сложных систем</div>
-              <div class="lesson-desc">Рефакторинг крупной кодовой базы, поэтапные массовые изменения, continuous validation. Rollback strategy. Security Audit. Разделение монолита на микросервисы.</div>
-              <div class="lesson-concepts">// Legacy Refactoring · Monolith Breakdown · Tech Migration</div>
+              <div class="lesson-desc">Безопасный рефакторинг крупной кодовой базы с GitHub: установление связей, изоляция модулей, поэтапные массовые изменения, непрерывная валидация и стратегия отката.</div>
+              <div class="lesson-concepts">// Legacy Refactoring · Dependency mapping · Continuous validation · Rollback strategy</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">13</div>
             <div>
-              <div class="lesson-name">Архитектурная трансформация</div>
-              <div class="lesson-desc">Фундаментальные изменения: monolith → microservices, synchronous → event-driven. Стратегическое планирование, risk management на архитектурном уровне.</div>
-              <div class="lesson-concepts">// Architectural Transformation · Bounded Contexts · API Boundaries</div>
+              <div class="lesson-name">Архитектурная трансформация и интеграция знаний</div>
+              <div class="lesson-desc">Разделение монолита на микросервисы: анализ зависимостей, выделение bounded contexts, создание API-границ. Стратегическое планирование трансформации с риск-менеджментом на архитектурном уровне.</div>
+              <div class="lesson-concepts">// Monolith Breakdown · Bounded contexts · Риск-менеджмент · Интеграция паттернов</div>
             </div>
           </div>
         </div>
@@ -1381,17 +1381,17 @@ transform: scale(1.04);
           <div class="lesson-row">
             <div class="lesson-num-sm">14</div>
             <div>
-              <div class="lesson-name">Team Transformation — внедрение в команду</div>
-              <div class="lesson-desc">Масштабирование AI-практик на уровне организации. SDLC с AI: продуктовые требования → архитектура → декомпозиция → тесты → код. Корпоративная академия, воркшопы, онбординг.</div>
-              <div class="lesson-concepts">// AI-Native Team · SDLC · Корпоративная Академия · Лидер Трансформации</div>
+              <div class="lesson-name">Трансформация команды и внедрение</div>
+              <div class="lesson-desc">Масштабирование AI-практик на команду и организацию на базе агента-аналитика: план внедрения, работа с сопротивлением, оцифровка SDLC, создание корпоративной академии.</div>
+              <div class="lesson-concepts">// Управление изменениями · Корпоративная академия · Изменение SDLC</div>
             </div>
           </div>
           <div class="lesson-row">
             <div class="lesson-num-sm">15</div>
             <div>
               <div class="lesson-name">Окончание и следующие шаги</div>
-              <div class="lesson-desc">Master Toolkit: чеклисты, промпты, playbooks. Pattern Library группы. AI Transformation Plan для команды. Community of practice — долгосрочная стратегия развития.</div>
-              <div class="lesson-concepts">// Master Toolkit · Playbooks · Community of Practice</div>
+              <div class="lesson-desc">Формирование долгосрочной стратегии развития AI-практик. Чеклисты, промпты, плейбуки для ежедневной работы. Вход в комьюнити для постоянного обмена опытом.</div>
+              <div class="lesson-concepts">// Мастер-тулкит · Библиотека паттернов · Комьюнити</div>
             </div>
           </div>
         </div>
