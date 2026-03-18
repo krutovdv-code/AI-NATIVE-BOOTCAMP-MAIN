@@ -1014,6 +1014,10 @@ transform: scale(1.04);
   #timeline-block .b2-era-label.after  { color: var(--b2-orange); }
   #timeline-block .b2-drag-hint { position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b2-muted); white-space: nowrap; opacity: 0.5; }
   #timeline-block .b2-content { flex: 1; padding-left: 40px; }
+  @media (pointer: coarse) {
+    #timeline-block .b2-timeline { display: none; }
+    #timeline-block .b2-content { padding-left: 0; }
+  }
   #timeline-block .b2-step { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid transparent; }
   #timeline-block .b2-step.visible { opacity: 1; transform: translateY(0); border-bottom-color: var(--b2-divider); }
   #timeline-block .b2-step:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none !important; }
@@ -1905,6 +1909,23 @@ transform: scale(1.04);
     b2GoTo(Math.min(b2ActiveStep + 1, B2_N - 1));
   }, { passive: false });
   requestAnimationFrame(function() { b2Layout(); b2GoTo(0, false); });
+
+  // Mobile: reveal steps via scroll instead of drag
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    var b2Steps = b2ContentEl.querySelectorAll('.b2-step');
+    var b2Obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var idx = parseInt(entry.target.dataset.b2idx);
+          if (idx > b2ActiveStep) b2GoTo(idx, true);
+        }
+      });
+    }, { threshold: 0.3 });
+    b2Steps.forEach(function(el, i) {
+      el.dataset.b2idx = i;
+      b2Obs.observe(el);
+    });
+  }
 })();
 </script>
 </body>
