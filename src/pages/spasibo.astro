@@ -53,11 +53,40 @@ import "@fontsource/jetbrains-mono/cyrillic-400.css";
     color: var(--ink40);
     margin-bottom: 48px;
   }
-  a {
+  .tg-block {
+    margin-bottom: 40px;
+    padding: 24px 32px;
+    border: 1px solid rgba(10,10,15,0.1);
+  }
+  .tg-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink40);
+    margin-bottom: 12px;
+  }
+  .tg-text {
+    font-size: 13px;
+    color: var(--ink40);
+    margin-bottom: 16px;
+  }
+  .tg-link {
+    display: inline-block;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .tg-link:hover { color: var(--accent); }
+  a {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink40);
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     padding-bottom: 2px;
@@ -70,6 +99,11 @@ import "@fontsource/jetbrains-mono/cyrillic-400.css";
   <div class="label">[AI DRIVEN] // БУТКЕМП 2026</div>
   <h1>Заявка принята,<br><span class="accent">спасибо!</span></h1>
   <p>Мы свяжемся с вами в ближайшее время.</p>
+  <div class="tg-block">
+    <div class="tg-label">Пока ждёте</div>
+    <div class="tg-text">Подпишитесь на наш Telegram-канал.<br>Там мы говорим про AI в разработке и не только.</div>
+    <a class="tg-link" href="https://t.me/MishaKolya" target="_blank" rel="noopener">→ Перейти в канал</a>
+  </div>
   <a href="/">← Вернуться на главную</a>
 </body>
 </html>
