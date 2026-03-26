@@ -1,0 +1,200 @@
+---
+import "@fontsource/roboto-condensed/cyrillic-700.css";
+import "@fontsource/roboto-condensed/cyrillic-900.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+
+interface Props {
+  title: string;
+  date?: string;
+}
+const { title, date } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title} — AI DRIVEN РАЗРАБОТКА</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0a0a0f;
+    --ink60: rgba(10,10,15,0.6);
+    --ink40: rgba(10,10,15,0.4);
+    --ink10: rgba(10,10,15,0.1);
+    --accent: #f5a623;
+    --bg: #f5f5f0;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 52px;
+    border-bottom: 1px solid var(--ink10);
+    background: var(--bg);
+  }
+  .nav-logo {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .nav-back {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink40);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--ink); }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+  .doc-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink40);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 48px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .doc-date {
+    font-size: 10px;
+    color: var(--ink40);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--ink10);
+  }
+  .doc-body h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink10);
+  }
+  .doc-body h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--ink60);
+  }
+  .doc-body p {
+    margin-bottom: 12px;
+    color: var(--ink60);
+  }
+  .doc-body strong { color: var(--ink); font-weight: 600; }
+  .doc-body ul, .doc-body ol {
+    margin: 12px 0 12px 20px;
+    color: var(--ink60);
+  }
+  .doc-body li { margin-bottom: 6px; }
+  .doc-body a { color: var(--ink); }
+  .doc-body a:hover { color: var(--accent); }
+  .doc-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 11px;
+  }
+  .doc-body th {
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid var(--ink10);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(10,10,15,0.03);
+  }
+  .doc-body td {
+    padding: 8px 12px;
+    border: 1px solid var(--ink10);
+    color: var(--ink60);
+    vertical-align: top;
+  }
+  .doc-body hr {
+    border: none;
+    border-top: 1px solid var(--ink10);
+    margin: 32px 0;
+  }
+  .requisites {
+    margin-top: 48px;
+    padding: 24px;
+    border: 1px solid var(--ink10);
+    font-size: 11px;
+  }
+  .requisites-title {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink40);
+    margin-bottom: 16px;
+  }
+  .requisites p { margin-bottom: 4px; color: var(--ink60); }
+  footer {
+    padding: 24px;
+    border-top: 1px solid var(--ink10);
+    font-size: 10px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">AI DRIVEN</a>
+  <a class="nav-back" href="/">← На главную</a>
+</nav>
+<main>
+  <div class="doc-label">[LEGAL] // ДОКУМЕНТЫ</div>
+  <h1>{title}</h1>
+  {date && <div class="doc-date">Редакция от {date}</div>}
+  <div class="doc-body">
+    <slot />
+  </div>
+</main>
+<footer>
+  <div>© 2026 AI DRIVEN РАЗРАБОТКА</div>
+  <div>ИП Крутов Дмитрий Валерьевич · ИНН 772973192199</div>
+</footer>
+</body>
+</html>
