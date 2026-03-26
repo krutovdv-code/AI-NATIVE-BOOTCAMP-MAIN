@@ -1,0 +1,75 @@
+---
+import "@fontsource/roboto-condensed/cyrillic-700.css";
+import "@fontsource/roboto-condensed/cyrillic-900.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка принята — AI DRIVEN РАЗРАБОТКА</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0a0a0f;
+    --ink40: rgba(10,10,15,0.4);
+    --accent: #f5a623;
+    --bg: #f5f5f0;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink40);
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 64px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .accent { color: var(--accent); }
+  p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ink40);
+    margin-bottom: 48px;
+  }
+  a {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="label">[AI DRIVEN] // БУТКЕМП 2026</div>
+  <h1>Заявка принята,<br><span class="accent">спасибо!</span></h1>
+  <p>Мы свяжемся с вами в ближайшее время.</p>
+  <a href="/">← Вернуться на главную</a>
+</body>
+</html>
