@@ -1,9 +1,9 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "notboring.naition.ai" }],
-      "destination": "/notboring/$1"
+      "destination": "/notboring/:path*"
     }
   ]
 }
