@@ -8,6 +8,9 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@astrojs/vercel": "^7.8.2",
     "@fontsource/jetbrains-mono": "^5.2.8",
