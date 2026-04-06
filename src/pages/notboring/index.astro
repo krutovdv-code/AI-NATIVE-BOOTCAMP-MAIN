@@ -865,8 +865,9 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
 
   @media (max-width: 768px) {
-    .partnership-col { flex: 0 0 130px !important; padding-top: 0 !important; }
-    .partnership-col img { max-width: 120px !important; }
+    .partnership-col { display: none !important; }
+    .partnership-mobile { display: flex; flex-direction: column; align-items: flex-start; flex: 0 0 110px; }
+    .hero-sub-row { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .audience-grid { grid-template-columns: 1fr; }
     .learn-list { grid-template-columns: 1fr; }
