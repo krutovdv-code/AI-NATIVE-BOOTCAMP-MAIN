@@ -865,6 +865,8 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
 
   @media (max-width: 768px) {
+    .partnership-col { flex: 0 0 130px !important; padding-top: 0 !important; }
+    .partnership-col img { max-width: 120px !important; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .audience-grid { grid-template-columns: 1fr; }
     .learn-list { grid-template-columns: 1fr; }
@@ -1163,7 +1165,7 @@ transform: scale(1.04);
   </div>
   <button type="button" class="cta-btn js-open-widget" aria-label="Открыть форму заявки"><span>→ Записаться на буткемп</span></button>
   </div>
-  <div style="flex: 0 0 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 48px;">
+  <div class="partnership-col" style="flex: 0 0 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 48px;">
     <div style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink40); margin-bottom: 24px;">При партнёрстве</div>
     <img src="/notboring-logo.png" alt="Not Boring Tech" style="max-width: 260px; width: 100%; display: block;" />
   </div>
