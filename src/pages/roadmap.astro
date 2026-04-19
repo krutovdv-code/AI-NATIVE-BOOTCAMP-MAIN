@@ -1,0 +1,305 @@
+---
+// Карта навыков — AI в разработке
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" is:inline>
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<title>AI в разработке — Карта навыков</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style is:global>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+  :root{--bg:#f5f5f0;--ink:#0a0a0f;--accent:#f5a623;--ink05:rgba(10,10,15,.05);--ink10:rgba(10,10,15,.1);--ink20:rgba(10,10,15,.2);--ink40:rgba(10,10,15,.4);--ink60:rgba(10,10,15,.6);--node-bg:#fff;--spine:#d4cec4}
+  html{font-size:16px;scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'JetBrains Mono',monospace;max-width:960px;margin:0 auto;overflow-x:hidden}
+  h1,h2,h3{font-family:'Roboto Condensed',sans-serif!important;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95}
+
+  /* HEADER */
+  header{padding:80px 24px 48px;border-bottom:1px solid var(--ink10);text-align:center}
+  header h1{font-size:clamp(40px,6vw,72px);line-height:.92;margin-bottom:20px}
+  .accent{color:var(--accent)}
+  header p{font-size:12px;line-height:1.7;color:var(--ink60);max-width:520px;border-left:2px solid var(--accent);padding-left:20px;margin:0 auto;text-align:left}
+  header .header-tg{border:none;padding-left:0;margin-top:20px;color:var(--ink60)}
+  header .header-tg a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  header .header-tg a:hover{color:var(--ink)}
+
+  /* TREE */
+  .tree{position:relative;padding:0 24px 60px}
+
+  /* Central spine */
+  .tree::before{content:'';position:absolute;left:50%;top:0;bottom:60px;width:1px;background:var(--spine);transform:translateX(-.5px)}
+
+  /* CATEGORY ROW */
+  .cat-row{position:relative;padding:48px 0 0;opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+  .cat-row.visible{opacity:1;transform:translateY(0)}
+
+  /* Category hub on spine */
+  .cat-hub{position:relative;z-index:3;width:max-content;margin:0 auto 24px;padding:10px 24px;background:var(--ink);color:var(--bg);font-family:'Roboto Condensed',sans-serif!important;font-weight:900;font-size:clamp(14px,2vw,17px);text-transform:uppercase;letter-spacing:.02em;text-align:center;line-height:1.2}
+
+  /* Nodes container */
+  .nodes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding-bottom:8px;position:relative}
+
+  /* Node */
+  .node{position:relative;background:var(--node-bg);border:1px solid var(--ink10);padding:14px 18px;cursor:pointer;transition:all .15s;min-width:140px;max-width:220px;flex:1 1 140px}
+  .node:hover{border-color:var(--ink);background:#ebe6dc}
+  .node-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.35}
+  .node-sub{font-size:10px;color:var(--ink40);line-height:1.4;margin-top:2px}
+  .node-arrow{position:absolute;top:12px;right:12px;color:var(--accent);font-size:12px;opacity:0;transition:opacity .15s}
+  .tg-cta{max-width:520px;margin:60px auto 40px;padding:24px 28px;border:2px solid var(--accent);background:rgba(245,166,35,0.05);text-align:center;display:block;text-decoration:none;color:var(--ink);transition:background .15s}
+  .tg-cta:hover{background:rgba(245,166,35,0.12)}
+  .tg-cta-label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink60);margin-bottom:8px}
+  .tg-cta-text{font-size:15px;font-weight:600;color:var(--ink)}
+  .tg-cta-text span{color:var(--accent);border-bottom:1px solid var(--accent)}
+  .node:hover .node-arrow{opacity:1}
+
+  /* Connector dots on spine for each category */
+  .cat-row::after{content:'';position:absolute;left:50%;top:48px;width:9px;height:9px;background:var(--accent);transform:translate(-50%,0);z-index:2;border:2px solid var(--bg)}
+
+  /* Connector lines from nodes to spine */
+  .connector-line{position:absolute;left:50%;top:0;width:1px;height:24px;background:var(--spine);transform:translateX(-.5px)}
+
+  /* PANEL */
+  .panel-overlay{display:none;position:fixed;inset:0;background:rgba(10,10,15,.3);z-index:100}
+  .panel-overlay.active{display:block}
+  .panel{position:fixed;right:-480px;top:0;bottom:0;width:460px;max-width:92vw;background:var(--bg);border-left:1px solid var(--ink10);z-index:101;padding:40px 32px;overflow-y:auto;transition:right .3s ease}
+  .panel.active{right:0}
+  .panel-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--ink10);color:var(--ink40);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;font-family:'JetBrains Mono',monospace;transition:all .15s}
+  .panel-close:hover{color:var(--ink);border-color:var(--ink20)}
+  .panel-cat{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:12px}
+  .panel h2{font-size:24px;margin-bottom:16px;padding-right:48px;line-height:1.05}
+  .panel-desc{font-size:12px;line-height:1.8;color:var(--ink60);margin-bottom:28px;border-left:2px solid var(--accent);padding-left:16px}
+  .panel-section{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink40);margin-bottom:12px}
+  .panel-keywords{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+  .panel-kw{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink40);border:1px solid var(--ink10);padding:4px 10px;background:var(--ink05)}
+  .panel-links{list-style:none;margin-bottom:28px}
+  .panel-links li{margin-bottom:6px}
+  .panel-links a{font-size:12px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .15s}
+  .panel-links a:hover{color:var(--accent)}
+  .panel-links a::before{content:'→';color:var(--accent);font-size:12px}
+  .panel-empty{font-size:11px;color:var(--ink40);font-style:italic}
+
+  footer{padding:32px 24px;display:flex;justify-content:space-between;font-size:10px;color:var(--ink40);text-transform:uppercase;letter-spacing:.1em;border-top:1px solid var(--ink10)}
+
+  .node[data-id="multiexpert"]{min-width:180px}
+  .node[data-id="det-refactoring"]{min-width:220px;max-width:280px}
+
+  @media(max-width:600px){
+    .nodes{flex-direction:column;align-items:center}
+    .node{max-width:100%;min-width:0;width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Карта<br><span class="accent">навыков</span></h1>
+  <p>Концепции и инструменты для разработчика, который хочет системно использовать AI в работе. От фундамента к практике.</p>
+  <p class="header-tg">Больше об AI в разработке из первых уст <a href="https://t.me/+OIPMMEXejeU5YTNi" target="_blank" rel="noopener">в нашем телеграме</a></p>
+  <a class="tg-cta" href="/">
+    <div class="tg-cta-label">Naition.ai</div>
+    <div class="tg-cta-text">Узнать больше о нашем проекте <span>на naition.ai</span></div>
+  </a>
+</header>
+
+<div class="tree">
+
+<!-- Как работает LLM -->
+<div class="cat-row"><div class="cat-hub">Как работает LLM</div>
+<div class="nodes">
+  <div class="node" data-id="token-prediction" data-cn="Как работает LLM" data-desc="Авторегрессивная генерация текста, при которой модель последовательно предсказывает наиболее вероятный следующий токен на основе всех предшествующих. Определяет поведение любой генеративной языковой модели." data-kw="токен,предсказание,вероятность,нейросеть,слои"><div class="node-name">Предсказание токена</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="context-window" data-cn="Как работает LLM" data-desc="Фиксированный объём текста (в токенах), который модель может обработать за один запрос. Включает системный промпт, историю диалога, входные данные и ответ. Определяет предел сложности задач, решаемых за одно обращение." data-kw="контекстное окно,ограничения,размер,переполнение"><div class="node-name">Контекстное окно</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="attention" data-cn="Как работает LLM" data-desc="Механизм, позволяющий модели взвешивать значимость каждого токена относительно остальных в последовательности. Основа архитектуры Transformer. Определяет способность модели улавливать зависимости в тексте." data-kw="attention,трансформеры,слои,веса"><div class="node-name">Attention</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="temperature" data-cn="Как работает LLM" data-desc="Параметры выборки при генерации: temperature управляет степенью случайности, top-k ограничивает число рассматриваемых вариантов, top-p задаёт порог суммарной вероятности. Влияют на баланс между предсказуемостью и разнообразием ответов." data-kw="температура,top-k,top-p,sampling,детерминированность"><div class="node-name">Температура, top-k, top-p</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="hallucinations" data-cn="Как работает LLM" data-desc="Генерация правдоподобного, но фактически неверного содержания. Следствие вероятностной природы модели, а не ошибка в коде. Учитывается при проектировании любых систем с LLM." data-kw="галлюцинации,контроль,верификация,вероятность"><div class="node-name">Галлюцинации</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="alignment" data-cn="Как работает LLM" data-desc="Набор методов адаптации модели: alignment корректирует поведение через RLHF, fine-tuning дообучает на специфических данных, LoRA позволяет адаптировать модель с минимальными ресурсами. Применяется для кастомизации модели под домен или задачу." data-kw="alignment,fine-tuning,LoRA,RLHF,системный промпт"><div class="node-name">Alignment, fine-tuning, LoRA</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Ландшафт моделей -->
+<div class="cat-row"><div class="cat-hub">Ландшафт моделей</div>
+<div class="nodes">
+  <div class="node" data-id="sota" data-cn="Ландшафт моделей" data-desc="Актуальные языковые модели ведущих провайдеров: Claude (Anthropic), ChatGPT (OpenAI), DeepSeek, GigaChat (Сбер), YandexGPT. Каждая имеет характерные сильные и слабые стороны. Выбор модели под задачу определяет качество и стоимость результата." data-kw="Claude,ChatGPT,DeepSeek,GigaChat,YandexGPT,SOTA"><div class="node-name">SOTA-модели</div><div class="node-sub">Claude, ChatGPT, DeepSeek, GigaChat, YandexGPT</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="service-models" data-cn="Ландшафт моделей" data-desc="Вспомогательные модели для конвейерных задач: реранкеры переупорядочивают результаты поиска, рефрайзеры переформулируют запросы, векторизаторы преобразуют текст в числовые представления. Используются в RAG-пайплайнах и поисковых системах." data-kw="реранкеры,рефрайзеры,векторизаторы,embeddings"><div class="node-name">Сервисные модели</div><div class="node-sub">реранкеры, рефрайзеры, векторизаторы</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="specialized" data-cn="Ландшафт моделей" data-desc="Модели для обработки нетекстовых данных: OCR извлекает текст из изображений и PDF, STT/TTS конвертирует между аудио и текстом, VLLM обрабатывает визуальную информацию. Применяются в мультимодальных системах." data-kw="OCR,STT,TTS,VLLM,мультимодальность"><div class="node-name">OCR, STT/TTS, VLLM</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="local-models" data-cn="Ландшафт моделей" data-desc="Языковые модели (Qwen, Mistral и др.), развёрнутые на собственном оборудовании через Docker или Ollama. Обеспечивают полный контроль над данными и независимость от внешних API. Применимы для задач с требованиями к приватности или автономности." data-kw="Qwen,Mistral,Docker,локальные модели"><div class="node-name">Локальные модели</div><div class="node-sub">Qwen, Mistral, Docker</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="benchmarks" data-cn="Ландшафт моделей" data-desc="Стандартизированные тесты для сравнения моделей по различным параметрам: кодогенерация, рассуждения, следование инструкциям. Лидерборды (LMSYS, OpenLLM) дают ориентир при выборе модели." data-kw="бенчмарки,лидерборды,параметры,сравнение"><div class="node-name">Бенчмарки</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="token-cost" data-cn="Ландшафт моделей" data-desc="Экономика использования LLM: стоимость складывается из количества входных и выходных токенов. Structured Output и Function Calling — механизмы получения структурированных ответов и вызова внешних функций. Определяют архитектуру интеграций с LLM." data-kw="стоимость,токены,Structured Output,Function Calling"><div class="node-name">Стоимость и Structured Output</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Контекст-инжиниринг -->
+<div class="cat-row"><div class="cat-hub">Контекст-инжиниринг</div>
+<div class="nodes">
+  <div class="node" data-id="prompt-eng" data-cn="Контекст-инжиниринг" data-desc="Промпт-инжиниринг — формулирование инструкций для модели. Контекст-инжиниринг — проектирование всей информационной среды: инструкции, данные, память, инструменты. Разница между ними определяет подход к построению AI-систем." data-kw="промпт,контекст-инжиниринг,классификация,зоны промпта"><div class="node-name">Промпт vs контекст-инжиниринг</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="memory" data-cn="Контекст-инжиниринг" data-desc="Краткосрочная память действует в пределах одной сессии (контекстное окно), долгосрочная сохраняется между сессиями (внешнее хранилище). Суммаризация сжимает накопленный контекст без критичных потерь. Применяется при построении чат-ботов и агентов с историей." data-kw="память,краткосрочная,долгосрочная,суммаризация,retention"><div class="node-name">Краткосрочная и долгосрочная память</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="caching" data-cn="Контекст-инжиниринг" data-desc="Prompt caching сохраняет повторяющиеся части запроса на стороне провайдера, сокращая задержку и стоимость. Маршрутизация запросов между моделями разной мощности снижает расходы без потери качества. Применяется в production-системах с высокой нагрузкой." data-kw="кэширование,prompt caching,оптимизация,классификация запросов"><div class="node-name">Кэширование и оптимизация</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="rag" data-cn="Контекст-инжиниринг" data-desc="Retrieval-Augmented Generation — архитектурный паттерн, при котором модель получает релевантные фрагменты из внешнего хранилища перед генерацией ответа. Включает этапы: разбиение на чанки, векторизацию, семантический поиск. Применяется для работы с приватными и актуальными данными." data-kw="RAG,чанкинг,эмбеддинги,Supabase,векторные БД"><div class="node-name">RAG</div><div class="node-sub">векторные БД, Supabase</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Качество и верификация -->
+<div class="cat-row"><div class="cat-hub">Качество и верификация</div>
+<div class="nodes">
+  <div class="node" data-id="trust-verify" data-cn="Качество и верификация" data-desc="Принцип разделения ролей: модель генерирует результат, человек верифицирует его по заранее определённым критериям. Спецификация фиксирует ожидания до начала генерации. Базовый подход к контролю качества в AI-разработке." data-kw="trust but verify,спецификация,критерии качества"><div class="node-name">Trust but verify</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="antipatterns" data-cn="Качество и верификация" data-desc="Типичные режимы отказа LLM: деградация на длинных цепочках, ошибки в арифметике, некорректная обработка табличных данных и необработанных CSV/JSON. Знание антипаттернов позволяет проектировать обходные пути заранее." data-kw="антипаттерны,потеря контекста,математика,таблицы,CSV"><div class="node-name">Антипаттерны LLM</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="bdd" data-cn="Качество и верификация" data-desc="Behavior-Driven Development — методология описания требований через сценарии в формате Given/When/Then (Gherkin). Формализует ожидания к поведению системы. Применяется для структурирования задач, передаваемых LLM." data-kw="BDD,Gherkin,границы ответственности"><div class="node-name">BDD / Gherkin</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="security" data-cn="Качество и верификация" data-desc="Комплекс мер по ограничению потенциально деструктивных действий AI-инструментов: контроль прав доступа, защита от непреднамеренного удаления данных, аудит выполненных операций. Обязателен при работе агентов с production-средой." data-kw="security,безопасность,контроль,риски"><div class="node-name">Security management</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Инструменты -->
+<div class="cat-row"><div class="cat-hub">Инструменты</div>
+<div class="nodes">
+  <div class="node" data-id="cursor" data-cn="Инструменты" data-desc="Среда разработки с встроенным AI: автодополнение, чат с кодовой базой, агентский режим для автономного выполнения задач. Использует режим Reasoning для многоэтапного планирования. Одна из основных AI-IDE на рынке." data-kw="Cursor,IDE,автодополнение,Reasoning mode"><div class="node-name">Cursor</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="claude-code" data-cn="Инструменты" data-desc="Терминальный AI-агент от Anthropic, работающий непосредственно с файловой системой и командной строкой. Поддерживает кастомизацию через файлы конфигурации и скиллы. Подходит для автоматизации задач в существующих CI/CD-пайплайнах." data-kw="Claude Code,терминал,агент"><div class="node-name">Claude Code</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="codex" data-cn="Инструменты" data-desc="Облачный AI-агент от OpenAI для выполнения задач в изолированной среде. Antigravity (Google) — аналогичный инструмент. Оба работают асинхронно и возвращают результат по готовности." data-kw="Codex,Antigravity,OpenAI"><div class="node-name">Codex / Antigravity</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="mcp" data-cn="Инструменты" data-desc="Model Context Protocol — открытый стандарт подключения AI-моделей к внешним системам: файловые системы, базы данных, API, инструменты разработки. Реализации включают Figma MCP, Language Server MCP и сотни community-серверов. Принят Anthropic, OpenAI, Google." data-kw="MCP,Figma MCP,Language Server MCP,протокол"><div class="node-name">MCP</div><div class="node-sub">Figma MCP, Language Server MCP</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="n8n" data-cn="Инструменты" data-desc="Open-source платформа автоматизации с визуальным редактором. Поддерживает AI-ноды, триггеры, API-интеграции, code-ноду для произвольной логики. Применяется для построения агентских пайплайнов без написания инфраструктурного кода." data-kw="n8n,автоматизация,пайплайн,триггеры"><div class="node-name">n8n</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="make" data-cn="Инструменты" data-desc="Коммерческая платформа визуальной автоматизации (ранее Integromat). Предлагает готовые коннекторы к сотням сервисов и AI-модулям. Альтернатива n8n с акцентом на no-code." data-kw="Make,автоматизация"><div class="node-name">Make</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Агенты -->
+<div class="cat-row"><div class="cat-hub">Агенты</div>
+<div class="nodes">
+  <div class="node" data-id="reasoning" data-cn="Агенты" data-desc="Режим работы модели, при котором она выполняет промежуточные рассуждения перед формированием ответа. Включает самокоррекцию и планирование. Управление бюджетом reasoning позволяет балансировать качество и стоимость." data-kw="reasoning,ризонинг,планирование,самокоррекция,бюджет"><div class="node-name">Reasoning</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="agent-vs-wf" data-cn="Агенты" data-desc="Workflow — детерминированная последовательность шагов с предопределённой логикой. Агент — система, динамически выбирающая действия на основе рассуждений модели. Human-in-the-loop — паттерн, при котором агент запрашивает подтверждение человека на критичных этапах." data-kw="агент,воркфлоу,human-in-the-loop,автономность"><div class="node-name">Агент vs воркфлоу</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="agents-md" data-cn="Агенты" data-desc="Конфигурационные файлы, задающие поведение AI-агентов в проекте: AGENTS.md определяет общие правила, agent.md — параметры конкретного агента, SKILLS.md — набор навыков. Позволяют адаптировать стандартные инструменты под требования проекта." data-kw="AGENTS.md,agent.md,SKILLS.md,конфигурация"><div class="node-name">AGENTS.md / SKILLS.md</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="plan-mode" data-cn="Агенты" data-desc="Режим предварительного планирования, при котором агент составляет план действий до начала выполнения. SPEC-driven development — подход, где спецификация задачи определяет весь цикл: планирование, выполнение, проверка. Снижает количество ошибок агента." data-kw="Plan Mode,SPEC,эксплор-агент,planning-агент"><div class="node-name">Plan Mode / SPEC-driven</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Мультиагентность -->
+<div class="cat-row"><div class="cat-hub">Мультиагентность</div>
+<div class="nodes">
+  <div class="node" data-id="orchestration" data-cn="Мультиагентность" data-desc="Координация нескольких агентов с распределёнными ролями (планировщик, исполнитель, рецензент). Включает управление триггерами запуска и маршрутизацию задач. Применяется в CI/CD, code review и других конвейерных процессах." data-kw="оркестрация,роли,триггеры,координация"><div class="node-name">Оркестрация агентов</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="a2a" data-cn="Мультиагентность" data-desc="Протокол взаимодействия между автономными агентами: обмен сообщениями, делегирование подзадач, передача артефактов. Стандартизирован Google (A2A protocol). Необходим в системах, где агенты от разных провайдеров работают совместно." data-kw="agent-to-agent,протокол,делегирование"><div class="node-name">Agent-to-Agent</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="agent-memory" data-cn="Мультиагентность" data-desc="Механизмы сохранения состояния агента между вызовами: оперативная (контекстное окно), сессионная (в рамках задачи), персистентная (векторная БД, Supabase). Тип памяти определяет возможности и ограничения агентной системы." data-kw="память агента,типы памяти,Supabase,векторные БД"><div class="node-name">Типы памяти агента</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="validation-cycle" data-cn="Мультиагентность" data-desc="Паттерн многоуровневой проверки: мощная модель планирует, лёгкая выполняет, мощная с чистым контекстом проверяет результат. Дополняется юнит-тестами и автоматическим code review. Обеспечивает контроль качества при автономной работе агентов." data-kw="валидация,юнит-тесты,code review,конвейер"><div class="node-name">Цикл валидации</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Работа с кодом -->
+<div class="cat-row"><div class="cat-hub">Работа с кодом</div>
+<div class="nodes">
+  <div class="node" data-id="multiexpert" data-cn="Работа с кодом" data-desc="Использование LLM для выполнения задач из смежных специализаций: тестирование, DevOps, дизайн, аналитика данных, перевод кода между языками программирования. Позволяет закрывать кросс-функциональные задачи без привлечения узких специалистов." data-kw="мультиэкспертность,роли,перевод кода,docker-compose,terraform"><div class="node-name">Мультиэкспертность</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="vibe-coding" data-cn="Работа с кодом" data-desc="Подход к генерации кода с минимальным предварительным планированием: описание задачи в свободной форме, итеративная доработка результата. Эффективен для прототипов, MVP, одноразового кода. Не подходит для систем с долгосрочной поддержкой." data-kw="vibe coding,прототип,MVP,throwaway code,scaffolding"><div class="node-name">Vibe coding</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="codebase-eval" data-cn="Работа с кодом" data-desc="Анализ структуры и качества кодовой базы целиком, а не отдельных файлов. Включает оценку архитектуры, связей между модулями, генерацию документации уровня системы. Применяется при онбординге в проект или аудите." data-kw="оценка кодовой базы,документация,GitHub"><div class="node-name">Оценка кодовой базы</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="api-gen" data-cn="Работа с кодом" data-desc="Генерация API-эндпоинтов на основе описания структуры данных или схемы БД. Спецификация компактнее исходного кода и помещается в контекстное окно. Применяется при проектировании новых сервисов и контрактов между модулями." data-kw="генерация API,спецификация,контекст вместо кода"><div class="node-name">Генерация API по спецификации</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="reverse-eng" data-cn="Работа с кодом" data-desc="Восстановление архитектуры, связей между модулями и доменной модели существующего проекта с помощью AI-анализа. Dependency mapping строит граф зависимостей. Применяется при работе с незнакомыми кодовыми базами и legacy-системами." data-kw="reverse engineering,dependency mapping,Language Server,доменная модель"><div class="node-name">Reverse engineering</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="det-refactoring" data-cn="Работа с кодом" data-desc="Рефакторинг, при котором AI генерирует не новый код, а набор команд для специализированных инструментов (OpenRewrite, LTK, IntelliJ API). Обеспечивает воспроизводимость и возможность ревью плана до выполнения. Применяется для массовых изменений в больших кодовых базах." data-kw="детерминистический рефакторинг,OpenRewrite,LTK,IntelliJ API"><div class="node-name">Детерминистический рефакторинг</div><div class="node-sub">OpenRewrite, LTK</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Релиз и валидация -->
+<div class="cat-row"><div class="cat-hub">Релиз и валидация</div>
+<div class="nodes">
+  <div class="node" data-id="bounded-ctx" data-cn="Релиз и валидация" data-desc="Паттерн из Domain-Driven Design: определение автономных областей системы с чёткими границами и собственными моделями данных. Используется для выделения микросервисов из монолита и определения API-контрактов между ними." data-kw="bounded contexts,входы/выходы,обратная совместимость,микросервисы"><div class="node-name">Bounded contexts</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="evals" data-cn="Релиз и валидация" data-desc="Evals — систематическая оценка качества выходов AI-системы по набору тестовых случаев. Трейсы — запись входов и выходов каждого компонента для воспроизведения и сравнения поведения. Необходимы для контроля качества при изменениях в промптах или архитектуре." data-kw="evals,трейсы,тестирование,запись трафика"><div class="node-name">Evals и трейсы</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="deploy" data-cn="Релиз и валидация" data-desc="Стратегии безопасного развёртывания: blue-green поддерживает две параллельные среды для мгновенного переключения, canary направляет часть трафика на новую версию, rollback откатывает к предыдущей. Применяются для минимизации рисков при выкате изменений." data-kw="blue-green,canary,rollback,deployment,мониторинг"><div class="node-name">Blue-green, canary, rollback</div><span class="node-arrow">→</span></div>
+</div></div>
+
+<!-- Масштабирование -->
+<div class="cat-row"><div class="cat-hub">Масштабирование на команду</div>
+<div class="nodes">
+  <div class="node" data-id="sdlc" data-cn="Масштабирование" data-desc="Интеграция AI-инструментов в существующий жизненный цикл разработки (SDLC): от формирования требований и проектирования архитектуры до написания тестов и генерации кода. Требует предварительной оцифровки текущих процессов." data-kw="SDLC,процессы,оцифровка,интеграция"><div class="node-name">AI в SDLC</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="academy" data-cn="Масштабирование" data-desc="Внутренняя система обучения AI-практикам: документация паттернов, библиотека промптов, плейбуки, видеоматериалы. Обеспечивает единый стандарт использования AI-инструментов в команде." data-kw="академия,плейбуки,промпты,обучение"><div class="node-name">Корпоративная академия</div><span class="node-arrow">→</span></div>
+  <div class="node" data-id="roi" data-cn="Масштабирование" data-desc="Количественная оценка эффекта от внедрения AI: экономия рабочих часов, ускорение циклов разработки, снижение стоимости типовых операций. Используется для обоснования инвестиций перед руководством." data-kw="ROI,цифровой эффект,метрики"><div class="node-name">ROI</div><span class="node-arrow">→</span></div>
+</div></div>
+
+</div><!-- /tree -->
+
+<a class="tg-cta" href="/">
+  <div class="tg-cta-label">Naition.ai</div>
+  <div class="tg-cta-text">Узнать больше о нашем проекте <span>на naition.ai</span></div>
+</a>
+
+<footer><div>AI В РАЗРАБОТКЕ // КАРТА НАВЫКОВ</div><div>10 КАТЕГОРИЙ · 43 КОНЦЕПЦИИ</div></footer>
+
+<div class="panel-overlay" id="ov"></div>
+<div class="panel" id="pn">
+  <button class="panel-close" id="pc">×</button>
+  <div class="panel-cat" id="pCat"></div>
+  <h2 id="pTitle"></h2>
+  <p class="panel-desc" id="pDesc"></p>
+  <div><div class="panel-section">Ключевые темы</div><div class="panel-keywords" id="pKw"></div></div>
+  <div style="margin-top:8px"><div class="panel-section">Ссылки</div><ul class="panel-links" id="pLinks"></ul><p class="panel-empty" id="pEmpty">Ссылки ещё не добавлены</p></div>
+</div>
+
+<script is:inline>
+const nodeLinks={
+  'token-prediction':[{url:'https://jalammar.github.io/illustrated-transformer/',title:'https://jalammar.github.io/illustrated-transformer/'}],
+  'context-window':[{url:'https://docs.anthropic.com/en/docs/build-with-claude/context-windows',title:'https://docs.anthropic.com/en/docs/build-with-claude/context-windows'}],
+  'attention':[{url:'https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html',title:'https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html'}],
+  'temperature':[{url:'https://www.promptingguide.ai/introduction/settings',title:'https://www.promptingguide.ai/introduction/settings'}],
+  'hallucinations':[{url:'https://arxiv.org/abs/2311.05232',title:'https://arxiv.org/abs/2311.05232'}],
+  'alignment':[{url:'https://arxiv.org/abs/2106.09685',title:'https://arxiv.org/abs/2106.09685'}],
+  'sota':[{url:'https://llm-timeline.com',title:'https://llm-timeline.com'}],
+  'service-models':[{url:'https://www.pinecone.io/learn/series/rag/rerankers/',title:'https://www.pinecone.io/learn/series/rag/rerankers/'}],
+  'specialized':[{url:'https://www.koyeb.com/blog/best-multimodal-vision-models-in-2025',title:'https://www.koyeb.com/blog/best-multimodal-vision-models-in-2025'}],
+  'local-models':[{url:'https://ollama.com',title:'https://ollama.com'}],
+  'benchmarks':[{url:'https://arena.ai/leaderboard/text',title:'https://arena.ai/leaderboard/text'}],
+  'token-cost':[{url:'https://platform.claude.com/docs/en/build-with-claude/structured-outputs',title:'https://platform.claude.com/docs/en/build-with-claude/structured-outputs'}],
+  'prompt-eng':[{url:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents',title:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents'}],
+  'memory':[{url:'https://www.anthropic.com/engineering/building-effective-agents',title:'https://www.anthropic.com/engineering/building-effective-agents'}],
+  'caching':[{url:'https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching',title:'https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching'}],
+  'rag':[{url:'https://www.promptingguide.ai/research/rag',title:'https://www.promptingguide.ai/research/rag'}],
+  'trust-verify':[{url:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents',title:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents'}],
+  'antipatterns':[{url:'https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models',title:'https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models'}],
+  'bdd':[{url:'https://cucumber.io/docs/gherkin/reference/',title:'https://cucumber.io/docs/gherkin/reference/'}],
+  'security':[{url:'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-prompt-leaks',title:'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-prompt-leaks'}],
+  'cursor':[{url:'https://docs.cursor.com',title:'https://docs.cursor.com'}],
+  'claude-code':[{url:'https://code.claude.com/docs/en/overview',title:'https://code.claude.com/docs/en/overview'}],
+  'codex':[{url:'https://developers.openai.com/codex',title:'https://developers.openai.com/codex'}],
+  'mcp':[{url:'https://modelcontextprotocol.io',title:'https://modelcontextprotocol.io'}],
+  'n8n':[{url:'https://docs.n8n.io',title:'https://docs.n8n.io'}],
+  'make':[{url:'https://www.make.com/en/help',title:'https://www.make.com/en/help'}],
+  'reasoning':[{url:'https://platform.openai.com/docs/guides/reasoning',title:'https://platform.openai.com/docs/guides/reasoning'}],
+  'agent-vs-wf':[{url:'https://www.anthropic.com/engineering/building-effective-agents',title:'https://www.anthropic.com/engineering/building-effective-agents'}],
+  'agents-md':[{url:'https://agents.md',title:'https://agents.md'}],
+  'plan-mode':[{url:'https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/',title:'https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/'}],
+  'orchestration':[{url:'https://www.anthropic.com/engineering/building-effective-agents',title:'https://www.anthropic.com/engineering/building-effective-agents'}],
+  'a2a':[{url:'https://a2a-protocol.org/latest/',title:'https://a2a-protocol.org/latest/'}],
+  'agent-memory':[{url:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents',title:'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents'}],
+  'validation-cycle':[{url:'https://www.anthropic.com/engineering/swe-bench-sonnet',title:'https://www.anthropic.com/engineering/swe-bench-sonnet'}],
+  'multiexpert':[{url:'https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb',title:'https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb'}],
+  'vibe-coding':[{url:'https://advait.org/files/sarkar_2025_vibe_coding.pdf',title:'https://advait.org/files/sarkar_2025_vibe_coding.pdf'}],
+  'codebase-eval':[{url:'https://code.claude.com/docs/en/common-workflows',title:'https://code.claude.com/docs/en/common-workflows'}],
+  'api-gen':[{url:'https://swagger.io/specification/',title:'https://swagger.io/specification/'}],
+  'reverse-eng':[{url:'https://code.claude.com/docs/en/common-workflows',title:'https://code.claude.com/docs/en/common-workflows'}],
+  'det-refactoring':[{url:'https://docs.openrewrite.org',title:'https://docs.openrewrite.org'}],
+  'bounded-ctx':[{url:'https://martinfowler.com/bliki/BoundedContext.html',title:'https://martinfowler.com/bliki/BoundedContext.html'}],
+  'evals':[{url:'https://platform.claude.com/docs/en/test-and-evaluate/develop-tests',title:'https://platform.claude.com/docs/en/test-and-evaluate/develop-tests'}],
+  'deploy':[{url:'https://martinfowler.com/bliki/BlueGreenDeployment.html',title:'https://martinfowler.com/bliki/BlueGreenDeployment.html'}],
+  'sdlc':[{url:'https://www.ibm.com/think/topics/ai-in-software-development',title:'https://www.ibm.com/think/topics/ai-in-software-development'}],
+  'academy':[{url:'https://www.anthropic.com/customers',title:'https://www.anthropic.com/customers'}],
+  'roi':[{url:'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai',title:'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai'}],
+};
+const pn=document.getElementById('pn'),ov=document.getElementById('ov');
+function openPanel(el){const id=el.dataset.id,kw=el.dataset.kw?el.dataset.kw.split(','):[],links=nodeLinks[id]||[];
+document.getElementById('pCat').textContent=el.dataset.cn;
+document.getElementById('pTitle').textContent=el.querySelector('.node-name').textContent;
+document.getElementById('pDesc').textContent=el.dataset.desc;
+document.getElementById('pKw').innerHTML=kw.map(k=>'<span class="panel-kw">'+k.trim()+'</span>').join('');
+const pl=document.getElementById('pLinks'),pe=document.getElementById('pEmpty');
+if(links.length){pl.innerHTML=links.map(l=>'<li><a href="'+l.url+'" target="_blank" rel="noopener">'+l.title+'</a></li>').join('');pl.style.display='block';pe.style.display='none'}
+else{pl.style.display='none';pe.style.display='block'}
+pn.classList.add('active');ov.classList.add('active')}
+function closePanel(){pn.classList.remove('active');ov.classList.remove('active')}
+document.querySelectorAll('.node').forEach(c=>c.addEventListener('click',()=>openPanel(c)));
+document.getElementById('pc').addEventListener('click',closePanel);
+ov.addEventListener('click',closePanel);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.cat-row').forEach(c=>obs.observe(c));
+</script>
+</body>
+</html>
