@@ -1,0 +1,388 @@
+---
+// Naition Community — клуб практикующих
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" is:inline>
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<title>Naition Community — клуб практикующих</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style is:global>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+  :root{
+    --bg:#f5f5f0;--ink:#0a0a0f;--accent:#f5a623;
+    --ink05:rgba(10,10,15,.05);--ink10:rgba(10,10,15,.1);
+    --ink20:rgba(10,10,15,.2);--ink40:rgba(10,10,15,.4);
+    --ink60:rgba(10,10,15,.6);--node-bg:#fff
+  }
+  html{font-size:16px;scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'JetBrains Mono','SF Mono','Consolas',monospace;
+    max-width:1200px;margin:0 auto;overflow-x:hidden;
+    font-variant-numeric:tabular-nums;
+  }
+  h1,h2,h3{
+    font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif!important;
+    font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.95
+  }
+  a{color:inherit}
+  .accent{color:var(--accent)}
+
+  /* NAV */
+  nav{
+    padding:20px 24px;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--ink10);
+  }
+  .nav-logo{
+    font-family:'Roboto Condensed',sans-serif!important;
+    font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:.05em;
+    text-decoration:none;color:var(--ink)
+  }
+  .nav-right{
+    font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink60);
+    display:flex;align-items:center;gap:8px
+  }
+  .pulse-dot{
+    width:7px;height:7px;background:var(--accent);border-radius:50%!important;
+    animation:pulse 1.8s ease-in-out infinite
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+  /* HERO TEXT */
+  .hero{padding:60px 24px 80px;border-bottom:1px solid var(--ink10)}
+  .hero-label{
+    font-size:10px;text-transform:uppercase;letter-spacing:.15em;
+    color:var(--accent);margin-bottom:24px
+  }
+  .hero h1{
+    font-size:clamp(32px,4.5vw,56px);line-height:1;
+    max-width:900px;margin-bottom:32px
+  }
+  .hero-sub{
+    border-left:2px solid var(--accent);padding-left:20px;
+    max-width:640px;font-size:13px;line-height:1.7;color:var(--ink60);
+    margin-bottom:32px
+  }
+  .hero-short{
+    max-width:640px;font-size:12px;line-height:1.8;color:var(--ink60)
+  }
+  .hero-cta{margin-top:32px}
+
+  /* SECTION BASE */
+  section{padding:80px 24px;border-bottom:1px solid var(--ink10)}
+  .sec-label{
+    font-size:10px;text-transform:uppercase;letter-spacing:.15em;
+    color:var(--accent);margin-bottom:12px
+  }
+  .sec-head{
+    font-size:clamp(28px,3.5vw,44px);line-height:1;
+    max-width:900px;margin-bottom:48px
+  }
+
+  /* 7 ЭЛЕМЕНТОВ — brochure grid */
+  .brochure{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1px;background:var(--ink10);border:1px solid var(--ink10)
+  }
+  .brochure-item{
+    background:var(--bg);padding:28px 24px;
+    display:flex;flex-direction:column;gap:10px;
+    min-height:180px;
+  }
+  .brochure-num{
+    font-size:10px;color:var(--ink40);letter-spacing:.1em;
+  }
+  .brochure-title{
+    font-family:'Roboto Condensed',sans-serif!important;
+    font-weight:900;font-size:15px;text-transform:uppercase;
+    letter-spacing:-.01em;line-height:1.15;color:var(--ink)
+  }
+  .brochure-body{
+    font-size:12px;line-height:1.7;color:var(--ink60);margin-top:auto
+  }
+
+  /* РЕЖИМЫ */
+  .modes{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  }
+  .mode{
+    border:1px solid var(--ink10);padding:32px 28px;background:var(--node-bg);
+  }
+  .mode-tag{
+    display:inline-block;padding:4px 10px;background:var(--accent);color:var(--ink);
+    font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;
+    margin-bottom:16px
+  }
+  .mode.bg .mode-tag{background:var(--ink);color:var(--bg)}
+  .mode h3{font-size:20px;margin-bottom:12px}
+  .mode p{font-size:12px;line-height:1.75;color:var(--ink60)}
+  .modes-note{
+    margin-top:24px;font-size:11px;line-height:1.7;color:var(--ink40);
+    border-left:2px solid var(--accent);padding-left:16px;max-width:720px
+  }
+
+  /* ВОЗРАЖЕНИЯ */
+  .faq{max-width:900px}
+  .faq-item{
+    border-bottom:1px solid var(--ink10);
+  }
+  .faq-q{
+    width:100%;background:none;border:none;cursor:pointer;
+    padding:20px 0;display:flex;justify-content:space-between;align-items:flex-start;
+    gap:16px;text-align:left;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;line-height:1.5;color:var(--ink);font-weight:500;
+  }
+  .faq-q:hover{color:var(--accent)}
+  .faq-q .faq-plus{
+    color:var(--accent);font-size:14px;flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .faq-item.open .faq-plus{transform:rotate(45deg)}
+  .faq-a{
+    max-height:0;overflow:hidden;transition:max-height .3s ease;
+  }
+  .faq-a-inner{
+    padding:0 0 24px 0;font-size:12px;line-height:1.8;color:var(--ink60);
+    max-width:720px
+  }
+
+  /* ОКРУЖЕНИЕ */
+  .env{max-width:720px}
+  .env p{
+    font-size:13px;line-height:1.8;color:var(--ink60);
+    margin-bottom:20px
+  }
+  .env p:first-child{
+    border-left:2px solid var(--accent);padding-left:20px;color:var(--ink)
+  }
+
+  /* КАК ПОПАСТЬ + CTA */
+  .enter{text-align:left;max-width:640px}
+  .enter p{
+    font-size:13px;line-height:1.8;color:var(--ink60);margin-bottom:32px
+  }
+  .cta{
+    display:inline-block;padding:18px 32px;background:var(--accent);color:var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.15em;text-decoration:none;
+    border:2px solid var(--accent);transition:all .15s;
+  }
+  .cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+  /* FOOTER */
+  footer{
+    padding:32px 24px;display:flex;justify-content:space-between;
+    font-size:10px;color:var(--ink40);text-transform:uppercase;letter-spacing:.1em
+  }
+  footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+  /* RESPONSIVE */
+  @media(max-width:720px){
+    .brochure{grid-template-columns:1fr}
+    .modes{grid-template-columns:1fr}
+    section{padding:56px 20px}
+    .hero{padding:40px 20px 56px}
+    .hero h1{font-size:28px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Naition</a>
+  <div class="nav-right">
+    <span class="pulse-dot"></span>
+    <span>Community</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">// HERO</div>
+  <h1>Закрытый клуб практикующих разработчиков, которые системно внедряют <span class="accent">AI</span> в свои команды</h1>
+  <p class="hero-sub">
+    Буткемп заканчивается через 12 недель. Работа с AI — нет. Naition продолжает программу для тех, кто уже начал встраивать инструменты в свои проекты и команды, и хочет делать это с поддержкой, а не в одиночку.
+  </p>
+  <p class="hero-short">
+    Раз в две недели встречаемся с экспертами и разбираем реальные кейсы. Между встречами — чат, где обсуждают то, с чем столкнулись на этой неделе. Программа буткемпа продолжает обновляться, и участники клуба получают к ней доступ вместе с новыми материалами.
+  </p>
+  <a class="cta hero-cta" href="/#apply">Подать заявку в клуб →</a>
+</section>
+
+<!-- 7 ЭЛЕМЕНТОВ -->
+<section>
+  <div class="sec-label">// что внутри</div>
+  <h2 class="sec-head">7 элементов клуба</h2>
+  <div class="brochure">
+    <div class="brochure-item">
+      <div class="brochure-num">01</div>
+      <div class="brochure-title">Закрытый Telegram-чат<br>с выпускниками и экспертами</div>
+      <div class="brochure-body">Место, где можно задать вопрос по своему проекту и получить ответ не от случайного человека из интернета, а от того, кто прошёл ту же программу и уже съел не одну собаку на AI-внедрениях. Ведущие инструкторы и программный комитет остаются в чате и после окончания буткемпа.</div>
+    </div>
+    <div class="brochure-item">
+      <div class="brochure-num">02</div>
+      <div class="brochure-title">Живые встречи<br>раз в две недели</div>
+      <div class="brochure-body">Разбор реальных кейсов, архитектурных решений, новых инструментов. Эксперты рассказывают, как у них устроено внутри — в Сбере, VK, Яндексе, Meta, Google. Между встречами — записи в библиотеке.</div>
+    </div>
+    <div class="brochure-item">
+      <div class="brochure-num">03</div>
+      <div class="brochure-title">Кейс-клубы</div>
+      <div class="brochure-body">Участники приносят свои ситуации с работы: застрял на рефакторинге легаси с агентами, не получается выстроить ревью мультиагентного кода, команда саботирует внедрение. Разбираем вживую, с обсуждением, до решения.</div>
+    </div>
+    <div class="brochure-item">
+      <div class="brochure-num">04</div>
+      <div class="brochure-title">Обновляемая<br>библиотека материалов</div>
+      <div class="brochure-body">AI-инструменты меняются каждые несколько месяцев. Программа буткемпа не замораживается после выпуска первой когорты, а продолжает обновляться. Участники клуба получают доступ к обновлениям и новым модулям по мере их выхода.</div>
+    </div>
+    <div class="brochure-item">
+      <div class="brochure-num">05</div>
+      <div class="brochure-title">Поддержка<br>при внедрении в команду</div>
+      <div class="brochure-body">Когда нужен совет от людей, которые прошли этот путь: как убедить скептически настроенного тимлида, как выстроить code review агентского кода, как обучать джунов в новой реальности. В чате есть люди с опытом внедрения в командах от 5 до 200 разработчиков.</div>
+    </div>
+    <div class="brochure-item">
+      <div class="brochure-num">06</div>
+      <div class="brochure-title">Нетворкинг<br>с практиками из крупных компаний</div>
+      <div class="brochure-body">Среди участников и экспертов — инженеры и архитекторы из Сбера, Aurora First, SymbioWay, ЦУ Т-Банка, а также программный комитет из CTO. Это окружение, в котором нормально познакомиться, обсудить подход к работе, а при случае — обменяться контактами по рабочим вопросам.</div>
+    </div>
+    <div class="brochure-item" style="grid-column:1/-1">
+      <div class="brochure-num">07</div>
+      <div class="brochure-title">Клубная скидка<br>на следующие программы Naition</div>
+      <div class="brochure-body">Следующие когорты буткемпа, интенсивы и специализированные программы — со скидкой для участников клуба.</div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕЖИМЫ -->
+<section>
+  <div class="sec-label">// зачем вступать</div>
+  <h2 class="sec-head">Режимы участия</h2>
+  <div class="modes">
+    <div class="mode">
+      <div class="mode-tag">Активный режим</div>
+      <h3>Для тех, кто упирается в AI<br>на рабочих задачах</h3>
+      <p>Для тех, кто активно внедряет AI на рабочих задачах и каждую неделю упирается в ситуации, где нужен человек рядом — тот, кто прошёл тот же путь и уже наступил на эти грабли. Таким людям клуб окупается встречами, чатом и кейс-клубами, где можно выгружать конкретные проблемы и получать конкретные ответы.</p>
+    </div>
+    <div class="mode bg">
+      <div class="mode-tag">Фоновый режим</div>
+      <h3>Для тех, кто хочет<br>держать руку на пульсе</h3>
+      <p>Для тех, у кого задач по AI меньше, но кто хочет держать руку на пульсе индустрии без отдельного выделенного на это времени. Дайджесты чата, записи встреч, обновления библиотеки — всё это работает и при пассивном участии. Через полгода в таком режиме у человека набирается ощутимый массив практик, которых не было бы без клуба.</p>
+    </div>
+  </div>
+  <p class="modes-note">
+    Участвовать в активном или фоновом режиме — решает сам участник. Ценность клуба не в том, чтобы ходить на всё, а в том, чтобы быть в среде.
+  </p>
+</section>
+
+<!-- ВОЗРАЖЕНИЯ -->
+<section>
+  <div class="sec-label">// возражения</div>
+  <h2 class="sec-head">Что обычно спрашивают</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>«У меня нет времени на ещё одно сообщество»</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        У большинства участников его тоже нет. Поэтому клуб устроен так, что пользу получают и те, кто ходит на все встречи, и те, кто два раза в месяц просматривает дайджест. Встречи записываются, в чате есть бот с саммари по темам, библиотека доступна в любое время.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>«Я уже состою в других AI-сообществах»</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        В общих AI-сообществах разный уровень участников — от студентов до CTO. Здесь все прошли или проходят одну программу и говорят на одном языке. Не нужно объяснять, что такое контекст-инжиниринг или зачем нужен AGENTS.md — можно сразу обсуждать, как применять это у себя.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>«Что мне даст общение с другими выпускниками — они же на том же уровне»</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        У каждого свой стек, своя команда, свои задачи. Человек, который внедрил мультиагентного помощника в финтехе, и человек, который настроил пайплайн для рефакторинга легаси в геймдеве, решали одну проблему разными путями. Обмен такими путями и есть главное, что даёт клуб.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>«Не уверен, что буду применять на своих задачах»</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Буткемп и клуб рассчитаны на людей, которые уже работают в продакшене. Если у тебя есть кодовая база и команда — применять будет где. Если сомневаешься в этом конкретном кейсе, подожди, пока пройдёшь несколько уроков — станет понятно, нужен тебе клуб или нет.
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>«Это же просто чат, зачем за него платить»</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        За бесплатный чат обычно платят другим — временем на фильтрацию шума, догоняние контекста с нуля, поиск проверенных практик среди сомнительных. Клуб закрытый и модерируется, участники проходят отбор через буткемп, эксперты отвечают лично. Это другой продукт.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ОКРУЖЕНИЕ -->
+<section>
+  <div class="sec-label">// окружение</div>
+  <h2 class="sec-head">Почему важно не в одиночку</h2>
+  <div class="env">
+    <p>AI-инструменты меняются каждые несколько месяцев. То, что работало в марте, к июню уже не актуально. Самостоятельно отслеживать — это отдельная работа, которой у занятого разработчика нет. Самостоятельно пробовать и тестировать — это часы экспериментов, которые заканчиваются нестабильными результатами, откатами и решениями, которые не доводятся до продакшена.</p>
+    <p>Клуб решает эту проблему окружением. Когда рядом люди с теми же задачами, новое не нужно догонять специально. Оно приходит через разговор. Кто-то уже попробовал инструмент и принёс результат. Кто-то уже совершил ошибку и рассказал о ней, чтобы её не повторили остальные. Практики просачиваются через обсуждения быстрее, чем через блоги и документацию.</p>
+    <p>И главное: решения, которые здесь обсуждаются, уже применены в продакшене. Не теоретически работающие, а те, которые прошли ревью, тесты, откаты и доведение до рабочего состояния. Это экономит тот самый месяц проб и ошибок, который иначе уходит на проверку каждого нового подхода.</p>
+  </div>
+</section>
+
+<!-- КАК ПОПАСТЬ -->
+<section>
+  <div class="sec-label">// как попасть</div>
+  <h2 class="sec-head">Вступить в клуб</h2>
+  <div class="enter">
+    <p>Клуб открыт для участников буткемпа. Вступить можно во время обучения — и продолжить участие после его окончания, получая доступ ко всем активностям вместе с новыми выпускниками. Подписка оплачивается отдельно, стоимость указывается при входе.</p>
+    <a class="cta" href="/#apply">Подать заявку в клуб →</a>
+  </div>
+</section>
+
+<footer>
+  <div>Naition // Community</div>
+  <div><a href="/">naition.ai</a></div>
+</footer>
+
+<script is:inline>
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  btn.addEventListener('click', () => {
+    const open = item.classList.toggle('open');
+    if (open){
+      a.style.maxHeight = a.scrollHeight + 'px';
+    } else {
+      a.style.maxHeight = '0px';
+    }
+  });
+});
+</script>
+</body>
+</html>
