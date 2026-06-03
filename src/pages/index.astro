@@ -356,6 +356,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     max-width: max-content;
     position: relative;
     overflow: hidden;
+    clip-path: inset(0);
     padding: 16px 40px;
     background: var(--accent);
     color: var(--ink);
@@ -633,87 +634,6 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   .faq-item.faq-open .faq-a { display: block; }
   .faq-a strong { color: var(--ink); }
 
-  /* Путь разработчика (блок после О программе) */
-  .path-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 48px;
-    row-gap: 0;
-    align-items: start;
-    position: relative;
-  }
-  .path-columns::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: var(--ink10);
-    transform: translateX(-50%);
-  }
-  .path-col-header {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding-bottom: 14px;
-    border-bottom: 2px solid var(--ink);
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .path-col-header.before { color: var(--ink40); border-bottom-color: var(--ink10); }
-  .path-col-header.after { color: var(--accent); border-bottom-color: var(--accent); }
-  .path-col-tag {
-    font-size: 9px;
-    padding: 2px 7px;
-    border: 1px solid currentColor;
-    letter-spacing: 0.15em;
-  }
-  .path-block {
-    padding-bottom: 32px;
-  }
-  .path-columns > .path-block:nth-child(n+5) {
-    border-top: 1px solid var(--ink10);
-    padding-top: 28px;
-  }
-  .path-block:last-child,
-  .path-block:nth-last-child(2) { padding-bottom: 0; }
-  .path-block-num {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: var(--ink40);
-    margin-bottom: 8px;
-  }
-  .path-block-title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 700;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    line-height: 1.25;
-    margin-bottom: 10px;
-  }
-  .path-block-text {
-    font-size: 12.5px;
-    line-height: 1.7;
-    color: var(--ink60);
-  }
-  .path-block-text em { font-style: italic; color: var(--ink); }
-  @media (max-width: 640px) {
-    .path-columns { grid-template-columns: 1fr; }
-    .path-columns::after { display: none; }
-    .path-columns .path-block:nth-child(odd):not(:first-child):not(:nth-child(3)) {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 1px solid var(--ink10);
-    }
-  }
 
   /* CTA BLOCK */
   .cta-block {
@@ -724,6 +644,30 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
   .cta-block .section-title { color: var(--bg); margin-bottom: 16px; }
   .cta-widget-wrap { margin-top: 32px; min-height: 60px; }
+  /* Pricing grid inside dark CTA block */
+  .cta-block .pricing-grid {
+    border-color: rgba(245,245,240,0.12);
+    margin: 40px auto 0;
+  }
+  .cta-block .pricing-card {
+    background: rgba(245,245,240,0.06);
+    border-right-color: rgba(245,245,240,0.12);
+    text-align: left;
+  }
+  .cta-block .pricing-card-tier { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-card-name { color: var(--bg); }
+  .cta-block .pricing-price-label { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-alt {
+    color: rgba(245,245,240,0.45);
+    border-top-color: rgba(245,245,240,0.12);
+    border-bottom-color: rgba(245,245,240,0.12);
+  }
+  .cta-block .pricing-bullet { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-bullet::before { color: rgba(245,245,240,0.45); }
+  .pricing-card-btn { margin-top: auto; padding-top: 28px; }
+  @media (max-width: 640px) {
+    .cta-block .pricing-card { border-bottom-color: rgba(245,245,240,0.12); }
+  }
   /* Модальное окно с виджетом заявки */
   .widget-modal {
     position: fixed;
@@ -949,6 +893,160 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
   body { padding-bottom: env(safe-area-inset-bottom, 0); }
 
+  /* FEEDBACK CAROUSEL */
+  .feedback-carousel-wrap { margin-top: 48px; }
+  .feedback-track-outer {
+    position: relative;
+    overflow: hidden;
+  }
+  .feedback-track-outer::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, transparent, var(--bg));
+    pointer-events: none;
+    z-index: 2;
+  }
+  .feedback-track {
+    display: flex;
+    align-items: stretch;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--ink10);
+  }
+  .feedback-track:active { cursor: grabbing; }
+  .feedback-track::-webkit-scrollbar { display: none; }
+  .feedback-card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .feedback-card:last-child { border-right: none; }
+  .feedback-card--screenshot { width: 240px; }
+  .feedback-card--video { width: 420px; }
+  .feedback-card--text { width: 340px; padding: 32px; justify-content: space-between; }
+  .feedback-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .feedback-placeholder-icon {
+    font-size: 24px;
+    color: var(--ink20);
+    line-height: 1;
+  }
+  .feedback-placeholder-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink20);
+  }
+  .feedback-text-quote {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--ink40);
+  }
+  .feedback-text-quote::before { content: '«'; }
+  .feedback-text-quote::after { content: '»'; }
+  .feedback-text-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink10);
+  }
+  .feedback-text-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--ink10);
+    flex-shrink: 0;
+  }
+  .feedback-text-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink20);
+    line-height: 1.2;
+  }
+  .feedback-text-role {
+    font-size: 10px;
+    color: var(--ink20);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+  .feedback-controls {
+    display: flex;
+    gap: 0;
+    margin-top: 16px;
+    position: relative;
+    height: 48px;
+    align-items: center;
+  }
+  .feedback-cta {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media (max-width: 640px) {
+    .feedback-controls {
+      flex-wrap: wrap;
+      height: auto;
+      gap: 12px;
+    }
+    .feedback-cta {
+      position: static;
+      transform: none;
+      width: 100%;
+    }
+    .feedback-cta span { display: block; text-align: center; }
+  }
+  .feedback-arrow {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--ink10);
+    background: var(--ink05);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.2s ease;
+  }
+  .feedback-arrow + .feedback-arrow { margin-left: -1px; }
+  .feedback-arrow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .feedback-arrow:hover:not(:disabled)::before { transform: translateX(0); }
+  .feedback-arrow span { position: relative; z-index: 1; }
+  .feedback-arrow:disabled { opacity: 0.25; cursor: default; }
+  @media (max-width: 768px) {
+    .feedback-card--text { width: 280px; padding: 24px; }
+  }
+
   /* COMMITTEE */
   .committee-grid {
     display: grid;
@@ -1131,32 +1229,94 @@ transform: scale(1.04);
   }
   .author-card:hover .author-photo { transform: scale(1.04); }
 
-  /* B2 — Путь разработчика (drag timeline) */
-  #timeline-block { --b2-orange: #e8860a; --b2-muted: #6b6560; --b2-divider: #d4cec4; --b2-black: #1a1a1a; background: #f5f5f0; display: block; padding: 80px 24px; border-bottom: 1px solid rgba(10,10,15,0.10); }
-  #timeline-block .b2-wrapper { display: flex; width: 100%; }
-  #timeline-block .b2-timeline { position: relative; width: 64px; flex-shrink: 0; align-self: stretch; }
-  #timeline-block .b2-track { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--b2-divider); transform: translateX(-50%); }
-  #timeline-block .b2-snap-dot { position: absolute; left: 50%; width: 10px; height: 10px; border-radius: 50% !important; background: var(--b2-divider); border: 2px solid #f5f5f0; transform: translate(-50%, -50%); transition: background 0.25s; cursor: pointer; }
-  #timeline-block .b2-snap-dot.reached { background: var(--b2-black); }
-  #timeline-block .b2-handle { position: absolute; left: 50%; width: 22px; height: 22px; border-radius: 50% !important; background: var(--b2-orange); transform: translate(-50%, -50%); cursor: grab; z-index: 10; box-shadow: 0 0 0 6px rgba(232,134,10,0.15); touch-action: none; transition: top 0.15s ease; }
-  #timeline-block .b2-handle:active { cursor: grabbing; }
-  #timeline-block .b2-era-label { position: absolute; right: calc(50% + 16px); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-lr; transform: rotate(180deg) translateY(50%); white-space: nowrap; pointer-events: none; }
-  #timeline-block .b2-era-label.before { color: var(--b2-muted); }
-  #timeline-block .b2-era-label.after  { color: var(--b2-orange); }
-  #timeline-block .b2-drag-hint { position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b2-muted); white-space: nowrap; opacity: 0.5; }
-  #timeline-block .b2-content { flex: 1; padding-left: 40px; }
-  @media (pointer: coarse) {
-    #timeline-block .b2-timeline { display: none; }
-    #timeline-block .b2-content { padding-left: 0; }
+
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 800px;
+    border: 1px solid var(--ink10);
+    margin-top: 48px;
   }
-  #timeline-block .b2-step { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid transparent; }
-  #timeline-block .b2-step.visible { opacity: 1; transform: translateY(0); border-bottom-color: var(--b2-divider); }
-  #timeline-block .b2-step:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none !important; }
-  #timeline-block .b2-step-era { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
-  #timeline-block .b2-step-era.before { color: var(--b2-muted); }
-  #timeline-block .b2-step-era.after  { color: var(--b2-orange); }
-  #timeline-block .b2-step-title { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; color: var(--b2-black); margin-bottom: 10px; margin-top: 4px; }
-  #timeline-block .b2-step-text { font-size: 12px; line-height: 1.75; color: var(--b2-muted); }
+  .pricing-card {
+    padding: 40px 36px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card:last-child { border-right: none; }
+  .pricing-card-tier {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink40);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .pricing-card-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .pricing-price {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .pricing-price-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .pricing-alt {
+    font-size: 12px;
+    color: var(--ink60);
+    padding: 12px 0;
+    border-top: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    margin-bottom: 28px;
+  }
+  .pricing-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pricing-bullet {
+    font-size: 12px;
+    color: var(--ink20);
+    line-height: 1.6;
+    min-height: 1.6em;
+    padding-left: 20px;
+    position: relative;
+  }
+  .pricing-bullet::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ink20);
+  }
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .pricing-card:last-child { border-bottom: none; }
+    .pricing-price { font-size: 36px; }
+    .pricing-card { padding: 28px 20px; }
+  }
 
 </style>
 </head>
@@ -1171,12 +1331,11 @@ transform: scale(1.04);
     <div class="nav-logo">NA\\TION</div>
   </div>
   <div class="nav-center">
-    <span>ВТОРОЙ ПОТОК 7 ИЮЛЯ · ОНЛАЙН</span>
-    <button type="button" class="nav-cta js-open-widget" aria-label="Открыть форму заявки"><span>Записаться</span></button>
+<a href="#register" class="nav-cta"><span>Записаться</span></a>
   </div>
   <div class="nav-right">
     <div class="pulse-dot"></div>
-    <span id="seat-counter">25 мест</span>
+    <span id="seat-counter">ВТОРОЙ ПОТОК 7 ИЮЛЯ</span>
   </div>
 </nav>
 
@@ -1184,14 +1343,15 @@ transform: scale(1.04);
 <div class="burger-overlay js-burger-overlay" id="burger-overlay" aria-hidden="true">
   <div class="burger-panel">
     <a href="#about" class="js-burger-link">О программе</a>
-    <a href="#path" class="js-burger-link">Путь разработчика</a>
     <a href="#audience" class="js-burger-link">Для кого</a>
     <a href="#learn" class="js-burger-link">Что ты получишь</a>
     <a href="#curriculum" class="js-burger-link">Программа</a>
     <a href="#format" class="js-burger-link">Формат</a>
+    <a href="#feedback" class="js-burger-link">Обратная связь</a>
     <a href="#committee" class="js-burger-link">Авторы и эксперты</a>
     <a href="#faq" class="js-burger-link">FAQ</a>
-    <button type="button" class="burger-cta js-open-widget">Оставить заявку</button>
+    <a href="#register" class="js-burger-link">Форматы участия</a>
+    <a href="#register" class="burger-cta js-burger-link">Оставить заявку</a>
   </div>
 </div>
 
@@ -1214,11 +1374,11 @@ transform: scale(1.04);
       <span class="stat-label">недель</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-target="15">15</span>
+      <span class="stat-num" data-target="17">17</span>
       <span class="stat-label">уроков</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-target="5">5</span>
+      <span class="stat-num" data-target="6">6</span>
       <span class="stat-label">модулей</span>
     </div>
     <div class="stat-box">
@@ -1226,7 +1386,7 @@ transform: scale(1.04);
       <span class="stat-label">скорость разработки</span>
     </div>
   </div>
-  <button type="button" class="cta-btn js-open-widget" aria-label="Открыть форму заявки"><span>→ Записаться на буткемп</span></button>
+  <a href="#register" class="cta-btn"><span>→ Записаться на буткемп</span></a>
 </section>
 
 <!-- ABOUT / LEGEND -->
@@ -1255,28 +1415,6 @@ transform: scale(1.04);
   </div>
 </section>
 
-<!-- DEVELOPERS PATH -->
-<a id="path" style="display:block;"></a>
-<div id="timeline-block">
-  <div class="section-grid" style="max-width:1200px;">
-    <div class="section-num">—</div>
-    <div>
-      <span class="bracket-label">[CONTEXT] // КТО ТАКОЙ РАЗРАБОТЧИК</span>
-      <h2 class="section-title"><span class="hero-accent">Что изменилось</span><br>в профессии разработчика?</h2>
-      <div class="b2-wrapper" style="margin-top:48px;">
-        <div class="b2-timeline" id="b2-timeline">
-          <div class="b2-track"></div>
-          <div id="b2-dotsContainer"></div>
-          <div class="b2-handle" id="b2-handle"></div>
-          <span class="b2-era-label before" id="b2-labelBefore">Тогда</span>
-          <span class="b2-era-label after"  id="b2-labelAfter">Сейчас</span>
-          <span class="b2-drag-hint">↕ drag</span>
-        </div>
-        <div class="b2-content" id="b2-content"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- FOR WHOM -->
 <section id="audience">
@@ -1365,7 +1503,7 @@ transform: scale(1.04);
   <div class="section-grid">
     <div class="section-num">04</div>
     <div>
-      <span class="bracket-label">[CURRICULUM] // ПРОГРАММА · 12 НЕДЕЛЬ · 15 УРОКОВ</span>
+      <span class="bracket-label">[CURRICULUM] // ПРОГРАММА · 12 НЕДЕЛЬ · 17 УРОКОВ</span>
       <h2 class="section-title reveal">Программа<br><span class="hero-accent">буткемпа</span></h2>
 
       <!-- Module 1 -->
@@ -1543,6 +1681,25 @@ transform: scale(1.04);
           <div class="lesson-row">
             <div class="lesson-num-sm">16</div>
             <div>
+              <div class="lesson-name">Позиционирование на рынке труда</div>
+              <div class="lesson-desc">Рынок труда изменился с приходом AI. Мы рассказываем с реальными данными на руках, чего работодатель ожидает от IT-специалистов на текущий момент, как правильно себя позиционировать, что подчеркнуть и на какие суммы можно претендовать.</div>
+              <div class="lesson-concepts">// Найм · Карьерный трек · Рынок труда</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 6 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M6</div>
+          <div class="module-title">Выпуск</div>
+          <div class="module-meta">НЕД 12 · 1 УРОК</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">17</div>
+            <div>
               <div class="lesson-name">Окончание и следующие шаги</div>
               <div class="lesson-desc">Формирование долгосрочной стратегии развития AI-практик. Чеклисты, промпты, плейбуки для ежедневной работы. Вход в комьюнити для постоянного обмена опытом.</div>
               <div class="lesson-concepts">// Мастер-тулкит · Библиотека паттернов · Комьюнити</div>
@@ -1554,7 +1711,7 @@ transform: scale(1.04);
     </div>
   </div>
   <div class="reveal" style="text-align:center; margin-top: 56px;">
-    <button type="button" class="cta-btn js-open-widget" aria-label="Открыть форму заявки"><span>→ Записаться на буткемп</span></button>
+    <a href="#register" class="cta-btn"><span>→ Записаться на буткемп</span></a>
   </div>
 </section>
 
@@ -1592,11 +1749,67 @@ transform: scale(1.04);
   </div>
 </section>
 
+<!-- FEEDBACK -->
+<section id="feedback">
+  <div class="section-grid" style="margin-bottom: 0;">
+    <div class="section-num">06</div>
+    <div>
+      <span class="bracket-label">[FEEDBACK] // ОБРАТНАЯ СВЯЗЬ</span>
+      <h2 class="section-title reveal">Обратная связь<br><span class="hero-accent">от студентов</span></h2>
+    </div>
+  </div>
+  <div class="feedback-carousel-wrap">
+    <div class="feedback-track-outer">
+      <div class="feedback-track" id="feedback-track">
+
+        <div class="feedback-card feedback-card--text">
+          <div class="feedback-text-quote">Я аналитик, не разработчик, поэтому рассчитывал, что часть материала пройдёт стороной. Оказалось иначе: преподаватели объясняют подробно, не перегружают терминологией, и сдвиги в восприятии всё равно происходят. Моя цель — разобраться, насколько реально автоматизировать работу аналитика: сбор требований, планирование, передачу в разработку. Пока курс для этого даёт хорошую базу.</div>
+          <div class="feedback-text-author">
+            <div class="feedback-text-avatar"></div>
+            <div>
+              <div class="feedback-text-name">Павел Стеньгач</div>
+              <div class="feedback-text-role">Системный бизнес-аналитик · 14 лет в IT</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-card feedback-card--text">
+          <div class="feedback-text-quote">Я долго присматривался — новый продукт, отзывов почти нет. В итоге решился. Содержание движется от базового к сложному, как и было заявлено: есть темы, которые уже знал, есть те, о которых не слышал. Сейчас примерно середина курса, и каждое занятие хочется зайти снова.</div>
+          <div class="feedback-text-author">
+            <div class="feedback-text-avatar"></div>
+            <div>
+              <div class="feedback-text-name">Александр</div>
+              <div class="feedback-text-role">Разработчик</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-card feedback-card--text">
+          <div class="feedback-text-quote">Я уже сам пробовал строить цепочки агентов — что-то получалось, но уходило много времени на поиск и сортировку информации. Здесь её собрали и структурировали. Последние занятия по агентам оказались именно тем, за чем я приходил. Деньги потрачены не зря.</div>
+          <div class="feedback-text-author">
+            <div class="feedback-text-avatar"></div>
+            <div>
+              <div class="feedback-text-name">Павел</div>
+              <div class="feedback-text-role">Разработчик</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="feedback-controls">
+      <button class="feedback-arrow" id="feedback-prev" aria-label="Назад"><span>←</span></button>
+      <button class="feedback-arrow" id="feedback-next" aria-label="Вперёд"><span>→</span></button>
+      <a href="#register" class="cta-btn feedback-cta"><span>→ Стать частью комьюнити</span></a>
+    </div>
+  </div>
+</section>
+
 
 <!-- COMMITTEE -->
 <section id="committee">
   <div class="section-grid">
-    <div class="section-num">06</div>
+    <div class="section-num">07</div>
     <div>
       <span class="bracket-label">[TEAM] // АВТОРЫ И ЭКСПЕРТЫ БУТКЕМПА</span>
       <h2 class="section-title reveal">Авторы и<br><span class="hero-accent">эксперты</span></h2>
@@ -1738,7 +1951,7 @@ transform: scale(1.04);
 <!-- FAQ -->
 <section id="faq">
   <div class="section-grid">
-    <div class="section-num">07</div>
+    <div class="section-num">08</div>
     <div>
       <span class="bracket-label">[FAQ] // ЧАСТЫЕ ВОПРОСЫ</span>
       <h2 class="section-title reveal">FAQ</h2>
@@ -1795,8 +2008,46 @@ transform: scale(1.04);
 <!-- CTA / форма заявки -->
 <div class="cta-block" id="register">
   <h2 class="section-title">Готов писать лучший код<br>и <span style="color:var(--accent)">шипить быстрее?</span></h2>
-  <p class="cta-subtitle">12 недель. 15 уроков. Реальные кейсы из продакшена.<br>Второй поток с 7 июля. Места ограничены.</p>
-  <button type="button" class="cta-btn js-open-widget"><span>→ Оставить заявку на буткемп</span></button>
+  <p class="cta-subtitle">12 недель. 17 уроков. Реальные кейсы из продакшена.<br>Второй поток с 7 июля. Места ограничены.</p>
+
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <span class="pricing-card-tier">[TIER_01]</span>
+      <div class="pricing-card-name">Наблюдатель</div>
+      <span class="pricing-price">100 000 ₽</span>
+      <span class="pricing-price-label">При оплате сразу</span>
+      <div class="pricing-alt">или 25 000 ₽ / модуль</div>
+      <ul class="pricing-bullets">
+        <li class="pricing-bullet">Доступ ко всем урокам</li>
+        <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
+        <li class="pricing-bullet">Сертификат о прохождении</li>
+        <li class="pricing-bullet">Годовой доступ к комьюнити выпускников</li>
+      </ul>
+      <div class="pricing-card-btn">
+        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <span class="pricing-card-tier">[TIER_02]</span>
+      <div class="pricing-card-name">Активный участник</div>
+      <span class="pricing-price">160 000 ₽</span>
+      <span class="pricing-price-label">При оплате сразу</span>
+      <div class="pricing-alt">или 40 000 ₽ / модуль</div>
+      <ul class="pricing-bullets">
+        <li class="pricing-bullet">Доступ ко всем урокам</li>
+        <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
+        <li class="pricing-bullet">Сертификат о прохождении</li>
+        <li class="pricing-bullet">Годовой доступ к комьюнити выпускников</li>
+        <li class="pricing-bullet"><strong>Возможность общаться с экспертами на уроках</strong></li>
+      </ul>
+      <div class="pricing-card-btn">
+        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- Модальное окно с виджетом (открывается по кнопкам выше) -->
@@ -1820,16 +2071,17 @@ transform: scale(1.04);
       <div class="footer-col">
         <div class="footer-col-title">Навигация</div>
         <a href="#about">О программе</a>
-        <a href="#path">Путь разработчика</a>
         <a href="#audience">Для кого</a>
         <a href="#curriculum">Программа</a>
         <a href="#committee">Авторы и эксперты</a>
+        <a href="#feedback">Обратная связь</a>
         <a href="#faq">FAQ</a>
+        <a href="#register">Форматы участия</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Контакт</div>
         <a href="https://t.me/+BsaDFI42YyBmMTRi" target="_blank" rel="noopener">Telegram-канал</a>
-        <a href="#" class="js-open-widget">Оставить заявку</a>
+        <a href="#register">Оставить заявку</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Документы</div>
@@ -1996,111 +2248,60 @@ transform: scale(1.04);
       item.classList.toggle('faq-open');
     });
   });
-</script>
 
-<script>
-(function() {
-  var B2_STEPS = [
-    { era: "before", label: "Тогда — 01", title: "Твоя ценность была в том, что ты знаешь", text: "Ты строил экспертизу годами. Знал фреймворк глубже всех, знал кодовую базу наизусть: где что лежит, что сломается, если тронуть вон ту строчку. Это знание и было тобой. Оно давало уверенность и незаменимость." },
-    { era: "before", label: "Тогда — 02", title: "Путь был долгим, и это казалось правильным", text: "Джун учится писать код. Мидл — писать хороший код. Синьор — думать о системе. Каждый уровень требовал нескольких лет роста. Это был фильтр, который не каждый проходил. И ты прошёл." },
-    { era: "before", label: "Тогда — 03", title: "Ты работал глубоко, методично, один", text: "Сложная задача требовала погружения. Закрыть Slack, открыть редактор, думать. Способность часами удерживать в голове сложную систему — это и был тот навык, которым можно было гордиться." },
-    { era: "after",  label: "Сейчас — 01", title: "Ценность сместилась к специализации", text: "Знание технологий теперь легко приобретается. Но понимание зачем — нет. Архитектурное мышление, продуктовый подход, способность видеть систему целиком и чувствовать последствия решений — это то, что ты копил годами. Оно не обесценилось, а наоборот — стало главным." },
-    { era: "after",  label: "Сейчас — 02", title: "Путь ускорился, однако направление сохранилось", text: "AI сжимает дистанцию между уровнями. Мышление становится более востребованным, чем раньше, и ты оказываешься нужен там, где раньше тебя не ждали. А именно на передовой продуктовых решений." },
-    { era: "after",  label: "Сейчас — 03", title: "Изменился объект глубины", text: "Теперь ты погружаешься напрямую в задачу, отвечая на вопрос: что нужно построить и почему. Та же глубина, только на другом уровне абстракции." }
-  ];
-  var B2_N = B2_STEPS.length;
-  var b2Timeline = document.getElementById("b2-timeline");
-  var b2DotsContainer = document.getElementById("b2-dotsContainer");
-  var b2Handle = document.getElementById("b2-handle");
-  var b2ContentEl = document.getElementById("b2-content");
-  var b2LabelBefore = document.getElementById("b2-labelBefore");
-  var b2LabelAfter = document.getElementById("b2-labelAfter");
-  B2_STEPS.forEach(function(s) {
-    var el = document.createElement("div");
-    el.className = "b2-step";
-    el.innerHTML = "<div class='b2-step-era " + s.era + "'>" + s.label + "</div><div class='b2-step-title'>" + s.title + "</div><p class='b2-step-text'>" + s.text + "</p>";
-    b2ContentEl.appendChild(el);
-  });
-  var b2DotEls = B2_STEPS.map(function(_, i) {
-    var d = document.createElement("div");
-    d.className = "b2-snap-dot";
-    b2DotsContainer.appendChild(d);
-    d.addEventListener("click", (function(idx) { return function() { b2GoTo(idx); }; })(i));
-    return d;
-  });
-  function b2GetPositions() {
-    var h = b2Timeline.offsetHeight, pad = 20;
-    return B2_STEPS.map(function(_, i) { return pad + (i / (B2_N - 1)) * (h - pad * 2); });
-  }
-  function b2Layout() {
-    b2Timeline.style.height = b2ContentEl.offsetHeight + "px";
-    var pos = b2GetPositions();
-    b2DotEls.forEach(function(d, i) { d.style.top = pos[i] + "px"; });
-    b2LabelBefore.style.top = ((pos[0] + pos[2]) / 2) + "px";
-    b2LabelAfter.style.top  = ((pos[3] + pos[5]) / 2) + "px";
-    b2Handle.style.transition = "none";
-    b2Handle.style.top = pos[b2ActiveStep] + "px";
-  }
-  function b2Nearest(relY) {
-    var pos = b2GetPositions(), best = 0, bestDist = Infinity;
-    pos.forEach(function(p, i) { var d = Math.abs(relY - p); if (d < bestDist) { bestDist = d; best = i; } });
-    return best;
-  }
-  var b2ActiveStep = 0;
-  function b2GoTo(step, animate) {
-    if (animate === undefined) animate = true;
-    b2ActiveStep = step;
-    b2Handle.style.transition = animate ? "top 0.15s ease" : "none";
-    b2Handle.style.top = b2GetPositions()[step] + "px";
-    b2DotEls.forEach(function(d, i) { d.classList.toggle("reached", i <= step); });
-    b2ContentEl.querySelectorAll(".b2-step").forEach(function(el, i) { el.classList.toggle("visible", i <= step); });
-  }
-  var b2Dragging = false;
-  b2Handle.addEventListener("pointerdown", function(e) { b2Dragging = true; b2Handle.setPointerCapture(e.pointerId); b2Handle.style.transition = "none"; e.preventDefault(); });
-  b2Handle.addEventListener("pointermove", function(e) {
-    if (!b2Dragging) return;
-    var rect = b2Timeline.getBoundingClientRect(), pos = b2GetPositions();
-    var clamped = Math.max(pos[0], Math.min(pos[B2_N - 1], e.clientY - rect.top));
-    b2Handle.style.top = clamped + "px";
-    b2GoTo(b2Nearest(clamped), false);
-  });
-  b2Handle.addEventListener("pointerup", function(e) {
-    if (!b2Dragging) return;
-    b2Dragging = false;
-    b2GoTo(b2Nearest(e.clientY - b2Timeline.getBoundingClientRect().top), true);
-  });
-  window.addEventListener("resize", b2Layout);
-  var b2Hovered = false;
-  document.getElementById("timeline-block").addEventListener("mouseenter", function() { b2Hovered = true; });
-  document.getElementById("timeline-block").addEventListener("mouseleave", function() { b2Hovered = false; });
-  window.addEventListener("wheel", function(e) {
-    if (!b2Hovered) return;
-    var rect = document.getElementById("timeline-block").getBoundingClientRect();
-    if (rect.top > 50) return;
-    if (e.deltaY <= 0) return;
-    if (b2ActiveStep === B2_N - 1) return;
-    e.preventDefault();
-    b2GoTo(Math.min(b2ActiveStep + 1, B2_N - 1));
-  }, { passive: false });
-  requestAnimationFrame(function() { b2Layout(); b2GoTo(0, false); });
+  // Feedback carousel
+  (function() {
+    var track = document.getElementById('feedback-track');
+    var prevBtn = document.getElementById('feedback-prev');
+    var nextBtn = document.getElementById('feedback-next');
+    if (!track || !prevBtn || !nextBtn) return;
 
-  // Mobile: reveal steps via scroll instead of drag
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    var b2Steps = b2ContentEl.querySelectorAll('.b2-step');
-    var b2Obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var idx = parseInt(entry.target.dataset.b2idx);
-          if (idx > b2ActiveStep) b2GoTo(idx, true);
-        }
-      });
-    }, { threshold: 0.3 });
-    b2Steps.forEach(function(el, i) {
-      el.dataset.b2idx = i;
-      b2Obs.observe(el);
+    function getCardWidth() {
+      var card = track.querySelector('.feedback-card');
+      return card ? card.offsetWidth : 340;
+    }
+
+    function updateArrows() {
+      prevBtn.disabled = track.scrollLeft <= 1;
+      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+    }
+
+    prevBtn.addEventListener('click', function() {
+      track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
     });
-  }
-})();
+    nextBtn.addEventListener('click', function() {
+      track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', updateArrows);
+    updateArrows();
+
+    // Drag to scroll
+    var dragging = false, startX = 0, startScroll = 0;
+    track.addEventListener('pointerdown', function(e) {
+      dragging = true;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.style.scrollSnapType = 'none';
+    });
+    track.addEventListener('pointermove', function(e) {
+      if (!dragging) return;
+      track.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      track.style.scrollSnapType = 'x mandatory';
+      var cardW = getCardWidth();
+      var target = Math.round(track.scrollLeft / cardW) * cardW;
+      track.scrollTo({ left: target, behavior: 'smooth' });
+      updateArrows();
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+  })();
 </script>
+
 </body>
 </html>
