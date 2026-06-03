@@ -1234,9 +1234,9 @@ transform: scale(1.04);
   /* PRICING */
   .pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
-    max-width: 800px;
+    max-width: 1100px;
     border: 1px solid var(--ink10);
     margin-top: 48px;
   }
@@ -1309,6 +1309,11 @@ transform: scale(1.04);
     position: absolute;
     left: 0;
     color: var(--ink20);
+  }
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-card:nth-child(2n) { border-right: none; }
+    .pricing-card:nth-child(-n+2) { border-bottom: 1px solid var(--ink10); }
   }
   @media (max-width: 640px) {
     .pricing-grid { grid-template-columns: 1fr; }
@@ -2041,6 +2046,24 @@ transform: scale(1.04);
         <li class="pricing-bullet">Сертификат о прохождении</li>
         <li class="pricing-bullet">Годовой доступ к комьюнити выпускников</li>
         <li class="pricing-bullet"><strong>Возможность общаться с экспертами на уроках</strong></li>
+      </ul>
+      <div class="pricing-card-btn">
+        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <span class="pricing-card-tier">[TIER_03]</span>
+      <div class="pricing-card-name">Для команд</div>
+      <span class="pricing-price">100 000 ₽</span>
+      <span class="pricing-price-label">При оплате сразу</span>
+      <div class="pricing-alt">или 25 000 ₽ / модуль</div>
+      <ul class="pricing-bullets">
+        <li class="pricing-bullet">Доступ ко всем урокам</li>
+        <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
+        <li class="pricing-bullet">Сертификат о прохождении</li>
+        <li class="pricing-bullet">Годовой доступ к комьюнити выпускников</li>
+        <li class="pricing-bullet">Аудит процессов в команде со списком точек для улучшения и рекомендациями</li>
       </ul>
       <div class="pricing-card-btn">
         <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
