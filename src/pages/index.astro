@@ -655,9 +655,60 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     border-top-color: rgba(245,245,240,0.12);
     border-bottom-color: rgba(245,245,240,0.12);
   }
-  .cta-block .pricing-bullet { color: rgba(245,245,240,0.45); }
-  .cta-block .pricing-bullet::before { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-alt strong { color: var(--accent); font-weight: 700; }
+  .cta-block .pricing-bullet { color: var(--bg); }
+  .cta-block .pricing-bullet::before { color: var(--bg); }
   .pricing-card-btn { margin-top: auto; padding-top: 28px; }
+  .referral-block {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    text-align: left;
+    background: rgba(245,245,240,0.06);
+    border: 1px solid rgba(245,245,240,0.12);
+    padding: 40px 36px;
+  }
+  .referral-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--bg);
+    margin-bottom: 32px;
+  }
+  .referral-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(245,245,240,0.12);
+    margin-bottom: 32px;
+  }
+  .referral-col {
+    padding: 24px 28px;
+    border-right: 1px solid rgba(245,245,240,0.12);
+  }
+  .referral-col:last-child { border-right: none; }
+  .referral-col-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(245,245,240,0.45);
+    margin-bottom: 12px;
+  }
+  .referral-col-value {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .referral-col-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--bg);
+  }
   @media (max-width: 640px) {
     .cta-block .pricing-card { border-bottom-color: rgba(245,245,240,0.12); }
   }
@@ -1223,7 +1274,7 @@ transform: scale(1.04);
   /* PRICING */
   .pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0;
     max-width: 1100px;
     border: 1px solid var(--ink10);
@@ -1253,6 +1304,31 @@ transform: scale(1.04);
     letter-spacing: -0.02em;
     line-height: 1;
     margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    min-height: 33px;
+  }
+  .pricing-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .pricing-card-header .pricing-card-name {
+    margin-bottom: 0;
+  }
+  .pricing-badge {
+    background: var(--bg);
+    color: var(--ink);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    padding: 8px 14px;
+    flex-shrink: 0;
+    margin-left: 16px;
   }
   .pricing-price {
     font-family: 'Roboto Condensed', sans-serif !important;
@@ -1294,15 +1370,10 @@ transform: scale(1.04);
     position: relative;
   }
   .pricing-bullet::before {
-    content: '→';
+    content: '•';
     position: absolute;
     left: 0;
     color: var(--ink20);
-  }
-  @media (max-width: 900px) {
-    .pricing-grid { grid-template-columns: 1fr 1fr; }
-    .pricing-card:nth-child(2n) { border-right: none; }
-    .pricing-card:nth-child(-n+2) { border-bottom: 1px solid var(--ink10); }
   }
   @media (max-width: 640px) {
     .pricing-grid { grid-template-columns: 1fr; }
@@ -1492,7 +1563,7 @@ transform: scale(1.04);
       <div class="module-block reveal">
         <div class="module-header">
           <div class="module-num-badge">M1</div>
-          <div class="module-title">Введение — AI как инструмент</div>
+          <div class="module-title">AI как инструмент</div>
           <div class="module-meta">НЕД 1 · 2 УРОКА</div>
         </div>
         <div class="module-body open">
@@ -1555,7 +1626,7 @@ transform: scale(1.04);
         <div class="module-header">
           <div class="module-num-badge">M3</div>
           <div class="module-title">Агенты</div>
-          <div class="module-meta">НЕД 4–10 · 4 УРОКА</div>
+          <div class="module-meta">НЕД 4–6 · 4 УРОКА</div>
         </div>
         <div class="module-body open">
           <div class="lesson-row">
@@ -1598,7 +1669,7 @@ transform: scale(1.04);
         <div class="module-header">
           <div class="module-num-badge">M4</div>
           <div class="module-title">Quick Wins и сложные кейсы</div>
-          <div class="module-meta">НЕД 4–8 · 5 УРОКОВ</div>
+          <div class="module-meta">НЕД 7–10 · 5 УРОКОВ</div>
         </div>
         <div class="module-body open">
           <div class="lesson-row">
@@ -1673,8 +1744,7 @@ transform: scale(1.04);
 
       <!-- Module 6 -->
       <div class="module-block reveal">
-        <div class="module-header">
-          <div class="module-num-badge">M6</div>
+        <div class="module-header" style="grid-template-columns: 1fr auto;">
           <div class="module-title">Выпуск</div>
           <div class="module-meta">НЕД 12 · 1 УРОК</div>
         </div>
@@ -1939,7 +2009,7 @@ transform: scale(1.04);
       <div class="pricing-card-name">Наблюдатель</div>
       <span class="pricing-price">125 000 ₽</span>
       <span class="pricing-price-label">При оплате сразу</span>
-      <div class="pricing-alt">или 25 000 ₽ / модуль</div>
+      <div class="pricing-alt">или <strong>25 000 ₽</strong> / модуль</div>
       <ul class="pricing-bullets">
         <li class="pricing-bullet">Доступ ко всем урокам</li>
         <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
@@ -1953,10 +2023,13 @@ transform: scale(1.04);
 
     <div class="pricing-card">
       <span class="pricing-card-tier">[TIER_02]</span>
-      <div class="pricing-card-name">Активный участник</div>
+      <div class="pricing-card-header">
+        <div class="pricing-card-name">Активный участник</div>
+        <div class="pricing-badge">доступно 20 мест</div>
+      </div>
       <span class="pricing-price">200 000 ₽</span>
       <span class="pricing-price-label">При оплате сразу</span>
-      <div class="pricing-alt">или 40 000 ₽ / модуль</div>
+      <div class="pricing-alt">или <strong>40 000 ₽</strong> / модуль</div>
       <ul class="pricing-bullets">
         <li class="pricing-bullet">Доступ ко всем урокам</li>
         <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
@@ -1969,24 +2042,23 @@ transform: scale(1.04);
       </div>
     </div>
 
-    <div class="pricing-card">
-      <span class="pricing-card-tier">[TIER_03]</span>
-      <div class="pricing-card-name">Для команд</div>
-      <span class="pricing-price">100 000 ₽</span>
-      <span class="pricing-price-label">При оплате сразу</span>
-      <div class="pricing-alt">или 25 000 ₽ / модуль</div>
-      <ul class="pricing-bullets">
-        <li class="pricing-bullet">Доступ ко всем урокам</li>
-        <li class="pricing-bullet">Библиотека материалов с доступом 6 месяцев после окончания</li>
-        <li class="pricing-bullet">Сертификат о прохождении</li>
-        <li class="pricing-bullet">Годовой доступ к комьюнити выпускников</li>
-        <li class="pricing-bullet">Аудит процессов в команде со списком точек для улучшения и рекомендациями</li>
-      </ul>
-      <div class="pricing-card-btn">
-        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+  </div>
+
+  <div class="referral-block">
+    <div class="referral-title">У нас действует <span style="color:var(--accent)">реферальная программа</span></div>
+    <div class="referral-cols">
+      <div class="referral-col">
+        <div class="referral-col-label">Ты получаешь</div>
+        <div class="referral-col-value">10 000 ₽</div>
+        <div class="referral-col-text">за каждого оплатившего участника</div>
+      </div>
+      <div class="referral-col">
+        <div class="referral-col-label">Твой друг получает</div>
+        <div class="referral-col-value">Скидку 5%</div>
+        <div class="referral-col-text">при записи по твоей ссылке</div>
       </div>
     </div>
-
+    <button type="button" class="cta-btn js-open-widget"><span>→ Получить реферальную ссылку</span></button>
   </div>
 </div>
 
@@ -2000,10 +2072,6 @@ transform: scale(1.04);
         <li class="faq-item">
           <div class="faq-q">Буктемп подойдёт мне, если я уже пользуюсь ChatGPT/Copilot/Claude или другим инструментом?</div>
           <div class="faq-a">Да, и скорее всего именно для вас он будет наиболее ценным. Базовое использование AI — это первый уровень из трёх: AI как поисковик, AI как помощник, AI как продакшн слой со своим пайплайном. Буктемп начинается там, где заканчивается большинство туториалов: контекст-инжиниринг, мультиагентная система, работа с реальными кодовыми базами, безопасный рефакторинг. Если вы уже используете автодополнение или другие отдельные практики — вы сэкономите время на старте и быстрее перейдёте к практике.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-q">Сколько стоит участие?</div>
-          <div class="faq-a">Стоимость одного модуля — 20 000 рублей. Действительна для потока май'26. Действуют спецусловия, подробности у куратора в телеграм или после заявки.</div>
         </li>
         <li class="faq-item">
           <div class="faq-q">Как буктемп поможет, если я не доверяю качеству AI-кода?</div>
