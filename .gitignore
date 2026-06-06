@@ -27,3 +27,6 @@ pnpm-debug.log*
 # photos
 *.jpg
 *.png
+
+# docs
+STRUCTURE.md
