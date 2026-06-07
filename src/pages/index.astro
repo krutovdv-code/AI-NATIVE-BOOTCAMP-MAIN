@@ -487,6 +487,214 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
   .learn-text strong { color: var(--ink); }
 
+  /* OUTCOMES BANNER */
+  .outcomes-banner {
+    background: var(--ink);
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .outcomes-banner-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .outcomes-banner-text {
+    font-size: 14px;
+    color: #f5f5f0;
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .outcomes-banner { padding: 28px 24px; gap: 16px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ABOUT REDESIGN */
+  .about-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--ink10);
+    margin-bottom: 2px;
+  }
+  .about-compare-col {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+  }
+  .about-compare-col:last-child { border-right: none; }
+  .about-compare-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .about-compare-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .about-compare-list li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+    padding: 8px 0 8px 14px;
+    border-bottom: 1px solid var(--ink05);
+    position: relative;
+  }
+  .about-compare-list li:last-child { border-bottom: none; }
+  .about-compare-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink20);
+  }
+  .about-compare-col:last-child .about-compare-label { color: var(--accent); }
+  .about-compare-col:last-child .about-compare-list li::before {
+    content: '→';
+    color: var(--accent);
+  }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--ink10);
+    margin-bottom: 2px;
+  }
+  .about-card {
+    padding: 32px 32px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+  }
+  .about-card:last-child { border-right: none; }
+  .about-card--dark { background: var(--ink); }
+  .about-card-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .about-card--dark .about-card-title { color: var(--accent); }
+  .about-card-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .about-card--dark .about-card-text { color: rgba(245,245,240,0.55); }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--ink10);
+  }
+  .about-stat {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+  }
+  .about-stat:last-child { border-right: none; }
+  .about-stat-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .about-stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink40);
+    line-height: 1.5;
+  }
+  @media (max-width: 900px) {
+    .about-compare,
+    .about-cards { grid-template-columns: 1fr; }
+    .about-compare-col { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-compare-col:last-child { border-bottom: none; }
+    .about-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-card:last-child { border-bottom: none; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .about-stat:nth-child(2) { border-right: none; }
+    .about-stat:nth-child(1),
+    .about-stat:nth-child(2) { border-bottom: 1px solid var(--ink10); }
+  }
+  @media (max-width: 640px) {
+    .about-stats { grid-template-columns: 1fr; }
+    .about-stat { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-stat:last-child { border-bottom: none; }
+  }
+
+  /* CONTEXT */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--ink10);
+    margin-bottom: 32px;
+  }
+  .context-card {
+    padding: 32px 28px;
+    border-right: 1px solid var(--ink10);
+  }
+  .context-card:last-child { border-right: none; }
+  .context-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .context-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .context-desc {
+    font-size: 12px;
+    color: var(--ink60);
+    line-height: 1.7;
+  }
+  .context-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-top: 28px;
+    flex-wrap: wrap;
+  }
+  .context-cta-text {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink60);
+  }
+  @media (max-width: 900px) {
+    .context-grid { grid-template-columns: 1fr 1fr; }
+    .context-card:nth-child(2) { border-right: none; }
+    .context-card:nth-child(1),
+    .context-card:nth-child(2) { border-bottom: 1px solid var(--ink10); }
+  }
+  @media (max-width: 640px) {
+    .context-grid { grid-template-columns: 1fr; }
+    .context-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .context-card:last-child { border-bottom: none; }
+    .context-cta-row { flex-direction: column; align-items: flex-start; }
+  }
+
   /* CURRICULUM */
   .module-block {
     margin-bottom: 2px;
@@ -1504,31 +1712,100 @@ transform: scale(1.04);
   <a href="#register" class="cta-btn"><span>→ Записаться на буткемп</span></a>
 </section>
 
-<!-- ABOUT / LEGEND -->
-<section id="about">
+<!-- CONTEXT -->
+<section id="context">
   <div class="section-grid">
-<div>
-      <span class="bracket-label">[ABOUT] // О ПРОГРАММЕ</span>
-      <h2 class="section-title reveal">AI в разработке освоили многие.<br><span class="hero-accent">Встроить его в реальный процесс — другая задача.</span></h2>
-      <p class="about-text reveal">
-        Согласно нашим исследованиям, большинство разработчиков используют AI в базовом режиме: задать вопрос, сгенерировать кусок кода, разобраться с ошибкой. И это работает, но это не то, как действительно сейчас меняются процессы в крупных компаниях.
-      </p>
-      <p class="about-text reveal">
-        Разница в том, как ставится задача, как управляется контекст, как встраивается проверка результата, как AI интегрирован в SDLC. Этому сложно научиться из документации или туториалов, потому что это видно только в работе.
-      </p>
-      <p class="about-text reveal">
-        Поэтому наш буткемп построен вокруг <strong>практики</strong>:
-        <ul style="margin-top:12px;padding-left:20px;list-style:disc;">
-          <li style="margin-bottom:6px;">10–30 минут необходимой теории</li>
-          <li style="margin-bottom:6px;">1 час живого разбора реального кейса</li>
-          <li style="margin-bottom:6px;">1.5 часа самостоятельного решения с экспертами рядом</li>
-        </ul>
-        <span style="display:block;margin-top:12px;">Теоретические концепции только там, где они нужны для понимания практики.</span>
-      </p>
+    <div>
+      <span class="bracket-label">[CONTEXT] // ПОЧЕМУ СЕЙЧАС</span>
+      <h2 class="section-title reveal">Индустрия уже<br><span class="hero-accent">изменилась.</span></h2>
+      <div class="context-grid reveal">
+        <div class="context-card">
+          <div class="context-num">2–5x</div>
+          <div class="context-title">Рынок уже сдвинулся</div>
+          <div class="context-desc">Компании вроде Google, Meta, Stripe внедрили AI-driven SDLC. Их инженеры шипят фичи в 2–5x быстрее. Это уже стало новым стандартом.</div>
+        </div>
+        <div class="context-card">
+          <div class="context-num">2026</div>
+          <div class="context-title">Требования изменились</div>
+          <div class="context-desc">Вакансии всё чаще включают «опыт с AI-инструментами» как обязательное требование, а не nice-to-have. Рынок труда не ждёт.</div>
+        </div>
+        <div class="context-card">
+          <div class="context-num">2–3 МЕС</div>
+          <div class="context-title">Самообучение не успевает</div>
+          <div class="context-desc">Инструменты меняются каждые 2–3 месяца. Без системного подхода вы тратите время на эксперименты, которые не дают устойчивого результата.</div>
+        </div>
+        <div class="context-card">
+          <div class="context-num">↔</div>
+          <div class="context-title">Разрыв растёт</div>
+          <div class="context-desc">Разработчики, которые уже встроили AI в процесс, уходят вперёд. Через год догонять будет значительно дороже.</div>
+        </div>
+      </div>
+      <div class="context-cta-row reveal">
+        <span class="context-cta-text">Окно возможностей открыто. Второй поток стартует 7 июля</span>
+        <a href="#register" class="cta-btn"><span>→ Записаться</span></a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT / LEGEND -->
+<section id="about">
+  <div class="section-grid">
+    <div>
+      <span class="bracket-label">[ABOUT] // О ПРОГРАММЕ</span>
+      <h2 class="section-title reveal">AI в разработке освоили многие.<br><span class="hero-accent">Встроить его в реальный процесс — другая задача.</span></h2>
+      <p class="about-text reveal">И это работает, но это не то, как действительно сейчас меняются процессы в крупных компаниях <strong>и на что есть растущий интерес со стороны заказчиков.</strong></p>
+
+      <div class="about-compare reveal">
+        <div class="about-compare-col">
+          <span class="about-compare-label">// КАК ОБЫЧНО</span>
+          <ul class="about-compare-list">
+            <li>Спросить ChatGPT — получить код — разобраться с ошибкой</li>
+            <li>AI как поисковик или инструмент автодополнения</li>
+            <li>Контекст не управляется, галлюцинации не контролируются</li>
+            <li>SDLC команды остаётся прежним</li>
+          </ul>
+        </div>
+        <div class="about-compare-col">
+          <span class="about-compare-label">// КАК В РЕАЛЬНЫХ КОМПАНИЯХ</span>
+          <ul class="about-compare-list">
+            <li>Задача → спека → агент → валидация → деплой</li>
+            <li>Управление контекстом и памятью агента для точности ответов</li>
+            <li>Проверка результата встроена в процесс</li>
+            <li>AI интегрирован в SDLC всей команды</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <div class="about-card-title">Этому сложно<br>научиться самому</div>
+          <p class="about-card-text">Из документации и туториалов это не видно — только в живой работе над реальными задачами рядом с теми, кто уже внедрил AI в процесс.</p>
+        </div>
+        <div class="about-card about-card--dark">
+          <div class="about-card-title">Поэтому буктемп<br>построен вокруг практики</div>
+          <p class="about-card-text">Минимум теории, живой разбор кейса с демонстрацией, самостоятельное решение рядом с экспертом на каждом уроке.</p>
+        </div>
+      </div>
+
+      <div class="about-stats reveal">
+        <div class="about-stat">
+          <span class="about-stat-num">95%</span>
+          <span class="about-stat-label">участников удовлетворены буткемпом и продлевают участие</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">+2–4</span>
+          <span class="about-stat-label">AI-driven подхода участники внедряют уже после 3 модуля</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">15</span>
+          <span class="about-stat-label">паттернов применения AI в реальных задачах разработки</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- FOR WHOM -->
 <section id="audience">
@@ -1607,6 +1884,10 @@ transform: scale(1.04);
         </li>
       </ul>
     </div>
+  </div>
+  <div class="outcomes-banner reveal">
+    <span class="outcomes-banner-label">На деле это</span>
+    <p class="outcomes-banner-text">больше влияния на продукт, рост ценности на рабочем месте и рынке труда, рост зарплаты</p>
   </div>
 </section>
 
@@ -2097,7 +2378,7 @@ transform: scale(1.04);
       <span class="pricing-card-tier">[TIER_02]</span>
       <div class="pricing-card-header">
         <div class="pricing-card-name">Активный участник</div>
-        <div class="pricing-badge">доступно 20 мест</div>
+        <div class="pricing-badge">всего 20 мест</div>
       </div>
       <span class="pricing-price">180 000 ₽</span>
       <span class="pricing-price-label">При оплате сразу</span>
