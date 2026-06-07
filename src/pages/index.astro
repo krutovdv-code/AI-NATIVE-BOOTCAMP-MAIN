@@ -1578,7 +1578,7 @@ transform: scale(1.04);
   .pricing-price {
     font-family: 'Roboto Condensed', sans-serif !important;
     font-weight: 900;
-    font-size: 44px;
+    font-size: 28px;
     line-height: 1;
     color: var(--accent);
     display: block;
@@ -1620,11 +1620,44 @@ transform: scale(1.04);
     left: 0;
     color: var(--ink20);
   }
-  @media (max-width: 640px) {
+  .pricing-card--featured { position: relative; }
+  .cta-block .pricing-card--featured {
+    background: rgba(245,245,240,0.12);
+    border-top: 3px solid var(--accent);
+  }
+  .pricing-price-note {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink40);
+    display: block;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .cta-block .pricing-price-note { color: rgba(245,245,240,0.45); }
+  .pricing-footer {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid rgba(245,245,240,0.12);
+    flex-wrap: wrap;
+  }
+  .pricing-footer-item {
+    padding: 14px 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,245,240,0.55);
+    border-right: 1px solid rgba(245,245,240,0.12);
+    flex: 1;
+  }
+  .pricing-footer-item:last-child { border-right: none; }
+    @media (max-width: 640px) {
     .pricing-grid { grid-template-columns: 1fr; }
     .pricing-card { border-right: none; border-bottom: 1px solid var(--ink10); }
     .pricing-card:last-child { border-bottom: none; }
-    .pricing-price { font-size: 36px; }
+    .pricing-price { font-size: 22px; }
     .pricing-card { padding: 28px 20px; }
     .referral-block { padding: 28px 20px; }
     .referral-col { padding: 16px 14px; }
@@ -2359,8 +2392,7 @@ transform: scale(1.04);
       <span class="pricing-card-tier">[TIER_01]</span>
       <div class="pricing-card-name">Наблюдатель</div>
       <span class="pricing-price">125 000 ₽</span>
-      <span class="pricing-price-label">При оплате сразу</span>
-      <div class="pricing-alt">или <strong>25 000 ₽</strong> / модуль</div>
+      <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
       <ul class="pricing-bullets">
         <li class="pricing-bullet">Прямой эфир всех 17 уроков + записи</li>
         <li class="pricing-bullet">Домашние задания с доступом на Github</li>
@@ -2374,15 +2406,14 @@ transform: scale(1.04);
       </div>
     </div>
 
-    <div class="pricing-card">
+    <div class="pricing-card pricing-card--featured">
       <span class="pricing-card-tier">[TIER_02]</span>
       <div class="pricing-card-header">
         <div class="pricing-card-name">Активный участник</div>
         <div class="pricing-badge">всего 20 мест</div>
       </div>
       <span class="pricing-price">180 000 ₽</span>
-      <span class="pricing-price-label">При оплате сразу</span>
-      <div class="pricing-alt">или <strong>40 000 ₽</strong> / модуль</div>
+      <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
       <ul class="pricing-bullets">
         <li class="pricing-bullet">Прямой эфир всех 17 уроков + записи</li>
         <li class="pricing-bullet">Домашние задания с доступом на Github</li>
@@ -2399,7 +2430,17 @@ transform: scale(1.04);
 
   </div>
 
-  <div class="referral-block">
+  <div class="pricing-footer">
+    <div class="pricing-footer-item">Доступна рассрочка</div>
+    <div class="pricing-footer-item">Доступна оплата по счёту от юр. лица</div>
+    <div class="pricing-footer-item">Специальные условия для команд</div>
+  </div>
+
+</div>
+
+<!-- REFERRAL -->
+<div class="cta-block" style="margin-top: 2px;">
+  <div class="referral-block" style="margin-top: 0;">
     <div class="referral-title">У нас действует <span style="color:var(--accent)">реферальная программа</span></div>
     <div class="referral-cols">
       <div class="referral-col">
