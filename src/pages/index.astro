@@ -1,4 +1,4 @@
-﻿---
+---
 // AI-Native Bootcamp Main — главная страница
 // Источник: ai-driven-bootcamp (4).html
 // Шрифты самопроверяемые с домена (работают из РФ без Google)
@@ -712,6 +712,50 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   .format-floor__text { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.55; margin: 0; max-width: 80ch; color: var(--ink60); }
   .format-floor__btn { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem; background: var(--ink); color: var(--bg); border: 1px solid var(--ink); border-radius: 0 !important; padding: 0.75rem 1.25rem; cursor: pointer; white-space: nowrap; transition: background 0.12s, color 0.12s; }
   .format-floor__btn:hover { background: var(--accent); color: var(--ink); }
+  .format-facts {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+  .format-fact {
+    flex: 1;
+    padding: 0.25rem 0.875rem;
+    border-right: 1px solid var(--ink10);
+    min-width: 0;
+  }
+  .format-fact:first-child { padding-left: 0; }
+  .format-fact:last-child { border-right: none; padding-right: 0; }
+  .format-fact__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .format-fact__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--ink);
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .format-floor { flex-direction: column; align-items: stretch; }
+    .format-facts { display: grid; grid-template-columns: 1fr 1fr; flex: none; }
+    .format-fact { padding: 0.625rem 0; border-right: none; border-bottom: 1px solid var(--ink10); }
+    .format-fact:nth-child(odd) { padding-right: 0.75rem; border-right: 1px solid var(--ink10); }
+    .format-fact:last-child { grid-column: span 2; border-bottom: none; border-right: none; padding-right: 0; }
+    .format-floor__btn { align-self: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .format-facts { grid-template-columns: 1fr; }
+    .format-fact:nth-child(odd) { padding-right: 0; border-right: none; }
+    .format-fact:last-child { grid-column: span 1; border-bottom: none; }
+    .format-floor__btn { width: 100%; text-align: center; }
+  }
   .format-modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
   .format-modal[hidden] { display: none; }
   .format-modal__backdrop { position: fixed; inset: 0; background: rgba(10,10,15,0.66); }
@@ -1708,6 +1752,69 @@ transform: scale(1.04);
     flex: 1;
   }
   .pricing-footer-item:last-child { border-right: none; }
+  .pricing-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,245,240,1);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    \border-bottom: 1px solid rgba(245,245,240,0.1);
+  }
+  .pricing-unique { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .pricing-unique-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(245,245,240,0.7);
+    padding-left: 20px;
+    position: relative;
+  }
+  .pricing-unique-item::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: rgba(245,245,240,0.3);
+  }
+  .pricing-unique-item--accent {
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+  }
+  .pricing-unique-item--accent::before { display: none; }
+  .pricing-shared {
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 1px solid rgba(245,245,240,0.12);
+    border-top: none;
+    padding: 20px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .pricing-shared-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(245,245,240,1);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .pricing-shared-items { list-style: none; display: flex; flex-wrap: wrap; flex: 1; }
+  .pricing-shared-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,245,240,0.55);
+    padding: 4px 16px;
+    border-right: 1px solid rgba(245,245,240,0.12);
+  }
+  .pricing-shared-item:last-child { border-right: none; }
+  @media (max-width: 640px) {
+    .pricing-shared { padding: 16px 20px; flex-direction: column; gap: 12px; }
+    .pricing-shared-items { flex-direction: column; }
+    .pricing-shared-item { border-right: none; padding: 6px 0; }
+  }
     @media (max-width: 640px) {
     .pricing-grid { grid-template-columns: 1fr; }
     .pricing-card { border-right: none; border-bottom: 1px solid var(--ink10); }
@@ -1868,7 +1975,7 @@ transform: scale(1.04);
       <div class="about-cards reveal">
         <div class="about-card">
           <div class="about-card-title">Этому сложно<br>научиться самому</div>
-          <p class="about-card-text">Из документации и туториалов это не видно — только в живой работе над реальными задачами рядом с теми, кто уже внедрил AI в процесс.</p>
+          <p class="about-card-text">Из документации и туториалов это не видно, только в живой работе над реальными задачами рядом с теми, кто уже внедрил AI в процесс.</p>
         </div>
         <div class="about-card about-card--dark">
           <div class="about-card-title">Поэтому буктемп<br>построен вокруг практики</div>
@@ -1900,7 +2007,7 @@ transform: scale(1.04);
   <div class="section-grid">
     <div>
       <span class="bracket-label">[AUDIENCE] // ДЛЯ КОГО</span>
-      <h2 class="section-title reveal">Middle и Senior<br>разработчики с<br><span class="hero-accent">продуктовым мышлением</span></h2>
+      <h2 class="section-title reveal">Для технических<br>специалистов с<br><span class="hero-accent">продуктовым мышлением</span></h2>
       <div class="audience-grid reveal">
         <div class="audience-item">
           <div class="audience-num">01</div>
@@ -1988,7 +2095,28 @@ transform: scale(1.04);
 
       <!-- FORMAT MODAL -->
       <section class="format-floor" aria-labelledby="format-floor-text">
-        <p class="format-floor__text" id="format-floor-text"><strong>Живые вебинары по вторникам с 18:00/19:00, по 2–3 часа</strong>. Чаще одна встреча в неделю, иногда две, вторая встреча - по четвергам. Если пропустили — остаётся запись со всеми материалами. Всего 12 недель обучения.</p>
+        <div class="format-facts" id="format-floor-text">
+          <div class="format-fact">
+            <span class="format-fact__label">Живые эфиры</span>
+            <span class="format-fact__value">Каждый вторник с 18:00/19:00</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Длительность</span>
+            <span class="format-fact__value">От 2 до 3 часов</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Периодичность</span>
+            <span class="format-fact__value">1 урок в неделю, иногда 2 — по вторникам и четвергам</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Если пропустил</span>
+            <span class="format-fact__value">Материалы остаются в библиотеке</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Длительность</span>
+            <span class="format-fact__value">12 недель / 3 месяца</span>
+          </div>
+        </div>
         <button class="format-floor__btn" type="button" data-format-open>Как устроена неделя</button>
       </section>
 
@@ -2493,17 +2621,14 @@ transform: scale(1.04);
   <div class="pricing-grid">
 
     <div class="pricing-card">
-      <span class="pricing-card-tier">[TIER_01]</span>
-      <div class="pricing-card-name">Наблюдатель</div>
+      <div class="pricing-card-name">Слушатель</div>
+      <p class="pricing-tagline">Подходит тем, кто хочет системно разобраться в теме и двигаться в своём темпе.</p>
       <span class="pricing-price">125 000 ₽</span>
       <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
-      <ul class="pricing-bullets">
-        <li class="pricing-bullet">Прямой эфир всех 17 уроков + записи</li>
-        <li class="pricing-bullet">Домашние задания с доступом на Github</li>
-        <li class="pricing-bullet">Ежемесячная Q&A-сессия с экспертом</li>
-        <li class="pricing-bullet">Отдельный чат наблюдателей</li>
-        <li class="pricing-bullet">Сертификат о прохождении</li>
-        <li class="pricing-bullet">Библиотека материалов. Доступ 6 месяцев после окончания</li>
+      <ul class="pricing-unique">
+        <li class="pricing-unique-item">эфиры за отдельной ссылкой, без доступа в zoom-комнату</li>
+        <li class="pricing-unique-item">чат с командой, только важные вопросы преподавателям через поддержку</li>
+        <li class="pricing-unique-item">групповые встречи раз в 2 недели: разбор домашек и сложностей в группах по 20 человек</li>
       </ul>
       <div class="pricing-card-btn">
         <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
@@ -2511,27 +2636,35 @@ transform: scale(1.04);
     </div>
 
     <div class="pricing-card pricing-card--featured">
-      <span class="pricing-card-tier">[TIER_02]</span>
       <div class="pricing-card-header">
         <div class="pricing-card-name">Практик</div>
         <div class="pricing-badge">всего 20 мест</div>
       </div>
+      <p class="pricing-tagline">Подходит тем, кто хочет сразу прикладывать результаты к своей работе и получать ответ на свой конкретный вопрос.</p>
       <span class="pricing-price">180 000 ₽</span>
       <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
-      <ul class="pricing-bullets">
-        <li class="pricing-bullet">Прямой эфир всех 17 уроков + записи</li>
-        <li class="pricing-bullet">Домашние задания с доступом на Github</li>
-        <li class="pricing-bullet">Разбор домашних заданий с экспертом на каждом уроке</li>
-        <li class="pricing-bullet">Участие в практике на уроках с индивидуальным подходом от эксперта</li>
-        <li class="pricing-bullet">Отдельный чат активных участников</li>
-        <li class="pricing-bullet">Сертификат о прохождении</li>
-        <li class="pricing-bullet">Библиотека материалов. Доступ 6 месяцев после окончания</li>
+      <ul class="pricing-unique">
+        <li class="pricing-unique-item">присутствие на уроке в одной комнате с преподавателем, прямой доступ во время эфира</li>
+        <li class="pricing-unique-item">персональный разбор задач уроков и вопросов прямо в эфире</li>
+        <li class="pricing-unique-item">совместный чат с авторами курса, можно написать напрямую</li>
+        <li class="pricing-unique-item">можно приходить со своими рабочими задачами и разбирать их на месте</li>
       </ul>
       <div class="pricing-card-btn">
         <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
       </div>
     </div>
 
+  </div>
+
+  <div class="pricing-shared">
+    <span class="pricing-shared-label">Есть в обоих форматах</span>
+    <ul class="pricing-shared-items">
+      <li class="pricing-shared-item">все уроки</li>
+      <li class="pricing-shared-item">библиотека материалов</li>
+      <li class="pricing-shared-item">домашние задания на GitHub</li>
+      <li class="pricing-shared-item">лидерборд результатов</li>
+      <li class="pricing-shared-item">общий чат с командой</li>
+    </ul>
   </div>
 
   <div class="pricing-footer">
