@@ -495,6 +495,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     align-items: center;
     gap: 48px;
     flex-wrap: wrap;
+    max-width: 1200px;
   }
   .outcomes-banner-label {
     font-family: 'Roboto Condensed', sans-serif;
@@ -639,7 +640,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   .context-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--ink10);
+    border: 1px solid rgba(245,245,240,0.12);
     margin-bottom: 32px;
   }
   .context-card {
@@ -695,6 +696,56 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .context-cta-row { flex-direction: column; align-items: flex-start; }
   }
 
+  /* FORMAT MODAL */
+  .format-floor {
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--ink10);
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .format-floor__text { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.55; margin: 0; max-width: 80ch; color: var(--ink60); }
+  .format-floor__btn { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem; background: var(--ink); color: var(--bg); border: 1px solid var(--ink); border-radius: 0 !important; padding: 0.75rem 1.25rem; cursor: pointer; white-space: nowrap; transition: background 0.12s, color 0.12s; }
+  .format-floor__btn:hover { background: var(--accent); color: var(--ink); }
+  .format-modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+  .format-modal[hidden] { display: none; }
+  .format-modal__backdrop { position: fixed; inset: 0; background: rgba(10,10,15,0.66); }
+  .format-modal__dialog { position: relative; background: var(--bg); color: var(--ink); border: 1px solid var(--ink); border-radius: 0 !important; width: 100%; max-width: 44rem; padding: 2rem; box-shadow: 12px 12px 0 var(--ink); }
+  .format-modal__dialog:focus { outline: none; }
+  .format-modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--ink10); padding-bottom: 1rem; }
+  .format-modal__eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: #b9760f; margin: 0 0 0.5rem; }
+  .format-modal__title { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; font-size: clamp(1.4rem, 4vw, 2rem); line-height: 1.05; margin: 0; }
+  .format-modal__x { font-family: 'JetBrains Mono', monospace; background: transparent; border: 1px solid var(--ink); border-radius: 0 !important; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; cursor: pointer; font-size: 0.9rem; line-height: 2.25rem; text-align: center; transition: background 0.12s, color 0.12s; }
+  .format-modal__x:hover { background: var(--ink); color: var(--bg); }
+  .format-modal__lede { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; margin: 1.25rem 0 0; color: var(--ink60); }
+  .format-block { margin-top: 2rem; }
+  .format-block__h { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; font-size: 1rem; margin: 0 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--ink10); }
+  .format-block__p, .format-block__total { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 1.6; margin: 0 0 0.75rem; }
+  .format-block__total { margin-top: 1rem; color: var(--ink40); font-size: 0.82rem; }
+  .weekbar { display: flex; gap: 2px; margin-bottom: 1.25rem; height: 4.5rem; }
+  .weekbar__seg { flex: var(--span); border: 1px solid var(--ink); border-radius: 0 !important; padding: 0.6rem 0.75rem; display: flex; flex-direction: column; justify-content: center; gap: 0.2rem; }
+  .weekbar__seg--live { background: var(--ink); color: var(--bg); border-left: 4px solid var(--accent); }
+  .weekbar__seg--practice { background: transparent; color: var(--ink40); border-style: dashed; }
+  .weekbar__label { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; }
+  .weekbar__time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+  .loadtoggle { display: flex; border: 1px solid var(--ink); border-radius: 0 !important; margin-bottom: 1.25rem; }
+  .loadtoggle__btn { flex: 1; font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; font-size: 0.78rem; background: transparent; color: var(--ink); border: none; border-radius: 0 !important; padding: 0.7rem 0.5rem; cursor: pointer; transition: background 0.12s, color 0.12s; }
+  .loadtoggle__btn + .loadtoggle__btn { border-left: 1px solid var(--ink); }
+  .loadtoggle__btn.is-active { background: var(--ink); color: var(--bg); }
+  .loadout { border-left: 4px solid var(--accent); padding-left: 1rem; margin-bottom: 1rem; }
+  .loadout__hours { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 7vw, 3rem); line-height: 1; margin: 0; }
+  .loadout__note { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.5; margin: 0.4rem 0 0; color: var(--ink40); }
+  .format-callout { font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.6; border-left: 4px solid var(--accent); padding: 0.4rem 0 0.4rem 1rem; margin-bottom: 1rem; color: var(--ink60); }
+  .format-callout:last-child { margin-bottom: 0; }
+  @media (max-width: 560px) {
+    .weekbar { height: auto; flex-direction: column; }
+    .format-modal__dialog { box-shadow: 6px 6px 0 var(--ink); padding: 1.5rem; }
+  }
   /* CURRICULUM */
   .module-block {
     margin-bottom: 2px;
@@ -905,8 +956,8 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     max-width: 1100px;
     margin: 40px auto 0;
     text-align: left;
-    background: rgba(245,245,240,0.06);
-    border: 1px solid rgba(245,245,240,0.12);
+    background: var(--ink);
+    border: none;
     padding: 40px 36px;
   }
   .referral-title {
@@ -1332,6 +1383,10 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .feedback-card--text { width: 364px; padding: 24px; }
   }
 
+  /* COMMITTEE INTRO */
+  .committee-intro { margin: 20px 0 28px; }
+  .committee-intro-text { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: black; margin: 0; }
+  .committee-intro-accent { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: var(--accent); margin: 0; }
   /* COMMITTEE */
   .committee-grid {
     display: grid;
@@ -1703,7 +1758,7 @@ transform: scale(1.04);
     <a href="#learn" class="js-burger-link">Что ты получишь</a>
     <a href="#curriculum" class="js-burger-link">Программа</a>
     <a href="#format" class="js-burger-link">Формат</a>
-    <a href="#feedback" class="js-burger-link">Обратная связь</a>
+    <a href="#feedback" class="js-burger-link">Отзывы</a>
     <a href="#committee" class="js-burger-link">Авторы и эксперты</a>
     <a href="#faq" class="js-burger-link">FAQ</a>
     <a href="#register" class="js-burger-link">Форматы участия</a>
@@ -1734,7 +1789,7 @@ transform: scale(1.04);
       <span class="stat-label">уроков</span>
     </div>
     <div class="stat-box">
-      <span class="stat-num" data-target="6">6</span>
+      <span class="stat-num" data-target="5">5</span>
       <span class="stat-label">модулей</span>
     </div>
     <div class="stat-box" style="background: var(--ink); border-right: none; justify-content: center;">
@@ -1930,6 +1985,54 @@ transform: scale(1.04);
     <div>
       <span class="bracket-label">[CURRICULUM] // ПРОГРАММА · 12 НЕДЕЛЬ · 17 УРОКОВ</span>
       <h2 class="section-title reveal">Программа<br><span class="hero-accent">буткемпа</span></h2>
+
+      <!-- FORMAT MODAL -->
+      <section class="format-floor" aria-labelledby="format-floor-text">
+        <p class="format-floor__text" id="format-floor-text"><strong>Живые вебинары по вторникам с 18:00/19:00, по 2–3 часа</strong>. Чаще одна встреча в неделю, иногда две, вторая встреча - по четвергам. Если пропустили — остаётся запись со всеми материалами. Всего 12 недель обучения.</p>
+        <button class="format-floor__btn" type="button" data-format-open>Как устроена неделя</button>
+      </section>
+
+      <div class="format-modal" data-format-modal hidden>
+        <div class="format-modal__backdrop" data-format-close></div>
+        <div class="format-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="format-modal-title" tabindex="-1">
+          <header class="format-modal__head">
+            <div>
+              <p class="format-modal__eyebrow">Формат и нагрузка</p>
+              <h2 class="format-modal__title" id="format-modal-title">Как устроена неделя на буткемпе</h2>
+            </div>
+            <button class="format-modal__x" type="button" data-format-close aria-label="Закрыть">✕</button>
+          </header>
+          <p class="format-modal__lede">Формат живой, с записью на случай пропуска. Ниже разложили, сколько времени это занимает на практике.</p>
+          <div class="format-block">
+            <h3 class="format-block__h">Обычная неделя</h3>
+            <div class="weekbar" aria-hidden="true">
+              <div class="weekbar__seg weekbar__seg--live" style="--span: 3;"><span class="weekbar__label">Вебинар</span><span class="weekbar__time">18:00 → ~20:30</span></div>
+              <div class="weekbar__seg weekbar__seg--practice" style="--span: 5;"><span class="weekbar__label">Практика</span><span class="weekbar__time">необязательно</span></div>
+            </div>
+            <p class="format-block__p">Основа недели — живой вебинар во вторник. Старт в 18:00/19:00, идёт 2–3 часа, так что закладывать нужно примерно до 20:30/21:30.</p>
+            <p class="format-block__p">После вебинара остаётся практика на своём проекте. Она необязательная, занимает 2–5 часов в неделю и нужна тем, кто хочет довести навык до рабочего уровня.</p>
+            <p class="format-block__p">В отдельные недели вебинаров два вместо одного. Тогда живая часть занимает 4–6 часов, практика растёт до верхней границы.</p>
+          </div>
+          <div class="format-block">
+            <h3 class="format-block__h">Сколько времени в неделю</h3>
+            <div class="loadtoggle" role="tablist" aria-label="Режим нагрузки">
+              <button class="loadtoggle__btn is-active" type="button" role="tab" aria-selected="true" data-load="webinar">Только вебинары</button>
+              <button class="loadtoggle__btn" type="button" role="tab" aria-selected="false" data-load="full">Вебинары и практика</button>
+            </div>
+            <div class="loadout" aria-live="polite">
+              <p class="loadout__hours" data-load-hours>2–3 часа</p>
+              <p class="loadout__note" data-load-note>в неделю, до 4–6 часов в недели с двумя встречами</p>
+            </div>
+            <p class="format-block__total">За весь буткемп это примерно 30–45 часов, если ходить на вебинары. С полной практикой выходит больше, до 80–90 часов за три месяца.</p>
+          </div>
+          <div class="format-block">
+            <h3 class="format-block__h">Что важно знать про формат</h3>
+            <div class="format-callout">Все вебинары записываются и остаются с материалами, поэтому пропущенная встреча не выбивает из программы. Догнать можно по записи.</div>
+            <div class="format-callout">Живая встреча даёт то, чего нет в записи: вопросы по ходу, разбор кода, обратная связь от ведущего в реальном времени. Запись закрывает теорию и разбор задач.</div>
+            <div class="format-callout">Расписание держится на вторниках. Это фиксированный день недели, его нужно сверить с графиком до старта.</div>
+          </div>
+        </div>
+      </div>
 
       <!-- Module 1 -->
       <div class="module-block reveal">
@@ -2311,6 +2414,7 @@ transform: scale(1.04);
       <!-- COMMITTEE LABEL -->
       <span class="section-divider-label">[COMMITTEE_01] // Программный комитет</span>
 
+      <h2 class="section-title reveal">Что говорят о нас<br><span class="hero-accent">лидеры индустрии</span></h2>
       <!-- COMMITTEE GRID -->
       <div class="committee-grid reveal">
 <div class="committee-card">
@@ -2409,7 +2513,7 @@ transform: scale(1.04);
     <div class="pricing-card pricing-card--featured">
       <span class="pricing-card-tier">[TIER_02]</span>
       <div class="pricing-card-header">
-        <div class="pricing-card-name">Активный участник</div>
+        <div class="pricing-card-name">Практик</div>
         <div class="pricing-badge">всего 20 мест</div>
       </div>
       <span class="pricing-price">180 000 ₽</span>
@@ -2439,7 +2543,7 @@ transform: scale(1.04);
 </div>
 
 <!-- REFERRAL -->
-<div class="cta-block" style="margin-top: 2px;">
+<section style="padding: 80px 24px; border-bottom: 1px solid var(--ink10);">
   <div class="referral-block" style="margin-top: 0;">
     <div class="referral-title">У нас действует <span style="color:var(--accent)">реферальная программа</span></div>
     <div class="referral-cols">
@@ -2456,7 +2560,7 @@ transform: scale(1.04);
     </div>
     <button type="button" class="cta-btn js-open-widget"><span>→ Получить реферальную ссылку</span></button>
   </div>
-</div>
+</section>
 
 <!-- FAQ -->
 <section id="faq">
@@ -2760,6 +2864,48 @@ transform: scale(1.04);
     }
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
+  })();
+
+  // Format modal
+  (function() {
+    var fModal = document.querySelector('[data-format-modal]');
+    var fDialog = fModal && fModal.querySelector('.format-modal__dialog');
+    var fOpenBtn = document.querySelector('[data-format-open]');
+    var fCloseEls = fModal && fModal.querySelectorAll('[data-format-close]');
+    var fLastFocused = null;
+    function openFModal() {
+      fLastFocused = document.activeElement;
+      if (fModal) fModal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (fDialog) fDialog.focus();
+      document.addEventListener('keydown', onFKeydown);
+    }
+    function closeFModal() {
+      if (fModal) fModal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onFKeydown);
+      if (fLastFocused instanceof HTMLElement) fLastFocused.focus();
+    }
+    function onFKeydown(e) { if (e.key === 'Escape') closeFModal(); }
+    if (fOpenBtn) fOpenBtn.addEventListener('click', openFModal);
+    if (fCloseEls) fCloseEls.forEach(function(el) { el.addEventListener('click', closeFModal); });
+    var FLOAD = {
+      webinar: { hours: '2-3 часа', note: 'в неделю, до 4-6 часов в недели с двумя встречами' },
+      full: { hours: '4-8 часов', note: 'в неделю, с практикой на своём проекте' }
+    };
+    var fToggleBtns = fModal && fModal.querySelectorAll('[data-load]');
+    var fHoursEl = fModal && fModal.querySelector('[data-load-hours]');
+    var fNoteEl = fModal && fModal.querySelector('[data-load-note]');
+    if (fToggleBtns) fToggleBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        fToggleBtns.forEach(function(b) { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        var mode = btn.getAttribute('data-load');
+        if (fHoursEl) fHoursEl.textContent = FLOAD[mode].hours;
+        if (fNoteEl) fNoteEl.textContent = FLOAD[mode].note;
+      });
+    });
   })();
 </script>
 
