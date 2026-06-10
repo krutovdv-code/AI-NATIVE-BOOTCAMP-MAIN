@@ -1623,9 +1623,9 @@ transform: scale(1.04);
   /* PRICING */
   .pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    max-width: 1100px;
+    max-width: 1200px;
     border: 1px solid var(--ink10);
     margin-top: 48px;
   }
@@ -1727,7 +1727,6 @@ transform: scale(1.04);
   .pricing-card--featured { position: relative; }
   .cta-block .pricing-card--featured {
     background: rgba(245,245,240,0.12);
-    border-top: 3px solid var(--accent);
   }
   .pricing-price-note {
     font-size: 10px;
@@ -1740,7 +1739,7 @@ transform: scale(1.04);
   }
   .cta-block .pricing-price-note { color: rgba(245,245,240,0.45); }
   .pricing-footer {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 16px auto 0;
     display: flex;
     align-items: stretch;
@@ -1762,6 +1761,32 @@ transform: scale(1.04);
   .pricing-footer-item:hover {
     background: var(--bg);
     color: var(--ink);
+  }
+
+  /* PRICING — TEAM CARD */
+  .pricing-card--teams {
+    background: rgba(245,245,240,0.04);
+  }
+  .pricing-card--teams .pricing-card-name { color: rgba(245,245,240,1); }
+  .pricing-card--teams .pricing-tagline { color: rgba(245,245,240,1); }
+  .pricing-price--teams {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(22px, 2vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .pricing-price-note--teams {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,245,240,0.35);
+    display: block;
+    margin-bottom: 24px;
   }
   .pricing-tagline {
     font-family: 'JetBrains Mono', monospace;
@@ -1793,7 +1818,7 @@ transform: scale(1.04);
   }
   .pricing-unique-item--accent::before { display: none; }
   .pricing-shared {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     border: 1px solid rgba(245,245,240,0.12);
     border-top: none;
@@ -1826,7 +1851,7 @@ transform: scale(1.04);
     .pricing-shared-items { flex-direction: column; }
     .pricing-shared-item { border-right: none; padding: 6px 0; }
   }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
     .pricing-grid { grid-template-columns: 1fr; }
     .pricing-card { border-right: none; border-bottom: 1px solid var(--ink10); }
     .pricing-card:last-child { border-bottom: none; }
@@ -2912,13 +2937,13 @@ transform: scale(1.04);
   <div class="pricing-grid">
 
     <div class="pricing-card">
-      <div class="pricing-card-name">Слушатель</div>
+      <div class="pricing-card-name">Наблюдатель</div>
       <p class="pricing-tagline">Подходит тем, кто хочет системно разобраться в теме и двигаться в своём темпе.</p>
       <span class="pricing-price">125 000 ₽</span>
       <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
       <ul class="pricing-unique">
         <li class="pricing-unique-item">эфиры за отдельной ссылкой, без доступа в zoom-комнату</li>
-        <li class="pricing-unique-item">чат с командой, только важные вопросы преподавателям через поддержку</li>
+        <li class="pricing-unique-item">чат с командой, вопросы преподавателям через поддержку</li>
         <li class="pricing-unique-item">групповые встречи раз в 2 недели: разбор домашек и сложностей в группах по 20 человек</li>
       </ul>
       <div class="pricing-card-btn">
@@ -2945,10 +2970,24 @@ transform: scale(1.04);
       </div>
     </div>
 
+    <div class="pricing-card pricing-card--teams">
+      <div class="pricing-card-name">Корпоративный</div>
+      <p class="pricing-tagline">Подходит командам, которые хотят перейти на AI-driven разработку по понятному треку.</p>
+      <span class="pricing-price--teams">Индивидуально</span>
+      <span class="pricing-price-note--teams">условия зависят от размера команды</span>
+      <ul class="pricing-unique">
+        <li class="pricing-unique-item">план внедрения AI в SDLC с метриками ROI для менеджмента</li>
+        <li class="pricing-unique-item">гайдлайны, агенты, AGENTS.md под вашу команду</li>
+      </ul>
+      <div class="pricing-card-btn">
+        <a href="/teams" class="cta-btn"><span>→ Узнать условия</span></a>
+      </div>
+    </div>
+
   </div>
 
   <div class="pricing-shared">
-    <span class="pricing-shared-label">Есть в обоих форматах</span>
+    <span class="pricing-shared-label">Есть во всех форматах</span>
     <ul class="pricing-shared-items">
       <li class="pricing-shared-item">все уроки</li>
       <li class="pricing-shared-item">библиотека материалов</li>

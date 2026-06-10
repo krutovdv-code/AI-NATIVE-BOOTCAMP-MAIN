@@ -1,0 +1,699 @@
+---
+// Teams — корпоративное участие в буткемпе
+import "@fontsource/roboto-condensed/cyrillic-700.css";
+import "@fontsource/roboto-condensed/cyrillic-900.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+import "@fontsource/jetbrains-mono/cyrillic-500.css";
+import "@fontsource/jetbrains-mono/cyrillic-600.css";
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для команд — AI DRIVEN РАЗРАБОТКА</title>
+<!-- Yandex.Metrika counter -->
+<script is:inline type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
+  :root {
+    --bg: #f5f5f0;
+    --ink: #0a0a0f;
+    --accent: #f5a623;
+    --ink10: rgba(10,10,15,0.10);
+    --ink20: rgba(10,10,15,0.20);
+    --ink40: rgba(10,10,15,0.40);
+    --ink60: rgba(10,10,15,0.60);
+    --ink05: rgba(10,10,15,0.05);
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  /* TOP BAR */
+  .t-topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 48px;
+    background: rgba(245,245,240,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .t-topbar__logo {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: var(--ink);
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .t-topbar__logo:hover { color: var(--accent); }
+  .t-topbar__back {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink40);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .t-topbar__back:hover { color: var(--ink); }
+  .t-topbar__tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 24px;
+    border-bottom: 1px solid var(--ink10);
+    position: relative;
+  }
+  .t-wrap { max-width: 1200px; }
+
+  /* TYPOGRAPHY */
+  .t-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .t-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 56px);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 40px;
+  }
+  .t-title .accent { color: var(--accent); }
+  .t-prose {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink60);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .t-prose strong { color: var(--ink); font-weight: 600; }
+
+  /* HERO */
+  #t-hero {
+    padding: 120px 24px 80px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--ink10);
+    background: var(--ink);
+  }
+  .t-hero__label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .t-hero__title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 100px);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    color: rgba(245,245,240,1);
+    margin-bottom: 40px;
+    max-width: 1000px;
+  }
+  .t-hero__title .accent { color: var(--accent); }
+  .t-hero__sub {
+    border-left: 2px solid var(--accent);
+    padding-left: 24px;
+    max-width: 600px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,245,240,0.55);
+  }
+
+  /* 3-COLUMN GRID (проблема, результат, клуб) */
+  .t-grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .t-cell {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+  }
+  .t-cell:last-child { border-right: none; }
+  .t-cell__num {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .t-cell__title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .t-cell__text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .t-cell__text strong { color: var(--ink); }
+  @media (max-width: 768px) {
+    .t-grid3 { grid-template-columns: 1fr; }
+    .t-cell { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .t-cell:last-child { border-bottom: none; }
+  }
+
+  /* RESULT ROWS */
+  .t-result-stack { display: flex; flex-direction: column; gap: 0; }
+  .t-result-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 28px 32px;
+    border: 1px solid var(--ink10);
+    border-bottom: none;
+    background: var(--ink05);
+  }
+  .t-result-row:last-child { border-bottom: 1px solid var(--ink10); }
+  .t-result-row--featured {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .t-result-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 3px;
+  }
+  .t-result-h {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .t-result-row--featured .t-result-h { color: rgba(245,245,240,1); }
+  .t-result-row--featured .t-result-h .accent { color: var(--accent); }
+  .t-result-d {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .t-result-row--featured .t-result-d { color: rgba(245,245,240,0.55); }
+  @media (max-width: 640px) {
+    .t-result-row { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+  }
+
+  /* SCALING GRID */
+  .t-scale-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .t-scale-cell {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    background: var(--ink05);
+  }
+  .t-scale-cell:nth-child(2n) { border-right: none; }
+  .t-scale-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .t-scale-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .t-scale-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .t-scale-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  @media (max-width: 640px) {
+    .t-scale-grid { grid-template-columns: 1fr; }
+    .t-scale-cell { border-right: none; }
+    .t-scale-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink10); }
+    .t-scale-cell:last-child { border-bottom: none; }
+  }
+
+  /* CLUB BANNER */
+  .t-club-banner {
+    background: var(--ink);
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+  .t-club-banner__tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .t-club-banner__h {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(22px, 2.5vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: rgba(245,245,240,1);
+  }
+  .t-club-banner__h .accent { color: var(--accent); }
+  .t-club-banner__num {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 72px;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    text-align: center;
+  }
+  .t-club-banner__num-lab {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: rgba(245,245,240,0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 6px;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .t-club-banner { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+    .t-club-banner__num { font-size: 56px; text-align: left; }
+    .t-club-banner__num-lab { text-align: left; }
+  }
+
+  /* CTA BUTTON */
+  .cta-btn {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    padding: 16px 40px;
+    background: var(--accent);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .cta-btn:hover::before { transform: translateX(0); }
+  .cta-btn span { position: relative; z-index: 1; }
+  .cta-btn:hover span { color: #f5f5f0; }
+
+  /* CTA SECTION */
+  #t-cta {
+    background: var(--ink);
+    border-bottom: none;
+  }
+  .t-cta__title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 52px);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: rgba(245,245,240,1);
+    margin-bottom: 16px;
+  }
+  .t-cta__title .accent { color: var(--accent); }
+  .t-cta__sub {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,245,240,0.45);
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  /* WIDGET MODAL */
+  .widget-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+  }
+  .widget-modal.is-open { display: flex; }
+  .widget-modal__box {
+    background: var(--bg);
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100vh - 64px);
+    overflow: auto;
+    position: relative;
+    padding: 32px;
+  }
+  .widget-modal__close {
+    position: absolute;
+    top: 12px; right: 16px;
+    background: none; border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--ink40);
+    line-height: 1;
+  }
+  .widget-modal__close:hover { color: var(--ink); }
+
+  /* FOOTER */
+  .t-footer {
+    padding: 24px;
+    border-top: 1px solid var(--ink10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink40);
+  }
+  .t-footer a { color: var(--ink40); text-decoration: none; }
+  .t-footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="t-topbar">
+  <a href="/" class="t-topbar__logo">NA\\TION</a>
+  <span class="t-topbar__tag">// ДЛЯ КОМАНД</span>
+  <a href="/" class="t-topbar__back">← На главную</a>
+</div>
+
+<!-- HERO -->
+<section id="t-hero">
+  <div class="t-wrap">
+    <span class="t-hero__label">[TEAMS] // КОРПОРАТИВНОЕ УЧАСТИЕ · AI DRIVEN РАЗРАБОТКА</span>
+    <h1 class="t-hero__title">
+      AI-driven<br>
+      разработка —<br>
+      для <span class="accent">всей команды.</span>
+    </h1>
+    <div class="t-hero__sub">
+      Буктемп работает на трёх уровнях: личная скорость разработчика, командный AI-контур и системная трансформация SDLC организации. Для команд — специальные условия и отдельный модуль по масштабированию.
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="t-problem">
+  <div class="t-wrap">
+    <span class="t-label">[ПРОБЛЕМА] // ПОЧЕМУ ТОЧЕЧНОГО AI НЕДОСТАТОЧНО</span>
+    <h2 class="t-title">AI используют<br><span class="accent">фрагментарно.</span></h2>
+    <p class="t-prose">
+      Опытные разработчики уже попробовали Cursor, Claude Code, ChatGPT. Что-то прижилось в личном воркфлоу. Команда продолжает работать по-старому, а AI остаётся <strong>персональным ассистентом по запросу</strong> в стороне от основного процесса.
+    </p>
+    <div class="t-grid3">
+      <div class="t-cell">
+        <div class="t-cell__num">01</div>
+        <div class="t-cell__title">Личный уровень</div>
+        <div class="t-cell__text"><strong>AI помогает с задачами, но воркфлоу не перестроен.</strong> Используется как продвинутый автокомплит. Эффект есть, но он не масштабируется.</div>
+      </div>
+      <div class="t-cell">
+        <div class="t-cell__num">02</div>
+        <div class="t-cell__title">Командный уровень</div>
+        <div class="t-cell__text"><strong>Каждый разработчик использует AI по-своему.</strong> Нет общих гайдлайнов, общих агентов, общего код-ревью. Скорость одного выросла на 20–30%, команда работает по-старому.</div>
+      </div>
+      <div class="t-cell">
+        <div class="t-cell__num">03</div>
+        <div class="t-cell__title">Организационный уровень</div>
+        <div class="t-cell__text"><strong>AI не встроен в SDLC.</strong> Метрик нет, ROI неясен, тимлиды и менеджмент скептичны. Релизы выходят с прежней частотой, бизнес не видит изменений.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="t-result">
+  <div class="t-wrap">
+    <span class="t-label">[РЕЗУЛЬТАТ] // ТРИ УРОВНЯ ИЗМЕНЕНИЙ</span>
+    <h2 class="t-title">От личного —<br>до <span class="accent">организационного.</span></h2>
+    <div class="t-result-stack">
+      <div class="t-result-row">
+        <div class="t-result-tag">[Личный уровень]</div>
+        <div>
+          <div class="t-result-h">Скорость работы — другая</div>
+          <div class="t-result-d">Системный воркфлоу с агентами, готовая библиотека промптов и паттернов, мультиэкспертность по всем смежным доменам. Задачи, которые занимали часы, выполняются за минуты. Подход «доверяй, но проверяй» включён в каждый этап работы с агентами.</div>
+        </div>
+      </div>
+      <div class="t-result-row">
+        <div class="t-result-tag">[Командный уровень]</div>
+        <div>
+          <div class="t-result-h">AI встроен в командный контур</div>
+          <div class="t-result-d">AGENTS.md как стандарт, общие агенты для типовых задач, ревью агентского кода, спецификации с предсказуемым результатом. Единый процесс, который работает у любого участника команды — на смену набору индивидуальных подходов.</div>
+        </div>
+      </div>
+      <div class="t-result-row t-result-row--featured">
+        <div class="t-result-tag">[Организационный уровень]</div>
+        <div>
+          <div class="t-result-h">Готовый план <span class="accent">AI-трансформации</span></div>
+          <div class="t-result-d">План внедрения с цифрами ROI, аргументы для скептичного менеджмента, дорожная карта по перестройке SDLC, схема корпоративной академии. Разработчик становится лидером трансформации в команде и компании.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCALING -->
+<section id="t-scaling">
+  <div class="t-wrap">
+    <span class="t-label">[ПРОГРАММА] // МОДУЛЬ 5 — МАСШТАБИРОВАНИЕ</span>
+    <h2 class="t-title">Что разбирается<br><span class="accent">на уроке про команду.</span></h2>
+    <p class="t-prose">
+      Последний модуль буктемпа целиком посвящён переносу AI-практик на уровень команды и организации. Это отдельный урок, который ведётся с позиции тимлида или технического руководителя.
+    </p>
+    <div class="t-scale-grid">
+      <div class="t-scale-cell">
+        <span class="t-scale-tag">[01] // Трансформация</span>
+        <div class="t-scale-title">План внедрения</div>
+        <div class="t-scale-text">Пошаговый план перехода команды на AI-driven разработку: с чего начинать, как выстраивать приоритеты, какие метрики отслеживать на каждом этапе.</div>
+      </div>
+      <div class="t-scale-cell">
+        <span class="t-scale-tag">[02] // Люди</span>
+        <div class="t-scale-title">Работа с сопротивлением</div>
+        <div class="t-scale-text">Почему разработчики сопротивляются, как снять барьеры, как объяснить ценность изменений тем, кто скептичен или боится потерять работу.</div>
+      </div>
+      <div class="t-scale-cell">
+        <span class="t-scale-tag">[03] // Процессы</span>
+        <div class="t-scale-title">Оцифровка SDLC</div>
+        <div class="t-scale-text">Встраивание AI в существующие процессы: от планирования и ревью до деплоя. AGENTS.md, корпоративные скиллы, агентский конвейер, стратегия отката.</div>
+      </div>
+      <div class="t-scale-cell">
+        <span class="t-scale-tag">[04] // Менеджмент</span>
+        <div class="t-scale-title">ROI для топ-менеджмента</div>
+        <div class="t-scale-text">Как оцифровать эффект от AI-внедрения, какие аргументы работают с нетехническим менеджментом, как выстроить корпоративную академию и удержать экспертизу внутри.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLUB -->
+<section id="t-club">
+  <div class="t-wrap">
+    <span class="t-label">[БОНУС] // ПОСЛЕ ВЫПУСКА · КЛУБ NAITION</span>
+    <h2 class="t-title">Буктемп даёт знания.<br><span class="accent">Клуб</span> доводит до рабочих процессов.</h2>
+    <p class="t-prose">
+      После выпуска начинается имплементация. Внедрить AI в рабочий процесс, перестроить команду, настроить агентский конвейер — это месяцы, в которые нужны люди, которые проходят то же самое.
+    </p>
+    <div class="t-club-banner">
+      <div>
+        <span class="t-club-banner__tag">[БОНУС ДЛЯ УЧАСТНИКОВ КОМАНД]</span>
+        <div class="t-club-banner__h">
+          Клуб Naition —<br>
+          <span class="accent">3 месяца бесплатно</span>
+        </div>
+      </div>
+      <div>
+        <div class="t-club-banner__num">+3<span class="t-club-banner__num-lab">МЕСЯЦА</span></div>
+      </div>
+    </div>
+    <div class="t-grid3">
+      <div class="t-cell">
+        <div class="t-cell__num">[01]</div>
+        <div class="t-cell__title">Закрытый чат с экспертами</div>
+        <div class="t-cell__text">Ведущие инструкторы, программный комитет и выпускники остаются в чате. Можно задать вопрос по своему проекту и получить ответ от того, кто прошёл ту же программу.</div>
+      </div>
+      <div class="t-cell">
+        <div class="t-cell__num">[02]</div>
+        <div class="t-cell__title">Живые встречи раз в 2 недели</div>
+        <div class="t-cell__text">Разбор реальных кейсов от участников и экспертов, новых инструментов, архитектурных решений. Записи — в библиотеке.</div>
+      </div>
+      <div class="t-cell">
+        <div class="t-cell__num">[03]</div>
+        <div class="t-cell__title">Кейс-клубы и обновления</div>
+        <div class="t-cell__text">Участники приносят свои ситуации с работы — разбираем до решения. Программа буктемпа продолжает обновляться, новые модули доступны участникам клуба.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="t-cta">
+  <div class="t-wrap">
+    <span class="t-label" style="color:rgba(245,245,240,0.4)">[УЧАСТИЕ] // ОБСУДИМ УСЛОВИЯ</span>
+    <h2 class="t-cta__title">Обсудить условия<br>для <span class="accent">вашей команды.</span></h2>
+    <p class="t-cta__sub">Расскажите о размере команды и задачах — подберём формат и условия. Второй поток стартует 7 июля.</p>
+    <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
+  </div>
+</section>
+
+<!-- WIDGET MODAL -->
+<div class="widget-modal" id="widget-modal-teams" aria-hidden="true">
+  <div class="widget-modal__box">
+    <button type="button" class="widget-modal__close js-close-widget-teams" aria-label="Закрыть">×</button>
+    <div id="widget-modal-teams-body"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="t-footer">
+  <a href="/">← AI DRIVEN РАЗРАБОТКА</a>
+  <span>© 2026 NAITION</span>
+  <div style="display:flex;gap:16px;">
+    <a href="/legal/oferta">Оферта</a>
+    <a href="/legal/privacy">Политика</a>
+  </div>
+</footer>
+
+<script is:inline>
+  // Widget modal
+  var teamsModal = document.getElementById('widget-modal-teams');
+  var teamsWidgetBody = document.getElementById('widget-modal-teams-body');
+  var teamsWidgetLoaded = false;
+
+  function openTeamsModal() {
+    if (!teamsModal) return;
+    if (!teamsWidgetLoaded && teamsWidgetBody) {
+      teamsWidgetLoaded = true;
+      var s = document.createElement('script');
+      s.setAttribute('ao-number', '3272');
+      s.setAttribute('ao-widget-id', 'Pex42y1uHUWMJNatz8smDA');
+      s.setAttribute('ao-domain', 'content.scalingclub.ru');
+      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
+      s.async = true;
+      teamsWidgetBody.appendChild(s);
+    }
+    teamsModal.classList.add('is-open');
+    teamsModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTeamsModal() {
+    if (teamsModal) {
+      teamsModal.classList.remove('is-open');
+      teamsModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.querySelectorAll('.js-open-widget-teams').forEach(function(btn) {
+    btn.addEventListener('click', function(e) { e.preventDefault(); openTeamsModal(); });
+  });
+  document.querySelectorAll('.js-close-widget-teams').forEach(function(btn) {
+    btn.addEventListener('click', closeTeamsModal);
+  });
+  if (teamsModal) {
+    teamsModal.addEventListener('click', function(e) {
+      if (e.target === teamsModal) closeTeamsModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && teamsModal.classList.contains('is-open')) closeTeamsModal();
+    });
+  }
+</script>
+
+</body>
+</html>
