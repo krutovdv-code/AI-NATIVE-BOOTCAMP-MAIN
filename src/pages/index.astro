@@ -882,7 +882,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   /* FORMAT */
   .format-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid var(--ink10);
   }
@@ -1234,7 +1234,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .stat-num { font-size: 36px; }
     .audience-grid { grid-template-columns: 1fr; }
     .learn-list { grid-template-columns: 1fr; }
-    .format-grid { grid-template-columns: 1fr; }
+    .format-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-title { font-size: clamp(28px, 9vw, 52px); }
     .hero-sub { padding-left: 16px; font-size: 12px; }
     #hero {
@@ -1250,6 +1250,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   @media (max-width: 480px) {
     .hero-title { font-size: clamp(24px, 8vw, 40px); }
     section { padding: 48px 16px; padding-bottom: max(48px, calc(16px + env(safe-area-inset-bottom, 0))); }
+    .format-grid { grid-template-columns: 1fr; }
   }
   body { padding-bottom: env(safe-area-inset-bottom, 0); }
 
@@ -2525,8 +2526,8 @@ transform: scale(1.04);
             <span class="format-fact__value">Материалы остаются в библиотеке</span>
           </div>
           <div class="format-fact">
-            <span class="format-fact__label">Длительность</span>
-            <span class="format-fact__value">12 недель / 3 месяца</span>
+            <span class="format-fact__label">После урока</span>
+            <span class="format-fact__value">Задачи для самостоятельной работы</span>
           </div>
         </div>
         <button class="format-floor__btn" type="button" data-format-open>Как устроена неделя</button>
@@ -2801,13 +2802,18 @@ transform: scale(1.04);
         </div>
         <div class="format-item">
           <span class="format-icon">[ПРАКТИКА] // 1.5 ЧАСА</span>
-            <div class="format-title">Практика на месте</div>
-            <p class="format-desc">Студенты реализуют кейс самостоятельно прямо на занятии. Сталкиваются с проблемами и решают их с экспертами на месте.</p>
+            <div class="format-title">Практика на вебинаре</div>
+            <p class="format-desc">Студенты реализуют кейс самостоятельно прямо на занятии. Сталкиваются с проблемами и решают их с командой буткемпа на месте.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[ПОСЛЕ УРОКА] // 1–3 ЧАСА</span>
+          <div class="format-title">Самостоятельная практика</div>
+          <p class="format-desc">После уроков мы даём материал для самостоятельной практики. Для тех, кто хочет получить максимум от участия.</p>
         </div>
       </div>
       <div style="margin-top: 40px; border-left: 2px solid var(--accent); padding-left: 24px;" class="reveal">
         <p style="font-size: 13px; line-height: 1.8; color: var(--ink60);">
-          Уроки 2–5 проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. 
+          Некоторые уроки проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. 
           После урока открывается доступ к материалам библиотеки. Логика последовательного открытия поможет сконцентрироваться на текущих паттернах.
         </p>
       </div>
