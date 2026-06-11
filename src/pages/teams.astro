@@ -111,7 +111,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     border-bottom: 1px solid var(--ink10);
     position: relative;
   }
-  .t-wrap { max-width: 1200px; }
+  .t-wrap { max-width: 1200px; margin: 0 auto; width: 100%; }
 
   /* TYPOGRAPHY */
   .t-label {
@@ -463,6 +463,76 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   }
   .t-footer a { color: var(--ink40); text-decoration: none; }
   .t-footer a:hover { color: var(--ink); }
+
+  /* ── NEW B2B SECTIONS ── */
+
+  /* 2-column grid */
+  .t-grid2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink10); margin-top: 32px; }
+  .t-grid2 .t-cell { padding: 28px 32px; border-right: 1px solid var(--ink10); background: var(--ink05); }
+  .t-grid2 .t-cell:last-child { border-right: none; }
+
+  /* 2×2 grid (симптомы) */
+  .t-grid2x2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink10); margin-top: 32px; }
+  .t-grid2x2 .t-cell { padding: 28px 32px; border-right: 1px solid var(--ink10); border-bottom: 1px solid var(--ink10); background: var(--ink05); }
+  .t-grid2x2 .t-cell:nth-child(2n) { border-right: none; }
+  .t-grid2x2 .t-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+  /* Cell tag (мелкий оранжевый лейбл внутри ячейки) */
+  .t-cell__tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; display: block; }
+
+  /* Callout — левая оранжевая рамка */
+  .t-callout { border-left: 3px solid var(--accent); padding-left: 20px; font-size: 14px; line-height: 1.6; color: var(--ink); margin-bottom: 24px; }
+
+  /* Highlight-строка */
+  .t-highlight { padding: 16px 20px; background: var(--ink05); border-left: 3px solid var(--accent); font-size: 13px; line-height: 1.6; margin-top: 24px; }
+
+  /* Двухколонный список */
+  .t-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
+  .t-col-head { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ink10); }
+  .t-blist { list-style: none; }
+  .t-blist li { font-size: 13px; line-height: 1.7; color: var(--ink60); padding-left: 16px; position: relative; margin-bottom: 12px; }
+  .t-blist li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; background: var(--accent); }
+
+  /* Таблица пакетов */
+  .t-pkg-table { border: 1px solid var(--ink10); margin: 32px 0 0; }
+  .t-pkg-hdr { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ink10); }
+  .t-pkg-hdr-cell { padding: 16px 20px; border-right: 1px solid var(--ink10); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Roboto Condensed', sans-serif; }
+  .t-pkg-hdr-cell:last-child { border-right: none; }
+  .t-pkg-hdr-cell .sub { display: block; font-size: 10px; font-weight: 400; color: var(--ink40); text-transform: none; letter-spacing: 0; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+  .t-pkg-body { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .t-pkg-col { border-right: 1px solid var(--ink10); padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .t-pkg-col:last-child { border-right: none; }
+  .t-pkg-item { font-size: 11px; line-height: 1.6; color: var(--ink60); padding: 8px 10px; }
+  .t-pkg-item.accent { background: var(--ink05); color: var(--ink); font-weight: 600; border-left: 2px solid var(--accent); }
+
+  /* Ценовой баннер */
+  .t-price-banner { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--ink); margin-top: 24px; flex-wrap: wrap; gap: 12px; }
+  .t-price-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,245,240,0.5); }
+  .t-price-value { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 28px; color: var(--accent); letter-spacing: -0.02em; }
+  .t-price-note { font-size: 11px; color: rgba(245,245,240,0.4); }
+
+  /* Контакты в CTA */
+  .t-contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(245,245,240,0.15); margin-top: 32px; max-width: 480px; }
+  .t-contact-cell { padding: 16px 20px; border-right: 1px solid rgba(245,245,240,0.15); }
+  .t-contact-cell:last-child { border-right: none; }
+  .t-contact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,245,240,0.4); margin-bottom: 6px; }
+  .t-contact-value { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--bg); letter-spacing: -0.01em; }
+
+  /* Адаптив новых компонентов */
+  @media (max-width: 768px) {
+    .t-grid2, .t-grid2x2, .t-two-col { grid-template-columns: 1fr; }
+    .t-grid2 .t-cell, .t-grid2x2 .t-cell { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .t-grid2 .t-cell:last-child { border-bottom: none; }
+    .t-pkg-hdr, .t-pkg-body { grid-template-columns: 1fr; }
+    .t-pkg-hdr-cell { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .t-pkg-hdr-cell:last-child { border-bottom: none; }
+    .t-pkg-col { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .t-pkg-col:last-child { border-bottom: none; }
+    .t-price-banner { flex-direction: column; align-items: flex-start; }
+    .t-contacts { grid-template-columns: 1fr; }
+    .t-contact-cell { border-right: none; border-bottom: 1px solid rgba(245,245,240,0.15); }
+    .t-contact-cell:last-child { border-bottom: none; }
+  }
 </style>
 </head>
 <body>
@@ -477,142 +547,212 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
 <!-- HERO -->
 <section id="t-hero">
   <div class="t-wrap">
-    <span class="t-hero__label">[TEAMS] // КОРПОРАТИВНОЕ УЧАСТИЕ · AI DRIVEN РАЗРАБОТКА</span>
+    <span class="t-hero__label">[BOOTCAMP_B2B] // AI-DRIVEN DEVELOPMENT</span>
     <h1 class="t-hero__title">
-      AI-driven<br>
-      разработка<br>
-      для <span class="accent">всей команды.</span>
+      AI-Driven Bootcamp<br>
+      для <span class="accent">инженерных команд</span>
     </h1>
     <div class="t-hero__sub">
-      Буктемп работает на трёх уровнях: личная скорость разработчика, командный AI-контур и системная трансформация SDLC организации. Для команд — специальные условия и отдельное внимание к трансформации.
+      <p style="margin-bottom:12px;">Апгрейд роли разработчика и представителей продуктовых команд IT</p>
+      <p>Трансформация компаний через встраивание AI в реальные процессы компании</p>
+    </div>
+    <div style="margin-top:40px;">
+      <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section id="t-problem">
+<!-- VISION -->
+<section id="t-vision">
   <div class="t-wrap">
-    <span class="t-label">[ПРОБЛЕМА] // ПОЧЕМУ ТОЧЕЧНОГО AI НЕДОСТАТОЧНО</span>
-    <h2 class="t-title">AI используют<br><span class="accent">фрагментарно.</span></h2>
-    <p class="t-prose">
-      Опытные разработчики уже попробовали Cursor, Claude Code, ChatGPT. Что-то прижилось в личном воркфлоу. Команда продолжает работать по-старому, а AI остаётся <strong>персональным ассистентом по запросу</strong> в стороне от основного процесса.
-    </p>
-    <div class="t-grid3">
+    <span class="t-label">[ВИДЕНИЕ] // AI-DRIVEN — ЭТО НОВЫЙ СТАНДАРТ</span>
+    <h2 class="t-title">Рынок переходит<br>к <span class="accent">AI-driven</span> компаниям</h2>
+    <div class="t-callout">AI-driven — это новый стандарт конкурентоспособности, а не модный эксперимент</div>
+    <p class="t-prose">AI меняет не отдельные задачи, а всю цепочку создания ценности: продукт, разработку, эксплуатацию, продажи и поддержку.</p>
+    <p class="t-prose">Выигрывают компании, которые перестраивают процессы под AI, а не те, кто просто раздал сотрудникам доступ к инструментам и ждёт эффекта.</p>
+    <div class="t-grid2">
       <div class="t-cell">
-        <div class="t-cell__num">01</div>
-        <div class="t-cell__title">Личный уровень</div>
-        <div class="t-cell__text"><strong>AI помогает с задачами, но воркфлоу не перестроен.</strong> Используется как продвинутый автокомплит. Эффект есть, но он не масштабируется.</div>
+        <span class="t-cell__tag">«Кустарный» AI</span>
+        <div class="t-cell__title">Иллюзия движения</div>
+        <div class="t-cell__text">Разрозненные эксперименты, локальные инициативы и энтузиасты-одиночки. Создаёт иллюзию движения, но почти не влияет на бизнес-результат.</div>
       </div>
       <div class="t-cell">
-        <div class="t-cell__num">02</div>
-        <div class="t-cell__title">Командный уровень</div>
-        <div class="t-cell__text"><strong>Каждый разработчик использует AI по-своему.</strong> Нет общих гайдлайнов, общих агентов, общего код-ревью. Скорость одного выросла на 20–30%, команда работает по-старому.</div>
+        <span class="t-cell__tag">AI-driven компания</span>
+        <div class="t-cell__title">Системная интеграция</div>
+        <div class="t-cell__text">«Счастливый билет» только при условии системной интеграции AI в ключевые звенья бизнеса: люди, процессы, инструменты, архитектура.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="t-value">
+  <div class="t-wrap">
+    <span class="t-label">[БИЗНЕС-ЦЕННОСТЬ] // AI — ЭТО НЕ ТОЛЬКО ПРО ЭКОНОМИЮ</span>
+    <h2 class="t-title">Два рычага, которые<br>даёт <span class="accent">AI</span> бизнесу</h2>
+    <div class="t-grid2">
+      <div class="t-cell">
+        <span class="t-cell__tag">Рычаг 01</span>
+        <div class="t-cell__title">Экономия и эффективность</div>
+        <ul class="t-blist" style="margin-top:12px;">
+          <li>Ускорение разработки и снижение доли ручного труда.</li>
+          <li>Автоматизация части рутинных операций в документации, тестировании, ревью и поддержке legacy.</li>
+          <li>Снижение зависимости от подрядчиков и экстенсивного расширения штата при росте задач.</li>
+        </ul>
       </div>
       <div class="t-cell">
-        <div class="t-cell__num">03</div>
-        <div class="t-cell__title">Организационный уровень</div>
-        <div class="t-cell__text"><strong>AI не встроен в SDLC.</strong> Метрик нет, ROI неясен, тимлиды и менеджмент скептичны. Релизы выходят с прежней частотой, бизнес не видит изменений.</div>
+        <span class="t-cell__tag">Рычаг 02</span>
+        <div class="t-cell__title">Рост выручки и прибыли</div>
+        <ul class="t-blist" style="margin-top:12px;">
+          <li>Более быстрый вывод новых фич и продуктов на рынок.</li>
+          <li>Появление новых AI-продуктов и сервисов в продуктовой линейке.</li>
+          <li>Улучшение клиентского опыта, удержания и монетизации за счёт AI-функций.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-highlight"><strong>Вывод для руководителей:</strong> фокусироваться только на сокращении расходов — значит недополучить значительную часть эффекта от AI.</div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="t-problems">
+  <div class="t-wrap">
+    <span class="t-label">[ПРОБЛЕМА] // ПОЧЕМУ AI-ИНИЦИАТИВЫ БУКСУЮТ</span>
+    <h2 class="t-title">Знакомые симптомы<br>«кустарного» <span class="accent">AI</span></h2>
+    <div class="t-grid2x2">
+      <div class="t-cell">
+        <span class="t-cell__tag">Симптом 01</span>
+        <div class="t-cell__title">Много PoC, мало продакшена</div>
+        <div class="t-cell__text">AI остаётся на уровне демо и не доходит до рабочих процессов.</div>
+      </div>
+      <div class="t-cell">
+        <span class="t-cell__tag">Симптом 02</span>
+        <div class="t-cell__title">Инструменты без системы</div>
+        <div class="t-cell__text">Команды пробуют инструменты, но не строят систему. Есть точечное использование, но не хватает навыков интеграции, контроля качества и масштабирования.</div>
+      </div>
+      <div class="t-cell">
+        <span class="t-cell__tag">Симптом 03</span>
+        <div class="t-cell__title">Разрыв между бизнесом и инженерами</div>
+        <div class="t-cell__text">Бизнес ждёт ROI, инженеры — чётких постановок, и между ними часто нет общего языка про AI.</div>
+      </div>
+      <div class="t-cell">
+        <span class="t-cell__tag">Симптом 04</span>
+        <div class="t-cell__title">Разовые воркшопы не дают трансформации</div>
+        <div class="t-cell__text">Для результата нужен не вдохновляющий обзор, а системный апгрейд ключевых людей и рабочих практик.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESULT -->
-<section id="t-result">
+<!-- DOUBLE VALUE -->
+<section id="t-dvalue">
   <div class="t-wrap">
-    <span class="t-label">[РЕЗУЛЬТАТ] // ТРИ УРОВНЯ ИЗМЕНЕНИЙ</span>
-    <h2 class="t-title">От личного <br>до <span class="accent">организационного.</span></h2>
-    <div class="t-result-stack">
-      <div class="t-result-row">
-        <div class="t-result-tag">[Личный уровень]</div>
-        <div>
-          <div class="t-result-h">Скорость работы — другая</div>
-          <div class="t-result-d">Системный воркфлоу с агентами, готовая библиотека промптов и паттернов, мультиэкспертность по всем смежным доменам. Задачи, которые занимали часы, выполняются за минуты. Подход «доверяй, но проверяй» включён в каждый этап работы с агентами.</div>
-        </div>
-      </div>
-      <div class="t-result-row">
-        <div class="t-result-tag">[Командный уровень]</div>
-        <div>
-          <div class="t-result-h">AI встроен в командный контур</div>
-          <div class="t-result-d">.md инструкции для AI как стандарт, общие агенты для типовых задач, ревью агентского кода, спецификации с предсказуемым результатом. Единый процесс, который работает у любого участника команды, на смену набору индивидуальных подходов.</div>
-        </div>
-      </div>
-      <div class="t-result-row t-result-row--featured">
-        <div class="t-result-tag">[Организационный уровень]</div>
-        <div>
-          <div class="t-result-h">Готовый план <span class="accent">AI-трансформации</span></div>
-          <div class="t-result-d">План внедрения с цифрами ROI, аргументы для скептичного менеджмента, дорожная карта по перестройке SDLC, схема корпоративной академии. Разработчик становится лидером трансформации в команде и компании.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCALING -->
-<section id="t-scaling">
-  <div class="t-wrap">
-    <span class="t-label">[ПРОГРАММА] // МОДУЛЬ 5 — МАСШТАБИРОВАНИЕ</span>
-    <h2 class="t-title">Что разбирается<br><span class="accent">на уроке про команду.</span></h2>
-    <p class="t-prose">
-      Последний модуль буктемпа посвящён переносу AI-практик на уровень команды и организации и развитию специалиста. Это отдельные уроки, который ведётся с позиции тимлида или технического руководителя.
-    </p>
-    <div class="t-scale-grid">
-      <div class="t-scale-cell">
-        <span class="t-scale-tag">[01] // Трансформация</span>
-        <div class="t-scale-title">План внедрения</div>
-        <div class="t-scale-text">Пошаговый план перехода команды на AI-driven разработку: с чего начинать, как выстраивать приоритеты, какие метрики отслеживать на каждом этапе.</div>
-      </div>
-      <div class="t-scale-cell">
-        <span class="t-scale-tag">[02] // Люди</span>
-        <div class="t-scale-title">Работа с сопротивлением</div>
-        <div class="t-scale-text">Почему разработчики сопротивляются, как снять барьеры, как объяснить ценность изменений тем, кто скептичен или боится потерять работу.</div>
-      </div>
-      <div class="t-scale-cell">
-        <span class="t-scale-tag">[03] // Процессы</span>
-        <div class="t-scale-title">Оцифровка SDLC</div>
-        <div class="t-scale-text">Встраивание AI в существующие процессы: от планирования и ревью до деплоя. AGENTS.md, корпоративные скиллы, агентский конвейер, стратегия отката.</div>
-      </div>
-      <div class="t-scale-cell">
-        <span class="t-scale-tag">[04] // Менеджмент</span>
-        <div class="t-scale-title">ROI для топ-менеджмента</div>
-        <div class="t-scale-text">Как оцифровать эффект от AI-внедрения, какие аргументы работают с нетехническим менеджментом, как выстроить корпоративную академию и удержать экспертизу внутри.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CLUB -->
-<section id="t-club">
-  <div class="t-wrap">
-    <span class="t-label">[БОНУС] // ПОСЛЕ ВЫПУСКА · КЛУБ NAITION</span>
-    <h2 class="t-title">Буктемп даёт знания.<br><span class="accent">Клуб</span> доводит до рабочих процессов.</h2>
-    <p class="t-prose">
-      После выпуска начинается имплементация. Внедрить AI в рабочий процесс, перестроить команду, настроить агентский конвейер — это месяцы, в которые нужны люди, которые проходят то же самое.
-    </p>
-    <div class="t-club-banner">
+    <span class="t-label">[ЦЕННОСТЬ] // ДВОЙНАЯ ВЫГОДА</span>
+    <h2 class="t-title">Один продукт — две<br>сильные <span class="accent">ценности</span><br>внутри заказчика</h2>
+    <div class="t-two-col">
       <div>
-        <span class="t-club-banner__tag">[БОНУС ДЛЯ УЧАСТНИКОВ КОМАНД]</span>
-        <div class="t-club-banner__h">
-          Клуб Naition —<br>
-          <span class="accent">6 месяцев бесплатно</span>
+        <div class="t-col-head">Для компании и руководителей</div>
+        <ul class="t-blist">
+          <li>Ускорение delivery и снижение себестоимости разработки за счёт AI-инструментов в ежедневной работе команды.</li>
+          <li>Формирование внутреннего AI-ядра — группы людей, на которых можно опереть дальнейшую трансформацию.</li>
+          <li>Появление у компании общего языка про AI, ROI, риски и применимость AI в реальных процессах.</li>
+          <li>Снижение зависимости от единичных энтузиастов: знания и практики распределяются по команде.</li>
+          <li>Усиление HR-бренда: инвестиции в AI-компетенции повышают привлекательность компании для сильных инженеров.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="t-col-head">Для сотрудников</div>
+        <ul class="t-blist">
+          <li>Освоение востребованных AI-навыков, которые уже становятся стандартом сильного инженера.</li>
+          <li>Карьерный рост: движение в сторону AI-driven engineer, технического лидера, архитектора решений.</li>
+          <li>Практика на реальных рабочих задачах, а не абстрактных упражнениях.</li>
+          <li>Рост мотивации и вовлечённости: люди видят, что компания инвестирует в их развитие и будущее.</li>
+          <li>Командообразование: общий понятийный аппарат, общие инструменты и совместная работа над новыми подходами.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="t-packages">
+  <div class="t-wrap">
+    <span class="t-label">[ФОРМАТЫ] // ВАРИАНТЫ ДЛЯ КОРПОРАТИВНЫХ КЛИЕНТОВ</span>
+    <h2 class="t-title">Варианты реализации<br>для <span class="accent">корпоративных</span> клиентов</h2>
+    <div class="t-pkg-table">
+      <div class="t-pkg-hdr">
+        <div class="t-pkg-hdr-cell">
+          Интеграция в поток
+          <span class="sub">Индивидуально / Групповое участие</span>
+        </div>
+        <div class="t-pkg-hdr-cell">
+          Стандартный пакет
+          <span class="sub">С дополнительной поддержкой</span>
+        </div>
+        <div class="t-pkg-hdr-cell">
+          Пакет «Эксперт»
+          <span class="sub">Разработка под компанию</span>
+        </div>
+      </div>
+      <div class="t-pkg-body">
+        <div class="t-pkg-col">
+          <div class="t-pkg-item accent">Участие сотрудников в буткемпе на общих основаниях</div>
+          <div class="t-pkg-item">Прогрессивная скидка по количеству представителей</div>
+          <div class="t-pkg-item accent">1–2 примера/кейса в рамках занятий привязаны к домену компании</div>
+          <div class="t-pkg-item">1 выделенная групповая встреча экспертов буктемпа с участниками от компании</div>
+          <div class="t-pkg-item">Отдельный групповой чат под компанию с представителями Naition</div>
+        </div>
+        <div class="t-pkg-col">
+          <div class="t-pkg-item accent">Всё из базового формата</div>
+          <div class="t-pkg-item accent">«Мини-акселератор» по AI-driven разработке внутри компании</div>
+          <div class="t-pkg-item">1 стратегический созвон с тех/прод-лидами в начале (kick-off) и 1 в конце (debrief / ретро)</div>
+          <div class="t-pkg-item">Адаптация части примеров и домашних заданий под технологический стек заказчика</div>
+          <div class="t-pkg-item">Дополнительные промежуточные групповые Q&amp;A, разборы кейсов компании</div>
+          <div class="t-pkg-item">Дополнительный трекшн внедрения изменений в компанию-заказчик (в рамках закрытого клуба)</div>
+        </div>
+        <div class="t-pkg-col">
+          <div class="t-pkg-item accent">Разработка формата и содержания образовательной программы под компанию</div>
+          <div class="t-pkg-item accent">Приземление AI-driven подхода в процессы компании</div>
+          <div class="t-pkg-item">Реализация в несколько этапов, каждый из которых обсчитывается как индивидуальное вовлечение экспертов</div>
+          <div class="t-pkg-item">Обсуждается индивидуально в зависимости от объёма группы и уровня запросов</div>
         </div>
       </div>
     </div>
-    <div class="t-grid3">
-      <div class="t-cell">
-        <div class="t-cell__num">[01]</div>
-        <div class="t-cell__title">Закрытый чат с экспертами</div>
-        <div class="t-cell__text">Ведущие инструкторы, программный комитет и выпускники остаются в чате. Можно задать вопрос по своему проекту и получить ответ от того, кто прошёл ту же программу.</div>
+    <div class="t-price-banner">
+      <div>
+        <div class="t-price-label">Базовая цена · Интеграция в поток</div>
       </div>
-      <div class="t-cell">
-        <div class="t-cell__num">[02]</div>
-        <div class="t-cell__title">Живые встречи раз в 2 недели</div>
-        <div class="t-cell__text">Разбор реальных кейсов от участников и экспертов, новых инструментов, архитектурных решений. Записи — в библиотеке.</div>
+      <div class="t-price-value">125 000 ₽ / участник</div>
+      <div class="t-price-note">Стандартный и Эксперт — обсуждаются индивидуально</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section id="t-outcomes">
+  <div class="t-wrap">
+    <span class="t-label">[РЕЗУЛЬТАТ] // ЧТО ОСТАЁТСЯ ПОСЛЕ БУКТЕМПА</span>
+    <h2 class="t-title">Измеримые <span class="accent">артефакты</span>,<br>а не просто факт обучения</h2>
+    <div class="t-two-col">
+      <div>
+        <div class="t-col-head">Для компании</div>
+        <ul class="t-blist">
+          <li>Команда, которая лучше понимает, как применять AI в реальных процессах компании.</li>
+          <li>Подготовленные и приоритизированные AI-кейсы для дальнейшего внедрения.</li>
+          <li>Набор практик, шаблонов и подходов, которые можно использовать в ежедневной работе.</li>
+          <li>Более зрелый внутренний разговор про AI: где он действительно создаёт ценность, а где — нет.</li>
+          <li>Основа для последующей трансформации процессов, ролей и инженерного контура.</li>
+        </ul>
       </div>
-      <div class="t-cell">
-        <div class="t-cell__num">[03]</div>
-        <div class="t-cell__title">Кейс-клубы и обновления</div>
-        <div class="t-cell__text">Участники приносят свои ситуации с работы — разбираем до решения. Программа буктемпа продолжает обновляться, новые модули доступны участникам клуба.</div>
+      <div>
+        <div class="t-col-head">Для каждого участника</div>
+        <ul class="t-blist">
+          <li>Практический опыт применения AI-инструментов в ежедневной инженерной работе: от IDE и LLM до агентов, API и работы с legacy.</li>
+          <li>Более сильная личная рабочая система: умение быстрее исследовать, проектировать, писать, проверять и дорабатывать решения с помощью AI.</li>
+          <li>Собранный personal toolkit: набор инструментов, паттернов, промптов и подходов, которые можно сразу переносить в свою работу.</li>
+          <li>Понимание, как применять AI не «в вакууме», а в production-контексте компании, с учётом SDLC, качества и ROI.</li>
+          <li>Более сильная профессиональная позиция на рынке: участник начинает мыслить и действовать как AI-driven engineer.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -620,11 +760,17 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
 
 <!-- CTA -->
 <section id="t-cta">
-  <div class="t-wrap">
-    <span class="t-label" style="color:rgba(245,245,240,0.4)">[УЧАСТИЕ] // ОБСУДИМ УСЛОВИЯ</span>
-    <h2 class="t-cta__title">Обсудить условия<br>для <span class="accent">вашей команды.</span></h2>
-    <p class="t-cta__sub">Расскажите о размере команды и задачах — подберём формат и условия. Второй поток стартует 7 июля.</p>
-    <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
+  <div class="t-wrap" style="text-align:center;">
+    <span class="t-label" style="color:rgba(245,245,240,0.4)">[СЛЕДУЮЩИЙ ШАГ] // 30 МИНУТ НА СЦЕНАРИЙ ЗАПУСКА</span>
+    <h2 class="t-cta__title">30 минут — и у вас будет<br>понятный <span class="accent">сценарий запуска</span><br>для вашей команды</h2>
+    <ul class="t-blist" style="margin-bottom:32px; display:inline-block; text-align:left;">
+      <li style="color:rgba(245,245,240,0.65);">На ознакомительном звонке разбираем состав команды, задачи и целевой эффект.</li>
+      <li style="color:rgba(245,245,240,0.65);">Подбираем оптимальный формат участия и обсуждаем, как встроить программу в контекст компании.</li>
+      <li style="color:rgba(245,245,240,0.65);">По итогам разговора формируем предложение под вашу ситуацию.</li>
+    </ul>
+    <div>
+      <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
+    </div>
   </div>
 </section>
 
