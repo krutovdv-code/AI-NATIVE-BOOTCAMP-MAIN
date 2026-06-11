@@ -1482,6 +1482,15 @@ transform: scale(1.04);
     overflow-wrap: break-word;
     line-height: 1.1;
   }
+  .committee-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
   .committee-quote {
     font-size: 11px;
     line-height: 1.5;
@@ -2878,6 +2887,21 @@ transform: scale(1.04);
           </div>
         </div>
 
+        <div class="feedback-card feedback-card--text">
+          <div class="feedback-text-quote">До курса довольно плотно изучал работу с AI, поэтому ожидал не столько новых инструментов, сколько более обоснованного понимания. Курс разложил всё по полочкам, плюс получил множество удобных дополнительных материалов для работы с ИИ. Самый ощутимый результат — после урока по spec-driven разработке сделал упрощённый вариант фреймворка у себя: теперь активно документируем модули по этому сценарию, у разработчиков и бизнеса стало меньше вопросов по старым модулям. В целом всем доволен, часть материала уже применяю. Из пожеланий — хотелось бы иметь доступы к необходимым подпискам и знать о них заранее.</div>
+          <div class="feedback-card-bottom">
+            <div class="feedback-text-author">
+              <img class="feedback-text-avatar" src="/facebook-anonymous-silhouette.png" alt="Артём Боченин" />
+              <div>
+                <div class="feedback-text-name">Артём Боченин</div>
+                <div class="feedback-text-role">Middle-разработчик · 5 лет в IT</div>
+              </div>
+            </div>
+            <div class="feedback-stack">// Vue 3 · Laravel 11+ · PHP · TS · Docker · YAML</div>
+            <div class="feedback-company">NDA</div>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="feedback-controls">
@@ -2969,6 +2993,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Михаил Пайсон</div>
+            <div class="committee-role">CTO, Aurora First · ex-Яндекс</div>
             <div class="committee-quote">«Подход через спецификации и управление контекстом — правильный фундамент. Specification-driven development как практика сюда органично вписывается.»</div>
           </div>
         </div>
@@ -2978,6 +3003,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Павел Ремизов</div>
+            <div class="committee-role">CTO, Tabla App · SberDevices · Skillbox</div>
             <div class="committee-quote">«Структура выстроена осмысленно, программа прошла через серьёзную работу. Путь от простых кейсов к архитектурным задачам выстроен последовательно.»</div>
           </div>
         </div>
@@ -2987,6 +3013,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Дмитрий Твердохлебов</div>
+            <div class="committee-role">CPO · Консультант по внедрению ИИ · ex-МТС · ex-VK</div>
             <div class="committee-quote">«Разработчик, который прошёл такую программу целиком — от MCP-серверов до архитектурной трансформации больших проектов — это готовый AI-driven инженер, за которого на рынке сейчас конкурируют.»</div>
           </div>
         </div>
@@ -2996,6 +3023,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Андрей Кузьминых</div>
+            <div class="committee-role">AI/ML/Data Science · Внедрение ИИ в бизнес · Andre AI Technologies</div>
             <div class="committee-quote">«Уверенный буктемп про смену роли разработчика. Важно, что в конце затронута тема организационных изменений — это обычно самое слабое место подобных программ. Здесь это закрыто.»</div>
           </div>
         </div>
@@ -3005,6 +3033,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Глеб Михеев</div>
+            <div class="committee-role">CTO, Beta · ex-Сбер, ex-Skillbox</div>
             <div class="committee-quote">«Плотный буткемп, каким и должен быть для аудитории разработчиков. Я бы и сам такое послушал. Чувствуется, что материал выстроен людьми, которые понимают, как реально устроена разработка изнутри.»</div>
           </div>
         </div>
@@ -3014,6 +3043,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Дмитрий Крутов</div>
+            <div class="committee-role">CEO · Сооснователь Skillbox</div>
             <div class="committee-quote">«Для мидлов и сеньоров это редкая возможность переосмыслить свой подход, не отрываясь от реальных задач.»</div>
           </div>
         </div>
@@ -3023,6 +3053,7 @@ transform: scale(1.04);
           </div>
           <div class="committee-info">
             <div class="committee-name">Александр Ларьяновский</div>
+            <div class="committee-role">Управляющий партнёр, Skyeng</div>
             <div class="committee-quote">«Большинство курсов учат инструментам. Этот учит думать иначе о своей работе, что важнее.»</div>
           </div>
 
@@ -3045,7 +3076,7 @@ transform: scale(1.04);
       <span class="pricing-price-note">↓ скидка при раннем бронировании — уточните у консультанта</span>
       <ul class="pricing-unique">
         <li class="pricing-unique-item">эфиры за отдельной ссылкой, без доступа в zoom-комнату</li>
-        <li class="pricing-unique-item">чат с командой, вопросы преподавателям через поддержку</li>
+        <li class="pricing-unique-item">чат для обсуждения вопросов и поддержка от кураторов</li>
         <li class="pricing-unique-item">групповые встречи раз в 2 недели: разбор домашек и сложностей в группах по 20 человек</li>
       </ul>
       <div class="pricing-card-btn">
