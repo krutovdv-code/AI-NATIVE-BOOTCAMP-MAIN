@@ -2085,6 +2085,77 @@ transform: scale(1.04);
     }
   }
 
+  /* ROLE CARDS — для кого */
+  .roles-block {
+    margin: 40px 0 48px;
+  }
+  .roles-primary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+    margin-bottom: 12px;
+  }
+  .role-card {
+    padding: 24px 28px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .role-card:last-child { border-right: none; }
+  .role-card__num {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .role-card__title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .roles-secondary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .roles-secondary__label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  .role-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--ink20);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink40);
+    background: transparent;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .roles-primary { grid-template-columns: 1fr; }
+    .role-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .role-card:last-child { border-bottom: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -2279,6 +2350,31 @@ transform: scale(1.04);
     <div>
       <span class="bracket-label">[AUDIENCE] // ДЛЯ КОГО</span>
       <h2 class="section-title reveal">Для технических<br>специалистов с<br><span class="hero-accent">продуктовым мышлением</span></h2>
+
+      <div class="roles-block reveal">
+        <div class="roles-primary">
+          <div class="role-card">
+            <div class="role-card__num">01</div>
+            <div class="role-card__title">Middle / Senior / Lead-разработчик</div>
+          </div>
+          <div class="role-card">
+            <div class="role-card__num">02</div>
+            <div class="role-card__title">Solution Architect</div>
+          </div>
+          <div class="role-card">
+            <div class="role-card__num">03</div>
+            <div class="role-card__title">Дата-инженер</div>
+          </div>
+        </div>
+        <div class="roles-secondary">
+          <span class="roles-secondary__label">либо →</span>
+          <span class="role-chip">CTO</span>
+          <span class="role-chip">CPO</span>
+          <span class="role-chip">Системный аналитик</span>
+          <span class="role-chip">Бизнес-аналитик</span>
+          <span class="role-chip">Product Manager</span>
+        </div>
+      </div>
 
       <h3 class="section-sub-title reveal">Чем нужно владеть</h3>
       <div class="prereq-grid reveal">
