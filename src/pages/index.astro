@@ -3071,7 +3071,7 @@ transform: scale(1.04);
         <li class="pricing-unique-item">групповые встречи раз в 2 недели: разбор домашек и сложностей в группах по 20 человек</li>
       </ul>
       <div class="pricing-card-btn">
-        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+        <button type="button" class="cta-btn js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg"><span>→ Записаться</span></button>
       </div>
     </div>
 
@@ -3090,7 +3090,7 @@ transform: scale(1.04);
         <li class="pricing-unique-item">можно приходить со своими рабочими задачами и разбирать их на месте</li>
       </ul>
       <div class="pricing-card-btn">
-        <button type="button" class="cta-btn js-open-widget"><span>→ Записаться</span></button>
+        <button type="button" class="cta-btn js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w"><span>→ Записаться</span></button>
       </div>
     </div>
 
@@ -3238,14 +3238,15 @@ transform: scale(1.04);
   // Модальное окно с виджетом заявки (виджет подгружаем при первом открытии — не блокирует страницу)
   const modal = document.getElementById('widget-modal');
   const widgetBody = document.getElementById('widget-modal-body');
-  var widgetLoaded = false;
-  function openWidgetModal() {
+  var loadedWidgetId = null;
+  function openWidgetModal(widgetId) {
     if (!modal) return;
-    if (!widgetLoaded && widgetBody) {
-      widgetLoaded = true;
+    if (widgetId && widgetId !== loadedWidgetId && widgetBody) {
+      widgetBody.innerHTML = '';
+      loadedWidgetId = widgetId;
       var s = document.createElement('script');
       s.setAttribute('ao-number', '3272');
-      s.setAttribute('ao-widget-id', 'Pex42y1uHUWMJNatz8smDA');
+      s.setAttribute('ao-widget-id', widgetId);
       s.setAttribute('ao-domain', 'content.scalingclub.ru');
       s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
       s.async = true;
@@ -3266,7 +3267,7 @@ transform: scale(1.04);
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       closeBurger();
-      openWidgetModal();
+      openWidgetModal(btn.getAttribute('data-widget-id'));
     });
   });
   document.querySelectorAll('.js-close-widget').forEach(function(btn) {
