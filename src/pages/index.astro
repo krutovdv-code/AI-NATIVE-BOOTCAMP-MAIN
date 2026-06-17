@@ -1212,10 +1212,28 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     flex-wrap: wrap;
     gap: 12px;
   }
+  .footer-requisites {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink10);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 40px;
+  }
+  .footer-requisites p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink40);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .footer-requisites a { color: var(--ink40); text-decoration: underline; }
+  .footer-requisites a:hover { color: var(--ink); }
   @media (max-width: 600px) {
     .footer-top { flex-direction: column; }
     .footer-links { gap: 32px; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-requisites { grid-template-columns: 1fr; }
   }
 
   /* SCROLL REVEAL — по умолчанию видно (без JS); с JS скрыто до появления в viewport */
@@ -3363,6 +3381,10 @@ transform: scale(1.04);
   <div class="footer-bottom">
     <div>© 2026 AI DRIVEN РАЗРАБОТКА</div>
     <div>12 НЕДЕЛЬ · MIDDLE &amp; SENIOR · PRODUCTION-READY</div>
+  </div>
+  <div class="footer-requisites">
+    <p>ИП Крутов Дмитрий Валерьевич<br>ИНН: 772973192199 · ОГРНИП: 308770000171122</p>
+    <p>Email: support@naition.ai<br><a href="https://pd.rkn.gov.ru/operators-registry/operators-list/?id=77-25-482565" target="_blank" rel="noopener">Запись о регистрации в перечне РКН</a></p>
   </div>
 </footer>
 
