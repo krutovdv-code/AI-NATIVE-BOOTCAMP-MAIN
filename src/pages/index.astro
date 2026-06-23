@@ -1907,54 +1907,6 @@ transform: scale(1.04);
     color: var(--ink);
   }
 
-  /* PREREQS GRID */
-  .prereq-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border: 1px solid var(--ink10);
-  }
-  .prereq-item {
-    aspect-ratio: 3 / 1;
-    padding: 18px 24px;
-    border-right: 1px solid var(--ink10);
-    border-bottom: 1px solid var(--ink10);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .prereq-item:nth-child(4n) { border-right: none; }
-  .prereq-item:nth-last-child(-n+4) { border-bottom: none; }
-  .prereq-title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    margin-bottom: 5px;
-    color: var(--ink);
-  }
-  .prereq-sub {
-    font-size: 11px;
-    line-height: 1.5;
-    color: var(--ink40);
-  }
-  @media (max-width: 900px) {
-    .prereq-grid { grid-template-columns: repeat(2, 1fr); }
-    .prereq-item:nth-child(4n) { border-right: 1px solid var(--ink10); }
-    .prereq-item:nth-child(2n) { border-right: none; }
-    .prereq-item:nth-last-child(-n+4) { border-bottom: 1px solid var(--ink10); }
-    .prereq-item:nth-last-child(-n+2) { border-bottom: none; }
-  }
-  @media (max-width: 480px) {
-    .prereq-grid { grid-template-columns: 1fr; }
-    .prereq-item { aspect-ratio: auto; padding: 16px 20px; }
-    .prereq-item:nth-child(n) { border-right: none; border-bottom: 1px solid var(--ink10); }
-    .prereq-item:nth-child(2n) { border-right: none; }
-    .prereq-item:last-child { border-bottom: none; }
-  }
-
   /* TERMINAL STATUS LINE */
   .terminal-status {
     margin-bottom: 32px;
@@ -2110,11 +2062,11 @@ transform: scale(1.04);
 
   /* ROLE CARDS — для кого */
   .roles-block {
-    margin: 40px 0 48px;
+    margin: 40px 0 0px;
   }
   .roles-primary {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
     border: 1px solid var(--ink10);
     margin-bottom: 12px;
@@ -2143,34 +2095,6 @@ transform: scale(1.04);
     letter-spacing: -0.01em;
     line-height: 1.1;
     color: var(--ink);
-  }
-
-  .roles-secondary {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-  }
-  .roles-secondary__label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink40);
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 4px;
-    flex-shrink: 0;
-  }
-  .role-chip {
-    padding: 8px 16px;
-    border: 1px solid var(--ink20);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink40);
-    background: transparent;
-    white-space: nowrap;
   }
 
   @media (max-width: 640px) {
@@ -2468,7 +2392,7 @@ transform: scale(1.04);
   <div class="section-grid">
     <div>
       <span class="bracket-label">[AUDIENCE] // ДЛЯ КОГО</span>
-      <h2 class="section-title reveal">Для технических<br>специалистов с<br><span class="hero-accent">продуктовым мышлением</span></h2>
+      <h2 class="section-title reveal">Для разработчиков с<br><span class="hero-accent">продуктовым мышлением</span></h2>
 
       <div class="roles-block reveal">
         <div class="roles-primary">
@@ -2480,61 +2404,13 @@ transform: scale(1.04);
             <div class="role-card__num">02</div>
             <div class="role-card__title">Solution Architect</div>
           </div>
-          <div class="role-card">
-            <div class="role-card__num">03</div>
-            <div class="role-card__title">Дата-инженер</div>
-          </div>
-        </div>
-        <div class="roles-secondary">
-          <span class="roles-secondary__label">либо →</span>
-          <span class="role-chip">CTO</span>
-          <span class="role-chip">CPO</span>
-          <span class="role-chip">Системный аналитик</span>
-          <span class="role-chip">Бизнес-аналитик</span>
-          <span class="role-chip">Product Manager</span>
-        </div>
-      </div>
-
-      <h3 class="section-sub-title reveal">Чем нужно владеть</h3>
-      <div class="prereq-grid reveal">
-        <div class="prereq-item">
-          <div class="prereq-title">Терминал</div>
-          <div class="prereq-sub">навигация, SSH, запуск скриптов</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">Git + GitHub</div>
-          <div class="prereq-sub">коммиты, ветки, пуллреквесты</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">Docker</div>
-          <div class="prereq-sub">установка, запуск образов, базовые концепции</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">IDE (Cursor / VSCode)</div>
-          <div class="prereq-sub">файловая структура, расширения, отладка</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">БАЗОВОЕ ПОНИМАНИЕ REST API</div>
-          <div class="prereq-sub">запросы, ответы, авторизация</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">Переменные окружения</div>
-          <div class="prereq-sub">.env, конфиги, секреты, API-ключи</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">Базы данных</div>
-          <div class="prereq-sub">реляционные БД, чтение SQL</div>
-        </div>
-        <div class="prereq-item">
-          <div class="prereq-title">Опыт с LLM</div>
-          <div class="prereq-sub">ChatGPT / Claude на уровне пользователя</div>
         </div>
       </div>
 
       <div class="prereq-hint-wrap">
-        <button class="format-floor__btn js-prereq-hint-toggle" type="button">Нет опыта с чем-то из списка?</button>
+        <button class="format-floor__btn js-prereq-hint-toggle" type="button">Что если я не разработчик?</button>
         <div class="prereq-hint-popover" id="prereq-hint" hidden>
-          Мы подготовили материалы, которые помогут разобраться в базовых концепциях из списка, но на некоторых уроках вам может быть сложно.
+            Если вы не разработчик, сообщите нам об этом. Мы проводим короткий опрос, чтобы убедиться, что программа будет действительно актуальна для вас.
         </div>
       </div>
 
@@ -3539,35 +3415,79 @@ transform: scale(1.04);
     });
   });
 
-  // Feedback carousel
+  // Feedback carousel — infinite loop (clones + teleport on native scroll)
   (function() {
     var track = document.getElementById('feedback-track');
     var prevBtn = document.getElementById('feedback-prev');
     var nextBtn = document.getElementById('feedback-next');
-    if (!track || !prevBtn || !nextBtn) return;
+    if (!track) return;
+
+    var originals = Array.prototype.slice.call(track.querySelectorAll('.feedback-card'));
+    if (originals.length === 0) return;
 
     function getCardWidth() {
-      var card = track.querySelector('.feedback-card');
-      return card ? card.offsetWidth : 340;
+      return originals[0] ? originals[0].offsetWidth : 340;
+    }
+    function measureSet() {
+      var w = 0;
+      originals.forEach(function(card) { w += card.offsetWidth; });
+      return w;
+    }
+    var setWidth = measureSet();
+
+    // Clone a full set before and after the originals so the seam is never visible.
+    function appendCloneSet(where) {
+      var frag = document.createDocumentFragment();
+      originals.forEach(function(card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('feedback-card--clone');
+        frag.appendChild(clone);
+      });
+      if (where === 'before') track.insertBefore(frag, track.firstChild);
+      else track.appendChild(frag);
+    }
+    appendCloneSet('after');
+    appendCloneSet('before');
+
+    function jumpTo(x) {
+      var prev = track.style.scrollBehavior;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = x;
+      track.style.scrollBehavior = prev;
+    }
+    jumpTo(setWidth); // start on the first real card (after the before-clones)
+
+    var dragging = false, startX = 0, startScroll = 0, wrapping = false;
+
+    // Teleport by one set width when the user drifts into a clone zone — same
+    // card at the same offset, so the jump is invisible.
+    function wrap() {
+      if (wrapping) return;
+      var sl = track.scrollLeft;
+      if (sl < setWidth) {
+        wrapping = true;
+        jumpTo(sl + setWidth);
+        if (dragging) startScroll += setWidth;
+        wrapping = false;
+      } else if (sl >= setWidth * 2) {
+        wrapping = true;
+        jumpTo(sl - setWidth);
+        if (dragging) startScroll -= setWidth;
+        wrapping = false;
+      }
     }
 
-    function updateArrows() {
-      prevBtn.disabled = track.scrollLeft <= 1;
-      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
-    }
-
-    prevBtn.addEventListener('click', function() {
+    prevBtn && prevBtn.addEventListener('click', function() {
       track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
     });
-    nextBtn.addEventListener('click', function() {
+    nextBtn && nextBtn.addEventListener('click', function() {
       track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
     });
 
-    track.addEventListener('scroll', updateArrows);
-    updateArrows();
+    track.addEventListener('scroll', wrap);
 
     // Drag to scroll
-    var dragging = false, startX = 0, startScroll = 0;
     track.addEventListener('pointerdown', function(e) {
       dragging = true;
       startX = e.clientX;
@@ -3586,10 +3506,14 @@ transform: scale(1.04);
       var cardW = getCardWidth();
       var target = Math.round(track.scrollLeft / cardW) * cardW;
       track.scrollTo({ left: target, behavior: 'smooth' });
-      updateArrows();
     }
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
+
+    // Card widths change between breakpoints — re-measure so the loop math holds.
+    window.addEventListener('resize', function() {
+      setWidth = measureSet();
+    });
   })();
 
   // Format modal
