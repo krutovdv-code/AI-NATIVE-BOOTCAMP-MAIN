@@ -1290,7 +1290,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     scrollbar-width: none;
     cursor: grab;
     user-select: none;
-    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
     border: 1px solid var(--ink10);
   }
   .feedback-track:active { cursor: grabbing; }
@@ -3458,7 +3458,7 @@ transform: scale(1.04);
     }
     jumpTo(setWidth); // start on the first real card (after the before-clones)
 
-    var dragging = false, startX = 0, startScroll = 0, wrapping = false;
+    var dragging = false, startX = 0, startScroll = 0, wrapping = false, isTouch = false;
 
     // Teleport by one set width when the user drifts into a clone zone — same
     // card at the same offset, so the jump is invisible.
@@ -3490,6 +3490,7 @@ transform: scale(1.04);
     // Drag to scroll
     track.addEventListener('pointerdown', function(e) {
       dragging = true;
+      isTouch = e.pointerType === 'touch';
       startX = e.clientX;
       startScroll = track.scrollLeft;
       track.setPointerCapture(e.pointerId);
@@ -3497,7 +3498,15 @@ transform: scale(1.04);
     });
     track.addEventListener('pointermove', function(e) {
       if (!dragging) return;
-      track.scrollLeft = startScroll - (e.clientX - startX);
+      var delta = e.clientX - startX;
+      // On touch, cap one gesture to a single card so native-momentum overlap
+      // can't carry the track across the clone seam mid-flight.
+      if (isTouch) {
+        var cap = getCardWidth();
+        if (delta > cap) delta = cap;
+        else if (delta < -cap) delta = -cap;
+      }
+      track.scrollLeft = startScroll - delta;
     });
     function endDrag(e) {
       if (!dragging) return;
