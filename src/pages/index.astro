@@ -335,8 +335,6 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     word-break: break-word;
   }
   .hero-title .word { display: inline-block; opacity: 1; }
-  .js .hero-title .word { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .js .hero-title .word.visible { opacity: 1; transform: translateY(0); }
   .hero-accent { color: var(--accent); }
   .hero-sub {
     border-left: 2px solid var(--accent);
@@ -3329,14 +3327,6 @@ transform: scale(1.04);
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWidgetModal();
     });
   }
-
-  // Hero word reveal
-  window.addEventListener('load', () => {
-    const words = document.querySelectorAll('.hero-title .word');
-    words.forEach((w, i) => {
-      setTimeout(() => w.classList.add('visible'), 200 + i * 70);
-    });
-  });
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
