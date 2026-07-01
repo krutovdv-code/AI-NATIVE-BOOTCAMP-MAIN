@@ -11,6 +11,71 @@ import "@fontsource/roboto-condensed/cyrillic-900.css";
 import "@fontsource/jetbrains-mono/cyrillic-400.css";
 import "@fontsource/jetbrains-mono/cyrillic-500.css";
 import "@fontsource/jetbrains-mono/cyrillic-600.css";
+
+// Данные таб-карточки «почему сейчас» в секции #about
+type Item = { h: string; t: string; url?: string };
+type Cta = { label: string; href: string };
+type Tab = { n: string; label: string; title: string; intro?: string[]; bullets?: string[]; outro?: string; items?: Item[]; cta?: Cta };
+
+const whyTabs: Tab[] = [
+  {
+    n: "1",
+    label: "Рынок меняется прямо сейчас",
+    title: "Рынок меняется прямо сейчас",
+    items: [
+      {
+        h: "Четверть команд сообщают о трансформации",
+        t: "По данным Deloitte State of AI in the Enterprise 2026, доля лидеров, сообщающих о трансформирующем эффекте AI на их компании, за год выросла более чем вдвое и достигла 25%.",
+        url: "https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html",
+      },
+      {
+        h: "Новые профессии растут быстрее старых",
+        t: "Спрос на forward deployed engineers и похожие роли вырос в 42 раза с 2023 по 2025 год, а AI engineer стал самой быстрорастущей профессией в США в 2026 году.",
+        url: "https://www.linkedin.com/pulse/linkedin-jobs-rise-2026-25-fastest-growing-roles-us-linkedin-news-dlb1c",
+      },
+      {
+        h: "Технологические гиганты перестраивают штат",
+        t: "В мае и июне 2026 года OpenAI, Anthropic, AWS и Databricks за шесть недель вложили более 6,5 млрд долларов в отдельные подразделения forward deployed engineering, закрепив эту роль на уровне крупнейших технологических компаний мира.",
+        url: "https://techcrunch.com/2026/05/04/anthropic-and-openai-are-both-launching-joint-ventures-for-enterprise-ai-services/",
+      },
+    ],
+  },
+  {
+    n: "2",
+    label: "Мы в эпицентре этого сдвига",
+    title: "Мы в эпицентре этого сдвига",
+    intro: [
+      "Рост доли продуктовых задач не означает, что появится только одна профессия. Внутри этого сдвига уже появляются конкретные новые роли, AI-инженер, forward deployed engineer, продуктовый инженер, и список будет меняться дальше.",
+      "Разбираться в таком потоке проще рядом с людьми, которые сами в нём работают.",
+    ],
+    bullets: [
+      "Михаил Овчинников — staff-инженер в Google",
+      "Николай Барышников работал в Yandex Cloud и сейчас является AI-архитектором в собственном проекте",
+      "Даниил Пилипенко как CEO SymbioWay сам нанимает специалистов на такие роли и каждый день имеет дело с тем, как эти требования меняются",
+    ],
+    outro: "Материалов такого уровня погружения на русском языке крайне мало.",
+    cta: { label: "Подробнее про авторов", href: "#committee" },
+  },
+  {
+    n: "3",
+    label: "Почему не учиться самому?",
+    title: "Самостоятельное обучение может привести не туда",
+    items: [
+      {
+        h: "Промт-инженеринг устарел за полгода",
+        t: "Ещё недавно многие вкладывались в отдельную специализацию по промт-инженерингу как в самостоятельную профессию. Сегодня бизнесу это почти не нужно само по себе, инструменты изменились быстрее, чем успел закрепиться навык. Тот же риск сейчас стоит перед контекст-инженерингом и другими узкими практиками, которые на слуху именно в этом году.",
+      },
+      {
+        h: "Без ориентира легко потратить время впустую",
+        t: "Ролики и статьи в открытом доступе рассказывают о конкретных приёмах, но редко объясняют, что из этого нужно рынку. Без фильтра легко потратить месяцы на инструмент, который через полгода станет нерелевантным. Буткемп даёт набор инструментов и навыков, собранных людьми, которые каждый день используют AI в коммерческих проектах.",
+      },
+      {
+        h: "Практика с обратной связью закрепляет навык",
+        t: "Знание, полученное без проверки, легко забывается или применяется неверно. На буткемпе каждая практика разбирается с командой и не уходит «в стол». Портфолио и обратная связь фиксируют навык в рабочем виде, который можно показать работодателю или применить в задачах уже сейчас.",
+      },
+    ],
+  },
+];
 ---
 <!DOCTYPE html>
 <html lang="ru">
@@ -2194,6 +2259,161 @@ transform: scale(1.04);
     .video-modal__box { padding: 44px 16px 24px; }
   }
 
+  /* WHY-NOW TABS (about) */
+  .tabs-card { width: 100%; max-width: none; margin-top: 40px; }
+  .tabs-nav {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+  }
+  .tab-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--ink10);
+    border-bottom: none;
+    padding: 14px 16px 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--ink40);
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .tab-btn:hover:not(.is-active) { background: var(--ink05); color: var(--ink60); }
+  .tab-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink20);
+  }
+  .tab-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+  .tab-btn.is-active {
+    background: var(--ink05);
+    color: var(--ink);
+    margin-bottom: -1px;              /* перекрываем верхнюю границу тела */
+    position: relative;
+    z-index: 2;
+  }
+  .tab-btn.is-active .tab-num { color: var(--accent); }
+
+  .tabs-body {
+    background: var(--ink05);
+    border: 1px solid var(--ink10);
+    padding: 40px 44px;
+    display: grid;                     /* все панели в одной ячейке → высота = самой высокой */
+  }
+
+  /* Все панели наложены друг на друга: высота тела фиксируется по самой высокой,
+     низ не «прыгает» при переключении. Неактивные скрыты, но занимают место. */
+  .tab-panel { grid-area: 1 / 1; visibility: hidden; }
+  .tab-panel.is-active { visibility: visible; }
+
+  .panel-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 3vw, 34px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .panel-lead {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink60);
+  }
+  .panel-lead + .panel-lead { margin-top: 18px; }
+
+  .author-list {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .author-list + .panel-lead { margin-top: 18px; }
+  .author-item {
+    position: relative;
+    padding-left: 26px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink60);
+  }
+  .author-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 13px 26px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .panel-btn:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  .panel-item { margin-bottom: 24px; }
+  .panel-item:last-child { margin-bottom: 0; }
+  .item-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .item-text {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--ink60);
+  }
+  a.item-cited {
+    display: block;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  a.item-cited:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+  }
+  .cite-arrow { color: var(--accent); white-space: nowrap; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .tabs-body { padding: 28px 20px; }
+    .tab-btn { align-items: center; padding: 12px 8px; }
+    .tab-label { display: none; }        /* на мобилке — только номера */
+  }
+
 </style>
 <!-- YourGood chat widget -->
 <script is:inline>(function () { var widget = document.createElement('script'); widget.defer = true; widget.dataset.pfId = 'a05b2038-ca59-46a6-a502-4100d132757b'; widget.src = 'https://widget.yourgood.app/script/widget.js?id=a05b2038-ca59-46a6-a502-4100d132757b&now='+Date.now(); document.head.appendChild(widget); })()</script>
@@ -2336,50 +2556,64 @@ transform: scale(1.04);
       <h2 class="section-title reveal">AI в разработке освоили многие.<br><span class="hero-accent">Встроить его в реальный процесс — другая задача.</span></h2>
       <p class="about-text reveal">И это работает, но это не то, как действительно сейчас меняются процессы в крупных компаниях <strong>и на что есть растущий интерес со стороны заказчиков.</strong></p>
 
-      <div class="about-compare reveal">
-        <div class="about-compare-col">
-          <span class="about-compare-label">// КАК ОБЫЧНО</span>
-          <ul class="about-compare-list">
-            <li>Спросить ChatGPT — получить код — разобраться с ошибкой</li>
-            <li>AI как поисковик или инструмент автодополнения</li>
-            <li>Контекст не управляется, галлюцинации не контролируются</li>
-            <li>SDLC команды остаётся прежним</li>
-          </ul>
+      <!-- WHY-NOW TABS -->
+      <div class="tabs-card reveal">
+        <div class="tabs-nav" role="tablist" aria-label="Почему сейчас">
+          {whyTabs.map((tab, i) => (
+            <button
+              type="button"
+              class={`tab-btn${i === 0 ? " is-active" : ""}`}
+              role="tab"
+              id={`tab-${tab.n}`}
+              aria-controls={`panel-${tab.n}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              data-tab={tab.n}
+            >
+              <span class="tab-num">{tab.n}</span>
+              <span class="tab-label">{tab.label}</span>
+            </button>
+          ))}
         </div>
-        <div class="about-compare-col">
-          <span class="about-compare-label">// КАК В РЕАЛЬНЫХ КОМПАНИЯХ</span>
-          <ul class="about-compare-list">
-            <li>Задача → спека → агент → валидация → деплой</li>
-            <li>Управление контекстом и памятью агента для точности ответов</li>
-            <li>Проверка результата встроена в процесс</li>
-            <li>AI интегрирован в SDLC всей команды</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="about-cards reveal">
-        <div class="about-card">
-          <div class="about-card-title">Этому сложно<br>научиться самому</div>
-          <p class="about-card-text">Из документации и туториалов это не видно, только в живой работе над реальными задачами рядом с теми, кто уже внедрил AI в процесс.</p>
-        </div>
-        <div class="about-card about-card--dark">
-          <div class="about-card-title">Поэтому буктемп<br>построен вокруг практики</div>
-          <p class="about-card-text">Минимум теории, живой разбор кейса с демонстрацией, самостоятельное решение рядом с экспертом на каждом уроке.</p>
-        </div>
-      </div>
+        <div class="tabs-body">
+          {whyTabs.map((tab, i) => (
+            <div
+              class={`tab-panel${i === 0 ? " is-active" : ""}`}
+              role="tabpanel"
+              id={`panel-${tab.n}`}
+              aria-labelledby={`tab-${tab.n}`}
+              data-panel={tab.n}
+            >
+              <div class="panel-title">{tab.title}</div>
 
-      <div class="about-stats reveal">
-        <div class="about-stat">
-          <span class="about-stat-num">95%</span>
-          <span class="about-stat-label">участников удовлетворены буткемпом и продлевают участие</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat-num">+2–4</span>
-          <span class="about-stat-label">AI-driven подхода участники внедряют уже после 3 модуля</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat-num">15</span>
-          <span class="about-stat-label">паттернов применения AI в реальных задачах разработки</span>
+              {tab.intro && tab.intro.map((p) => <p class="panel-lead">{p}</p>)}
+
+              {tab.bullets && (
+                <ul class="author-list">
+                  {tab.bullets.map((b) => <li class="author-item">{b}</li>)}
+                </ul>
+              )}
+
+              {tab.outro && <p class="panel-lead">{tab.outro}</p>}
+
+              {tab.items && tab.items.map((item) => (
+                <div class="panel-item">
+                  <div class="item-h">{item.h}</div>
+                  {item.url ? (
+                    <a class="item-text item-cited" href={item.url} target="_blank" rel="noopener noreferrer">
+                      {item.t} <span class="cite-arrow">↗</span>
+                    </a>
+                  ) : (
+                    <p class="item-text">{item.t}</p>
+                  )}
+                </div>
+              ))}
+
+              {tab.cta && (
+                <a class="panel-btn" href={tab.cta.href}>{tab.cta.label} <span aria-hidden="true">→</span></a>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -3329,6 +3563,25 @@ transform: scale(1.04);
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWidgetModal();
     });
   }
+
+  // Why-now tabs (about)
+  (function () {
+    var btns = document.querySelectorAll('.tab-btn');
+    var panels = document.querySelectorAll('.tab-panel');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-tab');
+        btns.forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach(function (p) {
+          p.classList.toggle('is-active', p.getAttribute('data-panel') === id);
+        });
+      });
+    });
+  })();
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {

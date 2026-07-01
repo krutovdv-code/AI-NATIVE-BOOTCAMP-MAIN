@@ -31,4 +31,7 @@ pnpm-debug.log*
 
 # docs
 STRUCTURE.md
-DESIGN.md
+DESIGN.
+
+# sandbox
+src/pages/sandbox.astro
