@@ -35,3 +35,6 @@ DESIGN.
 
 # sandbox
 src/pages/sandbox.astro
+
+# audit reports
+AUDIT *.md
