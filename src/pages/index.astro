@@ -2487,23 +2487,60 @@ transform: scale(1.04);
   }
   .pricing-value-list li:last-child { border-bottom: none; }
   .pricing-value-list li.is-placeholder { color: var(--accent); }
-  .pricing-value-list li.is-price {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 40px;                 /* тот же вес, что раньше давал .pricing-main__cta */
+
+  /* вложенный список материалов курса — табуляция диагональной стрелкой ↗ */
+  .pricing-sublist { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .pricing-sublist li {
+    position: relative;
+    padding: 0 0 0 22px;
+    border-bottom: none;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cream-muted);
   }
+  .pricing-sublist li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+  }
+  .pricing-value-list li.is-price { padding-bottom: 40px; }      /* тот же вес, что раньше давал .pricing-main__cta */
   .pricing-value-list li.is-price::before { content: none; }  /* цена — без маркера-стрелки */
   .pricing-value-list .price-num {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
-    font-size: 35px;
+    font-size: 24px;
     letter-spacing: -0.01em;
     color: var(--accent);
   }
   .pricing-value-list .price-unit { font-size: 13px; color: var(--cream-muted); }
+
+  .pricing-price-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+  .pricing-value-list li.is-price .cta-btn { font-size: 14.4px; } /* 12px + 20%, только для этой кнопки */
+
+  /* трёхколоночная полоса под ценой и СТА — тот же стиль, что у .pricing-footer */
+  .pricing-price-footer {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--cream-border);
+    flex-wrap: wrap;
+    margin-left: -64px;   /* bleed до края .pricing-main — гасим левый паддинг .is-price (64px, под стрелку) */
+    margin-right: -40px;  /* гасим правый паддинг .is-price (40px) */
+    margin-bottom: -40px; /* гасим нижний паддинг .is-price (40px) */
+  }
+  .pricing-price-footer-item {
+    padding: 14px 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--cream-muted);
+    border-right: 1px solid var(--cream-border);
+    flex: 1;
+    min-width: 200px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pricing-price-footer-item:last-child { border-right: none; }
+  .pricing-price-footer-item:hover { background: var(--bg); color: var(--ink); }
 
   /* вторичная кнопка на тёмном фоне: контурная */
   .btn-secondary {
@@ -2555,7 +2592,8 @@ transform: scale(1.04);
     color: var(--bg);
     margin: 0 0 20px;
   }
-  .pricing-active__cta { text-align: right; }
+  .pricing-active__cta { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .pricing-active__note { font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--accent); }
 
   .pricing-active__list { list-style: none; margin: 0 0 24px; padding: 0; }
   .pricing-active__list li {
@@ -2577,7 +2615,7 @@ transform: scale(1.04);
   }
   .pricing-group__text { max-width: 640px; margin-bottom: 20px; }
   .pricing-group__text p { font-size: 14px; line-height: 1.6; color: var(--bg); margin: 0; }
-  .pricing-group__cta { text-align: right; }
+  .pricing-group__cta { display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap; }
 
   .pricing-teams { border-top: 1px solid var(--cream-border); padding-top: 20px; margin-bottom: 24px; }
   .pricing-teams p { font-size: 13px; color: var(--cream-muted); margin: 0; }
@@ -2590,9 +2628,24 @@ transform: scale(1.04);
     .pricing-main__head { padding-left: 20px; padding-right: 20px; }
     .pricing-value-list li { padding-left: 44px; padding-right: 20px; }
     .pricing-value-list li::before { left: 20px; }
-    .pricing-value-list li.is-price { justify-content: flex-start; }
+    .pricing-price-row { flex-direction: column; align-items: flex-start; }
+    .pricing-price-footer { flex-direction: column; margin: 0; }
+    .pricing-price-footer-item { border-right: none; border-bottom: 1px solid var(--cream-border); min-width: 0; }
+    .pricing-price-footer-item:last-child { border-bottom: none; }
     .pricing-active, .pricing-group { padding: 24px 20px; }
     .pricing-active__head { flex-wrap: wrap; gap: 8px; }
+    .pricing-active__cta { flex-direction: column; align-items: flex-start; }
+    .pricing-active__cta .btn-secondary { align-self: flex-end; }
+    .pricing-group__cta { flex-direction: column; align-items: flex-end; }
+    .pricing-group__cta .cta-btn {
+      display: inline-block;
+      width: auto;
+      max-width: none;
+      padding: 14px 32px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
   }
 
 </style>
@@ -2612,7 +2665,7 @@ transform: scale(1.04);
   <div class="nav-center">
     <span class="nav-dot"></span>
     <div class="nav-announce">
-      <div class="nav-announce-line1">Старт 2 потока · 14 июля</div>
+      <div class="nav-announce-line1">Старт 2 потока · 21 июля</div>
       <div class="nav-announce-line2">Набор открыт, места ограничены</div>
     </div>
   </div>
@@ -2652,8 +2705,8 @@ transform: scale(1.04);
     <button type="button" class="terminal-status__bar js-terminal-toggle" aria-expanded="false" aria-controls="terminal-nav">
       <div class="terminal-status__overflow">
         <div class="terminal-status__track">
-          <span class="terminal-status__text"><span class="terminal-status__prompt">&gt;&nbsp;</span>ПОТОК_2 \ СТАРТ 14 ИЮЛЯ \ НАБОР ОТКРЫТ \ МЕСТА ОГРАНИЧЕНЫ<span class="terminal-status__cursor">█</span></span>
-          <span class="terminal-status__text" aria-hidden="true"><span class="terminal-status__prompt">&gt;&nbsp;</span>ПОТОК_02 \ СТАРТ 14 ИЮЛЯ \ НАБОР ОТКРЫТ \ МЕСТА ОГРАНИЧЕНЫ</span>
+          <span class="terminal-status__text"><span class="terminal-status__prompt">&gt;&nbsp;</span>ПОТОК_2 \ СТАРТ 21 июля \ НАБОР ОТКРЫТ \ МЕСТА ОГРАНИЧЕНЫ<span class="terminal-status__cursor">█</span></span>
+          <span class="terminal-status__text" aria-hidden="true"><span class="terminal-status__prompt">&gt;&nbsp;</span>ПОТОК_02 \ СТАРТ 21 июля \ НАБОР ОТКРЫТ \ МЕСТА ОГРАНИЧЕНЫ</span>
         </div>
       </div>
       <span class="terminal-status__hint">[ENTER&nbsp;↵]</span>
@@ -2720,7 +2773,7 @@ transform: scale(1.04);
         </div>
       </div>
       <div class="context-cta-row reveal">
-        <span class="context-cta-text">Окно возможностей открыто. Второй поток стартует 14 июля</span>
+        <span class="context-cta-text">Окно возможностей открыто. Второй поток стартует 21 июля</span>
         <a href="#register" class="cta-btn"><span>→ Записаться</span></a>
       </div>
     </div>
@@ -3456,10 +3509,9 @@ transform: scale(1.04);
     <span class="bracket-label">[ форматы участия ]</span>
     <h2 class="section-title">ФОРМАТЫ <span class="hero-accent">УЧАСТИЯ</span></h2>
     <p class="pricing-lead">
-      Основной формат подходит тем, кто готов двигаться
-      в своём темпе и опираться на поддержку кураторов. Тем, кому нужен разбор
-      рабочих задач с преподавателем на самом уроке, подходит активная практика,
-      количество мест ограничено.
+      Буткемп построен на практике, это одинаково для любого формата. Разница в том, как проходит участие.
+      Одни учатся и практикуют в своём темпе, другие хотят применять решения сразу на уроке и получать
+      помощь на свой конкретный запрос. Наш буткемп удовлетворяет любой запрос.
     </p>
   </div>
 
@@ -3468,7 +3520,7 @@ transform: scale(1.04);
     <div class="pricing-main__head">
       <span class="bracket-label">[ описание ]</span>
       <div class="pricing-main__head-row">
-        <h3 class="pricing-main__title">Основной формат</h3>
+        <h3 class="pricing-main__title">Полное погружение</h3>
         <button type="button" class="btn-secondary btn-secondary--swap" data-lesson-open>Как устроен урок</button>
       </div>
       <p class="pricing-main__desc">
@@ -3478,15 +3530,34 @@ transform: scale(1.04);
     </div>
 
     <ul class="pricing-value-list">
-      <li><strong>Материалы курса:</strong> уроки, библиотека материалов, домашние задания на GitHub, лидерборд результатов, общий чат потока.</li>
-      <li>5 модулей, 17 уроков. <strong>Обучение в живом формате, в онлайн-режиме на вебинарах.</strong></li>
       <li class="is-placeholder">Разработаете агентов и субагентов, покрывающих весь процесс разработки. Научитесь методу оркестрации агентов.</li>
       <li class="is-placeholder">Изучите паттерны и практики качественной разработки сложных веб-приложений - CRM, агрегаторы, маркетплейсы и другие - за часы вместо месяцев.</li>
       <li class="is-placeholder">Отработаете подходы для исследования, рефакторинга и архитектурной трансформации проектов размером от 200тыс. строк кода.</li>
-      <li>Бонус: 3 месяца в клубе выпускников после завершения программы.</li>
+      <li>5 модулей, 17 уроков 2-3 часа каждый.</li>
+      <li><strong>Обучение в живом формате, в онлайн-режиме на вебинарах.</strong></li>
+      <li>
+        <strong>Материалы курса:</strong>
+        <ul class="pricing-sublist">
+          <li>онлайн-встречи и записи встреч</li>
+          <li>библиотека материалов</li>
+          <li>рабочие файлы на GitHub</li>
+          <li>лидерборд результатов</li>
+          <li>общий чат потока с поддержкой от команды</li>
+        </ul>
+      </li>
+      <li>Записи и материалы доступны <strong>6 месяцев</strong>, чтобы можно было пройти пропущенные уроки.</li>
+      <li>Дополнительные встречи в малых группах для доработки практики и домашних заданий.</li>
+      <li><strong>Бонус при регистрации до 12 июля: 3 месяца в клубе топ-разработчиков после завершения программы.</strong></li>
       <li class="is-price">
-        <span class="price-num">25 000 Р за модуль</span>
-        <button type="button" class="cta-btn js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg"><span>→ Записаться</span></button>
+        <div class="pricing-price-row">
+          <span class="price-num">25 000 Р за модуль</span>
+          <button type="button" class="cta-btn js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg"><span>→ Записаться</span></button>
+        </div>
+        <div class="pricing-price-footer">
+          <div class="pricing-price-footer-item">Разные варианты оплаты, дополнительные скидки для участия с коллегами или друзьями. Подробности у куратора.</div>
+          <div class="pricing-price-footer-item">Если не готовы вносить предоплату, мы поможем оценить актуальность программы для вас</div>
+          <div class="pricing-price-footer-item">Скидка при полной оплате</div>
+        </div>
       </li>
     </ul>
   </div>
@@ -3534,16 +3605,18 @@ transform: scale(1.04);
   <div class="pricing-active">
     <div class="pricing-active__head">
       <span class="bracket-label" style="margin-bottom:0">[ для более глубокого погружения ]</span>
-      <span class="pricing-active__badge">Осталось 20 мест</span>
+      <span class="pricing-active__badge">Всего 20 мест</span>
     </div>
-    <h3 class="pricing-active__title">Активная практика</h3>
+    <h3 class="pricing-active__title">Премиум сопровождение</h3>
     <ul class="pricing-active__list">
-      <li>Внедряем решения на ваших проектах под контролем преподавателя.</li>
-      <li>Разбираем ваши реальные рабочие задачи.</li>
+      <li>Можно приходить со своими рабочими задачами и решать в начале эфира.</li>
+      <li>Прямой доступ к преподавателю во время всего эфира.</li>
+      <li>Отдельный чат со всеми преподавателями, можно обращаться напрямую.</li>
       <li>Персональный разбор задач в каждом модуле.</li>
-      <li>+1 месяц сопровождения после завершения модуля: чат и сессии.</li>
+      <li>+1 месяц доступа к библиотеке (7 месяцев в сумме).</li>
     </ul>
     <div class="pricing-active__cta">
+      <span class="pricing-active__note">Доступ после консультации и отбора.</span>
       <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w">Подробности у куратора</button>
     </div>
   </div>
@@ -3552,18 +3625,13 @@ transform: scale(1.04);
   <div class="pricing-group">
     <div class="pricing-group__text">
       <span class="bracket-label">[ командное участие ]</span>
-      <p>Участвуйте в буткемпе с друзьями или командой от 5 человек.
-        <br>Для команд предлагаются дополнительные скидки и возможности.</p>
+      <p>Для продуктовых и инженерных команд от 3–5 человек мы делаем корпоративный формат:
+        единый план внедрения в SDLC, метрики ROI, отдельный слот под ваш стек.</p>
     </div>
     <div class="pricing-group__cta">
+      <button type="button" class="cta-btn js-open-widget" data-widget-id="cGq_8BNde06mP32lZwU9DQ"><span>→ Подбор формата</span></button>
       <a href="/teams" class="btn-secondary btn-secondary--swap">Подробнее</a>
     </div>
-  </div>
-
-  <div class="pricing-footer">
-    <div class="pricing-footer-item">Доступна рассрочка</div>
-    <div class="pricing-footer-item">Доступна оплата по счёту от юр. лица</div>
-    <div class="pricing-footer-item">Специальные условия для команд</div>
   </div>
 
   </div>
@@ -3657,7 +3725,7 @@ transform: scale(1.04);
   <div class="footer-top">
     <div>
       <div class="footer-brand">NA\\TION</div>
-      <div class="footer-tagline">Онлайн буткемп · ВТОРОЙ ПОТОК 14 ИЮЛЯ</div>
+      <div class="footer-tagline">Онлайн буткемп · ВТОРОЙ ПОТОК 21 июля</div>
     </div>
     <div class="footer-links">
       <div class="footer-col">
