@@ -863,9 +863,16 @@ const whyTabs: Tab[] = [
   .loadout__note { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.5; margin: 0.4rem 0 0; color: var(--ink40); }
   .format-callout { font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.6; border-left: 4px solid var(--accent); padding: 0.4rem 0 0.4rem 1rem; margin-bottom: 1rem; color: var(--ink60); }
   .format-callout:last-child { margin-bottom: 0; }
+  /* сетка формата урока внутри модалки — уже 640px контента, 4 колонки не влезают */
+  .format-modal .format-grid { grid-template-columns: repeat(2, 1fr); margin-top: 1.25rem; }
+  .format-modal .format-item { padding: 24px; }
+  .format-modal .format-title { font-size: 18px; }
+  /* .js .format-item скрывает карточки для scroll-reveal — модалка не скроллится, показываем сразу */
+  .js .format-modal .format-item { opacity: 1; transform: none; }
   @media (max-width: 560px) {
     .weekbar { height: auto; flex-direction: column; }
     .format-modal__dialog { box-shadow: 6px 6px 0 var(--ink); padding: 1.5rem; }
+    .format-modal .format-grid { grid-template-columns: 1fr; }
   }
   /* CURRICULUM */
   .module-block {
@@ -2446,6 +2453,8 @@ transform: scale(1.04);
 
   .pricing-main { max-width: 70%; margin: 0 auto 32px; border: 1px solid var(--cream-border); }
   .pricing-main__head { padding: 40px 40px 32px; border-bottom: 1px solid var(--cream-border); }
+  .pricing-main__head-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .pricing-main__head-row .pricing-main__title { margin: 0; }
   .pricing-main__title {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
@@ -2617,7 +2626,6 @@ transform: scale(1.04);
     <a href="#audience" class="js-burger-link">Для кого</a>
     <a href="#learn" class="js-burger-link">Что ты получишь</a>
     <a href="#curriculum" class="js-burger-link">Программа</a>
-    <a href="#format" class="js-burger-link">Формат</a>
     <a href="#feedback" class="js-burger-link">Отзывы</a>
     <a href="#committee" class="js-burger-link">Авторы и эксперты</a>
     <a href="#faq" class="js-burger-link">FAQ</a>
@@ -2655,7 +2663,6 @@ transform: scale(1.04);
       <a href="#audience"   class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./audience</span><span class="terminal-nav__label">Для кого</span></a>
       <a href="#learn"      class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./learn</span><span class="terminal-nav__label">Что ты получишь</span></a>
       <a href="#curriculum" class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./curriculum</span><span class="terminal-nav__label">Программа</span></a>
-      <a href="#format"     class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./format</span><span class="terminal-nav__label">Формат</span></a>
       <a href="#feedback"   class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./feedback</span><span class="terminal-nav__label">Отзывы</span></a>
       <a href="#committee"  class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./committee</span><span class="terminal-nav__label">Авторы и эксперты</span></a>
       <a href="#faq"        class="terminal-nav__item js-terminal-link"><span class="terminal-nav__cmd">./faq</span><span class="terminal-nav__label">FAQ</span></a>
@@ -3183,44 +3190,6 @@ transform: scale(1.04);
   </div>
 </section>
 
-<!-- FORMAT -->
-<section id="format">
-  <div class="section-grid">
-    <div>
-      <span class="bracket-label">[FORMAT] // ФОРМАТ ЗАНЯТИЙ</span>
-      <h2 class="section-title reveal">Как устроен<br><span class="hero-accent">каждый урок</span></h2>
-      <div class="format-grid reveal">
-        <div class="format-item">
-          <span class="format-icon">[ТЕОРИЯ] // 10–30 МИН</span>
-          <div class="format-title">Минимальная теория</div>
-            <p class="format-desc">Только то, что нужно для понимания практики. Концепции даются по мере необходимости.</p>
-        </div>
-        <div class="format-item">
-          <span class="format-icon">[КЕЙС] // 1 ЧАС</span>
-          <div class="format-title">Живой разбор кейса</div>
-            <p class="format-desc">Рассказываем, о чём будет кейс и показываем, как его реализовать. Даём инструкции к выполнению и отвечаем на вопросы.</p>
-        </div>
-        <div class="format-item">
-          <span class="format-icon">[ПРАКТИКА] // 1.5 ЧАСА</span>
-            <div class="format-title">Практика на вебинаре</div>
-            <p class="format-desc">Студенты реализуют кейс самостоятельно прямо на занятии. Сталкиваются с проблемами и решают их с командой буткемпа на месте.</p>
-        </div>
-        <div class="format-item">
-          <span class="format-icon">[ПОСЛЕ УРОКА] // 1–3 ЧАСА</span>
-          <div class="format-title">Самостоятельная практика</div>
-          <p class="format-desc">После уроков мы даём материал для самостоятельной практики. Для тех, кто хочет получить максимум от участия.</p>
-        </div>
-      </div>
-      <div style="margin-top: 40px; border-left: 2px solid var(--accent); padding-left: 24px;" class="reveal">
-        <p style="font-size: 13px; line-height: 1.8; color: var(--ink60);">
-          Некоторые уроки проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. 
-          После урока открывается доступ к материалам библиотеки. Логика последовательного открытия поможет сконцентрироваться на текущих паттернах.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FEEDBACK -->
 <section id="feedback">
   <div class="section-grid" style="margin-bottom: 0;">
@@ -3497,11 +3466,11 @@ transform: scale(1.04);
   <!-- основной пакет -->
   <div class="pricing-main">
     <div class="pricing-main__head">
-      <span class="bracket-label">[ основной формат ]</span>
-      <h3 class="pricing-main__title">Полное обучение</h3>
-      <p class="pricing-main__desc">
-        Подходит тем, кто хочет системно разобраться в теме и двигаться в своём темпе.
-      </p>
+      <span class="bracket-label">[ описание ]</span>
+      <div class="pricing-main__head-row">
+        <h3 class="pricing-main__title">Основной формат</h3>
+        <button type="button" class="btn-secondary btn-secondary--swap" data-lesson-open>Как устроен урок</button>
+      </div>
       <p class="pricing-main__desc">
         Разбираем AI-driven разработку на реальных кейсах и инструментах,
         которые уже используются в продуктовых командах.
@@ -3510,7 +3479,7 @@ transform: scale(1.04);
 
     <ul class="pricing-value-list">
       <li><strong>Материалы курса:</strong> уроки, библиотека материалов, домашние задания на GitHub, лидерборд результатов, общий чат потока.</li>
-      <li>5 модулей, 17 уроков.</li>
+      <li>5 модулей, 17 уроков. <strong>Обучение в живом формате, в онлайн-режиме на вебинарах.</strong></li>
       <li>Скидка 10% при оплате всего курса целиком.</li>
       <li class="is-placeholder">Разработаете агентов и субагентов, покрывающих весь процесс разработки. Научитесь методу оркестрации агентов.</li>
       <li class="is-placeholder">Изучите паттерны и практики качественной разработки сложных веб-приложений - CRM, агрегаторы, маркетплейсы и другие - за часы вместо месяцев.</li>
@@ -3521,6 +3490,45 @@ transform: scale(1.04);
         <button type="button" class="cta-btn js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg"><span>→ Записаться</span></button>
       </li>
     </ul>
+  </div>
+
+  <!-- LESSON FORMAT MODAL -->
+  <div class="format-modal" data-lesson-modal hidden>
+    <div class="format-modal__backdrop" data-lesson-close></div>
+    <div class="format-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-modal-title" tabindex="-1">
+      <header class="format-modal__head">
+        <div>
+          <p class="format-modal__eyebrow">Формат занятий</p>
+          <h2 class="format-modal__title" id="lesson-modal-title">Как устроен каждый урок</h2>
+        </div>
+        <button class="format-modal__x" type="button" data-lesson-close aria-label="Закрыть">✕</button>
+      </header>
+      <div class="format-grid">
+        <div class="format-item">
+          <span class="format-icon">[ТЕОРИЯ] // 10–30 МИН</span>
+          <div class="format-title">Минимальная теория</div>
+          <p class="format-desc">Только то, что нужно для понимания практики. Концепции даются по мере необходимости.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[КЕЙС] // 1 ЧАС</span>
+          <div class="format-title">Живой разбор кейса</div>
+          <p class="format-desc">Рассказываем, о чём будет кейс и показываем, как его реализовать. Даём инструкции к выполнению и отвечаем на вопросы.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[ПРАКТИКА] // 1.5 ЧАСА</span>
+          <div class="format-title">Практика на вебинаре</div>
+          <p class="format-desc">Студенты реализуют кейс самостоятельно прямо на занятии. Сталкиваются с проблемами и решают их с командой буткемпа на месте.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[ПОСЛЕ УРОКА] // 1–3 ЧАСА</span>
+          <div class="format-title">Самостоятельная практика</div>
+          <p class="format-desc">После уроков мы даём материал для самостоятельной практики. Для тех, кто хочет получить максимум от участия.</p>
+        </div>
+      </div>
+      <div class="format-callout" style="margin-top: 1.25rem;">
+        Некоторые уроки проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. После урока открывается доступ к материалам библиотеки. Логика последовательного открытия поможет сконцентрироваться на текущих паттернах.
+      </div>
+    </div>
   </div>
 
   <!-- активная практика -->
@@ -4000,6 +4008,31 @@ transform: scale(1.04);
         if (fNoteEl) fNoteEl.textContent = FLOAD[mode].note;
       });
     });
+  })();
+
+  // Lesson format modal
+  (function() {
+    var lModal = document.querySelector('[data-lesson-modal]');
+    var lDialog = lModal && lModal.querySelector('.format-modal__dialog');
+    var lOpenBtns = document.querySelectorAll('[data-lesson-open]');
+    var lCloseEls = lModal && lModal.querySelectorAll('[data-lesson-close]');
+    var lLastFocused = null;
+    function openLModal() {
+      lLastFocused = document.activeElement;
+      if (lModal) lModal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (lDialog) lDialog.focus();
+      document.addEventListener('keydown', onLKeydown);
+    }
+    function closeLModal() {
+      if (lModal) lModal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onLKeydown);
+      if (lLastFocused instanceof HTMLElement) lLastFocused.focus();
+    }
+    function onLKeydown(e) { if (e.key === 'Escape') closeLModal(); }
+    lOpenBtns.forEach(function(btn) { btn.addEventListener('click', openLModal); });
+    if (lCloseEls) lCloseEls.forEach(function(el) { el.addEventListener('click', closeLModal); });
   })();
 
   // Terminal nav
