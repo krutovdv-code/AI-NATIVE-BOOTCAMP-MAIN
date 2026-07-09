@@ -15,6 +15,8 @@ import "@fontsource/jetbrains-mono/cyrillic-400.css";
 import "@fontsource/jetbrains-mono/cyrillic-500.css";
 import "@fontsource/jetbrains-mono/cyrillic-600.css";
 
+import AsciiWave from "../components/AsciiWave.astro";
+
 // Данные таб-карточки «почему сейчас» в секции #about
 type Item = { h: string; t: string; url?: string };
 type Cta = { label: string; href: string };
@@ -2577,25 +2579,6 @@ transform: scale(1.04);
     --ascii-bright: rgba(255,226,172,0.88);
   }
   .pricing-active__content { position: relative; z-index: 2; }
-  .pricing-active__ascii {
-    position: absolute; inset: 0; z-index: 1; margin: 0; padding: 0;
-    pointer-events: none; user-select: none; white-space: pre; overflow: hidden;
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.15; letter-spacing: 0;
-    color: transparent;
-    background: linear-gradient(115deg,
-      var(--ascii-dim) 0%, var(--ascii-dim) 38%, var(--ascii-bright) 50%, var(--ascii-dim) 62%, var(--ascii-dim) 100%);
-    background-size: 250% 100%;
-    -webkit-background-clip: text; background-clip: text;
-    animation: pricing-ascii-shimmer 6.5s linear infinite;
-    opacity: 0.5;
-  }
-  @keyframes pricing-ascii-shimmer {
-    from { background-position: 130% 0; }
-    to   { background-position: -30% 0; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pricing-active__ascii { animation: none; }
-  }
   .pricing-active__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
   .pricing-active__badge {
     font-size: 11px;
@@ -3578,9 +3561,9 @@ transform: scale(1.04);
           <button type="button" class="cta-btn js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg"><span>→ Записаться</span></button>
         </div>
         <div class="pricing-price-footer">
-          <div class="pricing-price-footer-item">Разные варианты оплаты, дополнительные скидки для участия с коллегами или друзьями. Подробности у куратора.</div>
-          <div class="pricing-price-footer-item">Если не готовы вносить предоплату, мы поможем оценить актуальность программы для вас</div>
-          <div class="pricing-price-footer-item">Скидка при полной оплате</div>
+          <div class="pricing-price-footer-item">Оплата только после консультации — оставляйте заявку и получите ваши персональные условия.</div>
+          <div class="pricing-price-footer-item">Разные варианты внесения платежа и дополнительная скидка для участия с коллегами и друзьями.</div>
+          <div class="pricing-price-footer-item">Возможность присоединиться даже с одного модуля и скидка при полной оплате.</div>
         </div>
       </li>
     </ul>
@@ -3627,7 +3610,8 @@ transform: scale(1.04);
 
   <!-- активная практика -->
   <div class="pricing-active">
-    <pre class="pricing-active__ascii" data-pricing-ascii aria-hidden="true"></pre>
+    {/* ASCII-волна временно отключена. Вернуть — раскомментировать строку ниже: */}
+    {/* <AsciiWave /> */}
     <div class="pricing-active__content">
     <div class="pricing-active__head">
       <span class="bracket-label" style="margin-bottom:0">[ для более глубокого погружения ]</span>
@@ -4276,72 +4260,6 @@ transform: scale(1.04);
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && vModal.classList.contains('is-open')) closeVideoModal();
       });
-    }
-  })();
-</script>
-
-<script is:inline>
-  // ASCII-волна под блоком «Премиум сопровождение» (.pricing-active)
-  (function () {
-    var pre = document.querySelector('[data-pricing-ascii]');
-    if (!pre) return;
-
-    var CHARS = ' ·:-=+*≈#';
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var cols = 0, rows = 0;
-
-    function measureCharW() {
-      var cs = getComputedStyle(pre);
-      var probe = document.createElement('span');
-      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;padding:0;margin:0;border:0';
-      probe.style.fontFamily = cs.fontFamily;
-      probe.style.fontSize = cs.fontSize;
-      probe.style.letterSpacing = cs.letterSpacing;
-      probe.textContent = new Array(101).join('0');
-      document.body.appendChild(probe);
-      var w = probe.getBoundingClientRect().width / 100;
-      document.body.removeChild(probe);
-      return w || 8;
-    }
-
-    function recalc() {
-      var cs = getComputedStyle(pre);
-      var lh = parseFloat(cs.lineHeight) || 15;
-      var charW = measureCharW();
-      var rect = pre.getBoundingClientRect();
-      cols = Math.max(1, Math.ceil(rect.width / charW) + 1);
-      rows = Math.max(1, Math.ceil(rect.height / lh) + 1);
-      if (reduce) frame(1234);
-    }
-
-    function frame(t) {
-      var time = t * 0.0011;
-      var out = '';
-      for (var y = 0; y < rows; y++) {
-        for (var x = 0; x < cols; x++) {
-          var v =
-            Math.sin(x * 0.24 + time) +
-            Math.sin(x * 0.11 + y * 0.55 - time * 0.8) +
-            Math.sin((x + y) * 0.14 + time * 1.25);
-          var n = (v + 3) / 6;
-          var idx = (n * (CHARS.length - 1)) | 0;
-          if (idx < 0) idx = 0; else if (idx >= CHARS.length) idx = CHARS.length - 1;
-          out += CHARS.charAt(idx);
-        }
-        out += '\n';
-      }
-      pre.textContent = out;
-    }
-
-    if (window.ResizeObserver) {
-      new ResizeObserver(recalc).observe(pre);
-    } else {
-      window.addEventListener('resize', recalc);
-    }
-    recalc();
-
-    if (!reduce) {
-      (function loop(t) { frame(t); requestAnimationFrame(loop); })(0);
     }
   })();
 </script>

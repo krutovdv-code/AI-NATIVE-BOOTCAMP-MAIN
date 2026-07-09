@@ -1,0 +1,114 @@
+---
+// ASCII-волна с блеском — ambient-анимация под контентом блока.
+// Использование: положить <AsciiWave /> первым ребёнком блока, у которого
+// задан `position: relative; overflow: hidden`. Контент блока должен быть
+// над волной (напр. обёртка с `position: relative; z-index: 2`).
+// Цвет наследуется от родителя через --ascii-dim / --ascii-bright (по умолч. оранжевый).
+interface Props {
+  /** Прозрачность слоя за текстом. */
+  opacity?: number;
+  /** Длительность прохода блеска, напр. "6.5s". */
+  speed?: string;
+}
+const { opacity = 0.5, speed = "6.5s" } = Astro.props;
+---
+
+<pre
+  class="ascii-wave"
+  data-ascii-wave
+  aria-hidden="true"
+  style={`--ascii-opacity:${opacity};--ascii-speed:${speed}`}
+></pre>
+
+<style>
+  .ascii-wave {
+    position: absolute; inset: 0; z-index: 1; margin: 0; padding: 0;
+    pointer-events: none; user-select: none; white-space: pre; overflow: hidden;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.15; letter-spacing: 0;
+    color: transparent;
+    background: linear-gradient(115deg,
+      var(--ascii-dim, rgba(245,166,35,0.20)) 0%,
+      var(--ascii-dim, rgba(245,166,35,0.20)) 38%,
+      var(--ascii-bright, rgba(255,226,172,0.88)) 50%,
+      var(--ascii-dim, rgba(245,166,35,0.20)) 62%,
+      var(--ascii-dim, rgba(245,166,35,0.20)) 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    animation: ascii-wave-shimmer var(--ascii-speed, 6.5s) linear infinite;
+    opacity: var(--ascii-opacity, 0.5);
+  }
+  @keyframes ascii-wave-shimmer {
+    from { background-position: 130% 0; }
+    to   { background-position: -30% 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ascii-wave { animation: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    var CHARS = ' ·:-=+*≈#';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-ascii-wave]'));
+    if (!nodes.length) return;
+
+    var items = nodes.map(function (pre) { return { pre: pre, cols: 0, rows: 0 }; });
+
+    function measureCharW(pre) {
+      var cs = getComputedStyle(pre);
+      var probe = document.createElement('span');
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;padding:0;margin:0;border:0';
+      probe.style.fontFamily = cs.fontFamily;
+      probe.style.fontSize = cs.fontSize;
+      probe.style.letterSpacing = cs.letterSpacing;
+      probe.textContent = new Array(101).join('0');
+      document.body.appendChild(probe);
+      var w = probe.getBoundingClientRect().width / 100;
+      document.body.removeChild(probe);
+      return w || 8;
+    }
+
+    function recalc(it) {
+      var cs = getComputedStyle(it.pre);
+      var lh = parseFloat(cs.lineHeight) || 15;
+      var charW = measureCharW(it.pre);
+      var rect = it.pre.getBoundingClientRect();
+      it.cols = Math.max(1, Math.ceil(rect.width / charW) + 1);
+      it.rows = Math.max(1, Math.ceil(rect.height / lh) + 1);
+      if (reduce) draw(it, 1234);
+    }
+
+    function draw(it, t) {
+      var time = t * 0.0011;
+      var out = '';
+      for (var y = 0; y < it.rows; y++) {
+        for (var x = 0; x < it.cols; x++) {
+          var v =
+            Math.sin(x * 0.24 + time) +
+            Math.sin(x * 0.11 + y * 0.55 - time * 0.8) +
+            Math.sin((x + y) * 0.14 + time * 1.25);
+          var n = (v + 3) / 6;
+          var idx = (n * (CHARS.length - 1)) | 0;
+          if (idx < 0) idx = 0; else if (idx >= CHARS.length) idx = CHARS.length - 1;
+          out += CHARS.charAt(idx);
+        }
+        out += '\n';
+      }
+      it.pre.textContent = out;
+    }
+
+    items.forEach(function (it) {
+      if (window.ResizeObserver) new ResizeObserver(function () { recalc(it); }).observe(it.pre);
+      else window.addEventListener('resize', function () { recalc(it); });
+      recalc(it);
+    });
+
+    if (!reduce) {
+      (function loop(t) {
+        for (var i = 0; i < items.length; i++) draw(items[i], t);
+        requestAnimationFrame(loop);
+      })(0);
+    }
+  })();
+</script>
