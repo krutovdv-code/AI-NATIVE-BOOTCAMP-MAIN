@@ -81,6 +81,56 @@ const whyTabs: Tab[] = [
     ],
   },
 ];
+
+// Данные блока «Потоки» в секции #feedback (галерея студентов)
+type Student = { name: string; photo?: string };
+type Stream = { n: string; label: string; note?: string; active: boolean; students: Student[] };
+
+const streams: Stream[] = [
+  {
+    n: "1",
+    label: "Поток 1",
+    active: true,
+    students: [
+      { name: "Александр Сапронов", photo: "/potok1/sapronov.webp" },
+      { name: "Али Патвари", photo: "/potok1/patvari.webp" },
+      { name: "Андрей Алёнин", photo: "/potok1/alyonin.webp" },
+      { name: "Андрей Милёв", photo: "/potok1/milyov.webp" },
+      { name: "Артём Боченин", photo: "/potok1/bochenin.webp" },
+      { name: "Владислав Москвин", photo: "/potok1/moskvin.webp" },
+      { name: "Геннадий Абашкин", photo: "/potok1/abashkin.webp" },
+      { name: "Денис Косяков", photo: "/potok1/kosyakov.webp" },
+      { name: "Дмитрий Бежецков", photo: "/potok1/bezhetskov.webp" },
+      { name: "Дмитрий Монин", photo: "/potok1/monin.webp" },
+      { name: "Дмитрий Подольский", photo: "/potok1/podolskiy.webp" },
+      { name: "Дмитрий Шкилёв", photo: "/potok1/shkilyov.webp" },
+      { name: "Екатерина Костенко", photo: "/potok1/kostenko.webp" },
+      { name: "Максим Краснопивцев", photo: "/potok1/krasnopivtsev.webp" },
+      { name: "Максим Соколов", photo: "/potok1/sokolov.webp" },
+      { name: "Роман Игнашев", photo: "/potok1/ignashev.webp" },
+      { name: "Руслан Фаттахов", photo: "/potok1/fattahov.webp" },
+      { name: "Станислав Сидорюк", photo: "/potok1/sidoryuk.webp" },
+      { name: "Владимир Щетинин" },
+      { name: "Алексей Базанов" },
+      { name: "Алексей Лещанкин" },
+      { name: "Артём Горохов" },
+      { name: "Артур Алагулян" },
+      { name: "Василий Большаков" },
+      { name: "Алексей Захаров" },
+      { name: "Максим Подпорин" },
+      { name: "Максим Шмырев" },
+      { name: "Максим Сорокин" },
+      { name: "Сергей Новопольцев" },
+      { name: "Павел Банников" },
+      { name: "Павел Стеньгач" },
+      { name: "Юрий Петрученя" },
+    ],
+  },
+  { n: "2", label: "Поток 2", note: "с 21 июля", active: false, students: [] },
+  { n: "3", label: "Поток 3", note: "с 28 сентября", active: false, students: [] },
+];
+
+const SILHOUETTE = "/facebook-anonymous-silhouette.webp";
 ---
 <!DOCTYPE html>
 <html lang="ru">
@@ -2430,6 +2480,113 @@ transform: scale(1.04);
     .tab-label { display: none; }        /* на мобилке — только номера */
   }
 
+  /* ===== STREAMS (галерея студентов, #feedback) ===== */
+  .streams { margin-top: 56px; }
+  .streams-nav { display: flex; gap: 4px; align-items: stretch; }
+  .stream-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--ink10);
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--ink40);
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .stream-btn__main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .stream-btn__label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stream-btn__note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .stream-btn__caret {
+    flex-shrink: 0;
+    font-size: 14px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .stream-btn:not(:disabled):hover { background: var(--ink05); }
+  .stream-btn:disabled { cursor: default; }
+  .stream-btn:disabled .stream-btn__label { color: var(--ink40); }
+  /* «нажатое» состояние — залито тёмным, видно что нажато и нужно нажать снова */
+  .stream-btn.is-open {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .stream-btn.is-open .stream-btn__label { color: var(--bg); }
+  .stream-btn.is-open .stream-btn__caret { transform: rotate(180deg); }
+  /* при наведении на открытую кнопку фон светлеет — возвращаем тёмный текст для читаемости */
+  .stream-btn.is-open:hover { color: var(--ink); }
+  .stream-btn.is-open:hover .stream-btn__label { color: var(--ink); }
+
+  /* панель-аккордеон: плавная высота через grid-template-rows 0fr → 1fr */
+  .stream-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .stream-panel.is-open { grid-template-rows: 1fr; margin-top: 4px; }
+  .stream-panel__inner { overflow: hidden; }
+  .stream-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--ink10);
+    border: 1px solid var(--ink10);
+  }
+  .student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 18px 8px;
+    background: var(--bg);
+  }
+  .student__img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.2s ease;
+  }
+  .student:hover .student__img { filter: grayscale(0); }
+  .student__name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--ink60);
+  }
+  .student--empty { background: var(--ink05); }
+
+  @media (max-width: 900px) {
+    .stream-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .stream-grid { grid-template-columns: repeat(3, 1fr); }
+    .stream-btn { padding: 14px; }
+    .stream-btn__label { font-size: 16px; }
+    .student--empty { display: none; }
+  }
+
   /* ===== PRICING / FORMATS (тёмная инверсия, #register) ===== */
   .pricing-section {
     /* фон — во всю ширину страницы (как и остальные <section>), содержимое — внутри .pricing-inner */
@@ -3345,6 +3502,53 @@ transform: scale(1.04);
       <a href="#register" class="cta-btn feedback-cta"><span>→ Стать частью комьюнити</span></a>
     </div>
   </div>
+
+  <!-- STREAMS -->
+  <div class="streams reveal">
+    <div>
+      <h2 style=" font-size: 40px; padding: 24px 32px; padding-left: 0px"><br>ВСЕ УЧАСТНИКИ</span></h2>
+    </div>
+    <div class="streams-nav">
+      {streams.map((s) => (
+        <button
+          type="button"
+          class="stream-btn"
+          data-stream={s.n}
+          disabled={!s.active}
+          aria-expanded={s.active ? "false" : undefined}
+          aria-controls={s.active ? `stream-panel-${s.n}` : undefined}
+        >
+          <span class="stream-btn__main">
+            <span class="stream-btn__label">{s.label}</span>
+            {s.note && <span class="stream-btn__note">{s.note}</span>}
+          </span>
+          {s.active && <span class="stream-btn__caret" aria-hidden="true">▾</span>}
+        </button>
+      ))}
+    </div>
+
+    {streams.filter((s) => s.active).map((s) => {
+      const cells = 7 * Math.ceil(s.students.length / 7);
+      const empty = cells - s.students.length;
+      return (
+        <div class="stream-panel" id={`stream-panel-${s.n}`} data-stream-panel={s.n}>
+          <div class="stream-panel__inner">
+            <div class="stream-grid">
+              {s.students.map((st) => (
+                <figure class="student">
+                  <img class="student__img" src={st.photo ?? SILHOUETTE} alt={st.name} width="60" height="60" loading="lazy" />
+                  <figcaption class="student__name">{st.name}</figcaption>
+                </figure>
+              ))}
+              {Array.from({ length: empty }).map(() => (
+                <div class="student student--empty" aria-hidden="true"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
 </section>
 
 
@@ -3841,6 +4045,20 @@ transform: scale(1.04);
         panels.forEach(function (p) {
           p.classList.toggle('is-active', p.getAttribute('data-panel') === id);
         });
+      });
+    });
+  })();
+
+  // Streams accordion (feedback) — тоггл: клик открывает, повторный клик закрывает
+  (function () {
+    var btns = document.querySelectorAll('.stream-btn:not([disabled])');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-stream');
+        var panel = document.querySelector('[data-stream-panel="' + id + '"]');
+        var open = btn.classList.toggle('is-open');
+        if (panel) panel.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     });
   })();

@@ -507,7 +507,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
 
   /* Таблица пакетов */
   .t-pkg-table { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; border: 1px solid var(--ink10); margin: 32px 0 0; }
-  .t-pkg-card { display: grid; grid-template-rows: subgrid; grid-row: span 3; }
+  .t-pkg-card { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
   .t-pkg-hdr-cell { padding: 16px 20px; border-right: 1px solid var(--ink10); border-bottom: 1px solid var(--ink10); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Roboto Condensed', sans-serif; }
   .t-pkg-hdr-cell .sub { display: block; font-size: 10px; font-weight: 400; color: var(--ink40); text-transform: none; letter-spacing: 0; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
   .t-pkg-hdr-cell .desc { display: block; font-size: 12px; font-weight: 400; color: var(--ink); text-transform: none; letter-spacing: 0; margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
@@ -518,18 +518,18 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
   .t-term:hover { opacity: 0.75; }
   .t-term-def { font-size: 14px; line-height: 1.7; color: var(--ink60); }
   .t-term-def strong { color: var(--ink); font-weight: 700; }
-  .t-pkg-price-cell { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 20px; border-right: 1px solid rgba(245,245,240,0.15); background: var(--ink); }
-  .t-pkg-card:last-child .t-pkg-hdr-cell, .t-pkg-card:last-child .t-pkg-col, .t-pkg-card:last-child .t-pkg-price-cell { border-right: none; }
-  .t-pkg-price-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,245,240,0.5); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
-  .t-pkg-price-value { display: block; font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 22px; color: var(--accent); letter-spacing: -0.01em; }
-  .t-pkg-price-hint { display: block; font-size: 10px; color: rgba(245,245,240,0.4); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+  .t-pkg-card:last-child .t-pkg-hdr-cell, .t-pkg-card:last-child .t-pkg-col { border-right: none; }
+  /* единая нижняя строка на всю ширину сетки */
+  .t-pkg-bar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 20px 24px; background: var(--ink); }
+  .t-pkg-bar__text { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: -0.01em; color: var(--bg); }
 
   /* Индивидуальный формат — выносной блок */
   .t-pkg-custom { background: var(--ink05); border: 1px solid var(--ink10); margin-top: 32px; padding: 32px 40px; }
   .t-pkg-custom__label { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 12px; display: block; }
-  .t-pkg-custom__text { max-width: 640px; margin-bottom: 24px; }
+  .t-pkg-custom__text { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .t-pkg-custom__copy { max-width: 640px; }
   .t-pkg-custom__text p { font-size: 14px; line-height: 1.6; color: var(--ink60); margin: 0; }
-  .t-pkg-custom__cta { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .t-pkg-custom__text .cta-btn { flex-shrink: 0; }
   .t-pkg-custom__price { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; color: var(--accent); white-space: nowrap; }
 
   /* Ценовой баннер */
@@ -553,9 +553,10 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .t-pkg-table { display: flex; flex-direction: column; border: none; }
     .t-pkg-card { display: block; border: 1px solid var(--ink10); }
     .t-pkg-card + .t-pkg-card { margin-top: 24px; }
-    .t-pkg-hdr-cell, .t-pkg-col, .t-pkg-price-cell { border-right: none; }
+    .t-pkg-hdr-cell, .t-pkg-col { border-right: none; }
+    .t-pkg-bar { margin-top: 24px; flex-direction: column; align-items: flex-start; }
     .t-pkg-custom { padding: 24px 20px; }
-    .t-pkg-custom__cta { justify-content: flex-start; }
+    .t-pkg-custom__text { flex-direction: column; align-items: flex-start; }
     .t-price-banner { flex-direction: column; align-items: flex-start; }
     .t-contacts { grid-template-columns: 1fr; }
     .t-contact-cell { border-right: none; border-bottom: 1px solid rgba(245,245,240,0.15); }
@@ -569,7 +570,7 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
 <div class="t-topbar">
   <a href="/" class="t-topbar__logo">NA\\TION</a>
   <span class="t-topbar__tag">// ДЛЯ КОМАНД</span>
-  <a href="/" class="t-topbar__back cta-btn"><span>← На главную</span></a>
+  <a href="/" class="t-topbar__back cta-btn"><span>← ОСНОВНАЯ ПРОГРАММА</span></a>
 </div>
 
 <!-- HERO -->
@@ -749,14 +750,6 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
           <div class="t-pkg-item accent">Прогрессивная скидка по количеству представителей</div>
           <div class="t-pkg-item">Дополнительная групповая встреча по развитию отрасли, команд, трендам экспертов буктемпа с участниками от компании</div>
         </div>
-        <div class="t-pkg-price-cell">
-          <div class="t-pkg-price-info">
-            <span class="t-pkg-price-label">Цена</span>
-            <span class="t-pkg-price-value">125 000 руб./участник</span>
-            <span class="t-pkg-price-hint">до применения скидок</span>
-          </div>
-          <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
-        </div>
       </div>
       <div class="t-pkg-card">
         <div class="t-pkg-hdr-cell">
@@ -773,23 +766,19 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
           <div class="t-pkg-item">Адаптация части примеров и домашних заданий под технологический стек заказчика</div>
           <div class="t-pkg-item">Дополнительные промежуточные групповые Q&amp;A, разборы кейсов компании</div>
         </div>
-        <div class="t-pkg-price-cell">
-          <div class="t-pkg-price-info">
-            <span class="t-pkg-price-label">Цена</span>
-            <span class="t-pkg-price-value">от 125 000 руб./участник</span>
-          </div>
-          <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
-        </div>
+      </div>
+      <div class="t-pkg-bar">
+        <span class="t-pkg-bar__text">К каждой команде индивидуальный подход</span>
+        <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
       </div>
     </div>
 
     <div class="t-pkg-custom">
       <div class="t-pkg-custom__text">
-        <span class="t-pkg-custom__label">ИНДИВИДУАЛЬНЫЙ ФОРМАТ</span>
-        <p>Для компаний, которым нужен внешний партнёр по AI-трансформации. Объём и формат обсуждаются индивидуально.</p>
-      </div>
-      <div class="t-pkg-custom__cta">
-        <span class="t-pkg-custom__price">от 2 млн рублей</span>
+        <div class="t-pkg-custom__copy">
+          <span class="t-pkg-custom__label">ИНДИВИДУАЛЬНЫЙ ФОРМАТ</span>
+          <p>Для компаний, которым нужен внешний партнёр по AI-трансформации. Разрабатывается отдельно после ряда встреч с командой Naition.</p>
+        </div>
         <button type="button" class="cta-btn js-open-widget-consult"><span>→ Получить консультацию</span></button>
       </div>
     </div>
