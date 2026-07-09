@@ -217,6 +217,22 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     .t-cell:last-child { border-bottom: none; }
   }
 
+  /* SOURCES (исследования, полноширинный блок) */
+  .t-sources { margin-top: 40px; border: 1px solid var(--ink10); }
+  .t-source { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 32px; border-bottom: 1px solid var(--ink10); transition: background 0.15s; }
+  .t-source:last-child { border-bottom: none; }
+  .t-source:hover { background: var(--ink05); }
+  .t-source__num { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 32px; color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
+  .t-source__title { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .t-source__text { font-size: 13px; line-height: 1.7; color: var(--ink60); margin-bottom: 14px; }
+  .t-source__link { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .t-source__link:hover { opacity: 0.75; }
+  @media (max-width: 768px) {
+    .t-sources { margin-top: 32px; }
+    .t-source { grid-template-columns: 36px 1fr; gap: 14px; padding: 20px; }
+    .t-source__num { font-size: 22px; }
+  }
+
   /* RESULT ROWS */
   .t-result-stack { display: flex; flex-direction: column; gap: 0; }
   .t-result-row {
@@ -582,16 +598,46 @@ import "@fontsource/jetbrains-mono/cyrillic-600.css";
     <div class="t-callout">AI-driven — это новый стандарт конкурентоспособности, а не модный эксперимент</div>
     <p class="t-prose">AI меняет не отдельные задачи, а всю цепочку создания ценности: продукт, разработку, эксплуатацию, продажи и поддержку.</p>
     <p class="t-prose">Выигрывают компании, которые перестраивают процессы под AI, а не те, кто просто раздал сотрудникам доступ к инструментам и ждёт эффекта.</p>
-    <div class="t-grid2">
-      <div class="t-cell">
-        <span class="t-cell__tag">«Кустарный» AI</span>
-        <div class="t-cell__title">Иллюзия движения</div>
-        <div class="t-cell__text">Разрозненные эксперименты, локальные инициативы и энтузиасты-одиночки. Создаёт иллюзию движения, но почти не влияет на бизнес-результат.</div>
+  </div>
+  <div class="t-sources">
+    <div class="t-source">
+      <span class="t-source__num">01</span>
+      <div class="t-source__body">
+        <div class="t-source__title">Google Cloud DORA 2025</div>
+        <p class="t-source__text">Adoption AI среди разработчиков выросла до 90%, с приростом 14 процентных пунктов за год, и в среднем разработчики тратят на работу с AI два часа в день. При этом AI не чинит команду сам по себе — он усиливает то, что уже есть: сильные команды становятся эффективнее, а слабые получают те же проблемы, только острее. Рост объёма кода без соответствующего усиления процессов review и тестирования увеличивает нестабильность поставки.</p>
+        <a class="t-source__link" href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report" target="_blank" rel="noopener noreferrer">Ссылка →</a>
       </div>
-      <div class="t-cell">
-        <span class="t-cell__tag">AI-driven компания</span>
-        <div class="t-cell__title">Системная интеграция</div>
-        <div class="t-cell__text">«Счастливый билет» только при условии системной интеграции AI в ключевые звенья бизнеса: люди, процессы, инструменты, архитектура.</div>
+    </div>
+    <div class="t-source">
+      <span class="t-source__num">02</span>
+      <div class="t-source__body">
+        <div class="t-source__title">Stack Overflow Developer Survey 2025</div>
+        <p class="t-source__text">84% разработчиков уже используют или планируют использовать AI-инструменты в работе, рост с 76% годом ранее. Но доверие к точности результатов при этом упало до 29%, снизившись с 40% годом ранее — рост adoption сопровождается ростом недоверия, а не наоборот.</p>
+        <a class="t-source__link" href="https://survey.stackoverflow.co/2025/ai/" target="_blank" rel="noopener noreferrer">Ссылка →</a>
+      </div>
+    </div>
+    <div class="t-source">
+      <span class="t-source__num">03</span>
+      <div class="t-source__body">
+        <div class="t-source__title">Techreviewer, «AI in Software Development 2025: From Exploration to Accountability»</div>
+        <p class="t-source__text">97,5% компаний-разработчиков программного обеспечения так или иначе внедрили AI в свой SDLC, рост с 90,9% в 2024 году.</p>
+        <a class="t-source__link" href="https://techreviewer.co/blog/ai-in-software-development-2025-from-exploration-to-accountability-a-global-survey-analysis" target="_blank" rel="noopener noreferrer">Ссылка →</a>
+      </div>
+    </div>
+    <div class="t-source">
+      <span class="t-source__num">04</span>
+      <div class="t-source__body">
+        <div class="t-source__title">McKinsey, «Unleashing developer productivity with generative AI»</div>
+        <p class="t-source__text">Использование генеративного AI ускоряет типовые задачи разработки: документация выполняется на 45–50% быстрее, генерация кода на 35–45%, рефакторинг на 20–30%.</p>
+        <a class="t-source__link" href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/unleashing-developer-productivity-with-generative-ai" target="_blank" rel="noopener noreferrer">Ссылка →</a>
+      </div>
+    </div>
+    <div class="t-source">
+      <span class="t-source__num">05</span>
+      <div class="t-source__body">
+        <div class="t-source__title">Futurum Research, «AI Reaches 97% of Software Development Organizations»</div>
+        <p class="t-source__text">97% организаций уже используют AI в разработке программного обеспечения (76,6% активно, ещё 20,4% на стадии внедрения), только 3,1% остаются в стороне.</p>
+        <a class="t-source__link" href="https://futurumgroup.com/press-release/ai-reaches-97-of-software-development-organizations/" target="_blank" rel="noopener noreferrer">Ссылка →</a>
       </div>
     </div>
   </div>
