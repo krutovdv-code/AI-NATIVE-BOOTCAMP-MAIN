@@ -300,13 +300,19 @@ const SILHOUETTE = "/facebook-anonymous-silhouette.webp";
   .nav-cta:hover span { color: #f5f5f0; }
   .nav-right {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--ink60);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    align-items: stretch;
+    gap: 16px;
+    justify-self: end;
+    align-self: stretch;
   }
+  .nav-social {
+    width: 20px;
+    background-color: var(--ink60);
+    -webkit-mask: var(--icon) center / contain no-repeat;
+    mask: var(--icon) center / contain no-repeat;
+    transition: background-color 0.15s;
+  }
+  .nav-social:hover { background-color: var(--accent); }
   .pulse-dot {
     width: 7px; height: 7px;
     background: var(--accent);
@@ -2020,7 +2026,7 @@ transform: scale(1.04);
     nav { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; }
     .nav-left { order: 1; flex: 0 0 auto; }
     .nav-center { order: 2; flex: 1 1 0; min-width: 0; overflow: hidden; justify-content: center; }
-    .nav-cta { order: 3; flex: 0 0 auto; justify-self: auto; }
+    .nav-right { order: 3; flex: 0 0 auto; }
   }
 
   /* SECTION SUB-TITLE (h3 внутри секций) */
@@ -2833,7 +2839,11 @@ transform: scale(1.04);
       <div class="nav-announce-line2">Набор открыт, места ограничены</div>
     </div>
   </div>
-  <a href="#register" class="nav-cta"><span>Записаться</span></a>
+  <div class="nav-right">
+    <a href="https://t.me/+BsaDFI42YyBmMTRi" target="_blank" rel="noopener" class="nav-social" style="--icon:url(/tg-logo.webp)" aria-label="Telegram"></a>
+    <a href="https://www.youtube.com/@ai_fucked_up" target="_blank" rel="noopener" class="nav-social" style="--icon:url(/youtube-logo.webp)" aria-label="YouTube"></a>
+    <a href="#register" class="nav-cta"><span>Записаться</span></a>
+  </div>
 </nav>
 
 <!-- Бургер-меню (мобилка) -->
@@ -3809,30 +3819,6 @@ transform: scale(1.04);
       <div class="format-callout" style="margin-top: 1.25rem;">
         Некоторые уроки проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. После урока открывается доступ к материалам библиотеки. Логика последовательного открытия поможет сконцентрироваться на текущих паттернах.
       </div>
-    </div>
-  </div>
-
-  <!-- активная практика -->
-  <div class="pricing-active">
-    {/* ASCII-волна временно отключена. Вернуть — раскомментировать строку ниже: */}
-    {/* <AsciiWave /> */}
-    <div class="pricing-active__content">
-    <div class="pricing-active__head">
-      <span class="bracket-label" style="margin-bottom:0">[ для более глубокого погружения ]</span>
-      <span class="pricing-active__badge">Всего 20 мест</span>
-    </div>
-    <h3 class="pricing-active__title">Премиум сопровождение</h3>
-    <ul class="pricing-active__list">
-      <li>Можно приходить со своими рабочими задачами и решать в начале эфира.</li>
-      <li>Прямой доступ к преподавателю во время всего эфира.</li>
-      <li>Отдельный чат со всеми преподавателями, можно обращаться напрямую.</li>
-      <li>Персональный разбор задач в каждом модуле.</li>
-      <li>+1 месяц доступа к библиотеке (7 месяцев в сумме).</li>
-    </ul>
-    <div class="pricing-active__cta">
-      <span class="pricing-active__note">Доступ после консультации и отбора.</span>
-      <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w">Подробности у куратора</button>
-    </div>
     </div>
   </div>
 
