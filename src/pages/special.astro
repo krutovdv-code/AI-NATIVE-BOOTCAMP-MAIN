@@ -1,0 +1,3313 @@
+---
+// Special — «О нас только по сути»: видео авторов, программа, тарифы
+import "@fontsource/roboto-condensed/latin-400.css";
+import "@fontsource/roboto-condensed/latin-700.css";
+import "@fontsource/roboto-condensed/latin-900.css";
+import "@fontsource/roboto-condensed/cyrillic-400.css";
+import "@fontsource/roboto-condensed/cyrillic-700.css";
+import "@fontsource/roboto-condensed/cyrillic-900.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
+import "@fontsource/jetbrains-mono/latin-600.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+import "@fontsource/jetbrains-mono/cyrillic-500.css";
+import "@fontsource/jetbrains-mono/cyrillic-600.css";
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О нас только по сути — AI DRIVEN РАЗРАБОТКА</title>
+<!-- Yandex.Metrika counter -->
+<script is:inline type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+  
+  :root {
+    --bg: #f5f5f0;
+    --ink: #0a0a0f;
+    --accent: #f5a623;
+    --ink10: rgba(10,10,15,0.10);
+    --ink20: rgba(10,10,15,0.20);
+    --ink40: rgba(10,10,15,0.40);
+    --ink60: rgba(10,10,15,0.72);
+    --ink05: rgba(10,10,15,0.05);
+    /* инверсия для тёмных секций (кремовый с альфой) */
+    --cream-border: rgba(245,245,240,0.12);
+    --cream-muted: rgba(245,245,240,0.45);
+    --cream-panel: rgba(245,245,240,0.05);
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    text-rendering: optimizeLegibility;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* NAV — приклеена к верху при скролле (особенно на мобилке) */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 48px;
+    background: rgba(245,245,240,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink10);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .nav-logo {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .nav-logo:hover { color: var(--accent); }
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50% !important;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: navPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes navPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.6); }
+    50%       { box-shadow: 0 0 0 5px rgba(245,166,35,0); }
+  }
+  .nav-announce {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nav-announce-line1 {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .nav-announce-line2 {
+    font-size: 9px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    justify-self: end;
+    position: relative;
+    overflow: hidden;
+    padding: 0 28px;
+    background: var(--accent);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    line-height: 1;
+  }
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .nav-cta:hover::before { transform: translateX(0); }
+  .nav-cta span { position: relative; z-index: 1; }
+  .nav-cta:hover span { color: #f5f5f0; }
+  .nav-right {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    justify-self: end;
+    align-self: stretch;
+  }
+  .nav-social {
+    width: 20px;
+    background-color: var(--ink60);
+    -webkit-mask: var(--icon) center / contain no-repeat;
+    mask: var(--icon) center / contain no-repeat;
+    transition: background-color 0.15s;
+  }
+  .nav-social:hover { background-color: var(--accent); }
+  .pulse-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50% !important;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Левая часть навигации: лого + бургер */
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Бургер-меню — без окантовки и квадратика */
+  .nav-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 101;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-burger:hover { background: transparent; }
+  .nav-burger:focus { outline: none; box-shadow: none; }
+  .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .burger-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .burger-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .burger-panel {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    padding: 24px 20px 32px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+  }
+  .burger-panel a,
+  .burger-panel .burger-cta {
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--bg);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(245,245,240,0.15);
+    transition: color 0.2s ease;
+  }
+  .burger-panel a:hover { color: var(--accent); }
+  .burger-panel .burger-cta {
+    margin-top: auto;
+    padding-top: 24px;
+    border-bottom: none;
+    text-align: center;
+    background: var(--accent);
+    color: var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .burger-panel .burger-cta:hover { opacity: 0.95; color: var(--ink); }
+
+  /* SECTIONS */
+  section { 
+    padding: 80px 24px; 
+    border-bottom: 1px solid var(--ink10);
+    position: relative;
+  }
+  .section-grid {
+    display: block;
+    max-width: 1200px;
+  }
+
+  /* HERO — контент отступает от фиксированного навбара, без обрезки сверху */
+  #hero {
+    padding: 88px 24px 80px;
+    padding-top: max(88px, 56px + 48px);
+    border-bottom: 1px solid var(--ink10);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .hero-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    max-width: 1100px;
+    margin-bottom: 40px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .hero-title .word { display: inline-block; opacity: 1; }
+  .hero-accent { color: var(--accent); }
+  .hero-sub {
+    border-left: 2px solid var(--accent);
+    padding-left: 24px;
+    max-width: 640px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink60);
+    margin-bottom: 56px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 480px;
+    border: 1px solid var(--ink10);
+  }
+  .stat-box {
+    padding: 24px 28px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    /* сюда добавить: */
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .stat-box:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+  }
+
+  /* CTA BUTTON */
+  .cta-btn {
+    display: inline-block;
+    width: auto;
+    max-width: max-content;
+    position: relative;
+    overflow: hidden;
+    clip-path: inset(0);
+    padding: 16px 40px;
+    background: var(--accent);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .cta-btn:hover::before { transform: translateX(0); }
+  .cta-btn span { position: relative; z-index: 1; }
+  .cta-btn:hover span { color: #f5f5f0; }
+
+  /* ABOUT / LEGEND */
+  .about-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink60);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+  .bracket-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  /* FOR WHOM */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .audience-item {
+    padding: 24px 28px;
+    border-right: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    opacity: 1;
+  }
+  .js .audience-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .audience-item.visible { opacity: 1; transform: translateY(0); }
+  .audience-item:nth-child(even) { border-right: none; }
+  .audience-item:nth-last-child(-n+2) { border-bottom: none; }
+  .audience-num {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--ink20);
+    margin-bottom: 8px;
+  }
+  .audience-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+
+  /* WHAT YOU LEARN */
+  .learn-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .learn-item {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    opacity: 1;
+  }
+  .js .learn-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .learn-item.visible { opacity: 1; transform: translateY(0); }
+  .learn-item:nth-child(even) { border-right: none; }
+  .learn-item:nth-last-child(-n+2) { border-bottom: none; }
+  .learn-arrow {
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .learn-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .learn-text strong { color: var(--ink); }
+
+  /* OUTCOMES BANNER */
+  .outcomes-banner {
+    background: var(--ink);
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+  }
+  .outcomes-banner-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .outcomes-banner-text {
+    font-size: 15px;
+    color: #f5f5f0;
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .outcomes-banner { padding: 28px 24px; gap: 16px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ABOUT REDESIGN */
+  .about-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--ink10);
+    margin-bottom: 2px;
+  }
+  .about-compare-col {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+  }
+  .about-compare-col:last-child { border-right: none; }
+  .about-compare-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .about-compare-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .about-compare-list li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink60);
+    padding: 8px 0 8px 14px;
+    border-bottom: 1px solid var(--ink05);
+    position: relative;
+  }
+  .about-compare-list li:last-child { border-bottom: none; }
+  .about-compare-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink20);
+  }
+  .about-compare-col:last-child .about-compare-label { color: var(--accent); }
+  .about-compare-col:last-child .about-compare-list li::before {
+    content: '→';
+    color: var(--accent);
+  }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--ink10);
+    margin-bottom: 2px;
+  }
+  .about-card {
+    padding: 32px 32px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+  }
+  .about-card:last-child { border-right: none; }
+  .about-card--dark { background: var(--ink); }
+  .about-card-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .about-card--dark .about-card-title { color: var(--accent); }
+  .about-card-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .about-card--dark .about-card-text { color: rgba(245,245,240,0.55); }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--ink10);
+  }
+  .about-stat {
+    padding: 28px 32px;
+    border-right: 1px solid var(--ink10);
+  }
+  .about-stat:last-child { border-right: none; }
+  .about-stat-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .about-stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink40);
+    line-height: 1.5;
+  }
+  @media (max-width: 900px) {
+    .about-compare,
+    .about-cards { grid-template-columns: 1fr; }
+    .about-compare-col { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-compare-col:last-child { border-bottom: none; }
+    .about-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-card:last-child { border-bottom: none; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .about-stat:nth-child(2) { border-right: none; }
+    .about-stat:nth-child(1),
+    .about-stat:nth-child(2) { border-bottom: 1px solid var(--ink10); }
+  }
+  @media (max-width: 640px) {
+    .about-stats { grid-template-columns: 1fr; }
+    .about-stat { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .about-stat:last-child { border-bottom: none; }
+  }
+
+  /* CONTEXT */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid rgba(245,245,240,0.12);
+    margin-bottom: 32px;
+  }
+  .context-card {
+    padding: 32px 28px;
+    border-right: 1px solid var(--ink10);
+  }
+  .context-card:last-child { border-right: none; }
+  .context-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .context-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .context-desc {
+    font-size: 13px;
+    color: var(--ink60);
+    line-height: 1.7;
+  }
+  .context-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-top: 28px;
+    flex-wrap: wrap;
+  }
+  .context-cta-text {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink60);
+  }
+  @media (max-width: 900px) {
+    .context-grid { grid-template-columns: 1fr 1fr; }
+    .context-card:nth-child(2) { border-right: none; }
+    .context-card:nth-child(1),
+    .context-card:nth-child(2) { border-bottom: 1px solid var(--ink10); }
+  }
+  @media (max-width: 640px) {
+    .context-grid { grid-template-columns: 1fr; }
+    .context-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .context-card:last-child { border-bottom: none; }
+    .context-cta-row { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* FORMAT MODAL */
+  .format-floor {
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--ink10);
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .format-floor__text { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.55; margin: 0; max-width: 80ch; color: var(--ink60); }
+  .format-floor__btn { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem; background: var(--ink); color: var(--bg); border: 1px solid var(--ink); border-radius: 0 !important; padding: 0.75rem 1.25rem; cursor: pointer; white-space: nowrap; transition: background 0.12s, color 0.12s; }
+  .format-floor__btn:hover { background: var(--accent); color: var(--ink); }
+  .format-facts {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+  .format-fact {
+    flex: 1;
+    padding: 0.25rem 0.875rem;
+    border-right: 1px solid var(--ink10);
+    min-width: 0;
+  }
+  .format-fact:first-child { padding-left: 0; }
+  .format-fact:last-child { border-right: none; padding-right: 0; }
+  .format-fact__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .format-fact__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--ink);
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .format-floor { flex-direction: column; align-items: stretch; }
+    .format-facts { display: grid; grid-template-columns: 1fr 1fr; flex: none; }
+    .format-fact { padding: 0.625rem 0; border-right: none; border-bottom: 1px solid var(--ink10); }
+    .format-fact:nth-child(odd) { padding-right: 0.75rem; border-right: 1px solid var(--ink10); }
+    .format-fact:last-child { grid-column: span 2; border-bottom: none; border-right: none; padding-right: 0; }
+    .format-floor__btn { align-self: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .format-facts { grid-template-columns: 1fr; }
+    .format-fact:nth-child(odd) { padding-right: 0; border-right: none; }
+    .format-fact:last-child { grid-column: span 1; border-bottom: none; }
+    .format-floor__btn { width: 100%; text-align: center; }
+  }
+  .format-modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+  .format-modal[hidden] { display: none; }
+  .format-modal__backdrop { position: fixed; inset: 0; background: rgba(10,10,15,0.66); }
+  .format-modal__dialog { position: relative; background: var(--bg); color: var(--ink); border: 1px solid var(--ink); border-radius: 0 !important; width: 100%; max-width: 44rem; padding: 2rem; box-shadow: 12px 12px 0 var(--ink); }
+  .format-modal__dialog:focus { outline: none; }
+  .format-modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--ink10); padding-bottom: 1rem; }
+  .format-modal__eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: #b9760f; margin: 0 0 0.5rem; }
+  .format-modal__title { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; font-size: clamp(1.4rem, 4vw, 2rem); line-height: 1.05; margin: 0; }
+  .format-modal__x { font-family: 'JetBrains Mono', monospace; background: transparent; border: 1px solid var(--ink); border-radius: 0 !important; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; cursor: pointer; font-size: 0.9rem; line-height: 2.25rem; text-align: center; transition: background 0.12s, color 0.12s; }
+  .format-modal__x:hover { background: var(--ink); color: var(--bg); }
+  .format-modal__lede { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; margin: 1.25rem 0 0; color: var(--ink60); }
+  .format-block { margin-top: 2rem; }
+  .format-block__h { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; font-size: 1rem; margin: 0 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--ink10); }
+  .format-block__p, .format-block__total { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 1.6; margin: 0 0 0.75rem; }
+  .format-block__total { margin-top: 1rem; color: var(--ink40); font-size: 0.82rem; }
+  .weekbar { display: flex; gap: 2px; margin-bottom: 1.25rem; height: 4.5rem; }
+  .weekbar__seg { flex: var(--span); border: 1px solid var(--ink); border-radius: 0 !important; padding: 0.6rem 0.75rem; display: flex; flex-direction: column; justify-content: center; gap: 0.2rem; }
+  .weekbar__seg--live { background: var(--ink); color: var(--bg); border-left: 4px solid var(--accent); }
+  .weekbar__seg--practice { background: transparent; color: var(--ink40); border-style: dashed; }
+  .weekbar__label { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; }
+  .weekbar__time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+  .loadtoggle { display: flex; border: 1px solid var(--ink); border-radius: 0 !important; margin-bottom: 1.25rem; }
+  .loadtoggle__btn { flex: 1; font-family: 'Roboto Condensed', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; font-size: 0.78rem; background: transparent; color: var(--ink); border: none; border-radius: 0 !important; padding: 0.7rem 0.5rem; cursor: pointer; transition: background 0.12s, color 0.12s; }
+  .loadtoggle__btn + .loadtoggle__btn { border-left: 1px solid var(--ink); }
+  .loadtoggle__btn.is-active { background: var(--ink); color: var(--bg); }
+  .loadout { border-left: 4px solid var(--accent); padding-left: 1rem; margin-bottom: 1rem; }
+  .loadout__hours { font-family: 'Roboto Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 7vw, 3rem); line-height: 1; margin: 0; }
+  .loadout__note { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.5; margin: 0.4rem 0 0; color: var(--ink40); }
+  .format-callout { font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.6; border-left: 4px solid var(--accent); padding: 0.4rem 0 0.4rem 1rem; margin-bottom: 1rem; color: var(--ink60); }
+  .format-callout:last-child { margin-bottom: 0; }
+  /* сетка формата урока внутри модалки — уже 640px контента, 4 колонки не влезают */
+  .format-modal .format-grid { grid-template-columns: repeat(2, 1fr); margin-top: 1.25rem; }
+  .format-modal .format-item { padding: 24px; }
+  .format-modal .format-title { font-size: 18px; }
+  /* .js .format-item скрывает карточки для scroll-reveal — модалка не скроллится, показываем сразу */
+  .js .format-modal .format-item { opacity: 1; transform: none; }
+  @media (max-width: 560px) {
+    .weekbar { height: auto; flex-direction: column; }
+    .format-modal__dialog { box-shadow: 6px 6px 0 var(--ink); padding: 1.5rem; }
+    .format-modal .format-grid { grid-template-columns: 1fr; }
+  }
+  /* CURRICULUM */
+  .module-block {
+    margin-bottom: 2px;
+    border: 1px solid var(--ink10);
+    opacity: 1;
+  }
+  .js .module-block { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .module-block.visible { opacity: 1; transform: translateY(0); }
+  .module-header {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    align-items: center;
+    padding: 20px 24px;
+    background: var(--ink05);
+  }
+  .module-num-badge {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .module-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .module-meta {
+    font-size: 10px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+  .module-body {
+    padding: 24px;
+    border-top: 1px solid var(--ink10);
+  }
+  .lesson-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ink10);
+    font-size: 12px;
+  }
+  .lesson-row > div:last-child { min-width: 0; }
+  .lesson-row:last-child { border-bottom: none; }
+  .lesson-num-sm {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--ink20);
+    line-height: 1;
+  }
+  .lesson-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .lesson-desc {
+    font-size: 12px;
+    color: var(--ink60);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .lesson-name { overflow-wrap: break-word; word-break: break-word; }
+  .lesson-concepts {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-left: 2px solid var(--accent);
+    padding-left: 10px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .module-body { overflow-wrap: break-word; word-break: break-word; }
+  .module-title { overflow-wrap: break-word; word-break: break-word; }
+  .bracket-label { overflow-wrap: break-word; word-break: break-word; }
+
+  /* FORMAT */
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .format-item {
+    padding: 32px 28px;
+    border-right: 1px solid var(--ink10);
+    opacity: 1;
+  }
+  .js .format-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .format-item.visible { opacity: 1; transform: translateY(0); }
+  .format-item:last-child { border-right: none; }
+  .format-icon {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .format-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .format-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 56px);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 40px;
+  }
+
+  /* FAQ */
+  .faq-list { list-style: none; }
+  .faq-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--ink10);
+    opacity: 1;
+  }
+  .js .faq-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .faq-item.visible { opacity: 1; transform: translateY(0); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.35;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .faq-q::after {
+    content: '+';
+    flex-shrink: 0;
+    margin-left: 16px;
+    font-size: 20px;
+    line-height: 1.2;
+    transition: transform 0.2s;
+  }
+  .faq-item.faq-open .faq-q::after { content: '−'; }
+  .faq-a {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink60);
+    display: none;
+  }
+  .faq-item.faq-open .faq-a { display: block; }
+  .faq-a strong { color: var(--ink); }
+
+
+  /* CTA BLOCK */
+  .cta-block {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .cta-block .section-title { color: var(--bg); margin-bottom: 16px; }
+  .cta-widget-wrap { margin-top: 32px; min-height: 60px; }
+  /* Pricing grid inside dark CTA block */
+  .cta-block .pricing-grid {
+    border-color: rgba(245,245,240,0.12);
+    margin: 40px auto 0;
+  }
+  .cta-block .pricing-card {
+    background: rgba(245,245,240,0.06);
+    border-right-color: rgba(245,245,240,0.12);
+    text-align: left;
+  }
+  .cta-block .pricing-card-tier { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-card-name { color: var(--bg); }
+  .cta-block .pricing-price-label { color: rgba(245,245,240,0.45); }
+  .cta-block .pricing-alt {
+    color: rgba(245,245,240,0.45);
+    border-top-color: rgba(245,245,240,0.12);
+    border-bottom-color: rgba(245,245,240,0.12);
+  }
+  .cta-block .pricing-alt strong { color: var(--accent); font-weight: 700; }
+  .cta-block .pricing-bullet { color: var(--bg); }
+  .cta-block .pricing-bullet::before { color: var(--bg); }
+  .pricing-card-btn { margin-top: auto; padding-top: 28px; }
+  .referral-block {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    text-align: left;
+    background: var(--ink);
+    border: none;
+    padding: 40px 36px;
+  }
+  .referral-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--bg);
+    margin-bottom: 32px;
+  }
+  .referral-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(245,245,240,0.12);
+    margin-bottom: 32px;
+  }
+  .referral-col {
+    padding: 24px 28px;
+    border-right: 1px solid rgba(245,245,240,0.12);
+  }
+  .referral-col:last-child { border-right: none; }
+  .referral-col-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(245,245,240,0.45);
+    margin-bottom: 12px;
+  }
+  .referral-col-value {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .referral-col-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--bg);
+  }
+  @media (max-width: 640px) {
+    .cta-block .pricing-card { border-bottom-color: rgba(245,245,240,0.12); }
+  }
+  /* Модальное окно с виджетом заявки */
+  .widget-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .widget-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .widget-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 32px 24px;
+    border: 1px solid var(--ink10);
+  }
+  .widget-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--ink60);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .widget-modal__close:hover { color: var(--ink); }
+  .widget-modal__body { min-height: 200px; }
+  .widget-modal__body iframe { max-width: 100%; }
+
+  @media (max-width: 768px) {
+    .cta-btn {
+      display: block;
+      width: 100%;
+      max-width: none;
+      padding: 12px 20px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      white-space: normal;
+      line-height: 1.3;
+      text-align: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .widget-modal { padding: 12px 8px; align-items: flex-end; }
+    .widget-modal__box {
+      max-height: 92vh;
+      max-height: 92dvh;
+      padding: 48px 16px 24px;
+      width: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .widget-modal__body {
+      min-height: 180px;
+      overflow: auto;
+      max-width: 100%;
+    }
+    .widget-modal__body iframe { width: 100% !important; max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .cta-btn { padding: 10px 16px; font-size: 10px; }
+  }
+
+  .cta-subtitle {
+    font-size: 14px;
+    color: rgba(245,245,240,0.5);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 24px 32px;
+    border-top: 1px solid var(--ink10);
+    font-size: 11px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .footer-tagline {
+    font-size: 10px;
+    color: var(--ink40);
+    letter-spacing: 0.12em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .footer-col-title {
+    font-size: 9px;
+    color: var(--ink40);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--ink60);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--ink); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink10);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-requisites {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink10);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 40px;
+  }
+  .footer-requisites p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink40);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .footer-requisites a { color: var(--ink40); text-decoration: underline; }
+  .footer-requisites a:hover { color: var(--ink); }
+  @media (max-width: 600px) {
+    .footer-top { flex-direction: column; }
+    .footer-links { gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-requisites { grid-template-columns: 1fr; }
+  }
+
+  /* SCROLL REVEAL — по умолчанию видно (без JS); с JS скрыто до появления в viewport */
+  .reveal { opacity: 1; }
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .js .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Бургер — с 992px */
+
+  @media (max-width: 768px) {
+    .hero-stats { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+    .stat-box { aspect-ratio: auto; padding: 16px 14px; }
+    .stat-num { font-size: 36px; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .learn-list { grid-template-columns: 1fr; }
+    .format-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-title { font-size: clamp(28px, 9vw, 52px); }
+    .hero-sub { padding-left: 16px; font-size: 13px; }
+    #hero {
+      padding: 108px 20px 80px;
+      padding-bottom: max(80px, calc(24px + env(safe-area-inset-bottom, 0)));
+      min-height: auto;
+    }
+    .module-header { grid-template-columns: 56px 1fr; padding: 16px 16px; }
+    .module-meta { grid-column: 1 / -1; white-space: normal; margin-left: 0; margin-top: 8px; }
+    .module-body { padding: 16px; }
+    .lesson-row { grid-template-columns: 36px 1fr; gap: 12px; padding: 12px 0; }
+  }
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(24px, 8vw, 40px); }
+    section { padding: 48px 16px; padding-bottom: max(48px, calc(16px + env(safe-area-inset-bottom, 0))); }
+    .format-grid { grid-template-columns: 1fr; }
+  }
+  body { padding-bottom: env(safe-area-inset-bottom, 0); }
+
+  /* FEEDBACK CAROUSEL */
+  .feedback-carousel-wrap { margin-top: 48px; }
+  .feedback-track-outer {
+    position: relative;
+    overflow: hidden;
+  }
+  .feedback-track {
+    display: flex;
+    align-items: stretch;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y;
+    border: 1px solid var(--ink10);
+  }
+  .feedback-track:active { cursor: grabbing; }
+  .feedback-track::-webkit-scrollbar { display: none; }
+  .feedback-card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .feedback-card:last-child { border-right: none; }
+  .feedback-card--screenshot { width: 240px; }
+  .feedback-card--video { width: 420px; }
+  .feedback-card--text { width: 442px; padding: 32px; }
+  .feedback-card-bottom { margin-top: auto; }
+  .feedback-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .feedback-placeholder-icon {
+    font-size: 24px;
+    color: var(--ink20);
+    line-height: 1;
+  }
+  .feedback-placeholder-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink20);
+  }
+  .feedback-text-quote {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink40);
+  }
+  .feedback-text-quote::before { content: '«'; }
+  .feedback-text-quote::after { content: '»'; }
+  .feedback-text-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 24px;
+  }
+  .feedback-text-avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--ink10);
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  .feedback-text-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .feedback-text-role {
+    font-size: 10px;
+    color: var(--ink60);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+  .feedback-stack {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    margin-top: 16px;
+    border-left: 2px solid var(--accent);
+    padding-left: 10px;
+  }
+  .feedback-company {
+    font-size: 10px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+  .feedback-controls {
+    display: flex;
+    gap: 0;
+    margin-top: 16px;
+    position: relative;
+    height: 48px;
+    align-items: center;
+  }
+  .feedback-cta {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media (max-width: 640px) {
+    .feedback-company {
+    font-size: 10px;
+    color: var(--ink40);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+  .feedback-controls {
+      flex-wrap: wrap;
+      height: auto;
+      gap: 12px;
+    }
+    .feedback-cta {
+      position: static;
+      transform: none;
+      width: 100%;
+    }
+    .feedback-cta span { display: block; text-align: center; }
+  }
+  .feedback-arrow {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--ink10);
+    background: var(--ink05);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.2s ease;
+  }
+  .feedback-arrow + .feedback-arrow { margin-left: -1px; }
+  .feedback-arrow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .feedback-arrow:hover:not(:disabled)::before { transform: translateX(0); }
+  .feedback-arrow span { position: relative; z-index: 1; }
+  .feedback-arrow:disabled { opacity: 0.25; cursor: default; }
+  @media (max-width: 768px) {
+    .feedback-card--text { width: 364px; padding: 24px; }
+  }
+
+  /* COMMITTEE INTRO */
+  .committee-intro { margin: 20px 0 28px; }
+  .committee-intro-text { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: black; margin: 0; }
+  .committee-intro-accent { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: var(--accent); margin: 0; }
+  /* COMMITTEE */
+  .committee-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+  }
+  .committee-card {
+    border-right: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    overflow: hidden;
+  }
+  .committee-card:nth-child(4n) { border-right: none; }
+  .committee-card:nth-last-child(-n+4) { border-bottom: none; }
+  .committee-photo-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+  .committee-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .committee-card:hover .committee-photo {
+transform: scale(1.04);
+  }
+  .committee-info {
+    padding: 12px 14px;
+    border-top: 1px solid var(--ink10);
+  }
+  .committee-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: clamp(11px, 1.1vw, 16px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.1;
+  }
+  .committee-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .committee-quote {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink60);
+    font-style: italic;
+  }
+
+
+  /* AUTHORS */
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+    margin-bottom: 2px;
+  }
+  .author-card {
+    border-right: 1px solid var(--ink10);
+    overflow: hidden;
+  }
+  .author-card:last-child { border-right: none; }
+  .author-photo-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--ink05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .author-photo-placeholder {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    color: var(--ink20);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    user-select: none;
+  }
+  .author-info {
+    padding: 16px;
+    border-top: 1px solid var(--ink10);
+  }
+  .author-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(14px, 1.4vw, 22px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.05;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .author-company {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .author-tag {
+    display: inline-block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink40);
+    border: 1px solid var(--ink10);
+    padding: 3px 8px;
+    margin-top: 10px;
+  }
+  .section-divider-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink40);
+    padding: 16px 0 12px;
+    border-top: 1px solid var(--ink10);
+    margin-top: 40px;
+    margin-bottom: 0;
+    display: block;
+  }
+
+
+  @media (max-width: 600px) {
+    .authors-grid { grid-template-columns: 1fr; }
+    .author-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .author-card:last-child { border-bottom: none; }
+    .committee-grid { grid-template-columns: repeat(2, 1fr); }
+    .committee-card:nth-child(2n) { border-right: none; }
+    .committee-card:nth-child(4n) { border-right: none; }
+    .committee-card:nth-last-child(-n+2) { border-bottom: none; }
+    .committee-card:nth-last-child(-n+4) { border-bottom: 1px solid var(--ink10); }
+    .author-name { font-size: 20px; }
+    .committee-name { font-size: 13px; }
+  }
+  @media (min-width: 601px) and (max-width: 900px) {
+    .committee-grid { grid-template-columns: repeat(2, 1fr); }
+    .committee-card:nth-child(2n) { border-right: none; }
+    .committee-card:nth-child(4n) { border-right: 1px solid var(--ink10); }
+    .committee-card:nth-last-child(-n+4) { border-bottom: 1px solid var(--ink10); }
+    .committee-card:nth-last-child(-n+2) { border-bottom: none; }
+    .author-name { font-size: 18px; }
+    .committee-name { font-size: 13px; }
+  }
+  @media (min-width: 901px) {
+    .committee-grid { border-right: none; border-bottom: none; }
+    .committee-card:nth-child(4n) { border-right: 1px solid var(--ink10); }
+    .committee-card:nth-last-child(-n+4) { border-bottom: 1px solid var(--ink10); }
+  }
+
+
+  .author-bio {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ink10);
+  }
+  .author-bio-item {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink60);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--ink10);
+    padding-left: 10px;
+    border-left: 2px solid var(--ink10);
+    margin-bottom: 4px;
+  }
+  .author-bio-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .author-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .author-card:hover .author-photo { transform: scale(1.04); }
+
+
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 1200px;
+    border: 1px solid var(--ink10);
+    margin-top: 48px;
+  }
+  .pricing-card {
+    padding: 40px 36px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card:last-child { border-right: none; }
+  .pricing-card-tier {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink40);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .pricing-card-name {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    min-height: 33px;
+  }
+  .pricing-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .pricing-card-header .pricing-card-name {
+    margin-bottom: 0;
+  }
+  .pricing-badge {
+    background: var(--bg);
+    color: var(--ink);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    padding: 8px 14px;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .pricing-price {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .pricing-price-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink40);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .pricing-alt {
+    font-size: 13px;
+    color: var(--ink60);
+    padding: 12px 0;
+    border-top: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+    margin-bottom: 28px;
+  }
+  .pricing-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pricing-bullet {
+    font-size: 13px;
+    color: var(--ink20);
+    line-height: 1.6;
+    min-height: 1.6em;
+    padding-left: 20px;
+    position: relative;
+  }
+  .pricing-bullet::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--ink20);
+  }
+  .pricing-card--featured { position: relative; }
+  .cta-block .pricing-card--featured {
+    background: rgba(245,245,240,0.12);
+  }
+  .pricing-price-note {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink40);
+    display: block;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .cta-block .pricing-price-note { color: rgba(245,245,240,0.45); }
+  .pricing-footer {
+    max-width: 1200px;
+    margin: 16px auto 0;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid rgba(245,245,240,0.12);
+    flex-wrap: wrap;
+  }
+  .pricing-footer-item {
+    padding: 14px 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,245,240,0.55);
+    border-right: 1px solid rgba(245,245,240,0.12);
+    flex: 1;
+    cursor: default;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pricing-footer-item:last-child { border-right: none; }
+  .pricing-footer-item:hover {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  /* PRICING — TEAM CARD */
+  .pricing-card--teams {
+    background: rgba(245,245,240,0.04);
+  }
+  .pricing-card--teams .pricing-card-name { color: rgba(245,245,240,1); }
+  .pricing-card--teams .pricing-tagline { color: rgba(245,245,240,1); }
+  .pricing-price--teams {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(22px, 2vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .pricing-price-note--teams {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,245,240,0.35);
+    display: block;
+    margin-bottom: 24px;
+  }
+  .pricing-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,245,240,1);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    \border-bottom: 1px solid rgba(245,245,240,0.1);
+  }
+  .pricing-unique { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .pricing-unique-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,245,240,0.7);
+    padding-left: 20px;
+    position: relative;
+  }
+  .pricing-unique-item::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: rgba(245,245,240,0.3);
+  }
+  .pricing-unique-item--accent {
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+  }
+  .pricing-unique-item--accent::before { display: none; }
+  .pricing-shared {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid rgba(245,245,240,0.12);
+    border-top: none;
+    padding: 20px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .pricing-shared-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(245,245,240,1);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .pricing-shared-items { list-style: none; display: flex; flex-wrap: wrap; flex: 1; }
+  .pricing-shared-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,245,240,0.55);
+    padding: 4px 16px;
+    border-right: 1px solid rgba(245,245,240,0.12);
+  }
+  .pricing-shared-item:last-child { border-right: none; }
+  @media (max-width: 640px) {
+    .pricing-shared { padding: 16px 20px; flex-direction: column; gap: 12px; }
+    .pricing-shared-items { flex-direction: column; }
+    .pricing-shared-item { border-right: none; padding: 6px 0; }
+  }
+    @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .pricing-card:last-child { border-bottom: none; }
+    .pricing-price { font-size: 22px; }
+    .pricing-card { padding: 28px 20px; }
+    .referral-block { padding: 28px 20px; }
+    .referral-col { padding: 16px 14px; }
+    .referral-col-value { font-size: 26px; }
+    .nav-cta { padding: 0 16px; font-size: 10px; }
+    .nav-logo { display: none; }
+    .nav-announce-line2 { display: none; }
+    .nav-announce-line1 { font-size: 8px; }
+    .nav-dot { width: 5px; height: 5px; }
+    nav { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; }
+    .nav-left { order: 1; flex: 0 0 auto; }
+    .nav-center { order: 2; flex: 1 1 0; min-width: 0; overflow: hidden; justify-content: center; }
+    .nav-right { order: 3; flex: 0 0 auto; }
+  }
+
+  /* SECTION SUB-TITLE (h3 внутри секций) */
+  .section-sub-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 30px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-top: 48px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  /* TERMINAL STATUS LINE */
+  .terminal-status {
+    margin-bottom: 32px;
+    border-top: 1px solid var(--ink10);
+    border-bottom: 1px solid var(--ink10);
+  }
+  .terminal-status__bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 9px 0;
+    cursor: pointer;
+    text-align: left;
+    transition: opacity 0.15s;
+  }
+  .terminal-status__bar:hover { opacity: 0.75; }
+  .terminal-status__overflow {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .terminal-status__track {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+  .terminal-status__text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink40);
+    padding-right: 64px;
+    display: inline-block;
+  }
+  .terminal-status__text:last-child { display: none; }
+  .terminal-status__prompt { color: var(--accent); }
+  .terminal-status__cursor {
+    color: var(--accent);
+    animation: termBlink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  .terminal-status.is-open .terminal-status__cursor { animation: none; opacity: 1; }
+  .terminal-status__hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink20);
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .terminal-status__bar:hover .terminal-status__hint { color: var(--ink40); }
+  .terminal-status.is-open .terminal-status__hint { color: var(--accent); }
+  @keyframes termBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* TERMINAL NAV */
+  .terminal-nav {
+    border-top: 1px solid var(--ink10);
+    padding: 6px 0 12px 18px;
+  }
+  .terminal-nav[hidden] { display: none; }
+  .terminal-nav__item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 7px 0;
+    text-decoration: none;
+    color: var(--ink60);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.15s;
+    position: relative;
+  }
+  .terminal-nav__item.visible { opacity: 1; transform: translateY(0); }
+  .terminal-nav__item:hover { color: var(--ink); }
+  .terminal-nav__item.is-focused { color: var(--ink); }
+  .terminal-nav__item.is-focused::before {
+    content: '>';
+    position: absolute;
+    left: -16px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+  }
+  .terminal-nav__cmd {
+    color: var(--accent);
+    min-width: 110px;
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+  .terminal-nav__item--cta .terminal-nav__label { color: var(--accent); }
+  .terminal-nav__item--cta:hover .terminal-nav__label { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .terminal-status__text:last-child { display: inline-block; }
+    .terminal-status.is-open .terminal-status__track { animation-play-state: paused; }
+    .terminal-status__track { animation: termScroll 14s linear infinite; }
+    @keyframes termScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  }
+
+  /* PREREQ HINT POPOVER */
+  .prereq-hint-wrap {
+    position: relative;
+    display: inline-block;
+    margin-top: 16px;
+  }
+  .prereq-hint-popover {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 12px);
+    transform: translateY(-50%);
+    z-index: 50;
+    width: min(380px, calc(100vw - 48px));
+    background: var(--bg);
+    border: 1px solid var(--ink20);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink60);
+  }
+  .prereq-hint-popover[hidden] { display: none; }
+  @media (max-width: 640px) {
+    .prereq-hint-popover {
+      top: calc(100% + 6px);
+      left: 0;
+      transform: none;
+    }
+  }
+
+  /* ROLE CARDS — для кого */
+  .roles-block {
+    margin: 40px 0 0px;
+  }
+  .roles-primary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink10);
+    margin-bottom: 12px;
+  }
+  .role-card {
+    padding: 24px 28px;
+    border-right: 1px solid var(--ink10);
+    background: var(--ink05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .role-card:last-child { border-right: none; }
+  .role-card__num {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .role-card__title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .roles-primary { grid-template-columns: 1fr; }
+    .role-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .role-card:last-child { border-bottom: none; }
+  }
+
+  /* HERO ACTIONS */
+  .hero-actions {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-invite {
+    display: flex;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.8rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 0 !important;
+    padding: 16px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.12s, color 0.12s;
+  }
+  .btn-invite:hover { background: var(--accent); color: var(--ink); }
+
+  /* VIDEO MODAL */
+  .video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: rgba(10,10,15,0.85);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  .video-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+  .video-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    background: var(--ink);
+    padding: 44px 32px 32px;
+    overflow-y: auto;
+    max-height: 92vh;
+  }
+  .video-modal__close {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: transparent;
+    border: 1px solid rgba(245,245,240,0.2);
+    color: rgba(245,245,240,0.5);
+    width: 32px; height: 32px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .video-modal__close:hover { color: var(--bg); border-color: rgba(245,245,240,0.6); }
+  .video-modal__videos { display: flex; flex-direction: column; gap: 28px; }
+  .video-modal__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .video-modal__ratio {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-modal__ratio iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  @media (max-width: 640px) {
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .btn-invite { justify-content: center; padding: 12px 20px; font-size: 11px; letter-spacing: 0.06em; }
+    .video-modal__box { padding: 44px 16px 24px; }
+  }
+
+  /* WHY-NOW TABS (about) */
+  .tabs-card { width: 100%; max-width: none; margin-top: 40px; }
+  .tabs-nav {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+  }
+  .tab-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--ink10);
+    border-bottom: none;
+    padding: 14px 16px 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--ink40);
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .tab-btn:hover:not(.is-active) { background: var(--ink05); color: var(--ink60); }
+  .tab-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink20);
+  }
+  .tab-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+  .tab-btn.is-active {
+    background: var(--ink05);
+    color: var(--ink);
+    margin-bottom: -1px;              /* перекрываем верхнюю границу тела */
+    position: relative;
+    z-index: 2;
+  }
+  .tab-btn.is-active .tab-num { color: var(--accent); }
+
+  .tabs-body {
+    background: var(--ink05);
+    border: 1px solid var(--ink10);
+    padding: 40px 44px;
+    display: grid;                     /* все панели в одной ячейке → высота = самой высокой */
+  }
+
+  /* Все панели наложены друг на друга: высота тела фиксируется по самой высокой,
+     низ не «прыгает» при переключении. Неактивные скрыты, но занимают место. */
+  .tab-panel { grid-area: 1 / 1; visibility: hidden; }
+  .tab-panel.is-active { visibility: visible; }
+
+  .panel-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 3vw, 34px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .panel-lead {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink60);
+  }
+  .panel-lead + .panel-lead { margin-top: 18px; }
+
+  .author-list {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .author-list + .panel-lead { margin-top: 18px; }
+  .author-item {
+    position: relative;
+    padding-left: 26px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink60);
+  }
+  .author-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 13px 26px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .panel-btn:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  .panel-item { margin-bottom: 24px; }
+  .panel-item:last-child { margin-bottom: 0; }
+  .item-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .item-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink60);
+  }
+  a.item-cited {
+    display: block;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  a.item-cited:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+  }
+  .cite-arrow { color: var(--accent); white-space: nowrap; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .tabs-body { padding: 28px 20px; }
+    .tab-btn { align-items: center; padding: 12px 8px; }
+    .tab-label { display: none; }        /* на мобилке — только номера */
+  }
+
+  /* ===== STREAMS (галерея студентов, #feedback) ===== */
+  .streams { margin-top: 56px; }
+  .streams-nav { display: flex; gap: 4px; align-items: stretch; }
+  .stream-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--ink10);
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--ink40);
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .stream-btn__main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .stream-btn__label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stream-btn__note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .stream-btn__caret {
+    flex-shrink: 0;
+    font-size: 14px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .stream-btn:not(:disabled):hover { background: var(--ink05); }
+  .stream-btn:disabled { cursor: default; }
+  .stream-btn:disabled .stream-btn__label { color: var(--ink40); }
+  /* «нажатое» состояние — залито тёмным, видно что нажато и нужно нажать снова */
+  .stream-btn.is-open {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .stream-btn.is-open .stream-btn__label { color: var(--bg); }
+  .stream-btn.is-open .stream-btn__caret { transform: rotate(180deg); }
+  /* при наведении на открытую кнопку фон светлеет — возвращаем тёмный текст для читаемости */
+  .stream-btn.is-open:hover { color: var(--ink); }
+  .stream-btn.is-open:hover .stream-btn__label { color: var(--ink); }
+
+  /* панель-аккордеон: плавная высота через grid-template-rows 0fr → 1fr */
+  .stream-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .stream-panel.is-open { grid-template-rows: 1fr; margin-top: 4px; }
+  .stream-panel__inner { overflow: hidden; }
+  .stream-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--ink10);
+    border: 1px solid var(--ink10);
+  }
+  .student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 18px 8px;
+    background: var(--bg);
+  }
+  .student__img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.2s ease;
+  }
+  .student:hover .student__img { filter: grayscale(0); }
+  .student__name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--ink60);
+  }
+  .student--empty { background: var(--ink05); }
+
+  @media (max-width: 900px) {
+    .stream-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .stream-grid { grid-template-columns: repeat(3, 1fr); }
+    .stream-btn { padding: 14px; }
+    .stream-btn__label { font-size: 16px; }
+    .student--empty { display: none; }
+  }
+
+  /* ===== PRICING / FORMATS (тёмная инверсия, #register) ===== */
+  .pricing-section {
+    /* фон — во всю ширину страницы (как и остальные <section>), содержимое — внутри .pricing-inner */
+    padding: 80px 24px;
+    background: var(--ink);
+    color: var(--bg);
+    font-variant-numeric: tabular-nums;
+  }
+  .pricing-inner { max-width: 1200px; margin: 0 auto; }
+  .pricing-section .section-title { color: var(--bg); margin-bottom: 24px; }
+  .pricing-section .bracket-label { margin-bottom: 12px; }
+
+  /* вводный блок секции — заголовок и подводка по центру */
+  .pricing-head { text-align: center; }
+
+  .pricing-lead {
+    max-width: 680px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--cream-muted);
+    margin: 0 auto 48px;
+  }
+
+  .pricing-main { max-width: 70%; margin: 0 auto 32px; border: 1px solid var(--cream-border); }
+  .pricing-main__head { padding: 40px 40px 32px; border-bottom: 1px solid var(--cream-border); }
+  .pricing-main__head-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .pricing-main__head-row .pricing-main__title { margin: 0; }
+  .pricing-main__title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    margin: 0 0 16px;
+  }
+  .pricing-main__desc { font-size: 14px; line-height: 1.7; color: var(--cream-muted); max-width: 560px; margin: 0; }
+  .pricing-main__desc + .pricing-main__desc { margin-top: 12px; }
+
+  .pricing-value-list { list-style: none; margin: 0; padding: 0; }
+  .pricing-value-list li {
+    position: relative;
+    padding: 20px 40px 20px 64px;
+    border-bottom: 1px solid var(--cream-border);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--bg);
+  }
+  .pricing-value-list li::before {
+    content: '→';
+    position: absolute;
+    left: 40px;
+    top: 20px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .pricing-value-list li:last-child { border-bottom: none; }
+  .pricing-value-list li.is-placeholder { color: var(--accent); }
+
+  /* вложенный список материалов курса — табуляция диагональной стрелкой ↗ */
+  .pricing-sublist { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .pricing-sublist li {
+    position: relative;
+    padding: 0 0 0 22px;
+    border-bottom: none;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cream-muted);
+  }
+  .pricing-sublist li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+  }
+  .pricing-value-list li.is-price { padding-bottom: 40px; }      /* тот же вес, что раньше давал .pricing-main__cta */
+  .pricing-value-list li.is-price::before { content: none; }  /* цена — без маркера-стрелки */
+  .pricing-value-list .price-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+  .pricing-value-list .price-unit { font-size: 13px; color: var(--cream-muted); }
+
+  .pricing-price-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+  .pricing-value-list li.is-price .cta-btn { font-size: 14.4px; } /* 12px + 20%, только для этой кнопки */
+
+  /* трёхколоночная полоса под ценой и СТА — тот же стиль, что у .pricing-footer */
+  .pricing-price-footer {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--cream-border);
+    flex-wrap: wrap;
+    margin-left: -64px;   /* bleed до края .pricing-main — гасим левый паддинг .is-price (64px, под стрелку) */
+    margin-right: -40px;  /* гасим правый паддинг .is-price (40px) */
+    margin-bottom: -40px; /* гасим нижний паддинг .is-price (40px) */
+  }
+  .pricing-price-footer-item {
+    padding: 14px 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--cream-muted);
+    border-right: 1px solid var(--cream-border);
+    flex: 1;
+    min-width: 200px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pricing-price-footer-item:last-child { border-right: none; }
+  .pricing-price-footer-item:hover { background: var(--bg); color: var(--ink); }
+
+  /* вторичная кнопка на тёмном фоне: контурная */
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--bg);
+    border: 1px solid var(--cream-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* та же анимация, что у .format-floor__btn — быстрая прямая заливка вместо смены цвета рамки */
+  .btn-secondary--swap { transition: background 0.12s, color 0.12s, border-color 0.12s; }
+  .btn-secondary--swap:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  .pricing-active {
+    position: relative;
+    overflow: hidden;
+    max-width: 70%;
+    margin: 0 auto 24px;
+    background: var(--cream-panel);
+    border: 1px solid var(--cream-border);
+    padding: 32px 40px;
+    --ascii-dim: rgba(245,166,35,0.20);
+    --ascii-bright: rgba(255,226,172,0.88);
+  }
+  .pricing-active__content { position: relative; z-index: 2; }
+  .pricing-active__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .pricing-active__badge {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+  .pricing-active__title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    margin: 0 0 20px;
+  }
+  .pricing-active__cta { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .pricing-active__note { font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--accent); }
+
+  .pricing-active__list { list-style: none; margin: 0 0 24px; padding: 0; }
+  .pricing-active__list li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--white);
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+    margin-bottom: 14px;
+  }
+  .pricing-active__list li:last-child { margin-bottom: 0; }
+
+  .pricing-group {
+    max-width: 70%;
+    background: var(--cream-panel);
+    border: 1px solid var(--cream-border);
+    margin: 0 auto 24px;
+    padding: 32px 40px;
+  }
+  .pricing-group__text { max-width: 640px; margin-bottom: 20px; }
+  .pricing-group__text p { font-size: 14px; line-height: 1.6; color: var(--bg); margin: 0; }
+  .pricing-group__cta { display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  .pricing-teams { border-top: 1px solid var(--cream-border); padding-top: 20px; margin-bottom: 24px; }
+  .pricing-teams p { font-size: 13px; color: var(--cream-muted); margin: 0; }
+  .pricing-teams a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .pricing-teams a:hover { color: var(--bg); border-color: var(--bg); }
+
+  @media (max-width: 768px) {
+    .pricing-section { padding: 48px 16px; }
+    .pricing-main, .pricing-active, .pricing-group { max-width: 100%; }
+    .pricing-main__head { padding-left: 20px; padding-right: 20px; }
+    .pricing-value-list li { padding-left: 44px; padding-right: 20px; }
+    .pricing-value-list li::before { left: 20px; }
+    .pricing-price-row { flex-direction: column; align-items: flex-start; }
+    .pricing-price-footer { flex-direction: column; margin: 0; }
+    .pricing-price-footer-item { border-right: none; border-bottom: 1px solid var(--cream-border); min-width: 0; }
+    .pricing-price-footer-item:last-child { border-bottom: none; }
+    .pricing-active, .pricing-group { padding: 24px 20px; }
+    .pricing-active__head { flex-wrap: wrap; gap: 8px; }
+    .pricing-active__cta { flex-direction: column; align-items: flex-start; }
+    .pricing-active__cta .btn-secondary { align-self: flex-end; }
+    .pricing-group__cta { flex-direction: column; align-items: flex-end; }
+    .pricing-group__cta .cta-btn {
+      display: inline-block;
+      width: auto;
+      max-width: none;
+      padding: 14px 32px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+  }
+
+
+  /* ===== SPECIAL PAGE ===== */
+  #special-hero { padding-top: 96px; }
+  .special-videos {
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  /* кнопки тарифа прижаты вправо, «Оплатить» — слева от вторичной кнопки */
+  .pricing-active__cta { justify-content: flex-end; gap: 12px; }
+  .pricing-price-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  /* Единая метрика кнопок в тарифах.
+     Высота фиксирована: box-sizing: border-box поглощает разницу паддингов
+     (.cta-btn 16px без рамки vs .btn-secondary 14px + рамка 1px), центрируем флексом.
+     Последний селектор перебивает .pricing-value-list li.is-price .cta-btn { font-size: 14.4px }. */
+  .pricing-main__head .btn-secondary,
+  .pricing-price-actions .cta-btn,
+  .pricing-price-actions .btn-secondary,
+  .pricing-active__cta .cta-btn,
+  .pricing-active__cta .btn-secondary,
+  .pricing-value-list li.is-price .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  @media (max-width: 768px) {
+    .special-videos { max-width: 100%; }
+    /* .cta-btn на мобилке во всю ширину (правило сайта) — тянем и вторичную кнопку,
+       иначе пара кнопок выглядит разнокалиберной */
+    .pricing-active__cta { align-items: stretch; }
+    .pricing-active__cta .btn-secondary { align-self: auto; width: 100%; }
+    .pricing-price-actions { width: 100%; }
+    .pricing-price-actions .btn-secondary { width: 100%; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section id="special-hero">
+  <div class="section-grid">
+    <div>
+      <span class="bracket-label">[ SPECIAL ] // БЕЗ ВОДЫ</span>
+      <h2 class="section-title reveal">О нас<br><span class="hero-accent">только по сути</span></h2>
+    </div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="special-videos reveal">
+    <div>
+      <div class="video-modal__label">// Модуль 3. Урок 6. Мультиагенты и оркестрация
+      </div>
+      <div class="video-modal__ratio">
+        <iframe width="560" height="315" src="https://v.lpxl.ru/v/b0QHqtO0sEeJu_oFBdTecw?showTitle=true&showControls=true&muted=true&autoplay=true" frameBorder=0 allow="accelerometer; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+    <div>
+      <div class="video-modal__label">// Модуль 5. Урок 16. Масштабирование</div>
+      <div class="video-modal__ratio">
+        <iframe width="560" height="315" src="https://v.lpxl.ru/v/8-XQ9UnfjEipmklh28Vdsg?showTitle=true&showControls=true&muted=true&autoplay=true" frameBorder=0 allow="accelerometer; fullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum">
+  <div class="section-grid">
+    <div>
+      <span class="bracket-label">[CURRICULUM] // ПРОГРАММА · 12 НЕДЕЛЬ · 17 УРОКОВ</span>
+      <h2 class="section-title reveal">Программа<br><span class="hero-accent">буткемпа</span></h2>
+
+      <!-- FORMAT MODAL -->
+      <section class="format-floor" aria-labelledby="format-floor-text">
+        <div class="format-facts" id="format-floor-text">
+          <div class="format-fact">
+            <span class="format-fact__label">Живые эфиры</span>
+            <span class="format-fact__value">Каждый вторник с 18:00/19:00</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Длительность</span>
+            <span class="format-fact__value">От 2 до 3 часов</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Периодичность</span>
+            <span class="format-fact__value">1 урок в неделю, иногда 2 — по вторникам и четвергам</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">Если пропустил</span>
+            <span class="format-fact__value">Материалы остаются в библиотеке</span>
+          </div>
+          <div class="format-fact">
+            <span class="format-fact__label">После урока</span>
+            <span class="format-fact__value">Задачи для самостоятельной работы</span>
+          </div>
+        </div>
+        <button class="format-floor__btn" type="button" data-format-open>Как устроена неделя</button>
+      </section>
+
+      <div class="format-modal" data-format-modal hidden>
+        <div class="format-modal__backdrop" data-format-close></div>
+        <div class="format-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="format-modal-title" tabindex="-1">
+          <header class="format-modal__head">
+            <div>
+              <p class="format-modal__eyebrow">Формат и нагрузка</p>
+              <h2 class="format-modal__title" id="format-modal-title">Как устроена неделя на буткемпе</h2>
+            </div>
+            <button class="format-modal__x" type="button" data-format-close aria-label="Закрыть">✕</button>
+          </header>
+          <p class="format-modal__lede">Формат живой, с записью на случай пропуска. Ниже разложили, сколько времени это занимает на практике.</p>
+          <div class="format-block">
+            <h3 class="format-block__h">Обычная неделя</h3>
+            <div class="weekbar" aria-hidden="true">
+              <div class="weekbar__seg weekbar__seg--live" style="--span: 3;"><span class="weekbar__label">Вебинар</span><span class="weekbar__time">18:00 → ~20:30</span></div>
+              <div class="weekbar__seg weekbar__seg--practice" style="--span: 5;"><span class="weekbar__label">Практика</span><span class="weekbar__time">самостоятельно</span></div>
+            </div>
+            <p class="format-block__p">Основа недели — живой вебинар во вторник. Старт в 18:00/19:00, идёт 2–3 часа, так что закладывать нужно примерно до 20:30/21:30.</p>
+            <p class="format-block__p">После вебинара остаётся практика на своём проекте. Практика вне уроков выполняется самостоятельно, занимает 2–5 часов в неделю и нужна тем, кто хочет довести навык до рабочего уровня.</p>
+            <p class="format-block__p">В отдельные недели вебинаров два вместо одного. Тогда живая часть занимает 4–6 часов, практика растёт до верхней границы.</p>
+          </div>
+          <div class="format-block">
+            <h3 class="format-block__h">Сколько времени в неделю</h3>
+            <div class="loadtoggle" role="tablist" aria-label="Режим нагрузки">
+              <button class="loadtoggle__btn is-active" type="button" role="tab" aria-selected="true" data-load="webinar">Только вебинары</button>
+              <button class="loadtoggle__btn" type="button" role="tab" aria-selected="false" data-load="full">Вебинары и практика</button>
+            </div>
+            <div class="loadout" aria-live="polite">
+              <p class="loadout__hours" data-load-hours>2–3 часа</p>
+              <p class="loadout__note" data-load-note>в неделю, до 4–6 часов в недели с двумя встречами</p>
+            </div>
+            <p class="format-block__total">За весь буткемп это примерно 30–45 часов, если ходить на вебинары. С полной практикой выходит больше, до 80–90 часов за три месяца.</p>
+          </div>
+          <div class="format-block">
+            <h3 class="format-block__h">Что важно знать про формат</h3>
+            <div class="format-callout">Все вебинары записываются и остаются с материалами, поэтому пропущенная встреча не выбивает из программы. Догнать можно по записи.</div>
+            <div class="format-callout">Живая встреча даёт то, чего нет в записи: вопросы к команде, разбор проблем, обратная связь от ведущего или кураторов в реальном времени. Запись закрывает теорию и разбор задач.</div>
+            <div class="format-callout">Расписание держится на вторниках. Это фиксированный день недели, его нужно сверить с графиком до старта.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 1 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M1</div>
+          <div class="module-title">AI как инструмент</div>
+          <div class="module-meta">НЕД 1 · 2 УРОКА</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">01</div>
+            <div>
+              <div class="lesson-name">Трансформация роли разработчика</div>
+              <div class="lesson-desc">Разбираем, как меняется роль инженера: код как ценность уступает место спекам, требованиям и управлению агентами. Вводим понятия мультиагентности, цифрового сотрудника, контекстного окна: не как теорию, а как рабочие инструменты. Сразу проверяем на практике: каждый участник через ИИ-агента разворачивает полноценный лендинг на рабочем сервере (стек (HTML/CSS/JS/PHP/SQL), SSH, БД, Яндекс.Метрика), подготавливая основу для следующего урока.</div>
+              <div class="lesson-concepts">// Роль разработчика · Цифровой сотрудник · Мультиагентность · Деплой через агента</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">02</div>
+            <div>
+              <div class="lesson-name">Продуктовая итерация через AI-аналитику</div>
+              <div class="lesson-desc">Берём лендинг с первого урока и решаем бизнесовую задачу: повысить конверсию через данные о реальном поведении пользователей. Подключаем Chrome MCP, параллельно парсим Web Visor, анализируем паттерны скроллов и кликов, передаём выводы агенту и вносим изменения для повышения конверсии на 5-15%. Разбираем, почему агент без жёсткого контроля смешивает данные с домыслами, и как его остановить. Цикл от данных до деплоя за одно занятие.</div>
+              <div class="lesson-concepts">// Chrome MCP · Браузерная автоматизация · Конверсия · Performance Engineering · Управление агентом</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M2</div>
+          <div class="module-title">Качество и контекст</div>
+          <div class="module-meta">НЕД 2–3 · 3 УРОКА</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">03</div>
+            <div>
+              <div class="lesson-name">Философия качества и Evals</div>
+              <div class="lesson-desc">Разбираем, почему качеством нельзя управлять без внедрения метрик, и вводим evals как инженерную дисциплину: эталонная выборка, регрессионные тесты, LLM в роли судьи, операционные метрики. Расширяем SDD: критерии принятия формализуются в evals, а контур трассировки → классификация сбоев → повторный прогон даёт управляемое улучшение системы.</div>
+              <div class="lesson-concepts">// Evals · Golden dataset · TDD · BDD · SDD</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">04</div>
+            <div>
+              <div class="lesson-name">Контекст-инжиниринг</div>
+              <div class="lesson-desc">Разбираем контекстное окно как проектируемый ресурс: из чего оно состоит, что в него засоряет (документация, промежуточные вычисления, устаревшие ссылки), когда сбрасывать сессию и почему работать по фичам лучше, чем по слоям. Строим иерархию памяти: md-файлы → MCP+PostgreSQL → Redis. Устанавливаем Spec Kit и проходим полный цикл от установки и внедрения до автоматической реализации задач со сбросом контекста между итерациями.</div>
+              <div class="lesson-concepts">// Контекст как ресурс · Иерархия памяти · Паттерны vs документация · Субагенты · Spec Kit</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">05</div>
+            <div>
+              <div class="lesson-name">Мультиэкспертность</div>
+              <div class="lesson-desc">Разбираем, как скиллы превращают агента в системного аналитика, QA, дизайнера или DevOps, и почему без скилла агент работает хаотично. Запускаем полный живой цикл OpenSpec на кейсе MVP агрегатора гостиниц: постановка запроса → цель, дизайн и задачи → агент последовательно реализует 24 задачи → выдаёт рабочий фронтенд многостраничника. Параллельно второй агент анализирует топ-10 сайтов на возможность автоинтеграции изменений.</div>
+              <div class="lesson-concepts">// SDLC через скиллы · OpenSpec · API-first · Мультиэкспертность · Безопасность агентов</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M3</div>
+          <div class="module-title">Агенты</div>
+          <div class="module-meta">НЕД 4–6 · 4 УРОКА</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">06</div>
+            <div>
+              <div class="lesson-name">Мультиагентные системы</div>
+              <div class="lesson-desc">Разбираем агента как операционную систему: LLM = CPU, контекст = RAM, субагенты = процессы, MCP = сетевые вызовы. Пишем собственный MCP-сервер на Python (fastMCP) и подключаем к IDE. Проверяем, как docstring инструмента влияет на его вызов. Создаём первого субагента на markdown и выясняем, почему размытое описание может сломать всю систему. Разбираем все паттерны использования мультиагентных систем: Router, Supervisor, Graph, Evaluator-Optimizer, Human-in-the-Loop — с эволюцией от group chat до Chat DEF. Финал: собираем мультиагентную систему для полного SDD-цикла.</div>
+              <div class="lesson-concepts">// MCP · Субагенты · Паттерны мультиагентности · Эволюция архитектур · Chat DEF · Observability</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">07</div>
+            <div>
+              <div class="lesson-name">Обзор моделей и RAG</div>
+              <div class="lesson-desc">Разбираем, зачем нужны специализированные ML-модели рядом с LLM и какую роль они играют в агентных пайплайнах. Смотрим на HuggingFace и Yandex Cloud как на источники готовых компонентов. Строим RAG с нуля: чанкинг через Chonkie → embeddings → ChromaDB → поиск → ответ LLM. Затем усиливаем: добавляем query rewrite перед поиском и re-ranker после. Оцениваем качество через RAGAS, получаем числовые метрики и понимаем, что именно улучшать.</div>
+              <div class="lesson-concepts">// Типы ML-моделей · RAG-пайплайн · Чанкинг · Embeddings · Re-ranker · RAGAS · Векторные БД</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">08</div>
+            <div>
+              <div class="lesson-name">Создание агента</div>
+              <div class="lesson-desc">Проходим базовые паттерны построения агентов: воркфлоу, маршрутизацию, параллелизацию, оркестрацию и цикл с самопроверкой через судью. Пишем первого агента, который возвращает структурированный вывод по заданной схеме. Добавляем вызов функций: объявляем тул, читаем function_call в ответе модели и вызываем нужную функцию вручную. В финале объединяем RAG, MCP и скиллы в одном агенте через общий параметр tools и получаем работающего агента, который умеет искать по знаниям, обращаться к внешним сервисам и использовать локальные окружения.</div>
+              <div class="lesson-concepts">// Агенты vs воркфлоу · tools · Human-in-the-loop · API</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">09</div>
+            <div>
+              <div class="lesson-name">Оркестрация агентов</div>
+              <div class="lesson-desc">Разбираем принципы оркестрации: агенты маленькие как микросервисы, стейтлесс, возобновляемые, подача свежего контекста при каждом вызове. Применяем A2A-протокол Google — стандарт коммуникации с внешними агентами, строим трёхагентную систему с нуля. Вводим понятие AI harness и разбираем его практики: трейс-регрессия, тестирование инструментов, мониторинг стоимости задачи, детекция циклов, защита от промпт-инъекций, релизный гейт для промптов. Реализуем ту же систему через фреймворк на выбор: LangGraph, CrewAI, Google ADK, AutoGen или Haystack.</div>
+              <div class="lesson-concepts">// Фреймворки для агентов · Harness · A2A · Оркестрация</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M4</div>
+          <div class="module-title">Quick Wins и сложные кейсы</div>
+          <div class="module-meta">НЕД 7–10 · 5 УРОКОВ</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">10</div>
+            <div>
+              <div class="lesson-name">Беспроблемные и проблемные кейсы на реальной кодовой базе</div>
+              <div class="lesson-desc">Разворачиваем настоящий большой legacy-проект через Docker и работаем с ним как с боевой задачей, разбирая проблемные и беспроблемные кейсы использования LLM. Беспроблемные кейсы: картографирование архитектуры незнакомого репо, объяснение 6500-строчного монолита на чужом языке, трассировка flow от клика до БД. Проблемные: аудит безопасности; один и тот же промт даёт разный результат при двух запусках; AI документирует несуществующий класс как реальный. Для каждого кейса — конкретный алгоритм получения нужного результата.</div>
+              <div class="lesson-concepts">// Legacy-код · Картографирование архитектуры · Аудит безопасности · Недетерминированность · Галлюцинации · Режим планирования</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">11</div>
+            <div>
+              <div class="lesson-name">Фреймворк системной декомпозиции</div>
+              <div class="lesson-desc">Разбираем паттерн системной декомпозиции — пошаговый путь продукта от ТЗ заказчика до задеплоенной микросервисной архитектуры: требования, прототип, структура БД, API-контракт, параллельная реализация, тесты, деплой. Запускаем мультиагентный наш самописный фреймворк на основе OpenSpec. Проходим e2e-тестирование через Playwright и деплой в Docker Compose, получаем готовый продукт. Разбираем ограничения паттерна на легаси-проектах и изучаем, как адаптировать фреймворк под собственные задачи.</div>
+              <div class="lesson-concepts">// Системная декомпозиция · OpenSpec · Мультиагентный пайплайн · Микросервисная архитектура</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">12</div>
+            <div>
+              <div class="lesson-name">Изучение незнакомых систем</div>
+              <div class="lesson-desc">Разберём иерархию инструментов анализа чужой кодовой базы: от grep и полнотекстового индекса до семантического RAG, tree-sitter, LSP и графовых баз знаний. Опробуем инструменты автоматической документации на реальном open-source репозитории: ответим на базовые архитектурные вопросы без клонирования и получим пошаговый план изменений через режим Code Map. Построим граф зависимостей кодовой базы в Docker через агента, напишем аналитические запросы и найдём архитектурные проблемы, не читая код вручную.</div>
+              <div class="lesson-concepts">// Legacy Exploration · Dependency mapping · Восстановление архитектуры · Оптимизация контекста</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">13</div>
+            <div>
+              <div class="lesson-name">Рефакторинг и трансформация сложных систем</div>
+              <div class="lesson-desc">Безопасный рефакторинг крупной кодовой базы с GitHub: установление связей, изоляция модулей, поэтапные массовые изменения, непрерывная валидация и стратегия отката.</div>
+              <div class="lesson-concepts">// Legacy Refactoring · Dependency mapping · Continuous validation · Rollback strategy</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">14</div>
+            <div>
+              <div class="lesson-name">Архитектурная трансформация и интеграция знаний</div>
+              <div class="lesson-desc">Разделение монолита на микросервисы: анализ зависимостей, выделение bounded contexts, создание API-границ. Стратегическое планирование трансформации с риск-менеджментом на архитектурном уровне.</div>
+              <div class="lesson-concepts">// Monolith Breakdown · Bounded contexts · Риск-менеджмент · Интеграция паттернов</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5 -->
+      <div class="module-block reveal">
+        <div class="module-header">
+          <div class="module-num-badge">M5</div>
+          <div class="module-title">Масштабирование и выпуск</div>
+          <div class="module-meta">НЕД 11–12 · 2 УРОКА</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">15</div>
+            <div>
+              <div class="lesson-name">Трансформация команды и внедрение</div>
+              <div class="lesson-desc">Масштабирование AI-практик на команду и организацию на базе агента-аналитика: план внедрения, работа с сопротивлением, оцифровка SDLC, создание корпоративной академии.</div>
+              <div class="lesson-concepts">// Управление изменениями · Корпоративная академия · Изменение SDLC</div>
+            </div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-num-sm">16</div>
+            <div>
+              <div class="lesson-name">Позиционирование на рынке труда</div>
+              <div class="lesson-desc">Рынок труда изменился с приходом AI. Мы рассказываем с реальными данными на руках, чего работодатель ожидает от IT-специалистов на текущий момент, как правильно себя позиционировать, что подчеркнуть и на какие суммы можно претендовать.</div>
+              <div class="lesson-concepts">// Найм · Карьерный трек · Рынок труда</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 6 -->
+      <div class="module-block reveal">
+        <div class="module-header" style="grid-template-columns: 1fr auto;">
+          <div class="module-title">Выпуск</div>
+          <div class="module-meta">НЕД 12 · 1 УРОК</div>
+        </div>
+        <div class="module-body open">
+          <div class="lesson-row">
+            <div class="lesson-num-sm">17</div>
+            <div>
+              <div class="lesson-name">Окончание и следующие шаги</div>
+              <div class="lesson-desc">Формирование долгосрочной стратегии развития AI-практик. Чеклисты, промпты, плейбуки для ежедневной работы. Вход в комьюнити для постоянного обмена опытом.</div>
+              <div class="lesson-concepts">// Мастер-тулкит · Библиотека паттернов · Комьюнити</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ТАРИФЫ -->
+<section class="pricing-section" id="register" style="margin-top: 48px;">
+  <div class="pricing-inner">
+
+  <!-- основной пакет -->
+  <div class="pricing-main">
+    <div class="pricing-main__head">
+      <span class="bracket-label">[ описание ]</span>
+      <div class="pricing-main__head-row">
+        <h3 class="pricing-main__title">Полное погружение</h3>
+        <button type="button" class="btn-secondary btn-secondary--swap" data-lesson-open>Как устроен урок</button>
+      </div>
+      <p class="pricing-main__desc">
+        Разбираем AI-driven разработку на реальных кейсах и инструментах,
+        которые уже используются в продуктовых командах.
+      </p>
+    </div>
+
+    <ul class="pricing-value-list">
+      <li class="is-placeholder">Разработаете агентов и субагентов, покрывающих весь процесс разработки. Научитесь методу оркестрации агентов.</li>
+      <li class="is-placeholder">Изучите паттерны и практики качественной разработки сложных веб-приложений - CRM, агрегаторы, маркетплейсы и другие - за часы вместо месяцев.</li>
+      <li class="is-placeholder">Отработаете подходы для исследования, рефакторинга и архитектурной трансформации проектов размером от 200тыс. строк кода.</li>
+      <li>5 модулей, 17 уроков 2-3 часа каждый.</li>
+      <li><strong>Обучение в живом формате, в онлайн-режиме на вебинарах.</strong></li>
+      <li>
+        <strong>Материалы курса:</strong>
+        <ul class="pricing-sublist">
+          <li>онлайн-встречи и записи встреч</li>
+          <li>библиотека материалов</li>
+          <li>рабочие файлы на GitHub</li>
+          <li>лидерборд результатов</li>
+          <li>общий чат потока с поддержкой от команды</li>
+        </ul>
+      </li>
+      <li>Записи и материалы доступны <strong>6 месяцев</strong>, чтобы можно было пройти пропущенные уроки.</li>
+      <li>Дополнительные встречи в малых группах для доработки практики и домашних заданий.</li>
+      <li><strong>Бонус при регистрации до 12 июля: 3 месяца в клубе топ-разработчиков после завершения программы.</strong></li>
+      <li class="is-price">
+        <div class="pricing-price-row">
+          <span class="price-num">25 000 Р за модуль</span>
+          <div class="pricing-price-actions">
+            <button type="button" class="cta-btn js-open-widget" data-widget-id="xKh9WcNy7Ey0DF0TpnVvcg"><span>→ Оплатить</span></button>
+            <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg">Подробности у куратора</button>
+          </div>
+        </div>
+        <div class="pricing-price-footer">
+          <div class="pricing-price-footer-item">Оплата только после консультации — оставляйте заявку и получите ваши персональные условия.</div>
+          <div class="pricing-price-footer-item">Разные варианты внесения платежа и дополнительная скидка для участия с коллегами и друзьями.</div>
+          <div class="pricing-price-footer-item">Возможность присоединиться даже с одного модуля и скидка при полной оплате.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- LESSON FORMAT MODAL -->
+  <div class="format-modal" data-lesson-modal hidden>
+    <div class="format-modal__backdrop" data-lesson-close></div>
+    <div class="format-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-modal-title" tabindex="-1">
+      <header class="format-modal__head">
+        <div>
+          <p class="format-modal__eyebrow">Формат занятий</p>
+          <h2 class="format-modal__title" id="lesson-modal-title">Как устроен каждый урок</h2>
+        </div>
+        <button class="format-modal__x" type="button" data-lesson-close aria-label="Закрыть">✕</button>
+      </header>
+      <div class="format-grid">
+        <div class="format-item">
+          <span class="format-icon">[ТЕОРИЯ] // 10–30 МИН</span>
+          <div class="format-title">Минимальная теория</div>
+          <p class="format-desc">Только то, что нужно для понимания практики. Концепции даются по мере необходимости.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[КЕЙС] // 1 ЧАС</span>
+          <div class="format-title">Живой разбор кейса</div>
+          <p class="format-desc">Рассказываем, о чём будет кейс и показываем, как его реализовать. Даём инструкции к выполнению и отвечаем на вопросы.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[ПРАКТИКА] // 1.5 ЧАСА</span>
+          <div class="format-title">Практика на вебинаре</div>
+          <p class="format-desc">Студенты реализуют кейс самостоятельно прямо на занятии. Сталкиваются с проблемами и решают их с командой буткемпа на месте.</p>
+        </div>
+        <div class="format-item">
+          <span class="format-icon">[ПОСЛЕ УРОКА] // 1–3 ЧАСА</span>
+          <div class="format-title">Самостоятельная практика</div>
+          <p class="format-desc">После уроков мы даём материал для самостоятельной практики. Для тех, кто хочет получить максимум от участия.</p>
+        </div>
+      </div>
+      <div class="format-callout" style="margin-top: 1.25rem;">
+        Некоторые уроки проходят <strong style="color:var(--ink)">2 раза в неделю</strong>, остальные — раз в неделю. После урока открывается доступ к материалам библиотеки. Логика последовательного открытия поможет сконцентрироваться на текущих паттернах.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pricing-active">
+    <div class="pricing-active__head">
+      <span class="bracket-label" style="margin-bottom:0">[ для более глубокого погружения ]</span>
+      <span class="pricing-active__badge">Осталось 20 мест</span>
+    </div>
+    <h3 class="pricing-active__title">Активная практика</h3>
+    <ul class="pricing-active__list">
+      <li>Внедряем решения на ваших проектах под контролем преподавателя.</li>
+      <li>Разбираем ваши реальные рабочие задачи.</li>
+      <li>Персональный разбор задач в каждом модуле.</li>
+      <li>+1 месяц сопровождения после завершения модуля: чат и сессии.</li>
+    </ul>
+    <div class="pricing-active__cta">
+      <button type="button" class="cta-btn js-open-widget" data-widget-id="xKh9WcNy7Ey0DF0TpnVvcg"><span>→ Оплатить</span></button>
+      <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w">Подробности у куратора</button>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<div class="widget-modal" id="widget-modal" aria-hidden="true">
+  <div class="widget-modal__box">
+    <button type="button" class="widget-modal__close js-close-widget" aria-label="Закрыть">×</button>
+    <div class="widget-modal__body" id="widget-modal-body">
+      <!-- Виджет подгружается при первом открытии модалки, чтобы не блокировать страницу -->
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Модальное окно с виджетом заявки (виджет подгружаем при первом открытии — не блокирует страницу)
+  const modal = document.getElementById('widget-modal');
+  const widgetBody = document.getElementById('widget-modal-body');
+  var loadedWidgetId = null;
+  function openWidgetModal(widgetId) {
+    if (!modal) return;
+    if (widgetId && widgetId !== loadedWidgetId && widgetBody) {
+      widgetBody.innerHTML = '';
+      loadedWidgetId = widgetId;
+      var s = document.createElement('script');
+      s.setAttribute('ao-number', '3272');
+      s.setAttribute('ao-widget-id', widgetId);
+      s.setAttribute('ao-domain', 'content.scalingclub.ru');
+      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
+      s.async = true;
+      widgetBody.appendChild(s);
+    }
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWidgetModal() {
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+  document.querySelectorAll('.js-open-widget').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openWidgetModal(btn.getAttribute('data-widget-id'));
+    });
+  });
+  document.querySelectorAll('.js-close-widget').forEach(function(btn) {
+    btn.addEventListener('click', closeWidgetModal);
+  });
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeWidgetModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeWidgetModal();
+    });
+  }
+
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Stagger children
+        const children = e.target.querySelectorAll('.audience-item, .learn-item, .format-item, .faq-item');
+        children.forEach((c, i) => {
+          setTimeout(() => c.classList.add('visible'), i * 80);
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .module-block').forEach(el => observer.observe(el));
+
+  // Format modal
+  (function() {
+    var fModal = document.querySelector('[data-format-modal]');
+    var fDialog = fModal && fModal.querySelector('.format-modal__dialog');
+    var fOpenBtn = document.querySelector('[data-format-open]');
+    var fCloseEls = fModal && fModal.querySelectorAll('[data-format-close]');
+    var fLastFocused = null;
+    function openFModal() {
+      fLastFocused = document.activeElement;
+      if (fModal) fModal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (fDialog) fDialog.focus();
+      document.addEventListener('keydown', onFKeydown);
+    }
+    function closeFModal() {
+      if (fModal) fModal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onFKeydown);
+      if (fLastFocused instanceof HTMLElement) fLastFocused.focus();
+    }
+    function onFKeydown(e) { if (e.key === 'Escape') closeFModal(); }
+    if (fOpenBtn) fOpenBtn.addEventListener('click', openFModal);
+    if (fCloseEls) fCloseEls.forEach(function(el) { el.addEventListener('click', closeFModal); });
+    var FLOAD = {
+      webinar: { hours: '2-3 часа', note: 'в неделю, до 4-6 часов в недели с двумя встречами' },
+      full: { hours: '4-8 часов', note: 'в неделю, с практикой на своём проекте' }
+    };
+    var fToggleBtns = fModal && fModal.querySelectorAll('[data-load]');
+    var fHoursEl = fModal && fModal.querySelector('[data-load-hours]');
+    var fNoteEl = fModal && fModal.querySelector('[data-load-note]');
+    if (fToggleBtns) fToggleBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        fToggleBtns.forEach(function(b) { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        var mode = btn.getAttribute('data-load');
+        if (fHoursEl) fHoursEl.textContent = FLOAD[mode].hours;
+        if (fNoteEl) fNoteEl.textContent = FLOAD[mode].note;
+      });
+    });
+  })();
+
+  // Lesson format modal
+  (function() {
+    var lModal = document.querySelector('[data-lesson-modal]');
+    var lDialog = lModal && lModal.querySelector('.format-modal__dialog');
+    var lOpenBtns = document.querySelectorAll('[data-lesson-open]');
+    var lCloseEls = lModal && lModal.querySelectorAll('[data-lesson-close]');
+    var lLastFocused = null;
+    function openLModal() {
+      lLastFocused = document.activeElement;
+      if (lModal) lModal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (lDialog) lDialog.focus();
+      document.addEventListener('keydown', onLKeydown);
+    }
+    function closeLModal() {
+      if (lModal) lModal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onLKeydown);
+      if (lLastFocused instanceof HTMLElement) lLastFocused.focus();
+    }
+    function onLKeydown(e) { if (e.key === 'Escape') closeLModal(); }
+    lOpenBtns.forEach(function(btn) { btn.addEventListener('click', openLModal); });
+    if (lCloseEls) lCloseEls.forEach(function(el) { el.addEventListener('click', closeLModal); });
+  })();
+</script>
+
+</body>
+</html>
