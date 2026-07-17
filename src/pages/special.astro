@@ -2709,9 +2709,38 @@ transform: scale(1.04);
     flex-direction: column;
     gap: 28px;
   }
-  /* кнопки тарифа прижаты вправо, «Оплатить» — слева от вторичной кнопки */
-  .pricing-active__cta { justify-content: flex-end; gap: 12px; }
+  /* строка со стартом потока над тарифами */
+  .pricing-topline {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .pricing-topline__arrow,
+  .pricing-topline__accent { color: var(--accent); }
+  .pricing-topline__main { color: var(--bg); }
+
+  /* цена слева, кнопки справа — как в .pricing-price-row у «Полного погружения» */
+  .pricing-active__cta { justify-content: space-between; gap: 12px; }
   .pricing-price-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  /* .price-num стилизован только внутри .pricing-value-list — распространяем на «Активную практику» */
+  .pricing-active .price-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+
+  /* ссылка на основной сайт под тарифами */
+  .pricing-backlink { margin-top: 32px; text-align: center; }
 
   /* Единая метрика кнопок в тарифах.
      Высота фиксирована: box-sizing: border-box поглощает разницу паддингов
@@ -3056,6 +3085,12 @@ transform: scale(1.04);
 <section class="pricing-section" id="register" style="margin-top: 48px;">
   <div class="pricing-inner">
 
+  <div class="pricing-topline">
+    <span class="pricing-topline__arrow" aria-hidden="true">→</span>
+    <span class="pricing-topline__main">СТАРТ ПЕРВОГО МОДУЛЯ 21 ИЮЛЯ.</span>
+    <span class="pricing-topline__accent">ПРИСОЕДИНИТЬСЯ МОЖНО ДО 28 ИЮЛЯ</span>
+  </div>
+
   <!-- основной пакет -->
   <div class="pricing-main">
     <div class="pricing-main__head">
@@ -3088,10 +3123,10 @@ transform: scale(1.04);
       </li>
       <li>Записи и материалы доступны <strong>6 месяцев</strong>, чтобы можно было пройти пропущенные уроки.</li>
       <li>Дополнительные встречи в малых группах для доработки практики и домашних заданий.</li>
-      <li><strong>Бонус при регистрации до 12 июля: 3 месяца в клубе топ-разработчиков после завершения программы.</strong></li>
+      <li><strong>Бонус при регистрации до 22 июля: 3 месяца в клубе топ-разработчиков после завершения программы.</strong></li>
       <li class="is-price">
         <div class="pricing-price-row">
-          <span class="price-num">25 000 Р за модуль</span>
+          <span class="price-num">125 000 Р до скидок</span>
           <div class="pricing-price-actions">
             <button type="button" class="cta-btn js-open-widget" data-widget-id="xKh9WcNy7Ey0DF0TpnVvcg"><span>→ Оплатить</span></button>
             <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="20qamT8v-0CqDT5yrUTuCg">Получить консультацию</button>
@@ -3150,7 +3185,7 @@ transform: scale(1.04);
   <div class="pricing-active">
     <div class="pricing-active__head">
       <span class="bracket-label" style="margin-bottom:0">[ для более глубокого погружения ]</span>
-      <span class="pricing-active__badge">Осталось 20 мест</span>
+      <span class="pricing-active__badge">Осталось 14 мест</span>
     </div>
     <h3 class="pricing-active__title">Активная практика</h3>
     <ul class="pricing-active__list">
@@ -3160,9 +3195,16 @@ transform: scale(1.04);
       <li>+1 месяц сопровождения после завершения модуля: чат и сессии.</li>
     </ul>
     <div class="pricing-active__cta">
-      <button type="button" class="cta-btn js-open-widget" data-widget-id="xKh9WcNy7Ey0DF0TpnVvcg"><span>→ Оплатить</span></button>
-      <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w">Получить консультацию</button>
+      <span class="price-num">200 000 р до скидок</span>
+      <div class="pricing-price-actions">
+        <button type="button" class="cta-btn js-open-widget" data-widget-id="xKh9WcNy7Ey0DF0TpnVvcg"><span>→ Оплатить</span></button>
+        <button type="button" class="btn-secondary btn-secondary--swap js-open-widget" data-widget-id="uwworu-a6k-6cALxPfXj-w">Получить консультацию</button>
+      </div>
     </div>
+  </div>
+
+  <div class="pricing-backlink">
+    <a href="/" class="btn-secondary btn-secondary--swap">← Перейти на основной сайт</a>
   </div>
 
   </div>
