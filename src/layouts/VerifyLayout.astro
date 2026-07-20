@@ -1,0 +1,196 @@
+---
+// Общий каркас страниц верификации сертификатов (/verify и /verify/[id])
+import "@fontsource/roboto-condensed/latin-900.css";
+import "@fontsource/roboto-condensed/cyrillic-900.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
+import "@fontsource/jetbrains-mono/latin-600.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+import "@fontsource/jetbrains-mono/cyrillic-500.css";
+import "@fontsource/jetbrains-mono/cyrillic-600.css";
+
+const { title = "Проверка сертификата — NAITION" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="robots" content="noindex" />
+<!-- Yandex.Metrika counter -->
+<script is:inline type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+  :root {
+    --bg: #f5f5f0;
+    --ink: #0a0a0f;
+    --accent: #f5a623;
+    --ink10: rgba(10,10,15,0.10);
+    --ink20: rgba(10,10,15,0.20);
+    --ink40: rgba(10,10,15,0.40);
+    --ink60: rgba(10,10,15,0.60);
+  }
+  html { font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    gap: 28px;
+  }
+
+  .v-logo {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .v-logo:hover { color: var(--accent); }
+
+  .v-card {
+    width: 100%;
+    max-width: 560px;
+    background: #fffdf7;
+    border: 1px solid var(--ink20);
+    padding: 44px 40px;
+    position: relative;
+  }
+  .v-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  /* --- Успешная проверка --- */
+  .v-name {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 40px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .v-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink60);
+  }
+  .v-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .v-status strong { color: var(--ink); font-weight: 600; }
+  .v-id {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink10);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink40);
+    text-transform: uppercase;
+  }
+
+  /* --- Форма ввода / ошибка --- */
+  .v-lead { font-size: 14px; line-height: 1.7; color: var(--ink60); margin-bottom: 28px; }
+  .v-form { display: flex; flex-direction: column; gap: 20px; }
+  .v-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--ink20);
+    padding: 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .v-input::placeholder { color: var(--ink40); }
+  .v-input:focus { outline: none; border-bottom-color: var(--accent); }
+  .v-btn {
+    align-self: flex-start;
+    position: relative;
+    overflow: hidden;
+    padding: 15px 36px;
+    background: var(--accent);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border: none;
+    cursor: pointer;
+  }
+  .v-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .v-btn:hover::before { transform: translateX(0); }
+  .v-btn span { position: relative; z-index: 1; }
+  .v-btn:hover span { color: var(--bg); }
+  .v-error {
+    display: none;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding-left: 12px;
+  }
+  .v-error.is-shown { display: block; }
+  .v-back { font-size: 12px; letter-spacing: 0.04em; color: var(--ink40); text-decoration: none; }
+  .v-back:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .v-card { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+  <a href="/" class="v-logo">NA\\TION</a>
+  <slot />
+</body>
+</html>

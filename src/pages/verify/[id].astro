@@ -1,0 +1,22 @@
+---
+import VerifyLayout from "../../layouts/VerifyLayout.astro";
+import certificates from "../../data/certificates.json";
+
+export function getStaticPaths() {
+  return certificates.map((c) => ({ params: { id: c.id }, props: { cert: c } }));
+}
+
+const { cert } = Astro.props;
+---
+<VerifyLayout title={`${cert.name} — сертификат подтверждён · NAITION`}>
+  <div class="v-card">
+    <span class="v-label">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</span>
+    <div class="v-name">{cert.name}</div>
+    <div class="v-status">
+      <span class="v-check" aria-hidden="true">✓</span>
+      <span><strong>Сертификат подтверждён</strong> • {cert.cohort}</span>
+    </div>
+    <div class="v-id">ID {cert.id}</div>
+  </div>
+  <a href="/verify" class="v-back">← Проверить другой сертификат</a>
+</VerifyLayout>

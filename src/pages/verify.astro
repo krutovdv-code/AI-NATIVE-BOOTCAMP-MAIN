@@ -1,0 +1,50 @@
+---
+import VerifyLayout from "../layouts/VerifyLayout.astro";
+import certificates from "../data/certificates.json";
+
+// В браузер уходят только идентификаторы (они и так напечатаны на сертификатах),
+// имена не публикуем — их отдают только собственные страницы /verify/[id].
+const ids = certificates.map((c) => c.id);
+---
+<VerifyLayout title="Проверка сертификата — NAITION">
+  <div class="v-card">
+    <span class="v-label">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</span>
+    <p class="v-lead">Отсканируйте QR-код на сертификате или введите его идентификатор, чтобы подтвердить подлинность.</p>
+    <form class="v-form" id="v-form" novalidate>
+      <input
+        class="v-input"
+        id="v-input"
+        type="text"
+        name="id"
+        inputmode="text"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        placeholder="Например: 01-001-160726-E9E4"
+        aria-label="Идентификатор сертификата"
+      />
+      <div class="v-error" id="v-error">Сертификат с таким идентификатором не найден. Проверьте, что код введён полностью и без опечаток.</div>
+      <button class="v-btn" type="submit"><span>→ Проверить</span></button>
+    </form>
+  </div>
+
+  <script is:inline define:vars={{ ids }}>
+    (function () {
+      var form = document.getElementById('v-form');
+      var input = document.getElementById('v-input');
+      var error = document.getElementById('v-error');
+      var valid = new Set(ids.map(function (s) { return s.toUpperCase(); }));
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var id = input.value.trim().toUpperCase();
+        if (!id) { input.focus(); return; }
+        if (valid.has(id)) {
+          window.location.href = '/verify/' + id;
+        } else {
+          error.classList.add('is-shown');
+        }
+      });
+      input.addEventListener('input', function () { error.classList.remove('is-shown'); });
+    })();
+  </script>
+</VerifyLayout>
