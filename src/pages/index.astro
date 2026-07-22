@@ -1581,10 +1581,6 @@ const SILHOUETTE = "/facebook-anonymous-silhouette.webp";
     .feedback-card--text { width: 364px; padding: 24px; }
   }
 
-  /* COMMITTEE INTRO */
-  .committee-intro { margin: 20px 0 28px; }
-  .committee-intro-text { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: black; margin: 0; }
-  .committee-intro-accent { font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 56px; line-height: 1.3; color: var(--accent); margin: 0; }
   /* COMMITTEE */
   .committee-grid {
     display: grid;
@@ -1644,6 +1640,38 @@ transform: scale(1.04);
     line-height: 1.5;
     color: var(--ink60);
     font-style: italic;
+  }
+
+  /* COMMITTEE — другие члены (без цитат): подзаголовок + 2 карточки */
+  .committee-extra-title {
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 28px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-top: 56px;
+    margin-bottom: 24px;
+  }
+  .committee-extra {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 606px;
+    gap: 0;
+    border: 1px solid var(--ink10);
+    margin-top: 2px;
+  }
+  .committee-extra-card {
+    border-right: 1px solid var(--ink10);
+    overflow: hidden;
+  }
+  .committee-extra-card:last-child { border-right: none; }
+  .committee-extra-card .committee-photo { filter: grayscale(1); }
+  @media (max-width: 600px) {
+    .committee-extra { grid-template-columns: 1fr; max-width: 340px; }
+    .committee-extra-card { border-right: none; border-bottom: 1px solid var(--ink10); }
+    .committee-extra-card:last-child { border-bottom: none; }
   }
 
 
@@ -3609,7 +3637,7 @@ transform: scale(1.04);
 
         <div class="author-card">
           <div class="author-photo-wrap">
-            <img src="/daniil-pilipenko.webp" alt="Даниил Пелипенко" class="author-photo" loading="lazy" width="600" height="600">
+            <img src="/daniil-pilipenko.webp" alt="Даниил Пилипенко" class="author-photo" loading="lazy" width="600" height="600">
           </div>
           <div class="author-info">
             <div class="author-name">Даниил<br>Пилипенко</div>
@@ -3648,7 +3676,7 @@ transform: scale(1.04);
         </div>
         <div class="committee-card">
           <div class="committee-photo-wrap">
-            <img class="committee-photo" src="/sergey-popov.webp" alt="Сергей Попов">
+            <img src="/sergey-popov.webp" alt="Сергей Попов" class="committee-photo" loading="lazy" width="600" height="600">
           </div>
           <div class="committee-info">
             <div class="committee-name">Сергей Попов</div>
@@ -3688,7 +3716,7 @@ transform: scale(1.04);
         </div>
         <div class="committee-card">
           <div class="committee-photo-wrap">
-            <img src="/pavel-remezov.webp" alt="Павел Ремезов" class="committee-photo" loading="lazy" width="600" height="600">
+            <img src="/pavel-remezov.webp" alt="Павел Ремизов" class="committee-photo" loading="lazy" width="600" height="600">
           </div>
           <div class="committee-info">
             <div class="committee-name">Павел Ремизов</div>
@@ -3717,6 +3745,29 @@ transform: scale(1.04);
           </div>
         </div>
 
+      </div>
+
+      <!-- COMMITTEE — другие члены (без цитат) -->
+      <h3 class="committee-extra-title reveal">И другие члены программного комитета</h3>
+      <div class="committee-extra reveal">
+        <div class="committee-extra-card">
+          <div class="committee-photo-wrap">
+            <img src="/pavel-gonzalez.webp" alt="Павел Гонзалес" class="committee-photo" loading="lazy" width="600" height="600">
+          </div>
+          <div class="committee-info">
+            <div class="committee-name">Павел Гонзалес</div>
+            <div class="committee-role">Руководитель направления, PostgresPro · Тимлид и преподаватель · ex-OZON · ex-SkillBox</div>
+          </div>
+        </div>
+        <div class="committee-extra-card">
+          <div class="committee-photo-wrap">
+            <img src="/alexander-starodubtsev.webp" alt="Александр Стародубцев" class="committee-photo" loading="lazy" width="600" height="600">
+          </div>
+          <div class="committee-info">
+            <div class="committee-name">Александр Стародубцев</div>
+            <div class="committee-role">Техлид Cloud.ru · Основатель сообщества IT-ХОЗЯЕВА · ex-стример JoinTime</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
