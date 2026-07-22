@@ -50,10 +50,13 @@
     border-bottom:1px solid var(--ink10);
   }
   .nav-logo{
-    font-family:'Roboto Condensed',sans-serif!important;
-    font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:.05em;
-    text-decoration:none;color:var(--ink)
+    display:inline-block;height:26px;aspect-ratio:1087 / 389;width:auto;
+    background-color:var(--ink);
+    -webkit-mask:url('/naition-logo.png') left center / contain no-repeat;
+            mask:url('/naition-logo.png') left center / contain no-repeat;
+    transition:background-color .15s
   }
+  .nav-logo:hover{background-color:var(--accent)}
   .nav-right{
     font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink60);
     display:flex;align-items:center;gap:8px
@@ -206,7 +209,7 @@
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Naition</a>
+  <a href="/" class="nav-logo" aria-label="Naition"></a>
   <div class="nav-right">
     <span class="pulse-dot"></span>
     <span>Community</span>
