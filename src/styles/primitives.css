@@ -1,0 +1,153 @@
+/* ==========================================================================
+   PRIMITIVES · ported from ai-driven-designer/src/pages/index.astro
+   :112-170 (sections, labels, buttons, plates, cards)
+   :285-287 (grids)
+   :396-401 (row lists, blocks)
+   Every section is built from these. Reach for a one-off class only after
+   these genuinely do not cover it.
+   ========================================================================== */
+
+/* --- section shell --- */
+.section{padding:var(--sec-y) var(--pad-x);position:relative}
+.section__inner{max-width:var(--content);margin:0 auto;display:flex;flex-direction:column;gap:var(--sp-40);align-items:flex-start}
+/* align-items:flex-start makes every child shrink-to-fit, which means a child
+   sizes to its widest unbreakable run and can grow WIDER than this container.
+   body{overflow-x:clip} then hides the overspill instead of scrolling it, so
+   the text is silently cut. Capping children at 100% is what makes long Russian
+   headlines wrap instead of disappear. */
+.section__inner>*{max-width:100%}
+.section--bg{background:var(--c-bg)}
+.section--white{background:var(--c-white)}
+.section--card{background:var(--c-card)}
+.section--dark{background:var(--c-ink)}
+
+/* --- section head: the most-copied block in the system --- */
+.section__head{display:flex;gap:var(--sp-48);align-items:flex-start;width:100%}
+.section__head-l{display:flex;flex-direction:column;gap:var(--sp-20);width:760px;max-width:100%}
+.section__head-l--wide{width:1254px}
+.section__head-r{display:flex;flex-direction:column;gap:var(--sp-20);width:472px;flex-shrink:0}
+.section__head-r--tight{gap:var(--sp-14)}
+.section__eyebrow{
+  font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--c-teal);
+}
+.section__title{font-weight:900;font-size:var(--fs-55);line-height:58px;letter-spacing:-2px;color:var(--c-ink)}
+.section__title--tight{letter-spacing:-1.5px}
+.section__title-mark{color:var(--c-teal)}
+.section__rule{height:1px;width:100%;background:var(--c-ink);flex-shrink:0}
+.section__note{font-size:var(--fs-17);line-height:27px;color:var(--c-muted)}
+
+/* Dark-section inversion as a set. The source hardcoded this per section;
+   here it is one rule. Accent flips teal to mint: teal on --c-ink is below
+   contrast minimums. */
+.section--dark .section__title,
+.section--dark .card__title{color:var(--c-light)}
+.section--dark .section__eyebrow,
+.section--dark .label,
+.section--dark .list__num,
+.section--dark .card__num{color:var(--c-mint)}
+.section--dark .section__note,
+.section--dark .card__text,
+.section--dark .list__text{color:var(--c-muted-4)}
+.section--dark .section__rule{background:var(--c-field)}
+.section--dark .list,
+.section--dark .list__row{border-color:var(--c-field)}
+.section--dark .card{background:var(--c-form)}
+
+/* --- labels: the mono microtext that ties the whole system together --- */
+.label{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);letter-spacing:1.2px;text-transform:uppercase;color:var(--c-teal)}
+.label--grey{color:var(--c-muted-2)}
+.label--muted{color:var(--c-muted)}
+
+/* --- buttons: three variants, no radius, no shadow, hover is opacity only --- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:60px;padding:0 var(--sp-24);
+  max-width:100%;
+  font-family:var(--f-mono);font-weight:700;font-size:var(--fs-13);
+  letter-spacing:1.5px;text-transform:uppercase;text-align:center;
+  transition:opacity var(--dur) var(--ease),background-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.btn:hover{opacity:.85}
+.btn--solid{background:var(--c-ink);color:var(--c-light)}
+.btn--outline{background:transparent;color:var(--c-ink);border:1px solid var(--c-ink)}
+.btn--mint{background:var(--c-mint);color:var(--c-ink);height:56px;font-size:var(--fs-12);letter-spacing:1.2px}
+.btn--block{width:100%}
+.cta-row{display:flex;gap:var(--sp-12);align-items:center;flex-wrap:wrap;width:100%}
+.cta-row--wide{gap:var(--sp-20)}
+.link-arrow{font-weight:500;font-size:var(--fs-15);line-height:22px;color:var(--c-teal)}
+
+/* Keeps a compound token (AI-DRIVEN, B2B-продукт) from breaking at its hyphen.
+   Apply to single tokens only — never to a whole heading or paragraph. */
+.nowrap{white-space:nowrap}
+
+/* --- plates: the one coloured text block in the system --- */
+.plate{background:var(--c-card);padding:32px 36px;width:100%}
+.plate--mint{background:var(--c-mint-soft);display:flex;flex-direction:column;gap:var(--sp-12)}
+.plate__label{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);letter-spacing:1.2px;text-transform:uppercase;color:var(--c-teal-deep)}
+.plate__text{font-size:var(--fs-18);line-height:28px;color:var(--c-ink)}
+.plate--mint .plate__text{font-size:var(--fs-17);line-height:27px;color:var(--c-teal-ink)}
+
+/* --- cards: tonal, never bordered, never shadowed.
+   A card is always one tone off its section ground:
+   .section--bg hosts .card (white); .section--white hosts .card--grey. --- */
+.card{display:flex;flex-direction:column;gap:var(--sp-14);padding:var(--sp-28);background:var(--c-white)}
+.card--grey{background:var(--c-bg)}
+.card--deep{background:var(--c-card)}
+.card__num{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);letter-spacing:1.2px;text-transform:uppercase;color:var(--c-teal)}
+.card__title{font-weight:500;font-size:var(--fs-20);line-height:26px;letter-spacing:-.2px;color:var(--c-ink)}
+.card__text{font-size:var(--fs-15);line-height:23px;color:var(--c-muted)}
+/* photo in a card — 2px is the only softening the system allows on images.
+   max-width:300px caps every person-photo card (committee/authors/students)
+   so it never grows past a portrait size on wide grids; it still shrinks
+   smaller on narrow columns since width is 100% up to that cap.
+   height:auto is load-bearing: the <img> tags carry width="600" height="600"
+   attributes, which map to a real height:600px. Without overriding it here,
+   that fixed height wins over aspect-ratio (aspect-ratio only fills in a
+   dimension left auto) and every photo renders non-square. */
+.card__photo{width:100%;max-width:300px;height:auto;aspect-ratio:1;object-fit:cover;border-radius:2px;background:var(--c-slot)}
+/* source convention: committee members without a quote render in mono */
+.card__photo--bw{filter:grayscale(1)}
+.card__tag{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);letter-spacing:1px;text-transform:uppercase;color:var(--c-muted-2)}
+.card__bio{display:flex;flex-direction:column;gap:var(--sp-6);margin-top:var(--sp-4)}
+.card__bio li{font-size:var(--fs-13);line-height:19px;color:var(--c-muted);padding-left:var(--sp-14);position:relative}
+.card__bio li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;background:var(--c-teal)}
+
+/* --- blocks --- */
+.block{background:var(--c-bg);padding:var(--sp-24);display:flex;flex-direction:column;gap:var(--sp-12)}
+.block__text{font-size:var(--fs-15);line-height:23px;color:var(--c-muted)}
+.block__value{font-weight:500;font-size:var(--fs-16);color:var(--c-ink)}
+
+/* --- grids: gutter is always 24px. Card count is DATA, never CSS —
+   no nth-child border corrections live here, by design. --- */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-24);width:100%;align-items:start}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-24);width:100%;align-items:start}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-24);width:100%;align-items:start}
+
+/* --- row lists: a table without a table.
+   Container draws the top border once, each row draws its own bottom. --- */
+.list{display:flex;flex-direction:column;width:100%;border-top:1px solid var(--c-line)}
+.list__row{display:flex;gap:var(--sp-20);padding:var(--sp-16) 0;border-bottom:1px solid var(--c-line)}
+.list__num{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:1px;color:var(--c-teal);flex-shrink:0}
+.list__text{font-size:var(--fs-16);line-height:24px;color:var(--c-ink)}
+
+/* ==========================================================================
+   RESPONSIVE · two breakpoints, desktop-first. No min-width queries.
+   --pad-x and --sec-y reassignment is the whole spacing mechanism.
+   ========================================================================== */
+@media (max-width:1024px){
+  :root{--pad-x:48px;--sec-y:96px}
+  .section__title{font-size:40px;line-height:44px;letter-spacing:-1.2px}
+  .section__head{flex-direction:column;gap:var(--sp-28)}
+  .section__head-l,.section__head-r,.section__head-l--wide{width:100%}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  :root{--pad-x:20px;--sec-y:72px}
+  .section__title{font-size:32px;line-height:36px;letter-spacing:-1px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .btn{width:100%;height:56px;font-size:12px}
+  .cta-row{flex-direction:column;align-items:stretch}
+  .section__note,.plate__text{font-size:16px;line-height:25px}
+  .list__row{flex-direction:column;gap:var(--sp-8)}
+}

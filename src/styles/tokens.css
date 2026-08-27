@@ -1,0 +1,64 @@
+/* ==========================================================================
+   TOKENS · «MINIMAL STEEL»
+   Ported from ai-driven-designer/src/pages/index.astro:29-82.
+   Nothing outside this file may declare :root. See REDESIGN-PLAN.md rule 1.
+   ========================================================================== */
+:root{
+  /* --- colors --- */
+  --c-ink:#0e1418;
+  --c-light:#edf1f4;
+  --c-bg:#e9ecee;
+  --c-card:#dfe3e5;
+  --c-slot:#e4e9ed;
+  --c-line:#c6ccd0;
+  --c-white:#ffffff;
+  --c-black:#000000;
+  --c-muted:#66727a;
+  --c-muted-2:#8c9aa3;
+  --c-muted-3:#8a96a0;
+  --c-muted-4:#9aa6af;
+  --c-teal:#12958c;       /* accent on LIGHT surfaces only */
+  --c-teal-deep:#0f7a72;
+  --c-teal-ink:#123b39;
+  --c-mint:#2fd4c6;       /* accent on DARK surfaces only — teal fails contrast there */
+  --c-mint-soft:#e4f5f2;
+  --c-form:#161d25;
+  --c-field:#39414a;
+  --c-final-sub:rgba(201,209,214,.6);
+
+  /* --- fonts --- */
+  --f-sans:'Inter Variable','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  /* JetBrains Mono, not Space Mono: same 0.6em advance, but has Cyrillic */
+  --f-mono:'JetBrains Mono Variable','JetBrains Mono','Courier New',monospace;
+
+  /* --- font sizes --- lookup table fitted to the layout, not a modular scale.
+     Take the nearest existing step; don't invent new ones. */
+  --fs-9:9px;   --fs-10:10px; --fs-11:11px; --fs-12:12px; --fs-125:12.5px;
+  --fs-13:13px; --fs-14:14px; --fs-15:15px; --fs-16:16px; --fs-17:17px;
+  --fs-18:18px; --fs-20:20px; --fs-21:21px; --fs-22:22px; --fs-24:24px;
+  --fs-26:26px; --fs-28:28px; --fs-30:30px; --fs-32:32px; --fs-34:34px;
+  --fs-40:40px; --fs-48:48px; --fs-54:54px; --fs-55:55px; --fs-60:60px;
+  --fs-84:84px; --fs-112:112px;
+
+  /* --- spacing --- */
+  --sp-3:3px;   --sp-4:4px;   --sp-6:6px;   --sp-8:8px;   --sp-10:10px;
+  --sp-12:12px; --sp-14:14px; --sp-16:16px; --sp-20:20px; --sp-24:24px;
+  --sp-26:26px; --sp-28:28px; --sp-32:32px; --sp-36:36px; --sp-40:40px;
+  --sp-48:48px; --sp-56:56px; --sp-64:64px; --sp-72:72px;
+
+  /* --- layout --- reassigned at both breakpoints; this IS the responsive
+     spacing mechanism, so never hardcode section padding. */
+  --pad-x:80px;
+  --sec-y:140px;
+  --content:1280px;
+  --page:1440px;
+
+  /* --- added in the port (the source hardcodes all four) --- */
+  --nav-h:85px;      /* nav height, scroll-padding-top and .nav__panel top all read this */
+  --dur:.2s;
+  --ease:ease;
+  --z-float:5;
+  --z-nav-panel:49;
+  --z-nav:50;
+  --z-modal:100;
+}

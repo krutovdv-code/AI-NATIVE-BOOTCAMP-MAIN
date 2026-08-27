@@ -32,6 +32,9 @@ pnpm-debug.log*
 # docs
 STRUCTURE.md
 DESIGN.
+PARTNER-DECK-CONTENT.md
+PARTNER-DECK-PLAN.md
+REDESIGN-PLAN.md
 
 # sandbox
 src/pages/sandbox.astro
