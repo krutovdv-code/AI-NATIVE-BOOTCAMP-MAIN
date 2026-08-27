@@ -31,8 +31,12 @@
   font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);
   letter-spacing:1.5px;text-transform:uppercase;color:var(--c-teal);
 }
-.section__title{font-weight:900;font-size:var(--fs-55);line-height:58px;letter-spacing:-2px;color:var(--c-ink)}
-.section__title--tight{letter-spacing:-1.5px}
+/* Uppercase by decision, not by copy: the strings stay mixed-case in the data
+   so they can be reused in <title>/og tags. Tracking loosens from the source's
+   -2px to -1.2px — caps have no descender/x-height variation to absorb tight
+   tracking, so -2px collides in Cyrillic. Same reason at both breakpoints. */
+.section__title{font-weight:900;font-size:var(--fs-55);line-height:58px;letter-spacing:-1.2px;text-transform:uppercase;color:var(--c-ink)}
+.section__title--tight{letter-spacing:-.8px}
 .section__title-mark{color:var(--c-teal)}
 .section__rule{height:1px;width:100%;background:var(--c-ink);flex-shrink:0}
 .section__note{font-size:var(--fs-17);line-height:27px;color:var(--c-muted)}
@@ -120,9 +124,15 @@
 
 /* --- grids: gutter is always 24px. Card count is DATA, never CSS —
    no nth-child border corrections live here, by design. --- */
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-24);width:100%;align-items:start}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-24);width:100%;align-items:start}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-24);width:100%;align-items:start}
+/* No align-items:start. The source has it, and it is what made every tonal
+   card in a row shrink to its own copy length — a ragged bottom edge on the
+   committee and context grids. Grid's default stretch levels each row to its
+   tallest card, and since a .card is a flex column the slack lands at the
+   bottom, below the last line. Nothing here sets a height (rule 6): the
+   tallest card's CONTENT still sizes the row. */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-24);width:100%}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-24);width:100%}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-24);width:100%}
 
 /* --- row lists: a table without a table.
    Container draws the top border once, each row draws its own bottom. --- */
@@ -137,14 +147,17 @@
    ========================================================================== */
 @media (max-width:1024px){
   :root{--pad-x:48px;--sec-y:96px}
-  .section__title{font-size:40px;line-height:44px;letter-spacing:-1.2px}
+  .section__title{font-size:40px;line-height:44px;letter-spacing:-.8px}
   .section__head{flex-direction:column;gap:var(--sp-28)}
   .section__head-l,.section__head-r,.section__head-l--wide{width:100%}
   .grid-4{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:768px){
   :root{--pad-x:20px;--sec-y:72px}
-  .section__title{font-size:32px;line-height:36px;letter-spacing:-1px}
+  /* Uppercase widened every string by ~7%: "РАЗРАБОТЧИКОВ" is 284px at the flat
+     32px step, wider than a 320px phone's 280px column. min() again — the same
+     fluid-shrink the hero and lesson titles already use. */
+  .section__title{font-size:min(32px,8.7vw);line-height:1.12;letter-spacing:-.6px}
   .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
   .btn{width:100%;height:56px;font-size:12px}
   .cta-row{flex-direction:column;align-items:stretch}

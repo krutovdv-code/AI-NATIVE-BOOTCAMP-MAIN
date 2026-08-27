@@ -21,7 +21,18 @@
 }
 .lockup{display:flex;gap:var(--sp-12);align-items:center}
 .lockup__name{font-weight:900;font-style:italic;font-size:var(--fs-22);line-height:26px;letter-spacing:2px;color:var(--c-ink)}
-.nav__links{display:flex;gap:var(--sp-26);align-items:center}
+/* Announce block — mono microtext, not a link. nowrap is deliberate here and
+   not a rule-8 violation: the nav is a fixed --nav-h band, so a wrap would
+   push it out of shape, and the block is hidden outright below 768 where the
+   space genuinely runs out. */
+/* margin-right:auto puts ALL the nav's slack in one place — the middle. That
+   groups the announce against the lockup on the left and the links against the
+   CTA on the right, and overrides justify-content:space-between, which would
+   otherwise spread the four children evenly. */
+.nav__announce{display:flex;flex-direction:column;gap:2px;flex-shrink:0;margin-left:var(--sp-32);margin-right:auto}
+.nav__announce-top{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:.5px;text-transform:uppercase;color:var(--c-ink);white-space:nowrap}
+.nav__announce-sub{font-family:var(--f-mono);font-size:var(--fs-10);letter-spacing:.5px;text-transform:uppercase;color:var(--c-teal);white-space:nowrap}
+.nav__links{display:flex;gap:var(--sp-26);align-items:center;margin-right:var(--sp-32)}
 .nav__link{font-weight:500;font-size:var(--fs-14);color:var(--c-muted);white-space:nowrap;transition:color var(--dur) var(--ease)}
 .nav__link:hover{color:var(--c-ink)}
 .nav__cta{
@@ -208,6 +219,10 @@
 .modal__eyebrow{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:1.5px;text-transform:uppercase;color:var(--c-teal)}
 .modal__title{font-weight:900;font-size:var(--fs-32);letter-spacing:-1px;color:var(--c-ink);margin-top:var(--sp-8)}
 .modal__lead{font-size:var(--fs-16);line-height:25px;color:var(--c-muted);margin-top:var(--sp-20)}
+/* third-party widget mount. min-height reserves the frame so the dialog does
+   not pop open at zero height and then jump when the script renders. */
+.modal__widget{margin-top:var(--sp-24);min-height:200px}
+.modal__widget iframe{max-width:100%;border:0}
 .modal__block{margin-top:var(--sp-28);display:flex;flex-direction:column;gap:var(--sp-14)}
 .modal__block-h{font-weight:500;font-size:var(--fs-18);color:var(--c-ink)}
 .modal--video .modal__dialog{max-width:960px;background:var(--c-ink);padding:var(--sp-32)}
@@ -224,11 +239,28 @@
 /* ==========================================================================
    CURRICULUM MODULE — groups several .lesson accordions under one header.
    ========================================================================== */
-.module{display:flex;flex-direction:column;gap:var(--sp-16);width:100%}
+/* Three separate reasons the modules used to read as one undifferentiated
+   run, all fixed here:
+   1. The module title (24/500) was SMALLER than the lesson titles it contains
+      (28/500) — the hierarchy was literally inverted. Now 34/900, which sits
+      between .section__title (55/900) and .lesson__title (28/500).
+   2. Nothing marked where one module ended and the next began — every module
+      was just another 40px-gapped child of .section__inner. Now a full-width
+      hairline opens each one.
+   3. .lesson is white on a .section--white ground — an invisible card. See the
+      tonal rule below. */
+.module{display:flex;flex-direction:column;gap:var(--sp-20);width:100%;padding-top:var(--sp-28);border-top:1px solid var(--c-ink)}
 .module__head{display:flex;align-items:baseline;gap:var(--sp-16);flex-wrap:wrap}
-.module__badge{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-13);color:var(--c-white);background:var(--c-ink);padding:4px 10px}
-.module__title{font-weight:500;font-size:var(--fs-24);color:var(--c-ink)}
+.module__badge{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-13);color:var(--c-white);background:var(--c-ink);padding:4px 10px;align-self:center}
+.module__title{font-weight:900;font-size:var(--fs-34);line-height:38px;letter-spacing:-.7px;text-transform:uppercase;color:var(--c-ink)}
 .module__meta{font-family:var(--f-mono);font-size:var(--fs-11);letter-spacing:1px;text-transform:uppercase;color:var(--c-muted);margin-left:auto}
+
+/* Tonal rule 4: a card is always one tone off its ground. .lesson is white,
+   so on a white section it disappears — grey card, white inset, the exact
+   inverse of what it does on --bg. Contextual rather than a --grey modifier
+   because the ground is what decides it, not the call site. */
+.section--white .lesson{background:var(--c-card)}
+.section--white .lesson__art{background:var(--c-white)}
 
 /* ==========================================================================
    STREAMS — cohort roster, one collapsible panel per stream.
@@ -253,9 +285,9 @@
 
 /* ==========================================================================
    CAROUSEL — feedback testimonials. Native scroll-snap + button-driven
-   scrollBy, not the source's clone-and-teleport infinite loop (that trick
-   buys a seamless wrap; a snap scroller buys the same "browse reviews"
-   function for a tenth of the code).
+   scrollBy, looped: the list is rendered twice and scrollLeft is realigned
+   between the two halves, so neither arrow ever dead-ends. Scroll position
+   does the wrapping, not cloned nodes and a transform teleport.
    ========================================================================== */
 .carousel{position:relative;width:100%}
 .carousel__track{display:flex;gap:var(--sp-24);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
@@ -303,13 +335,27 @@
 .footer__link:hover{color:var(--c-ink)}
 .footer__rule{height:1px;width:100%;background:var(--c-line)}
 .footer__legal{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);line-height:18px;letter-spacing:1px;color:var(--c-muted-2)}
+/* the РКН registry link sits inside the requisites line — it inherits the mono
+   microtext and only marks itself as a link on hover */
+.footer__legal a{color:inherit;text-decoration:underline;text-underline-offset:2px;transition:color var(--dur) var(--ease)}
+.footer__legal a:hover{color:var(--c-ink)}
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-@media (max-width:1024px){
+/* The nav switches to the burger at 1120, not at the system's 1024. Arithmetic,
+   not taste: lockup 99 + announce 185 + links 395 + CTA 250 + --pad-x 80 = 1009,
+   and grouping the announce left / links right costs a real 32px gap on each
+   side — 1073 minimum. Between 1025 and 1072 the row physically cannot hold
+   that, and the old space-between only hid it by collapsing every gap to ~5px.
+   A third max-width threshold for one component beats a nav that spills, and
+   rule 2's point is no six-breakpoint pages, which this is not. */
+@media (max-width:1120px){
   .nav__links,.nav__cta--desktop{display:none}
   .nav__burger{display:flex}
+}
+
+@media (max-width:1024px){
   .hero{padding:48px var(--pad-x) 56px}
   .hero__title{font-size:72px;line-height:70px;letter-spacing:-2.5px}
   .hero__sub{font-size:30px;line-height:36px}
@@ -326,19 +372,24 @@
   .footer__top{flex-wrap:wrap;gap:var(--sp-32)}
   .footer__brand{flex:1 1 100%;width:100%}
   .footer__col{flex:1 1 30%}
-  .modal__dialog{padding:var(--sp-28)}
+  /* dvh, not vh: mobile browser chrome makes 86vh taller than the visible
+     viewport, which pushes the dialog's own scroll off-screen. Side padding
+     drops to 16 so the widget iframe keeps a usable width on a 390px phone. */
+  .modal{padding:var(--sp-12)}
+  .modal__dialog{padding:var(--sp-28) var(--sp-16);max-height:92dvh}
   .modal__videos{grid-template-columns:1fr}
   .streams-block__grid{grid-template-columns:repeat(5,1fr)}
   .carousel__card{flex-basis:340px}
 }
 @media (max-width:768px){
   .nav,.nav__panel{--pad-x:20px}
+  .nav__announce{display:none}
   /* Hard breaks are desktop line-control only. On a phone they force lines
      wider than the container ("Увеличь продуктивность" is 377px at 46px, in a
      350px column) and body{overflow-x:clip} hides the damage — the headline is
      silently cut, not scrollable. Let it flow instead; .nowrap still protects
      compound tokens. */
-  .hero__title br{display:none}
+  .hero__title br,.hero__sub br{display:none}
   /* The source's flat 46px step was fitted to ITS headline. Ours is longer:
      "продуктивность" alone measures 377px at 46px/900/-1.5px, in a 350px column
      on a 390px phone — so the word breaks mid-glyph. min(46px, 10.5vw) keeps the
@@ -359,6 +410,9 @@
   .pricing__amount{font-size:40px;line-height:44px}
   .footer__col{flex:1 1 100%}
   .module__meta{margin-left:0;flex-basis:100%}
+  /* "Масштабирование" is 296px at the desktop 34px step, wider than a 320px
+     phone's column. Same min() shrink as .hero__title / .lesson__title. */
+  .module__title{font-size:min(34px,7.8vw);line-height:1.12}
   .streams-block__grid{grid-template-columns:repeat(3,1fr)}
   .carousel__card{flex-basis:280px;padding:var(--sp-20)}
 }

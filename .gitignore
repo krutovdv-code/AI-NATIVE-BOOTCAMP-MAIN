@@ -41,3 +41,5 @@ src/pages/sandbox.astro
 
 # audit reports
 AUDIT *.md
+# старый лендинг до редизайна, лежит локально; история есть в git
+src/pages/_index_old.astro
