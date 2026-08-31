@@ -6,15 +6,10 @@
 // leading underscore keeps Astro from routing it. Git history has it too.
 //
 // Still owed, and deliberately not done here: content out to src/data/*.ts,
-// the inline JS out to src/scripts/*.ts, BaseLayout (this page's Metrika and
-// head are pasted, same as everywhere else — Phase A3 dedupes them), scroll
+// the inline JS out to src/scripts/*.ts. The head and Metrika now come from
+// BaseLayout; the FAQ and modal scripts from src/scripts/common.js. Scroll
 // reveals and stat counters.
-import '@fontsource-variable/inter';
-import '@fontsource-variable/jetbrains-mono';
-import '../styles/tokens.css';
-import '../styles/base.css';
-import '../styles/primitives.css';
-import '../styles/components.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 // ============================================================================
 // Content — lifted verbatim from index.astro. See plan, "pure reskin": every
@@ -364,28 +359,7 @@ const footerLegal = [
 
 const marqueeText = 'AI-DRIVEN РАЗРАБОТКА · ПОТОК_03 · НАБОР ОТКРЫТ · СТАРТ 6 ОКТЯБРЯ · МЕСТА ОГРАНИЧЕНЫ · ';
 ---
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI DRIVEN РАЗРАБОТКА — 12-недельный буткемп</title>
-<!-- Yandex.Metrika counter -->
-<script is:inline type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
-
-    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-</head>
-<body>
+<BaseLayout title="AI DRIVEN РАЗРАБОТКА — 12-недельный буткемп">
 
 <!-- ============================== NAV ============================== -->
 <nav class="nav">
@@ -1003,6 +977,8 @@ const marqueeText = 'AI-DRIVEN РАЗРАБОТКА · ПОТОК_03 · НАБО
   </div>
 </footer>
 
+<script>import '../scripts/common.js';</script>
+
 <script is:inline>
   // Phase 0 note: hooks are data-js, never visual classes — a restyle in
   // Phase C must not be able to break behaviour. See REDESIGN-PLAN.md rule 10.
@@ -1092,19 +1068,6 @@ const marqueeText = 'AI-DRIVEN РАЗРАБОТКА · ПОТОК_03 · НАБО
     });
   })();
 
-  // --- FAQ accordion ---
-  document.querySelectorAll('[data-js="faq-row"]').forEach(function (row) {
-    var toggle = row.querySelector('[data-js="faq-toggle"]');
-    var answer = row.querySelector('.faq__a');
-    if (!toggle || !answer) return;
-    toggle.addEventListener('click', function () {
-      var open = row.dataset.open === 'true';
-      row.dataset.open = String(!open);
-      toggle.setAttribute('aria-expanded', String(!open));
-      answer.hidden = open;
-    });
-  });
-
   // --- streams (feedback roster) ---
   document.querySelectorAll('[data-js="stream-btn"]:not([disabled])').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -1148,76 +1111,6 @@ const marqueeText = 'AI-DRIVEN РАЗРАБОТКА · ПОТОК_03 · НАБО
     next && next.addEventListener('click', function () { step(1); });
   })();
 
-  // --- generic modal system: one implementation for format / lesson-format /
-  // video / widget, driven by data-modal="<name>" + data-modal-open="<name>".
-  // See REDESIGN-PLAN.md Phase A5: this is the consolidation it asks for. ---
-  (function () {
-    var modals = {};
-    document.querySelectorAll('[data-js="modal"]').forEach(function (m) {
-      modals[m.getAttribute('data-modal')] = m;
-    });
-    var lastFocused = null;
-
-    // idx.xl.ru application widget. Injected on FIRST open, not on page load:
-    // it is a third-party render-blocking script and most visitors never open
-    // the form. Two widget ids share one modal — team format and regular —
-    // so the mounted id is tracked and the container emptied when it changes.
-    var mountedWidgetId = null;
-    function mountWidget(modal, widgetId) {
-      var body = modal.querySelector('[data-js="widget-body"]');
-      if (!body || widgetId === mountedWidgetId) return;
-      body.innerHTML = '';
-      mountedWidgetId = widgetId;
-      var s = document.createElement('script');
-      s.setAttribute('ao-number', '3272');
-      s.setAttribute('ao-widget-id', widgetId);
-      s.setAttribute('ao-domain', 'content.scalingclub.ru');
-      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
-      s.async = true;
-      body.appendChild(s);
-    }
-
-    function openModal(name, widgetId) {
-      var modal = modals[name];
-      if (!modal) return;
-      lastFocused = document.activeElement;
-      modal.hidden = false;
-      document.body.style.overflow = 'hidden';
-      var dialog = modal.querySelector('.modal__dialog');
-      if (dialog) dialog.focus();
-      modal.querySelectorAll('[data-js="modal-video"]').forEach(function (iframe) {
-        if (!iframe.getAttribute('src')) iframe.setAttribute('src', iframe.getAttribute('data-src'));
-      });
-      if (name === 'widget' && widgetId) mountWidget(modal, widgetId);
-    }
-    function closeModal(modal) {
-      modal.hidden = true;
-      document.body.style.overflow = '';
-      modal.querySelectorAll('[data-js="modal-video"]').forEach(function (iframe) { iframe.removeAttribute('src'); });
-      if (lastFocused instanceof HTMLElement) lastFocused.focus();
-    }
-    function openModals() {
-      return Array.prototype.slice.call(document.querySelectorAll('[data-js="modal"]')).filter(function (m) { return !m.hidden; });
-    }
-
-    document.querySelectorAll('[data-modal-open]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (burgerPanel) burgerPanel.classList.remove('is-open');
-        openModal(btn.getAttribute('data-modal-open'), btn.getAttribute('data-widget-id'));
-      });
-    });
-    document.querySelectorAll('[data-js="modal-close"]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        var modal = el.closest('[data-js="modal"]');
-        if (modal) closeModal(modal);
-      });
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape') return;
-      openModals().forEach(closeModal);
-    });
-  })();
-
   // --- format modal load toggle ---
   (function () {
     var seg = document.querySelector('[data-js="load-toggle"]');
@@ -1240,5 +1133,4 @@ const marqueeText = 'AI-DRIVEN РАЗРАБОТКА · ПОТОК_03 · НАБО
   })();
 </script>
 
-</body>
-</html>
+</BaseLayout>

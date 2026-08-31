@@ -9,14 +9,14 @@ export function getStaticPaths() {
 const { cert } = Astro.props;
 ---
 <VerifyLayout title={`${cert.name} — сертификат подтверждён · NAITION`}>
-  <div class="v-card">
-    <span class="v-label">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</span>
-    <div class="v-name">{cert.name}</div>
-    <div class="v-status">
-      <span class="v-check" aria-hidden="true">✓</span>
+  <div class="verify__card">
+    <p class="section__eyebrow">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</p>
+    <h1 class="verify__name">{cert.name}</h1>
+    <p class="verify__status">
+      <span class="verify__check" aria-hidden="true">✓</span>
       <span><strong>Сертификат подтверждён</strong> • {cert.cohort}</span>
-    </div>
-    <div class="v-id">ID {cert.id}</div>
+    </p>
+    <p class="verify__id">ID {cert.id}</p>
   </div>
-  <a href="/verify" class="v-back">← Проверить другой сертификат</a>
+  <a href="/verify" class="verify__back">← Проверить другой сертификат</a>
 </VerifyLayout>

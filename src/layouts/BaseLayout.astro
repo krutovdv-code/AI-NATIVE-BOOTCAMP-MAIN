@@ -1,0 +1,48 @@
+---
+// The one <head> for the MINIMAL STEEL pages — see REDESIGN-PLAN.md phase A3.
+//
+// Owns the head only, NOT the nav/footer: /teams, /community and /verify each
+// keep their own navigation shape, because the home nav's links are all
+// in-page anchors that exist on `/` alone.
+//
+// Before this file the Metrika snippet was pasted into 7 pages and the
+// @fontsource list into 5, with four different subset combinations.
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/primitives.css';
+import '../styles/components.css';
+
+interface Props {
+  title: string;
+  noindex?: boolean;
+}
+const { title, noindex = false } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+{noindex && <meta name="robots" content="noindex" />}
+<!-- Yandex.Metrika counter -->
+<script is:inline type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
+
+    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<slot />
+</body>
+</html>

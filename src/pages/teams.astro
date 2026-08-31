@@ -1,989 +1,386 @@
 ---
-// Teams — корпоративное участие в буткемпе
-import "@fontsource/roboto-condensed/latin-700.css";
-import "@fontsource/roboto-condensed/latin-900.css";
-import "@fontsource/roboto-condensed/cyrillic-700.css";
-import "@fontsource/roboto-condensed/cyrillic-900.css";
-import "@fontsource/jetbrains-mono/latin-400.css";
-import "@fontsource/jetbrains-mono/latin-500.css";
-import "@fontsource/jetbrains-mono/latin-600.css";
-import "@fontsource/jetbrains-mono/cyrillic-400.css";
-import "@fontsource/jetbrains-mono/cyrillic-500.css";
-import "@fontsource/jetbrains-mono/cyrillic-600.css";
+// Teams — корпоративное участие в буткемпе.
+// On the «MINIMAL STEEL» design system; see REDESIGN-PLAN.md phase C.
+//
+// Pure reskin: every string carries over verbatim from the previous version.
+// The page keeps its own light chrome (.subnav / .subfooter) rather than the
+// home page's .nav — that nav's links are all in-page anchors that only
+// exist on `/`.
+//
+// The three hand-rolled modals (teams widget, consult widget, term popover)
+// collapsed into the shared data-modal system in src/scripts/common.js.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    num: '01',
+    title: 'Google Cloud DORA 2025',
+    text: 'Adoption AI среди разработчиков выросла до 90%, с приростом 14 процентных пунктов за год, и в среднем разработчики тратят на работу с AI два часа в день. При этом AI не чинит команду сам по себе — он усиливает то, что уже есть: сильные команды становятся эффективнее, а слабые получают те же проблемы, только острее. Рост объёма кода без соответствующего усиления процессов review и тестирования увеличивает нестабильность поставки.',
+    url: 'https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report',
+  },
+  {
+    num: '02',
+    title: 'Stack Overflow Developer Survey 2025',
+    text: '84% разработчиков уже используют или планируют использовать AI-инструменты в работе, рост с 76% годом ранее. Но доверие к точности результатов при этом упало до 29%, снизившись с 40% годом ранее — рост adoption сопровождается ростом недоверия, а не наоборот.',
+    url: 'https://survey.stackoverflow.co/2025/ai/',
+  },
+  {
+    num: '03',
+    title: 'Techreviewer, «AI in Software Development 2025: From Exploration to Accountability»',
+    text: '97,5% компаний-разработчиков программного обеспечения так или иначе внедрили AI в свой SDLC, рост с 90,9% в 2024 году.',
+    url: 'https://techreviewer.co/blog/ai-in-software-development-2025-from-exploration-to-accountability-a-global-survey-analysis',
+  },
+  {
+    num: '04',
+    title: 'McKinsey, «Unleashing developer productivity with generative AI»',
+    text: 'Использование генеративного AI ускоряет типовые задачи разработки: документация выполняется на 45–50% быстрее, генерация кода на 35–45%, рефакторинг на 20–30%.',
+    url: 'https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/unleashing-developer-productivity-with-generative-ai',
+  },
+  {
+    num: '05',
+    title: 'Futurum Research, «AI Reaches 97% of Software Development Organizations»',
+    text: '97% организаций уже используют AI в разработке программного обеспечения (76,6% активно, ещё 20,4% на стадии внедрения), только 3,1% остаются в стороне.',
+    url: 'https://futurumgroup.com/press-release/ai-reaches-97-of-software-development-organizations/',
+  },
+];
+
+const levers = [
+  {
+    tag: 'Рычаг 01',
+    title: 'Экономия и эффективность',
+    items: [
+      'Ускорение разработки и снижение доли ручного труда.',
+      'Автоматизация части рутинных операций в документации, тестировании, ревью и поддержке legacy.',
+      'Снижение зависимости от подрядчиков и экстенсивного расширения штата при росте задач.',
+    ],
+  },
+  {
+    tag: 'Рычаг 02',
+    title: 'Рост выручки и прибыли',
+    items: [
+      'Более быстрый вывод новых фич и продуктов на рынок.',
+      'Появление новых AI-продуктов и сервисов в продуктовой линейке.',
+      'Улучшение клиентского опыта, удержания и монетизации за счёт AI-функций.',
+    ],
+  },
+];
+
+const symptoms = [
+  { tag: 'Симптом 01', title: 'Много PoC, мало продакшена', text: 'AI остаётся на уровне демо и не доходит до рабочих процессов.' },
+  { tag: 'Симптом 02', title: 'Инструменты без системы', text: 'Команды пробуют инструменты, но не строят систему. Есть точечное использование, но не хватает навыков интеграции, контроля качества и масштабирования.' },
+  { tag: 'Симптом 03', title: 'Разрыв между бизнесом и инженерами', text: 'Бизнес ждёт ROI, инженеры — чётких постановок, и между ними часто нет общего языка про AI.' },
+  { tag: 'Симптом 04', title: 'Разовые воркшопы не дают трансформации', text: 'Для результата нужен не вдохновляющий обзор, а системный апгрейд ключевых людей и рабочих практик.' },
+];
+
+const doubleValue = [
+  {
+    head: 'Для компании и руководителей',
+    items: [
+      'Ускорение delivery и снижение себестоимости разработки за счёт AI-инструментов в ежедневной работе команды.',
+      'Формирование внутреннего AI-ядра — группы людей, на которых можно опереть дальнейшую трансформацию.',
+      'Появление у компании общего языка про AI, ROI, риски и применимость AI в реальных процессах.',
+      'Снижение зависимости от единичных энтузиастов: знания и практики распределяются по команде.',
+      'Усиление HR-бренда: инвестиции в AI-компетенции повышают привлекательность компании для сильных инженеров.',
+    ],
+  },
+  {
+    head: 'Для сотрудников',
+    items: [
+      'Освоение востребованных AI-навыков, которые уже становятся стандартом сильного инженера.',
+      'Карьерный рост: движение в сторону AI-driven engineer, технического лидера, архитектора решений.',
+      'Практика на реальных рабочих задачах, а не абстрактных упражнениях.',
+      'Рост мотивации и вовлечённости: люди видят, что компания инвестирует в их развитие и будущее.',
+      'Командообразование: общий понятийный аппарат, общие инструменты и совместная работа над новыми подходами.',
+    ],
+  },
+];
+
+const outcomes = [
+  {
+    head: 'Для компании',
+    items: [
+      'Команда, которая лучше понимает, как применять AI в реальных процессах компании.',
+      'Подготовленные и приоритизированные AI-кейсы для дальнейшего внедрения.',
+      'Набор практик, шаблонов и подходов, которые можно использовать в ежедневной работе.',
+      'Более зрелый внутренний разговор про AI: где он действительно создаёт ценность, а где — нет.',
+      'Основа для последующей трансформации процессов, ролей и инженерного контура.',
+    ],
+  },
+  {
+    head: 'Для каждого участника',
+    items: [
+      'Практический опыт применения AI-инструментов в ежедневной инженерной работе: от IDE и LLM до агентов, API и работы с legacy.',
+      'Более сильная личная рабочая система: умение быстрее исследовать, проектировать, писать, проверять и дорабатывать решения с помощью AI.',
+      'Собранный personal toolkit: набор инструментов, паттернов, промптов и подходов, которые можно сразу переносить в свою работу.',
+      'Понимание, как применять AI не «в вакууме», а в production-контексте компании, с учётом SDLC, качества и ROI.',
+      'Более сильная профессиональная позиция на рынке: участник начинает мыслить и действовать как AI-driven engineer.',
+    ],
+  },
+];
+
+const nextSteps = [
+  'На ознакомительном звонке разбираем состав команды, задачи и целевой эффект.',
+  'Подбираем оптимальный формат участия и обсуждаем, как встроить программу в контекст компании.',
+  'По итогам разговора формируем предложение под вашу ситуацию.',
+];
+
+// Both packages come from the same idx.xl.ru widget as the home page's team
+// format — one modal, one widget id, opened from three different buttons.
+const TEAMS_WIDGET = 'cGq_8BNde06mP32lZwU9DQ';
+const CONSULT_WIDGET = 'SRqLxYwJH0OQRbGoN4wrYQ';
 ---
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для команд — AI DRIVEN РАЗРАБОТКА</title>
-<!-- Yandex.Metrika counter -->
-<script is:inline type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108346436', 'ym');
-    ym(108346436, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108346436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<style is:global>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+<BaseLayout title="Для команд — AI DRIVEN РАЗРАБОТКА">
 
-  :root {
-    --bg: #f5f5f0;
-    --ink: #0a0a0f;
-    --accent: #f5a623;
-    --ink10: rgba(10,10,15,0.10);
-    --ink20: rgba(10,10,15,0.20);
-    --ink40: rgba(10,10,15,0.40);
-    --ink60: rgba(10,10,15,0.60);
-    --ink05: rgba(10,10,15,0.05);
-  }
+<!-- ============================== SUBNAV ============================== -->
+<header class="subnav">
+  <a class="lockup__name" href="/">НЭЙШН</a>
+  <span class="subnav__tag">// Для команд</span>
+  <a class="subnav__back" href="/">← Основная программа</a>
+</header>
 
-  html { font-size: 16px; scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
-    font-variant-numeric: tabular-nums;
-    text-rendering: optimizeLegibility;
-    max-width: 1440px;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, .display {
-    font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif !important;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-  }
-
-  /* TOP BAR */
-  .t-topbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    height: 48px;
-    background: rgba(245,245,240,0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--ink10);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  .t-topbar__logo {
-    display: inline-block;
-    height: 30px;
-    aspect-ratio: 1087 / 389;
-    width: auto;
-    background-color: var(--ink);
-    -webkit-mask: url('/naition-logo.webp') left center / contain no-repeat;
-            mask: url('/naition-logo.webp') left center / contain no-repeat;
-    cursor: pointer;
-    transition: background-color 0.15s;
-  }
-  .t-topbar__logo:hover { background-color: var(--accent); }
-  .t-topbar__back.cta-btn { padding: 8px 20px; font-size: 10px; }
-  .t-topbar__tag {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 80px 24px;
-    border-bottom: 1px solid var(--ink10);
-    position: relative;
-  }
-  .t-wrap { max-width: 1200px; margin: 0 auto; width: 100%; }
-
-  /* TYPOGRAPHY */
-  .t-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: block;
-  }
-  .t-title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: clamp(32px, 4vw, 56px);
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    margin-bottom: 40px;
-  }
-  .t-title .accent { color: var(--accent); }
-  .t-prose {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--ink60);
-    max-width: 720px;
-    margin-bottom: 32px;
-  }
-  .t-prose strong { color: var(--ink); font-weight: 600; }
-
-  /* HERO */
-  #t-hero {
-    padding: 120px 24px 80px;
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-bottom: 1px solid var(--ink10);
-    background: var(--ink);
-  }
-  .t-hero__label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: block;
-  }
-  .t-hero__title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: clamp(48px, 7vw, 100px);
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 0.92;
-    color: rgba(245,245,240,1);
-    margin-bottom: 40px;
-    max-width: 1000px;
-  }
-  .t-hero__title .accent { color: var(--accent); }
-  .t-hero__sub {
-    border-left: 2px solid var(--accent);
-    padding-left: 24px;
-    max-width: 600px;
-    font-size: 13px;
-    line-height: 1.7;
-    color: rgba(245,245,240,0.55);
-  }
-
-  /* 3-COLUMN GRID (проблема, результат, клуб) */
-  .t-grid3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--ink10);
-  }
-  .t-cell {
-    padding: 28px 32px;
-    border-right: 1px solid var(--ink10);
-  }
-  .t-cell:last-child { border-right: none; }
-  .t-cell__num {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 36px;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-  .t-cell__title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-  }
-  .t-cell__text {
-    font-size: 12px;
-    line-height: 1.7;
-    color: var(--ink60);
-  }
-  .t-cell__text strong { color: var(--ink); }
-  @media (max-width: 768px) {
-    .t-grid3 { grid-template-columns: 1fr; }
-    .t-cell { border-right: none; border-bottom: 1px solid var(--ink10); }
-    .t-cell:last-child { border-bottom: none; }
-  }
-
-  /* SOURCES (исследования, полноширинный блок) */
-  .t-sources { margin-top: 40px; border: 1px solid var(--ink10); }
-  .t-source { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 32px; border-bottom: 1px solid var(--ink10); transition: background 0.15s; }
-  .t-source:last-child { border-bottom: none; }
-  .t-source:hover { background: var(--ink05); }
-  .t-source__num { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 32px; color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
-  .t-source__title { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 10px; }
-  .t-source__text { font-size: 13px; line-height: 1.7; color: var(--ink60); margin-bottom: 14px; }
-  .t-source__link { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-  .t-source__link:hover { opacity: 0.75; }
-  @media (max-width: 768px) {
-    .t-sources { margin-top: 32px; }
-    .t-source { grid-template-columns: 36px 1fr; gap: 14px; padding: 20px; }
-    .t-source__num { font-size: 22px; }
-  }
-
-  /* RESULT ROWS */
-  .t-result-stack { display: flex; flex-direction: column; gap: 0; }
-  .t-result-row {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 32px;
-    padding: 28px 32px;
-    border: 1px solid var(--ink10);
-    border-bottom: none;
-    background: var(--ink05);
-  }
-  .t-result-row:last-child { border-bottom: 1px solid var(--ink10); }
-  .t-result-row--featured {
-    background: var(--ink);
-    border-color: var(--ink);
-  }
-  .t-result-tag {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    font-weight: 500;
-    padding-top: 3px;
-  }
-  .t-result-h {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 1;
-    margin-bottom: 10px;
-    color: var(--ink);
-  }
-  .t-result-row--featured .t-result-h { color: rgba(245,245,240,1); }
-  .t-result-row--featured .t-result-h .accent { color: var(--accent); }
-  .t-result-d {
-    font-size: 12px;
-    line-height: 1.7;
-    color: var(--ink60);
-  }
-  .t-result-row--featured .t-result-d { color: rgba(245,245,240,0.55); }
-  @media (max-width: 640px) {
-    .t-result-row { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
-  }
-
-  /* SCALING GRID */
-  .t-scale-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border: 1px solid var(--ink10);
-  }
-  .t-scale-cell {
-    padding: 28px 32px;
-    border-right: 1px solid var(--ink10);
-    border-bottom: 1px solid var(--ink10);
-    background: var(--ink05);
-  }
-  .t-scale-cell:nth-child(2n) { border-right: none; }
-  .t-scale-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .t-scale-tag {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 10px;
-  }
-  .t-scale-title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-  }
-  .t-scale-text {
-    font-size: 12px;
-    line-height: 1.7;
-    color: var(--ink60);
-  }
-  @media (max-width: 640px) {
-    .t-scale-grid { grid-template-columns: 1fr; }
-    .t-scale-cell { border-right: none; }
-    .t-scale-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink10); }
-    .t-scale-cell:last-child { border-bottom: none; }
-  }
-
-  /* CLUB BANNER */
-  .t-club-banner {
-    background: var(--ink);
-    padding: 32px 36px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
-    align-items: center;
-    margin-bottom: 2px;
-  }
-  .t-club-banner__tag {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .t-club-banner__h {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: clamp(22px, 2.5vw, 32px);
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-    color: rgba(245,245,240,1);
-  }
-  .t-club-banner__h .accent { color: var(--accent); }
-  .t-club-banner__num {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: 72px;
-    color: var(--accent);
-    letter-spacing: -0.04em;
-    line-height: 0.85;
-    text-align: center;
-  }
-  .t-club-banner__num-lab {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    color: rgba(245,245,240,0.5);
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-top: 6px;
-    text-align: center;
-  }
-  @media (max-width: 640px) {
-    .t-club-banner { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
-    .t-club-banner__num { font-size: 56px; text-align: left; }
-    .t-club-banner__num-lab { text-align: left; }
-  }
-
-  /* CTA BUTTON */
-  .cta-btn {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    padding: 16px 40px;
-    background: var(--accent);
-    color: var(--ink);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-  }
-  .cta-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--ink);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-  .cta-btn:hover::before { transform: translateX(0); }
-  .cta-btn span { position: relative; z-index: 1; }
-  .cta-btn:hover span { color: #f5f5f0; }
-
-  /* CTA SECTION */
-  #t-cta {
-    background: var(--ink);
-    border-bottom: none;
-  }
-  .t-cta__title {
-    font-family: 'Roboto Condensed', sans-serif !important;
-    font-weight: 900;
-    font-size: clamp(28px, 4vw, 52px);
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: rgba(245,245,240,1);
-    margin-bottom: 16px;
-  }
-  .t-cta__title .accent { color: var(--accent); }
-  .t-cta__sub {
-    font-size: 13px;
-    line-height: 1.7;
-    color: rgba(245,245,240,0.45);
-    margin-bottom: 36px;
-    max-width: 560px;
-  }
-
-  /* WIDGET MODAL */
-  .widget-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: rgba(10,10,15,0.7);
-    backdrop-filter: blur(6px);
-    align-items: center;
-    justify-content: center;
-  }
-  .widget-modal.is-open { display: flex; }
-  .widget-modal__box {
-    background: var(--bg);
-    width: min(560px, calc(100vw - 32px));
-    max-height: calc(100vh - 64px);
-    overflow: auto;
-    position: relative;
-    padding: 32px;
-  }
-  .widget-modal__close {
-    position: absolute;
-    top: 12px; right: 16px;
-    background: none; border: none;
-    font-size: 22px;
-    cursor: pointer;
-    color: var(--ink40);
-    line-height: 1;
-  }
-  .widget-modal__close:hover { color: var(--ink); }
-
-  /* FOOTER */
-  .t-footer {
-    padding: 24px;
-    border-top: 1px solid var(--ink10);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink40);
-  }
-  .t-footer a { color: var(--ink40); text-decoration: none; }
-  .t-footer a:hover { color: var(--ink); }
-
-  /* ── NEW B2B SECTIONS ── */
-
-  /* 2-column grid */
-  .t-grid2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink10); margin-top: 32px; }
-  .t-grid2 .t-cell { padding: 28px 32px; border-right: 1px solid var(--ink10); background: var(--ink05); }
-  .t-grid2 .t-cell:last-child { border-right: none; }
-
-  /* 2×2 grid (симптомы) */
-  .t-grid2x2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink10); margin-top: 32px; }
-  .t-grid2x2 .t-cell { padding: 28px 32px; border-right: 1px solid var(--ink10); border-bottom: 1px solid var(--ink10); background: var(--ink05); }
-  .t-grid2x2 .t-cell:nth-child(2n) { border-right: none; }
-  .t-grid2x2 .t-cell:nth-last-child(-n+2) { border-bottom: none; }
-
-  /* Cell tag (мелкий оранжевый лейбл внутри ячейки) */
-  .t-cell__tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; display: block; }
-
-  /* Callout — левая оранжевая рамка */
-  .t-callout { border-left: 3px solid var(--accent); padding-left: 20px; font-size: 14px; line-height: 1.6; color: var(--ink); margin-bottom: 24px; }
-
-  /* Highlight-строка */
-  .t-highlight { padding: 16px 20px; background: var(--ink05); border-left: 3px solid var(--accent); font-size: 13px; line-height: 1.6; margin-top: 24px; }
-
-  /* Двухколонный список */
-  .t-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
-  .t-col-head { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ink10); }
-  .t-blist { list-style: none; }
-  .t-blist li { font-size: 13px; line-height: 1.7; color: var(--ink60); padding-left: 16px; position: relative; margin-bottom: 12px; }
-  .t-blist li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; background: var(--accent); }
-
-  /* Таблица пакетов */
-  .t-pkg-table { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; border: 1px solid var(--ink10); margin: 32px 0 0; }
-  .t-pkg-card { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
-  .t-pkg-hdr-cell { padding: 16px 20px; border-right: 1px solid var(--ink10); border-bottom: 1px solid var(--ink10); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Roboto Condensed', sans-serif; }
-  .t-pkg-hdr-cell .sub { display: block; font-size: 10px; font-weight: 400; color: var(--ink40); text-transform: none; letter-spacing: 0; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
-  .t-pkg-hdr-cell .desc { display: block; font-size: 12px; font-weight: 400; color: var(--ink); text-transform: none; letter-spacing: 0; margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
-  .t-pkg-col { border-right: 1px solid var(--ink10); padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
-  .t-pkg-item { font-size: 11px; line-height: 1.6; color: var(--ink60); padding: 8px 10px; }
-  .t-pkg-item.accent { background: var(--ink05); color: var(--ink); font-weight: 600; border-left: 2px solid var(--accent); }
-  .t-term { display: inline; background: none; border: none; padding: 0; margin: 0; font: inherit; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
-  .t-term:hover { opacity: 0.75; }
-  .t-term-def { font-size: 14px; line-height: 1.7; color: var(--ink60); }
-  .t-term-def strong { color: var(--ink); font-weight: 700; }
-  .t-pkg-card:last-child .t-pkg-hdr-cell, .t-pkg-card:last-child .t-pkg-col { border-right: none; }
-  /* единая нижняя строка на всю ширину сетки */
-  .t-pkg-bar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 20px 24px; background: var(--ink); }
-  .t-pkg-bar__text { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: -0.01em; color: var(--bg); }
-
-  /* Индивидуальный формат — выносной блок */
-  .t-pkg-custom { background: var(--ink05); border: 1px solid var(--ink10); margin-top: 32px; padding: 32px 40px; }
-  .t-pkg-custom__label { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin-bottom: 12px; display: block; }
-  .t-pkg-custom__text { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-  .t-pkg-custom__copy { max-width: 640px; }
-  .t-pkg-custom__text p { font-size: 14px; line-height: 1.6; color: var(--ink60); margin: 0; }
-  .t-pkg-custom__text .cta-btn { flex-shrink: 0; }
-  .t-pkg-custom__price { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; color: var(--accent); white-space: nowrap; }
-
-  /* Ценовой баннер */
-  .t-price-banner { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--ink); margin-top: 24px; flex-wrap: wrap; gap: 12px; }
-  .t-price-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,245,240,0.5); }
-  .t-price-value { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 28px; color: var(--accent); letter-spacing: -0.02em; }
-  .t-price-note { font-size: 11px; color: rgba(245,245,240,0.4); }
-
-  /* Контакты в CTA */
-  .t-contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(245,245,240,0.15); margin-top: 32px; max-width: 480px; }
-  .t-contact-cell { padding: 16px 20px; border-right: 1px solid rgba(245,245,240,0.15); }
-  .t-contact-cell:last-child { border-right: none; }
-  .t-contact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,245,240,0.4); margin-bottom: 6px; }
-  .t-contact-value { font-family: 'Roboto Condensed', sans-serif !important; font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--bg); letter-spacing: -0.01em; }
-
-  /* Адаптив новых компонентов */
-  @media (max-width: 768px) {
-    .t-grid2, .t-grid2x2, .t-two-col { grid-template-columns: 1fr; }
-    .t-grid2 .t-cell, .t-grid2x2 .t-cell { border-right: none; border-bottom: 1px solid var(--ink10); }
-    .t-grid2 .t-cell:last-child { border-bottom: none; }
-    .t-pkg-table { display: flex; flex-direction: column; border: none; }
-    .t-pkg-card { display: block; border: 1px solid var(--ink10); }
-    .t-pkg-card + .t-pkg-card { margin-top: 24px; }
-    .t-pkg-hdr-cell, .t-pkg-col { border-right: none; }
-    .t-pkg-bar { margin-top: 24px; flex-direction: column; align-items: flex-start; }
-    .t-pkg-custom { padding: 24px 20px; }
-    .t-pkg-custom__text { flex-direction: column; align-items: flex-start; }
-    .t-price-banner { flex-direction: column; align-items: flex-start; }
-    .t-contacts { grid-template-columns: 1fr; }
-    .t-contact-cell { border-right: none; border-bottom: 1px solid rgba(245,245,240,0.15); }
-    .t-contact-cell:last-child { border-bottom: none; }
-  }
-</style>
-</head>
-<body>
-
-<!-- TOP BAR -->
-<div class="t-topbar">
-  <a href="/" class="t-topbar__logo" aria-label="Naition"></a>
-  <span class="t-topbar__tag">// ДЛЯ КОМАНД</span>
-  <a href="/" class="t-topbar__back cta-btn"><span>← ОСНОВНАЯ ПРОГРАММА</span></a>
-</div>
-
-<!-- HERO -->
-<section id="t-hero">
-  <div class="t-wrap">
-    <span class="t-hero__label">[BOOTCAMP_B2B] // AI-DRIVEN DEVELOPMENT</span>
-    <h1 class="t-hero__title">
-      AI-Driven Bootcamp<br>
-      для <span class="accent">инженерных команд</span>
-    </h1>
-    <div class="t-hero__sub">
-      <p style="margin-bottom:12px;">Апгрейд роли разработчика и представителей продуктовых команд IT</p>
-      <p>Трансформация компаний через встраивание AI в реальные процессы компании</p>
-    </div>
-    <div style="margin-top:40px;">
-      <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">[BOOTCAMP_B2B] // AI-DRIVEN DEVELOPMENT</p>
+    <h1 class="hero__title hero__title--long">AI-Driven Bootcamp <br> для <span class="hero__title-mark">инженерных команд</span></h1>
+    <h2 class="hero__sub">Апгрейд роли разработчика и представителей продуктовых команд IT</h2>
+    <p class="hero__lead">Трансформация компаний через встраивание AI в реальные процессы компании</p>
+    <div class="cta-row">
+      <button type="button" class="btn btn--solid btn--wide" data-modal-open="widget" data-widget-id={TEAMS_WIDGET}>Обсудить условия</button>
     </div>
   </div>
 </section>
 
-<!-- VISION -->
-<section id="t-vision">
-  <div class="t-wrap">
-    <span class="t-label">[ВИДЕНИЕ] // AI-DRIVEN — ЭТО НОВЫЙ СТАНДАРТ</span>
-    <h2 class="t-title">Рынок переходит<br>к <span class="accent">AI-driven</span> компаниям</h2>
-    <div class="t-callout">AI-driven — это новый стандарт конкурентоспособности, а не модный эксперимент</div>
-    <p class="t-prose">AI меняет не отдельные задачи, а всю цепочку создания ценности: продукт, разработку, эксплуатацию, продажи и поддержку.</p>
-    <p class="t-prose">Выигрывают компании, которые перестраивают процессы под AI, а не те, кто просто раздал сотрудникам доступ к инструментам и ждёт эффекта.</p>
-  </div>
-  <div class="t-sources">
-    <div class="t-source">
-      <span class="t-source__num">01</span>
-      <div class="t-source__body">
-        <div class="t-source__title">Google Cloud DORA 2025</div>
-        <p class="t-source__text">Adoption AI среди разработчиков выросла до 90%, с приростом 14 процентных пунктов за год, и в среднем разработчики тратят на работу с AI два часа в день. При этом AI не чинит команду сам по себе — он усиливает то, что уже есть: сильные команды становятся эффективнее, а слабые получают те же проблемы, только острее. Рост объёма кода без соответствующего усиления процессов review и тестирования увеличивает нестабильность поставки.</p>
-        <a class="t-source__link" href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report" target="_blank" rel="noopener noreferrer">Ссылка →</a>
+<!-- ============================== ВИДЕНИЕ ============================== -->
+<section class="section section--bg" id="vision" aria-label="Видение">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[видение] // AI-driven — это новый стандарт</p>
+        <h2 class="section__title">Рынок переходит <br> к <span class="section__title-mark">AI-driven</span> компаниям</h2>
       </div>
-    </div>
-    <div class="t-source">
-      <span class="t-source__num">02</span>
-      <div class="t-source__body">
-        <div class="t-source__title">Stack Overflow Developer Survey 2025</div>
-        <p class="t-source__text">84% разработчиков уже используют или планируют использовать AI-инструменты в работе, рост с 76% годом ранее. Но доверие к точности результатов при этом упало до 29%, снизившись с 40% годом ранее — рост adoption сопровождается ростом недоверия, а не наоборот.</p>
-        <a class="t-source__link" href="https://survey.stackoverflow.co/2025/ai/" target="_blank" rel="noopener noreferrer">Ссылка →</a>
-      </div>
-    </div>
-    <div class="t-source">
-      <span class="t-source__num">03</span>
-      <div class="t-source__body">
-        <div class="t-source__title">Techreviewer, «AI in Software Development 2025: From Exploration to Accountability»</div>
-        <p class="t-source__text">97,5% компаний-разработчиков программного обеспечения так или иначе внедрили AI в свой SDLC, рост с 90,9% в 2024 году.</p>
-        <a class="t-source__link" href="https://techreviewer.co/blog/ai-in-software-development-2025-from-exploration-to-accountability-a-global-survey-analysis" target="_blank" rel="noopener noreferrer">Ссылка →</a>
-      </div>
-    </div>
-    <div class="t-source">
-      <span class="t-source__num">04</span>
-      <div class="t-source__body">
-        <div class="t-source__title">McKinsey, «Unleashing developer productivity with generative AI»</div>
-        <p class="t-source__text">Использование генеративного AI ускоряет типовые задачи разработки: документация выполняется на 45–50% быстрее, генерация кода на 35–45%, рефакторинг на 20–30%.</p>
-        <a class="t-source__link" href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/unleashing-developer-productivity-with-generative-ai" target="_blank" rel="noopener noreferrer">Ссылка →</a>
-      </div>
-    </div>
-    <div class="t-source">
-      <span class="t-source__num">05</span>
-      <div class="t-source__body">
-        <div class="t-source__title">Futurum Research, «AI Reaches 97% of Software Development Organizations»</div>
-        <p class="t-source__text">97% организаций уже используют AI в разработке программного обеспечения (76,6% активно, ещё 20,4% на стадии внедрения), только 3,1% остаются в стороне.</p>
-        <a class="t-source__link" href="https://futurumgroup.com/press-release/ai-reaches-97-of-software-development-organizations/" target="_blank" rel="noopener noreferrer">Ссылка →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VALUE -->
-<section id="t-value">
-  <div class="t-wrap">
-    <span class="t-label">[БИЗНЕС-ЦЕННОСТЬ] // AI — ЭТО НЕ ТОЛЬКО ПРО ЭКОНОМИЮ</span>
-    <h2 class="t-title">Два рычага, которые<br>даёт <span class="accent">AI</span> бизнесу</h2>
-    <div class="t-grid2">
-      <div class="t-cell">
-        <span class="t-cell__tag">Рычаг 01</span>
-        <div class="t-cell__title">Экономия и эффективность</div>
-        <ul class="t-blist" style="margin-top:12px;">
-          <li>Ускорение разработки и снижение доли ручного труда.</li>
-          <li>Автоматизация части рутинных операций в документации, тестировании, ревью и поддержке legacy.</li>
-          <li>Снижение зависимости от подрядчиков и экстенсивного расширения штата при росте задач.</li>
-        </ul>
-      </div>
-      <div class="t-cell">
-        <span class="t-cell__tag">Рычаг 02</span>
-        <div class="t-cell__title">Рост выручки и прибыли</div>
-        <ul class="t-blist" style="margin-top:12px;">
-          <li>Более быстрый вывод новых фич и продуктов на рынок.</li>
-          <li>Появление новых AI-продуктов и сервисов в продуктовой линейке.</li>
-          <li>Улучшение клиентского опыта, удержания и монетизации за счёт AI-функций.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="t-highlight"><strong>Вывод для руководителей:</strong> фокусироваться только на сокращении расходов — значит недополучить значительную часть эффекта от AI.</div>
-  </div>
-</section>
-
-<!-- PROBLEMS -->
-<section id="t-problems">
-  <div class="t-wrap">
-    <span class="t-label">[ПРОБЛЕМА] // ПОЧЕМУ AI-ИНИЦИАТИВЫ БУКСУЮТ</span>
-    <h2 class="t-title">Знакомые симптомы<br>«кустарного» <span class="accent">AI</span></h2>
-    <div class="t-grid2x2">
-      <div class="t-cell">
-        <span class="t-cell__tag">Симптом 01</span>
-        <div class="t-cell__title">Много PoC, мало продакшена</div>
-        <div class="t-cell__text">AI остаётся на уровне демо и не доходит до рабочих процессов.</div>
-      </div>
-      <div class="t-cell">
-        <span class="t-cell__tag">Симптом 02</span>
-        <div class="t-cell__title">Инструменты без системы</div>
-        <div class="t-cell__text">Команды пробуют инструменты, но не строят систему. Есть точечное использование, но не хватает навыков интеграции, контроля качества и масштабирования.</div>
-      </div>
-      <div class="t-cell">
-        <span class="t-cell__tag">Симптом 03</span>
-        <div class="t-cell__title">Разрыв между бизнесом и инженерами</div>
-        <div class="t-cell__text">Бизнес ждёт ROI, инженеры — чётких постановок, и между ними часто нет общего языка про AI.</div>
-      </div>
-      <div class="t-cell">
-        <span class="t-cell__tag">Симптом 04</span>
-        <div class="t-cell__title">Разовые воркшопы не дают трансформации</div>
-        <div class="t-cell__text">Для результата нужен не вдохновляющий обзор, а системный апгрейд ключевых людей и рабочих практик.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DOUBLE VALUE -->
-<section id="t-dvalue">
-  <div class="t-wrap">
-    <span class="t-label">[ЦЕННОСТЬ] // ДВОЙНАЯ ВЫГОДА</span>
-    <h2 class="t-title">Один продукт — две<br>сильные <span class="accent">ценности</span><br>внутри заказчика</h2>
-    <div class="t-two-col">
-      <div>
-        <div class="t-col-head">Для компании и руководителей</div>
-        <ul class="t-blist">
-          <li>Ускорение delivery и снижение себестоимости разработки за счёт AI-инструментов в ежедневной работе команды.</li>
-          <li>Формирование внутреннего AI-ядра — группы людей, на которых можно опереть дальнейшую трансформацию.</li>
-          <li>Появление у компании общего языка про AI, ROI, риски и применимость AI в реальных процессах.</li>
-          <li>Снижение зависимости от единичных энтузиастов: знания и практики распределяются по команде.</li>
-          <li>Усиление HR-бренда: инвестиции в AI-компетенции повышают привлекательность компании для сильных инженеров.</li>
-        </ul>
-      </div>
-      <div>
-        <div class="t-col-head">Для сотрудников</div>
-        <ul class="t-blist">
-          <li>Освоение востребованных AI-навыков, которые уже становятся стандартом сильного инженера.</li>
-          <li>Карьерный рост: движение в сторону AI-driven engineer, технического лидера, архитектора решений.</li>
-          <li>Практика на реальных рабочих задачах, а не абстрактных упражнениях.</li>
-          <li>Рост мотивации и вовлечённости: люди видят, что компания инвестирует в их развитие и будущее.</li>
-          <li>Командообразование: общий понятийный аппарат, общие инструменты и совместная работа над новыми подходами.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PACKAGES -->
-<section id="t-packages">
-  <div class="t-wrap">
-    <span class="t-label">[ФОРМАТЫ] // ВАРИАНТЫ ДЛЯ КОРПОРАТИВНЫХ КЛИЕНТОВ</span>
-    <h2 class="t-title">Варианты реализации<br>для <span class="accent">корпоративных</span> клиентов</h2>
-    <div class="t-pkg-table">
-      <div class="t-pkg-card">
-        <div class="t-pkg-hdr-cell">
-          БАЗОВЫЙ ПАКЕТ
-          <span class="sub">Индивидуально / Групповое участие</span>
-          <span class="desc">Минимум кастомизации, максимум скорости, чтобы завести людей в новый стандарт работы</span>
-        </div>
-        <div class="t-pkg-col">
-          <div class="t-pkg-item accent">Команда учится на общем потоке и получает весь спектр навыков</div>
-          <div class="t-pkg-item accent">Прогрессивная скидка по количеству представителей</div>
-          <div class="t-pkg-item">Дополнительная групповая встреча по развитию отрасли, команд, трендам экспертов буктемпа с участниками от компании</div>
+      <div class="section__head-r section__head-r--tight">
+        <div class="section__rule"></div>
+        <div class="plate plate--mint">
+          <p class="plate__text">AI-driven — это новый стандарт конкурентоспособности, а не модный эксперимент</p>
         </div>
       </div>
-      <div class="t-pkg-card">
-        <div class="t-pkg-hdr-cell">
-          КОМАНДНОЕ СОПРОВОЖДЕНИЕ
-          <span class="sub">С дополнительной поддержкой</span>
-          <span class="desc">Фокус на первых 1–3 реальных кейсах компании и сопровождении внедрения</span>
-        </div>
-        <div class="t-pkg-col">
-          <div class="t-pkg-item accent">«Мини-акселератор» по AI-driven разработке внутри компании</div>
-          <div class="t-pkg-item accent">Дополнительный <button type="button" class="t-term js-open-term-trekshn">трекшн</button> внедрения изменений в рамках закрытого клуба</div>
-          <div class="t-pkg-item">Отдельный чат для команды</div>
-          <div class="t-pkg-item">1 стратегический созвон с тех/прод-лидами в начале и 1 в конце по итогам</div>
-          <div class="t-pkg-item">Работа с экспертами по отдельным задачам команды</div>
-          <div class="t-pkg-item">Адаптация части примеров и домашних заданий под технологический стек заказчика</div>
-          <div class="t-pkg-item">Дополнительные промежуточные групповые Q&amp;A, разборы кейсов компании</div>
-        </div>
-      </div>
-      <div class="t-pkg-bar">
-        <span class="t-pkg-bar__text">К каждой команде индивидуальный подход</span>
-        <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
-      </div>
     </div>
 
-    <div class="t-pkg-custom">
-      <div class="t-pkg-custom__text">
-        <div class="t-pkg-custom__copy">
-          <span class="t-pkg-custom__label">ИНДИВИДУАЛЬНЫЙ ФОРМАТ</span>
-          <p>Для компаний, которым нужен внешний партнёр по AI-трансформации. Разрабатывается отдельно после ряда встреч с командой Naition.</p>
-        </div>
-        <button type="button" class="cta-btn js-open-widget-consult"><span>→ Получить консультацию</span></button>
-      </div>
+    <div class="prose">
+      <p>AI меняет не отдельные задачи, а всю цепочку создания ценности: продукт, разработку, эксплуатацию, продажи и поддержку.</p>
+      <p>Выигрывают компании, которые перестраивают процессы под AI, а не те, кто просто раздал сотрудникам доступ к инструментам и ждёт эффекта.</p>
+    </div>
+
+    <div class="grid-2">
+      {sources.map((s, i) => (
+        <article class={i === sources.length - 1 ? 'card card--span' : 'card'}>
+          <p class="card__num">{s.num}</p>
+          <h3 class="card__title">{s.title}</h3>
+          <p class="card__text">{s.text}</p>
+          <a class="link-arrow" href={s.url} target="_blank" rel="noopener noreferrer">Ссылка →</a>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- OUTCOMES -->
-<section id="t-outcomes">
-  <div class="t-wrap">
-    <span class="t-label">[РЕЗУЛЬТАТ] // ЧТО ОСТАЁТСЯ ПОСЛЕ БУКТЕМПА</span>
-    <h2 class="t-title">Измеримые <span class="accent">артефакты</span>,<br>а не просто факт обучения</h2>
-    <div class="t-two-col">
-      <div>
-        <div class="t-col-head">Для компании</div>
-        <ul class="t-blist">
-          <li>Команда, которая лучше понимает, как применять AI в реальных процессах компании.</li>
-          <li>Подготовленные и приоритизированные AI-кейсы для дальнейшего внедрения.</li>
-          <li>Набор практик, шаблонов и подходов, которые можно использовать в ежедневной работе.</li>
-          <li>Более зрелый внутренний разговор про AI: где он действительно создаёт ценность, а где — нет.</li>
-          <li>Основа для последующей трансформации процессов, ролей и инженерного контура.</li>
+<!-- ============================== БИЗНЕС-ЦЕННОСТЬ ============================== -->
+<section class="section section--white" id="value" aria-label="Бизнес-ценность">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[бизнес-ценность] // AI — это не только про экономию</p>
+        <h2 class="section__title">Два рычага, которые <br> даёт <span class="section__title-mark">AI</span> бизнесу</h2>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      {levers.map((l) => (
+        <article class="card card--grey">
+          <p class="card__num">{l.tag}</p>
+          <h3 class="card__title">{l.title}</h3>
+          <ul class="bullets">
+            {l.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="plate">
+      <p class="plate__text"><strong>Вывод для руководителей:</strong> фокусироваться только на сокращении расходов — значит недополучить значительную часть эффекта от AI.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ПРОБЛЕМА ============================== -->
+<section class="section section--bg" id="problems" aria-label="Почему AI-инициативы буксуют">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[проблема] // Почему AI-инициативы буксуют</p>
+        <h2 class="section__title">Знакомые симптомы <br> «кустарного» <span class="section__title-mark">AI</span></h2>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      {symptoms.map((s) => (
+        <article class="card">
+          <p class="card__num">{s.tag}</p>
+          <h3 class="card__title">{s.title}</h3>
+          <p class="card__text">{s.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ДВОЙНАЯ ЦЕННОСТЬ ============================== -->
+<section class="section section--white" id="dvalue" aria-label="Двойная выгода">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[ценность] // Двойная выгода</p>
+        <h2 class="section__title">Один продукт — две <br> сильные <span class="section__title-mark">ценности</span> <br> внутри заказчика</h2>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      {doubleValue.map((c) => (
+        <article class="card card--grey">
+          <h3 class="card__title">{c.head}</h3>
+          <ul class="bullets">
+            {c.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ФОРМАТЫ ============================== -->
+<section class="section section--bg" id="packages" aria-label="Варианты для корпоративных клиентов">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[форматы] // Варианты для корпоративных клиентов</p>
+        <h2 class="section__title">Варианты реализации <br> для <span class="section__title-mark">корпоративных</span> клиентов</h2>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <article class="card">
+        <p class="card__num">Базовый пакет</p>
+        <h3 class="card__title">Индивидуально / Групповое участие</h3>
+        <p class="card__text">Минимум кастомизации, максимум скорости, чтобы завести людей в новый стандарт работы</p>
+        <ul class="bullets">
+          <li class="bullets__key">Команда учится на общем потоке и получает весь спектр навыков</li>
+          <li class="bullets__key">Прогрессивная скидка по количеству представителей</li>
+          <li>Дополнительная групповая встреча по развитию отрасли, команд, трендам экспертов буктемпа с участниками от компании</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <p class="card__num">Командное сопровождение</p>
+        <h3 class="card__title">С дополнительной поддержкой</h3>
+        <p class="card__text">Фокус на первых 1–3 реальных кейсах компании и сопровождении внедрения</p>
+        <ul class="bullets">
+          <li class="bullets__key">«Мини-акселератор» по AI-driven разработке внутри компании</li>
+          <li class="bullets__key">Дополнительный <button type="button" class="link-term" data-modal-open="term-trekshn">трекшн</button> внедрения изменений в рамках закрытого клуба</li>
+          <li>Отдельный чат для команды</li>
+          <li>1 стратегический созвон с тех/прод-лидами в начале и 1 в конце по итогам</li>
+          <li>Работа с экспертами по отдельным задачам команды</li>
+          <li>Адаптация части примеров и домашних заданий под технологический стек заказчика</li>
+          <li>Дополнительные промежуточные групповые Q&amp;A, разборы кейсов компании</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="plate plate--row">
+      <p class="plate__text">К каждой команде индивидуальный подход</p>
+      <button type="button" class="btn btn--solid btn--wide" data-modal-open="widget" data-widget-id={TEAMS_WIDGET}>Обсудить условия</button>
+    </div>
+
+    <div class="plate plate--mint plate--row">
+      <div class="plate__body">
+        <p class="plate__label">Индивидуальный формат</p>
+        <p class="plate__text">Для компаний, которым нужен внешний партнёр по AI-трансформации. Разрабатывается отдельно после ряда встреч с командой Naition.</p>
+      </div>
+      <button type="button" class="btn btn--solid btn--wide" data-modal-open="widget" data-widget-id={CONSULT_WIDGET}>Получить консультацию</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== РЕЗУЛЬТАТ ============================== -->
+<section class="section section--white" id="outcomes" aria-label="Что остаётся после буткемпа">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[результат] // Что остаётся после буктемпа</p>
+        <h2 class="section__title">Измеримые <span class="section__title-mark">артефакты</span>, <br> а не просто факт обучения</h2>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      {outcomes.map((c) => (
+        <article class="card card--grey">
+          <h3 class="card__title">{c.head}</h3>
+          <ul class="bullets">
+            {c.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛЕДУЮЩИЙ ШАГ ============================== -->
+<section class="section section--dark" id="cta" aria-label="Следующий шаг">
+  <div class="section__inner">
+    <div class="section__head">
+      <div class="section__head-l">
+        <p class="section__eyebrow">[следующий шаг] // 30 минут на сценарий запуска</p>
+        <h2 class="section__title">30 минут — и у вас будет <br> понятный <span class="section__title-mark">сценарий запуска</span> <br> для вашей команды</h2>
+      </div>
+      <div class="section__head-r">
+        <ul class="bullets">
+          {nextSteps.map((s) => <li>{s}</li>)}
         </ul>
       </div>
-      <div>
-        <div class="t-col-head">Для каждого участника</div>
-        <ul class="t-blist">
-          <li>Практический опыт применения AI-инструментов в ежедневной инженерной работе: от IDE и LLM до агентов, API и работы с legacy.</li>
-          <li>Более сильная личная рабочая система: умение быстрее исследовать, проектировать, писать, проверять и дорабатывать решения с помощью AI.</li>
-          <li>Собранный personal toolkit: набор инструментов, паттернов, промптов и подходов, которые можно сразу переносить в свою работу.</li>
-          <li>Понимание, как применять AI не «в вакууме», а в production-контексте компании, с учётом SDLC, качества и ROI.</li>
-          <li>Более сильная профессиональная позиция на рынке: участник начинает мыслить и действовать как AI-driven engineer.</li>
-        </ul>
-      </div>
+    </div>
+    <div class="cta-row">
+      <button type="button" class="btn btn--mint btn--wide" data-modal-open="widget" data-widget-id={TEAMS_WIDGET}>Обсудить условия</button>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="t-cta">
-  <div class="t-wrap" style="text-align:center;">
-    <span class="t-label" style="color:rgba(245,245,240,0.4)">[СЛЕДУЮЩИЙ ШАГ] // 30 МИНУТ НА СЦЕНАРИЙ ЗАПУСКА</span>
-    <h2 class="t-cta__title">30 минут — и у вас будет<br>понятный <span class="accent">сценарий запуска</span><br>для вашей команды</h2>
-    <ul class="t-blist" style="margin-bottom:32px; display:inline-block; text-align:left;">
-      <li style="color:rgba(245,245,240,0.65);">На ознакомительном звонке разбираем состав команды, задачи и целевой эффект.</li>
-      <li style="color:rgba(245,245,240,0.65);">Подбираем оптимальный формат участия и обсуждаем, как встроить программу в контекст компании.</li>
-      <li style="color:rgba(245,245,240,0.65);">По итогам разговора формируем предложение под вашу ситуацию.</li>
-    </ul>
-    <div>
-      <button type="button" class="cta-btn js-open-widget-teams"><span>→ Обсудить условия</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- WIDGET MODAL -->
-<div class="widget-modal" id="widget-modal-teams" aria-hidden="true">
-  <div class="widget-modal__box">
-    <button type="button" class="widget-modal__close js-close-widget-teams" aria-label="Закрыть">×</button>
-    <div id="widget-modal-teams-body"></div>
-  </div>
-</div>
-
-<!-- WIDGET MODAL: КОНСУЛЬТАЦИЯ -->
-<div class="widget-modal" id="widget-modal-consult" aria-hidden="true">
-  <div class="widget-modal__box">
-    <button type="button" class="widget-modal__close js-close-widget-consult" aria-label="Закрыть">×</button>
-    <div id="widget-modal-consult-body"></div>
-  </div>
-</div>
-
-<!-- TERM POPOVER: ТРЕКШН -->
-<div class="widget-modal" id="term-trekshn" aria-hidden="true">
-  <div class="widget-modal__box">
-    <button type="button" class="widget-modal__close js-close-term-trekshn" aria-label="Закрыть">×</button>
-    <p class="t-term-def"><strong>Трекшн</strong> — сопровождение внедрения практик и подходов, начиная с аудита ваших процессов до результатов и их анализа. Длится 3 месяца.</p>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="t-footer">
+<!-- ============================== SUBFOOTER ============================== -->
+<footer class="subfooter">
   <a href="/">← AI DRIVEN РАЗРАБОТКА</a>
   <span>© 2026 NAITION</span>
-  <div style="display:flex;gap:16px;">
+  <div class="subfooter__links">
     <a href="/legal/oferta">Оферта</a>
     <a href="/legal/privacy">Политика</a>
   </div>
 </footer>
 
-<script is:inline>
-  // Widget modal
-  var teamsModal = document.getElementById('widget-modal-teams');
-  var teamsWidgetBody = document.getElementById('widget-modal-teams-body');
-  var teamsWidgetLoaded = false;
+<!-- ============================== MODALS ============================== -->
+<div class="modal" data-js="modal" data-modal="widget" hidden>
+  <div class="modal__backdrop" data-js="modal-close"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Заявка" tabindex="-1">
+    <button type="button" class="modal__x" data-js="modal-close" aria-label="Закрыть">✕</button>
+    <div class="modal__widget" data-js="widget-body"></div>
+  </div>
+</div>
 
-  function openTeamsModal() {
-    if (!teamsModal) return;
-    if (!teamsWidgetLoaded && teamsWidgetBody) {
-      teamsWidgetLoaded = true;
-      var s = document.createElement('script');
-      s.setAttribute('ao-number', '3272');
-      s.setAttribute('ao-widget-id', 'cGq_8BNde06mP32lZwU9DQ');
-      s.setAttribute('ao-domain', 'content.scalingclub.ru');
-      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
-      s.async = true;
-      teamsWidgetBody.appendChild(s);
-    }
-    teamsModal.classList.add('is-open');
-    teamsModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeTeamsModal() {
-    if (teamsModal) {
-      teamsModal.classList.remove('is-open');
-      teamsModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
+<div class="modal" data-js="modal" data-modal="term-trekshn" hidden>
+  <div class="modal__backdrop" data-js="modal-close"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Трекшн" tabindex="-1">
+    <button type="button" class="modal__x" data-js="modal-close" aria-label="Закрыть">✕</button>
+    <p class="modal__lead"><strong>Трекшн</strong> — сопровождение внедрения практик и подходов, начиная с аудита ваших процессов до результатов и их анализа. Длится 3 месяца.</p>
+  </div>
+</div>
 
-  document.querySelectorAll('.js-open-widget-teams').forEach(function(btn) {
-    btn.addEventListener('click', function(e) { e.preventDefault(); openTeamsModal(); });
-  });
-  document.querySelectorAll('.js-close-widget-teams').forEach(function(btn) {
-    btn.addEventListener('click', closeTeamsModal);
-  });
-  if (teamsModal) {
-    teamsModal.addEventListener('click', function(e) {
-      if (e.target === teamsModal) closeTeamsModal();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && teamsModal.classList.contains('is-open')) closeTeamsModal();
-    });
-  }
+<script>import '../scripts/common.js';</script>
 
-  // Widget modal: консультация
-  var consultModal = document.getElementById('widget-modal-consult');
-  var consultWidgetBody = document.getElementById('widget-modal-consult-body');
-  var consultWidgetLoaded = false;
-
-  function openConsultModal() {
-    if (!consultModal) return;
-    if (!consultWidgetLoaded && consultWidgetBody) {
-      consultWidgetLoaded = true;
-      var s = document.createElement('script');
-      s.setAttribute('ao-number', '3272');
-      s.setAttribute('ao-widget-id', 'SRqLxYwJH0OQRbGoN4wrYQ');
-      s.setAttribute('ao-domain', 'content.scalingclub.ru');
-      s.src = 'https://idx.xl.ru/site/widget/widget.min.js';
-      s.async = true;
-      consultWidgetBody.appendChild(s);
-    }
-    consultModal.classList.add('is-open');
-    consultModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeConsultModal() {
-    if (consultModal) {
-      consultModal.classList.remove('is-open');
-      consultModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-
-  document.querySelectorAll('.js-open-widget-consult').forEach(function(btn) {
-    btn.addEventListener('click', function(e) { e.preventDefault(); openConsultModal(); });
-  });
-  document.querySelectorAll('.js-close-widget-consult').forEach(function(btn) {
-    btn.addEventListener('click', closeConsultModal);
-  });
-  if (consultModal) {
-    consultModal.addEventListener('click', function(e) {
-      if (e.target === consultModal) closeConsultModal();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && consultModal.classList.contains('is-open')) closeConsultModal();
-    });
-  }
-
-  // Term popover: трекшн
-  var trekshnPopover = document.getElementById('term-trekshn');
-  function openTrekshnPopover() {
-    if (!trekshnPopover) return;
-    trekshnPopover.classList.add('is-open');
-    trekshnPopover.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeTrekshnPopover() {
-    if (trekshnPopover) {
-      trekshnPopover.classList.remove('is-open');
-      trekshnPopover.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-  document.querySelectorAll('.js-open-term-trekshn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) { e.preventDefault(); openTrekshnPopover(); });
-  });
-  document.querySelectorAll('.js-close-term-trekshn').forEach(function(btn) {
-    btn.addEventListener('click', closeTrekshnPopover);
-  });
-  if (trekshnPopover) {
-    trekshnPopover.addEventListener('click', function(e) {
-      if (e.target === trekshnPopover) closeTrekshnPopover();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && trekshnPopover.classList.contains('is-open')) closeTrekshnPopover();
-    });
-  }
-</script>
-
-</body>
-</html>
+</BaseLayout>

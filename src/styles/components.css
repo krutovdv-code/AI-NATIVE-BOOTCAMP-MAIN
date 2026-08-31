@@ -70,8 +70,22 @@
 /* same shrink-to-fit trap as .section__inner — see the note there */
 .hero__inner>*{max-width:100%}
 .hero__eyebrow{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:1.5px;text-transform:uppercase;color:var(--c-teal)}
-.hero__title{font-weight:900;font-size:var(--fs-112);line-height:110px;letter-spacing:-4px;color:var(--c-ink)}
+.hero__title{font-weight:900;font-size:var(--fs-112);line-height:110px;letter-spacing:-4px;text-transform:uppercase;color:var(--c-ink)}
 .hero__title-mark{color:var(--c-teal)}
+/* For a page whose headline IS the value proposition and runs to a full
+   sentence. The 112px step is sized for a two-word brand line; a 90-character
+   Russian sentence at that size is a wall, and dropping it to .hero__sub's
+   40px/500 loses the h1. This sits between the two.
+   Both subpage heroes (/teams, /community) use it, which leaves 112px as the
+   home page's signature. /teams needs it since the H1 went uppercase: caps are
+   ~7% wider, and at 112px that pushed a 2-line headline to 3 with a one-word
+   orphan. It also buys back descender room — lh here is 1.07x, where the 112px
+   step runs 0.98x and Cyrillic Д/Ц descend below the baseline.
+   No max-width: .hero__inner already caps the column at --content, and an
+   extra cap here just narrows the measure into a ragged wrap — capping
+   /community's headline at 1100px cost it two extra lines and a one-word
+   orphan ("КОМАНДЫ" alone on line 5). */
+.hero__title--long{font-size:var(--fs-60);line-height:64px;letter-spacing:-1.2px}
 .hero__sub{font-weight:500;font-size:var(--fs-40);line-height:46px;letter-spacing:-1px;color:var(--c-ink);max-width:1010px}
 .hero__lead{font-size:var(--fs-20);line-height:31px;color:var(--c-muted);max-width:800px}
 .hero__hairline{height:1px;width:100%;background:var(--c-line)}
@@ -341,6 +355,87 @@
 .footer__legal a:hover{color:var(--c-ink)}
 
 /* ==========================================================================
+   SUBNAV / SUBFOOTER — the light page chrome for /teams, /community, /verify.
+   Those pages are not the home page: the main .nav's links are all in-page
+   anchors that only exist on `/`, so they keep their own one-line header and
+   a footer strip instead. Same tokens, a third of the height.
+   ========================================================================== */
+.subnav{
+  background:var(--c-bg);border-bottom:1px solid var(--c-line);
+  display:flex;align-items:center;gap:var(--sp-16);
+  padding:0 var(--pad-x);min-height:64px;
+  position:sticky;top:0;z-index:var(--z-nav);
+}
+.subnav__tag{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:1.5px;text-transform:uppercase;color:var(--c-teal)}
+/* margin-left:auto puts every bit of slack in one place, so the back-link sits
+   hard right whatever the tag's length */
+.subnav__back{
+  margin-left:auto;font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--c-muted);
+  transition:color var(--dur) var(--ease);
+}
+.subnav__back:hover{color:var(--c-ink)}
+/* live-status dot. The animation is decoration only — the label beside it
+   carries the meaning, so reduced-motion can drop it outright. */
+.subnav__dot{width:7px;height:7px;border-radius:50%;background:var(--c-teal);flex-shrink:0;animation:subnav-pulse 2s ease-in-out infinite}
+@keyframes subnav-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.subnav__dot{animation:none}}
+
+.subfooter{
+  background:var(--c-bg);border-top:1px solid var(--c-line);
+  padding:var(--sp-32) var(--pad-x);
+  display:flex;align-items:center;gap:var(--sp-24);flex-wrap:wrap;
+  font-family:var(--f-mono);font-weight:700;font-size:var(--fs-10);
+  letter-spacing:1px;text-transform:uppercase;color:var(--c-muted-2);
+}
+.subfooter__links{display:flex;gap:var(--sp-20);margin-left:auto;flex-wrap:wrap}
+.subfooter a{transition:color var(--dur) var(--ease)}
+.subfooter a:hover{color:var(--c-ink)}
+
+/* an inline term inside body copy that opens a definition — sized to the copy
+   around it, unlike .popover-btn which is standalone mono microtext */
+.link-term{font:inherit;color:var(--c-teal);text-decoration:underline;text-underline-offset:3px;transition:opacity var(--dur) var(--ease)}
+.link-term:hover{opacity:.7}
+
+/* ==========================================================================
+   FIELD — the system had no form control until /verify needed one.
+   Underline-only, so it reads as a line of the page rather than a widget.
+   ========================================================================== */
+.field{display:flex;flex-direction:column;gap:var(--sp-8);width:100%}
+.field__input{
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--c-line);
+  padding:var(--sp-12) 0;
+  font-family:var(--f-mono);font-size:var(--fs-15);letter-spacing:.5px;color:var(--c-ink);
+  -webkit-appearance:none;appearance:none;
+  transition:border-color var(--dur) var(--ease);
+}
+.field__input::placeholder{color:var(--c-muted-2)}
+/* the underline IS the focus indicator here; :focus-visible's outline would
+   draw a second box around a control that has no box */
+.field__input:focus{outline:none;border-bottom-color:var(--c-teal)}
+.field__error{font-size:var(--fs-14);line-height:21px;color:var(--c-ink);border-left:2px solid var(--c-teal);padding-left:var(--sp-12)}
+.field__error[hidden]{display:none}
+.field__submit{align-self:flex-start;margin-top:var(--sp-8)}
+
+/* ==========================================================================
+   VERIFY — certificate check. A single centred card, no page chrome:
+   people land here from a QR code on a printed certificate.
+   ========================================================================== */
+/* min-height, not height (rule 6): the error state adds a row and the card
+   must be free to grow past the viewport rather than clip. dvh so mobile
+   browser chrome does not push the card off-screen. */
+.verify{min-height:100dvh;background:var(--c-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-28);padding:var(--sp-48) var(--pad-x)}
+.verify__card{width:100%;max-width:560px;background:var(--c-white);padding:var(--sp-40) var(--sp-36);display:flex;flex-direction:column;gap:var(--sp-20)}
+.verify__lead{font-size:var(--fs-16);line-height:25px;color:var(--c-muted)}
+.verify__name{font-weight:900;font-size:var(--fs-40);line-height:1.05;letter-spacing:-1.2px;text-transform:uppercase;color:var(--c-ink)}
+.verify__status{display:flex;align-items:center;gap:var(--sp-12);flex-wrap:wrap;font-size:var(--fs-15);line-height:23px;color:var(--c-muted)}
+.verify__status strong{color:var(--c-ink);font-weight:500}
+.verify__check{flex-shrink:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:var(--c-teal);color:var(--c-white);font-size:var(--fs-13)}
+.verify__id{padding-top:var(--sp-16);border-top:1px solid var(--c-line);font-family:var(--f-mono);font-size:var(--fs-11);letter-spacing:1px;text-transform:uppercase;color:var(--c-muted-2)}
+.verify__back{font-family:var(--f-mono);font-weight:700;font-size:var(--fs-11);letter-spacing:1.2px;text-transform:uppercase;color:var(--c-muted);transition:color var(--dur) var(--ease)}
+.verify__back:hover{color:var(--c-ink)}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 /* The nav switches to the burger at 1120, not at the system's 1024. Arithmetic,
@@ -358,6 +453,7 @@
 @media (max-width:1024px){
   .hero{padding:48px var(--pad-x) 56px}
   .hero__title{font-size:72px;line-height:70px;letter-spacing:-2.5px}
+  .hero__title--long{font-size:48px;line-height:52px;letter-spacing:-1px}
   .hero__sub{font-size:30px;line-height:36px}
   .hero__lead{font-size:18px;line-height:28px}
   .hero__facts{flex-wrap:wrap;gap:var(--sp-24)}
@@ -397,6 +493,9 @@
      (390px -> 41px, 360px -> 38px, 320px -> 34px). min() is the system's own
      fluid idiom; it never uses clamp(). */
   .hero__title{font-size:min(46px,10.5vw);line-height:1;letter-spacing:-1.5px}
+  /* "разработчиков" is 268px at the 34px step, wider than a 320px phone's
+     column — same min() fluid-shrink the other display steps use */
+  .hero__title--long{font-size:min(34px,8.2vw);line-height:1.1;letter-spacing:-.6px}
   .hero__sub{font-size:24px;line-height:30px}
   .hero__lead{font-size:16px;line-height:25px}
   .fact{flex:1 1 100%}
@@ -415,4 +514,17 @@
   .module__title{font-size:min(34px,7.8vw);line-height:1.12}
   .streams-block__grid{grid-template-columns:repeat(3,1fr)}
   .carousel__card{flex-basis:280px;padding:var(--sp-20)}
+}
+
+/* --- subpage chrome (see SUBNAV / VERIFY above) --- */
+@media (max-width:768px){
+  /* the tag is decoration; the logo and the way back are what a phone needs */
+  .subnav__tag{display:none}
+  .subfooter{flex-direction:column;align-items:flex-start;gap:var(--sp-12)}
+  .subfooter__links{margin-left:0}
+  .verify{padding:var(--sp-40) var(--sp-20)}
+  .verify__card{padding:var(--sp-28) var(--sp-20)}
+  /* "ПОДТВЕРЖДЁН" and long surnames overflow a 320px card at the flat 40px
+     step — the same min() fluid-shrink .hero__title uses. */
+  .verify__name{font-size:min(32px,8.5vw)}
 }

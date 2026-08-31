@@ -7,12 +7,12 @@ import certificates from "../data/certificates.json";
 const ids = certificates.map((c) => c.id);
 ---
 <VerifyLayout title="Проверка сертификата — NAITION">
-  <div class="v-card">
-    <span class="v-label">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</span>
-    <p class="v-lead">Отсканируйте QR-код на сертификате или введите его идентификатор, чтобы подтвердить подлинность.</p>
-    <form class="v-form" id="v-form" novalidate>
+  <div class="verify__card">
+    <p class="section__eyebrow">[ VERIFY ] // ПРОВЕРКА СЕРТИФИКАТА</p>
+    <p class="verify__lead">Отсканируйте QR-код на сертификате или введите его идентификатор, чтобы подтвердить подлинность.</p>
+    <form class="field" id="v-form" novalidate>
       <input
-        class="v-input"
+        class="field__input"
         id="v-input"
         type="text"
         name="id"
@@ -22,9 +22,10 @@ const ids = certificates.map((c) => c.id);
         spellcheck="false"
         placeholder="Например: 01-001-160726-E9E4"
         aria-label="Идентификатор сертификата"
+        aria-describedby="v-error"
       />
-      <div class="v-error" id="v-error">Сертификат с таким идентификатором не найден. Проверьте, что код введён полностью и без опечаток.</div>
-      <button class="v-btn" type="submit"><span>→ Проверить</span></button>
+      <p class="field__error" id="v-error" role="alert" hidden>Сертификат с таким идентификатором не найден. Проверьте, что код введён полностью и без опечаток.</p>
+      <button class="btn btn--solid field__submit" type="submit">Проверить</button>
     </form>
   </div>
 
@@ -41,10 +42,10 @@ const ids = certificates.map((c) => c.id);
         if (valid.has(id)) {
           window.location.href = '/verify/' + id;
         } else {
-          error.classList.add('is-shown');
+          error.hidden = false;
         }
       });
-      input.addEventListener('input', function () { error.classList.remove('is-shown'); });
+      input.addEventListener('input', function () { error.hidden = true; });
     })();
   </script>
 </VerifyLayout>

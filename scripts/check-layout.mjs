@@ -22,6 +22,8 @@ const WIDTHS = [320, 360, 390, 430, 768, 1024, 1280, 1440, 1920];
 const DISPLAY = [
   '.hero__title', '.section__title', '.lesson__title', '.card__title',
   '.fact__num', '.pricing__amount', '.faq__q', '.footer__col-title',
+  // added with the /teams, /community and /verify reskin
+  '.verify__name', '.plate__text', '.subnav__tag', '.subnav__back',
 ];
 
 const browser = await chromium.launch();
